@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Zeror logo</title>
+  <desc id="desc">A black and white square mark with a flowing yin-yang inspired center.</desc>
+  <rect width="1024" height="1024" fill="#fff"/>
+  <rect x="48" y="48" width="928" height="928" fill="#000"/>
+  <path
+    fill="#fff"
+    d="M80 80h410c95 0 183 44 240 119 61 80 70 185 24 276-26 51-69 88-116 120l-142 97c-83 57-131 150-126 251 5 89 51 164 126 193H80V80z"
+  />
+  <circle cx="428" cy="256" r="58" fill="#000"/>
+  <circle cx="522" cy="746" r="58" fill="#fff"/>
+  <rect x="48" y="48" width="928" height="928" fill="none" stroke="#000" stroke-width="32"/>
+</svg>
