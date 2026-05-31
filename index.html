@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>zeror.ca</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f6f8;
+        --surface: #ffffff;
+        --ink: #172033;
+        --muted: #667085;
+        --line: #d9e0ea;
+        --accent: #1b5fd6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          "Microsoft YaHei",
+          "PingFang SC",
+          system-ui,
+          sans-serif;
+      }
+
+      main {
+        width: min(960px, 100%);
+        margin: 0 auto;
+        padding: 48px 20px;
+      }
+
+      h1,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 32px;
+        line-height: 1.15;
+      }
+
+      p {
+        margin-top: 10px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .project-link {
+        display: block;
+        max-width: 420px;
+        margin-top: 28px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .project-link strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--accent);
+        font-size: 20px;
+      }
+
+      .project-link span {
+        color: var(--muted);
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>zeror.ca</h1>
+      <p>Projects and small tools.</p>
+
+      <a class="project-link" href="/mathpuzzle/">
+        <strong>数学填字 Puzzle Generator</strong>
+        <span>生成一步运算网格题，适合练习加减乘除。</span>
+      </a>
+    </main>
+  </body>
+</html>
