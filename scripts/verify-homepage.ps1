@@ -22,8 +22,28 @@ if ($html -notmatch 'href="/mathpuzzle/"') {
     throw 'Homepage must link to /mathpuzzle/'
 }
 
+$requiredLinks = @(
+    '/trackers/',
+    '/mathpuzzle/',
+    'https://github.com/zerorFY/TradeTest',
+    '/ai-fluency-learning/',
+    '/kids-math-practice/',
+    '/3D-CUBES-beta/'
+)
+
+foreach ($link in $requiredLinks) {
+    $escaped = [regex]::Escape("href=`"$link`"")
+    if ($html -notmatch $escaped) {
+        throw "Homepage must link to $link"
+    }
+}
+
 if ($html -notmatch 'Puzzle Generator') {
     throw 'Homepage must include the math puzzle project title'
+}
+
+if ($html -match 'sophia-tracker' -or $html -match '>lora<') {
+    throw 'Homepage should not list sophia-tracker or lora separately; they belong under trackers'
 }
 
 Write-Host 'Homepage verification passed.'
