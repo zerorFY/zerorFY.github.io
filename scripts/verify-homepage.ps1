@@ -25,6 +25,7 @@ if ($html -notmatch 'href="/mathpuzzle/"') {
 $requiredLinks = @(
     '/trackers/',
     '/mathpuzzle/',
+    '/shirt/',
     'https://zerorfy-tradetest.streamlit.app/',
     '/ai-fluency-learning/',
     '/kids-math-practice/',
