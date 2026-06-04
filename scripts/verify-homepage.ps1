@@ -22,6 +22,20 @@ if ($html -notmatch 'href="/mathpuzzle/"') {
     throw 'Homepage must link to /mathpuzzle/'
 }
 
+$requiredSections = @(
+    'id="featured"',
+    'id="learning"',
+    'id="tools"',
+    'id="experiments"',
+    'id="external"'
+)
+
+foreach ($section in $requiredSections) {
+    if ($html -notmatch [regex]::Escape($section)) {
+        throw "Homepage must include section $section"
+    }
+}
+
 $requiredLinks = @(
     '/trackers/',
     '/mathpuzzle/',
@@ -36,6 +50,22 @@ foreach ($link in $requiredLinks) {
     $escaped = [regex]::Escape("href=`"$link`"")
     if ($html -notmatch $escaped) {
         throw "Homepage must link to $link"
+    }
+}
+
+$requiredLabels = @(
+    'Featured',
+    'Learning',
+    'Tools',
+    'Experiments',
+    'External Apps',
+    'Static',
+    'Live App'
+)
+
+foreach ($label in $requiredLabels) {
+    if ($html -notmatch [regex]::Escape($label)) {
+        throw "Homepage must include label $label"
     }
 }
 
