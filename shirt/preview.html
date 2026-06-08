@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>T-Shirt Preview | Freya's Family Creations</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span></span>Freya's Family Creations<span></span></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html#first-project">First Project</a>
+        <a href="ideas.html">Ideas</a>
+        <a href="preview.html" aria-current="page">Preview</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="button primary small" href="mailto:hello@zeror.ca?subject=Custom%20Gift%20Idea">Send an Idea</a>
+    </header>
+
+    <main>
+      <section class="page-hero narrow">
+        <p class="eyebrow">Quick preview</p>
+        <h1>Try a T-shirt idea without placing an order.</h1>
+        <p class="lead">Upload an image or choose a sample. This is a rough preview; final size, layout, and print quality can be adjusted before making it.</p>
+      </section>
+
+      <section class="preview-page">
+        <form class="preview-form" id="requestForm">
+          <label class="upload-box">
+            <span>Upload your artwork or photo</span>
+            <input id="artUpload" type="file" accept="image/png,image/jpeg,image/webp" />
+            <strong>Click to upload</strong>
+            <small>PNG, JPG, or WEBP up to 10MB</small>
+          </label>
+
+          <div class="form-card">
+            <span>Choose a sample idea</span>
+            <div class="sample-picker" id="samplePicker"></div>
+          </div>
+
+          <div class="quality" id="qualityBox">
+            <strong>Artwork check</strong>
+            <p>Choose a sample or upload an image. For a 10 inch print, 3000px wide is ideal.</p>
+          </div>
+
+          <div class="compact-controls">
+            <label><span>Shirt color</span><input id="shirtColor" type="color" value="#ffffff" /></label>
+            <label><span>Print size</span><input id="scaleRange" type="range" min="70" max="140" value="100" /></label>
+            <label><span>Rotation</span><input id="rotateRange" type="range" min="-25" max="25" value="0" /></label>
+          </div>
+
+          <div class="form-row">
+            <label><span>Size</span><select id="shirtSize"><option>Youth S</option><option selected>Youth M</option><option>Youth L</option><option>Adult S</option><option>Adult M</option><option>Adult L</option></select></label>
+            <label><span>Quantity</span><input id="quantity" type="number" min="1" value="1" /></label>
+          </div>
+
+          <div class="form-row">
+            <label><span>Email</span><input id="email" type="email" placeholder="hello@example.com" /></label>
+            <label><span>Telegram</span><input id="telegram" type="text" placeholder="@username" /></label>
+          </div>
+
+          <label><span>Notes</span><textarea id="notes" rows="3" placeholder="Name, date, deadline, size details..."></textarea></label>
+          <button class="button primary submit" type="submit">Save My Idea</button>
+          <p class="payment-note"><b>No payment needed now.</b> Send your idea first. We'll confirm the design, price, timeline, and pickup or delivery options before making it.</p>
+        </form>
+
+        <aside class="preview-card">
+          <h2>Preview</h2>
+          <div class="preview-window" id="previewWindow">
+            <img id="previewImage" src="assets/ui-slices/preview-shirt.png" alt="T-shirt preview" />
+          </div>
+          <p>This is a rough preview. Final result may vary.</p>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <b>Freya's Family Creations</b>
+        <p>Custom T-shirts, cards, and small gifts in Toronto / GTA</p>
+        <a href="mailto:hello@zeror.ca">hello@zeror.ca</a>
+      </div>
+      <p>Made with love · Family project · Toronto / GTA</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
