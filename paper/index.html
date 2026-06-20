@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper Learning System - Local MVP</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">PL</div>
+        <div>
+          <p class="eyebrow">Local JSON MVP</p>
+          <h1>Paper Learning System</h1>
+        </div>
+      </div>
+      <div class="status-strip" aria-label="System status">
+        <span class="status-pill ok">SQL paused</span>
+        <span class="status-pill ok">Codex worker</span>
+        <span class="status-pill warn">Local queue</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="rail rail-left" aria-label="Document navigation">
+        <section class="panel doc-panel">
+          <div class="panel-heading">
+            <h2>Document</h2>
+            <span id="versionBadge" class="mini-badge">v1</span>
+          </div>
+          <p id="docTitle" class="doc-title">Loading...</p>
+          <div class="metric-grid">
+            <div>
+              <span id="segmentCount">0</span>
+              <label>Segments</label>
+            </div>
+            <div>
+              <span id="annotationCount">0</span>
+              <label>Notes</label>
+            </div>
+          </div>
+          <label class="search-box">
+            <span>Find</span>
+            <input id="segmentSearch" type="search" placeholder="Keyword or segment id">
+          </label>
+        </section>
+
+        <section class="panel section-panel">
+          <div class="panel-heading">
+            <h2>Outline</h2>
+          </div>
+          <nav id="sectionList" class="section-list"></nav>
+        </section>
+
+        <section class="panel queue-panel">
+          <div class="panel-heading">
+            <h2>Worker</h2>
+            <button id="clearLocalTasks" class="icon-button" type="button" title="Clear local browser-created tasks" aria-label="Clear local tasks">x</button>
+          </div>
+          <div id="queueStats" class="queue-stats"></div>
+          <div id="taskList" class="task-list"></div>
+        </section>
+      </aside>
+
+      <section class="reader" aria-label="Paper reader">
+        <div class="reader-toolbar">
+          <div>
+            <p class="eyebrow">Active segment</p>
+            <h2 id="activeSegmentTitle">Loading...</h2>
+          </div>
+          <div class="toolbar-actions">
+            <button id="prevSegment" class="icon-button" type="button" title="Previous segment" aria-label="Previous segment">&lt;</button>
+            <button id="nextSegment" class="icon-button" type="button" title="Next segment" aria-label="Next segment">&gt;</button>
+          </div>
+        </div>
+        <article id="segmentList" class="segment-list"></article>
+      </section>
+
+      <aside class="rail rail-right" aria-label="Annotations and questions">
+        <section class="panel detail-panel">
+          <div class="tabs" role="tablist" aria-label="Detail view">
+            <button class="tab is-active" data-tab="annotations" type="button">Notes</button>
+            <button class="tab" data-tab="questions" type="button">Q&amp;A</button>
+            <button class="tab" data-tab="contract" type="button">Contract</button>
+          </div>
+          <div id="detailContent" class="detail-content"></div>
+        </section>
+
+        <section class="panel ask-panel">
+          <div class="panel-heading">
+            <h2>Ask</h2>
+            <span id="selectedSegmentBadge" class="mini-badge">segment</span>
+          </div>
+          <form id="questionForm" class="question-form">
+            <textarea id="questionInput" rows="4" placeholder="Ask about the active segment"></textarea>
+            <div class="form-row">
+              <span class="hint">Saved to browser local queue</span>
+              <button type="submit">Create task</button>
+            </div>
+          </form>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <template id="emptyTemplate">
+    <div class="empty-state">
+      <strong>No content</strong>
+      <span>Select a segment or create a local task.</span>
+    </div>
+  </template>
+
+  <script src="./app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "document_id": "00000000-0000-4000-8000-000000000001",
+  "version_id": "00000000-0000-4000-8000-000000000002",
+  "version_label": "v1-local",
+  "title": "From AGI to ASI - Part 01 Reading Sample",
+  "source_kind": "local_sample",
+  "sections": [
+    {
+      "section_id": "sec-001",
+      "title": "Opening: why AGI is not the endpoint",
+      "segments": [
+        {
+          "segment_id": "seg-001",
+          "anchor_key": "p01-s001",
+          "title": "Core question",
+          "segment_type": "paragraph",
+          "text_content": "The paper does not only ask how AGI should be defined. It asks whether systems that reach human-level general capability can keep scaling toward ASI."
+        },
+        {
+          "segment_id": "seg-002",
+          "anchor_key": "p01-s002",
+          "title": "From capability to ceiling",
+          "segment_type": "paragraph",
+          "text_content": "AGI can mean human-level general intelligence across tasks, but that does not imply intelligence has reached its ceiling. Digital systems may still gain advantages in speed, replication, coordination, and search."
+        },
+        {
+          "segment_id": "seg-003",
+          "anchor_key": "p01-s003",
+          "title": "System view",
+          "segment_type": "paragraph",
+          "text_content": "From a systems view, ASI may not come from one model becoming stronger in isolation. It may emerge from models, tools, memory, retrieval, executors, and multi-agent structures working as a capability network."
+        }
+      ]
+    },
+    {
+      "section_id": "sec-002",
+      "title": "How the learning system handles papers",
+      "segments": [
+        {
+          "segment_id": "seg-004",
+          "anchor_key": "p01-s004",
+          "title": "Structured text",
+          "segment_type": "paragraph",
+          "text_content": "The paper learning system first splits a source document into stable sections and segments, so notes, questions, and model results can anchor to a concrete segment in a concrete version."
+        },
+        {
+          "segment_id": "seg-005",
+          "anchor_key": "p01-s005",
+          "title": "Worker role",
+          "segment_type": "paragraph",
+          "text_content": "The Worker does not own core business logic. It claims tasks, prepares context, calls a model, preserves raw output, validates structured results, and writes results back through shared contracts."
+        }
+      ]
+    }
+  ]
+}

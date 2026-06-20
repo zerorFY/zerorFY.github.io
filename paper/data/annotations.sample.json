@@ -1,0 +1,31 @@
+{
+  "annotations": [
+    {
+      "annotation_id": "ann-001",
+      "segment_id": "seg-001",
+      "annotation_type": "fixed",
+      "title": "Shift in question",
+      "summary": "The focus moves from defining AGI to asking what can happen after AGI.",
+      "explanation": "This matters because the paper studies possible paths for continued intelligence growth, not only whether AGI is possible.",
+      "boundary_notes": "This does not claim ASI is guaranteed. It defines the research question."
+    },
+    {
+      "annotation_id": "ann-002",
+      "segment_id": "seg-002",
+      "annotation_type": "fixed",
+      "title": "Digital intelligence advantage",
+      "summary": "Speed, replication, and coordination are key reasons digital systems may exceed a single human mind.",
+      "explanation": "The advantage is not only higher IQ. It is also the ability to scale computation and organization.",
+      "boundary_notes": "Real bottlenecks may still come from data, energy, environment interaction, and goal setting."
+    },
+    {
+      "annotation_id": "ann-003",
+      "segment_id": "seg-005",
+      "annotation_type": "fixed",
+      "title": "Worker as execution boundary",
+      "summary": "The Worker is replaceable and should not contaminate core data contracts.",
+      "explanation": "Codex is useful now because it can execute tasks. Later, a script or background service should consume the same task and result contracts.",
+      "boundary_notes": "A Worker may orchestrate and validate, but should not silently rewrite paper facts or user understanding state."
+    }
+  ]
+}
