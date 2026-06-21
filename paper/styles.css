@@ -1008,3 +1008,8 @@ h2 {
     background: #e7f5ef;
   }
 }
+
+.intake-body .text-button {
+  width: 100%;
+  min-height: 36px;
+}

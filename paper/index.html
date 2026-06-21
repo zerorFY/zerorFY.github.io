@@ -25,8 +25,8 @@
         <button id="outlineToggle" class="outline-toggle" type="button" aria-expanded="false" aria-controls="sectionList">Outline</button>
         <button id="uploadTopButton" class="text-button top-upload-button" type="button">上传新文档</button>
         <div class="status-strip" aria-label="System status">
-          <span class="status-pill ok">Static JSON</span>
-          <span class="status-pill ok">Manual GPT</span>
+          <span class="status-pill ok">Published JSON</span>
+          <span class="status-pill ok">GPT latest</span>
           <span class="status-pill warn">No SQL</span>
         </div>
       </div>
@@ -81,6 +81,7 @@
           </div>
           <div class="intake-body">
             <button id="uploadPanelButton" class="primary-action" type="button">上传新文档</button>
+            <button id="refreshDriveButton" class="text-button" type="button">刷新 Drive</button>
             <p id="uploadStatus" class="hint">Google Form URL not configured yet.</p>
           </div>
         </section>
@@ -119,7 +120,7 @@
             <span id="selectedSegmentBadge" class="mini-badge">segment</span>
           </div>
           <div class="manual-body">
-            <p class="hint">Analysis is imported through run-paper.bat after manual ChatGPT work. The reader does not write online tasks.</p>
+            <p class="hint">GPT writes the stable latest JSON in Drive. Apps Script archives, verifies, merges, and the reader only loads the published JSON.</p>
           </div>
         </section>
       </aside>

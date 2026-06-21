@@ -1,7 +1,7 @@
 {
     "schema_version":  "paper-library-v2.0",
     "active_document_id":  "agi-asi-part-01-sample",
-    "generated_at":  "2026-06-21T16:25:15Z",
+    "generated_at":  "2026-06-21T21:33:37Z",
     "upload":  {
                    "form_url":  "https://docs.google.com/forms/d/e/1FAIpQLSfFE67AQJugl67v7fbw7qNczD6lAqMfk_h7-UC00bvhj9IpSA/viewform?usp=publish-editor",
                    "mode":  "google_form_connected",
@@ -29,5 +29,29 @@
                           "annotation_count":  3,
                           "updated_at":  "2026-06-21T15:39:47Z"
                       }
-                  ]
+                  ],
+    "adapter":  {
+                    "type":  "apps_script",
+                    "status":  "pending",
+                    "url":  "",
+                    "actions":  {
+                                    "refresh":  "action=refresh",
+                                    "library":  "action=library",
+                                    "document":  "action=document"
+                                }
+                },
+    "drive_workflow":  {
+                           "mode":  "gpt_latest_to_published_json",
+                           "document_folder_name":  "01-documents",
+                           "base_name_pattern":  "yyyyMMdd-HHmmss_slug",
+                           "source_file_pattern":  "{base_name}.pdf",
+                           "gpt_latest_pattern":  "{base_name}.gpt-latest.json",
+                           "batch_archive_pattern":  "{base_name}.batch-{yyyyMMdd-HHmmss}.json",
+                           "published_document_pattern":  "{base_name}.json",
+                           "batch_retention_count":  5,
+                           "hash_check":  "sha256(gpt-latest) must equal sha256(batch archive) before merge",
+                           "merge_owner":  "apps_script",
+                           "web_reads":  "{base_name}.json",
+                           "gpt_writes":  "{base_name}.gpt-latest.json"
+                       }
 }

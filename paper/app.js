@@ -20,7 +20,8 @@ const state = {
   mobilePanel: "body",
   search: "",
   outlineOpen: false,
-  currentDocumentPath: ""
+  currentDocumentPath: "",
+  lastRefreshMessage: ""
 };
 
 const dom = {
@@ -50,7 +51,8 @@ const dom = {
   uploadTopButton: document.querySelector("#uploadTopButton"),
   uploadPanelButton: document.querySelector("#uploadPanelButton"),
   uploadStatus: document.querySelector("#uploadStatus"),
-  uploadBadge: document.querySelector("#uploadBadge")
+  uploadBadge: document.querySelector("#uploadBadge"),
+  refreshDriveButton: document.querySelector("#refreshDriveButton")
 };
 
 function escapeHtml(value) {
@@ -62,6 +64,20 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function getAdapterUrl() {
+  return state.library?.adapter?.url?.trim() ?? "";
+}
+
+function buildAdapterUrl(action, params = {}) {
+  const adapterUrl = getAdapterUrl();
+  if (!adapterUrl) return "";
+  const url = new URL(adapterUrl, window.location.href);
+  url.searchParams.set("action", action);
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") url.searchParams.set(key, value);
+  });
+  return url.toString();
+}
 async function loadJson(path) {
   const response = await fetch(path, { cache: "no-store" });
   if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
@@ -165,7 +181,12 @@ function getDocumentEntry(documentId = state.activeDocumentId) {
 }
 
 function getDocumentPath(entry) {
-  return entry?.file ? `${DATA_PATHS.documentBase}${entry.file}` : "";
+  if (!entry) return "";
+  if (entry.file_url) return entry.file_url;
+  if (entry.file && /^https?:\/\//i.test(entry.file)) return entry.file;
+  if (entry.file) return `${DATA_PATHS.documentBase}${entry.file}`;
+  if (entry.document_id && getAdapterUrl()) return buildAdapterUrl("document", { document_id: entry.document_id });
+  return "";
 }
 
 function setActiveSegment(segmentId) {
@@ -217,10 +238,66 @@ function openUploadForm() {
     window.open(url, "_blank", "noopener,noreferrer");
     return;
   }
-  dom.uploadStatus.textContent = "Google Form has not been connected yet. Stage 2A will add the real Form URL here.";
+  state.lastRefreshMessage = "Google Form is not configured yet; Drive refresh remains unavailable.";
+  dom.uploadStatus.textContent = state.lastRefreshMessage;
   dom.uploadBadge.textContent = "Pending";
 }
 
+
+async function refreshDriveLibrary() {
+  const adapterUrl = getAdapterUrl();
+  const workflow = state.library?.drive_workflow ?? {};
+  const retention = workflow.batch_retention_count ?? 5;
+
+  if (!adapterUrl) {
+    state.lastRefreshMessage = `Apps Script adapter URL is not configured yet. Current page still reads deployed library.json; batch retention is ${retention}.`;
+    dom.uploadBadge.textContent = "Pending";
+    dom.uploadStatus.textContent = state.lastRefreshMessage;
+    renderDetail();
+    return;
+  }
+
+  const previousDocumentId = state.activeDocumentId;
+  const previousSegmentId = state.activeSegmentId;
+  const previousScrollTop = getReaderScrollTop();
+  state.lastRefreshMessage = "Refreshing Drive...";
+  dom.uploadStatus.textContent = state.lastRefreshMessage;
+  dom.uploadBadge.textContent = "Sync";
+  if (dom.refreshDriveButton) dom.refreshDriveButton.disabled = true;
+
+  try {
+    const response = await fetch(buildAdapterUrl("refresh"), { cache: "no-store" });
+    if (!response.ok) throw new Error(`Apps Script refresh failed: ${response.status}`);
+    const payload = await response.json();
+    if (payload.ok === false) throw new Error(payload.error || "Apps Script refresh returned an error.");
+
+    if (payload.library) state.library = payload.library;
+    else state.library = await loadJson(buildAdapterUrl("library"));
+
+    const hasPreviousDocument = state.library.documents?.some((entry) => entry.document_id === previousDocumentId);
+    const nextDocumentId = hasPreviousDocument
+      ? previousDocumentId
+      : (state.library.active_document_id || state.library.documents?.[0]?.document_id);
+
+    if (nextDocumentId) {
+      await setActiveDocument(nextDocumentId);
+      if (previousSegmentId && getAllSegments().some((segment) => segment.segment_id === previousSegmentId)) {
+        state.activeSegmentId = previousSegmentId;
+      }
+    }
+
+    state.lastRefreshMessage = `Drive refresh complete. Processed ${payload.processed_count ?? 0} latest file(s); keeping latest ${retention} batch archives.`;
+    render();
+    restoreReaderScrollTop(previousScrollTop);
+  } catch (error) {
+    state.lastRefreshMessage = `Drive refresh failed: ${error.message}`;
+    dom.uploadStatus.textContent = state.lastRefreshMessage;
+    dom.uploadBadge.textContent = "Error";
+    renderDetail();
+  } finally {
+    if (dom.refreshDriveButton) dom.refreshDriveButton.disabled = false;
+  }
+}
 function renderLanguageControls() {
   dom.languageButtons.forEach((button) => {
     const active = button.dataset.languageMode === state.languageMode;
@@ -274,10 +351,17 @@ function renderDocPanel() {
   renderDocumentSelect();
 
   const formUrl = state.library?.upload?.form_url?.trim();
-  dom.uploadBadge.textContent = formUrl ? "Ready" : "Pending";
-  dom.uploadStatus.textContent = formUrl
-    ? "Google Form opens in a new tab for file upload."
+  const workflow = state.library?.drive_workflow ?? {};
+  const retention = workflow.batch_retention_count ?? 5;
+  const adapterReady = Boolean(getAdapterUrl());
+  const gptWrites = workflow.gpt_writes ?? "{base_name}.gpt-latest.json";
+  const webReads = workflow.web_reads ?? "{base_name}.json";
+  dom.uploadBadge.textContent = adapterReady ? "Drive" : (formUrl ? "Form" : "Pending");
+  const defaultUploadStatus = formUrl
+    ? `Upload opens Google Form. GPT writes ${gptWrites}; refresh publishes ${webReads} and keeps latest ${retention} batches.`
     : "Google Form URL not configured yet; reader is ready for the connection.";
+  dom.uploadStatus.textContent = state.lastRefreshMessage || defaultUploadStatus;
+  if (dom.refreshDriveButton) dom.refreshDriveButton.disabled = false;
 }
 
 function renderSections() {
@@ -457,17 +541,26 @@ function renderSystem() {
   const entry = getDocumentEntry();
   const uploadMode = state.library?.upload?.mode ?? "not_configured";
   const formUrl = state.library?.upload?.form_url?.trim();
+  const adapter = state.library?.adapter ?? {};
+  const adapterUrl = getAdapterUrl();
+  const workflow = state.library?.drive_workflow ?? {};
+  const retention = workflow.batch_retention_count ?? 5;
+  const gptWrites = workflow.gpt_writes ?? "{base_name}.gpt-latest.json";
+  const webReads = workflow.web_reads ?? "{base_name}.json";
+  const archivePattern = workflow.batch_archive_pattern ?? "{base_name}.batch-{yyyyMMdd-HHmmss}.json";
+
   dom.detailContent.innerHTML = `
     <ul class="contract-list system-list">
-      <li><strong>Active workflow</strong><p>V2.0 personal static workflow. The reader loads GitHub Pages JSON only.</p></li>
+      <li><strong>Active workflow</strong><p>V2.1 Drive workflow. GPT writes ${escapeHtml(gptWrites)}; Apps Script archives, verifies, merges, and the reader loads ${escapeHtml(webReads)}.</p></li>
       <li><strong>Data source</strong><p>${escapeHtml(state.currentDocumentPath || DATA_PATHS.library)}</p></li>
       <li><strong>Upload</strong><p>${formUrl ? "Google Form is configured." : `Pending Google Form URL (${escapeHtml(uploadMode)}).`}</p></li>
+      <li><strong>Adapter</strong><p>${adapterUrl ? "Apps Script URL configured." : `Apps Script URL pending (${escapeHtml(adapter.status ?? "pending")}).`}</p></li>
+      <li><strong>Batch retention</strong><p>Keep latest ${escapeHtml(String(retention))} archives matching ${escapeHtml(archivePattern)}; older batch files move to Drive trash.</p></li>
       <li><strong>No SQL</strong><p>No database, online queue, or concurrent worker is required for this stage.</p></li>
       <li><strong>Document</strong><p>${escapeHtml(entry?.document_id ?? "none")}</p></li>
     </ul>
   `;
 }
-
 function renderDetail() {
   document.querySelectorAll(".tab").forEach((tab) => {
     tab.classList.toggle("is-active", tab.dataset.tab === state.activeTab);
@@ -546,5 +639,6 @@ dom.prevSegment.addEventListener("click", () => moveSegment(-1));
 dom.nextSegment.addEventListener("click", () => moveSegment(1));
 dom.uploadTopButton.addEventListener("click", openUploadForm);
 dom.uploadPanelButton.addEventListener("click", openUploadForm);
+if (dom.refreshDriveButton) dom.refreshDriveButton.addEventListener("click", () => refreshDriveLibrary());
 
 init();
