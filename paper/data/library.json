@@ -1,0 +1,33 @@
+{
+    "schema_version":  "paper-library-v2.0",
+    "active_document_id":  "agi-asi-part-01-sample",
+    "generated_at":  "2026-06-21T15:39:47Z",
+    "upload":  {
+                   "form_url":  "",
+                   "mode":  "google_form_pending",
+                   "note":  "Google Form URL is still pending; Drive intake folder and Response Sheet template are ready.",
+                   "upload_folder_url":  "https://drive.google.com/drive/folders/11_nV6T9_qR8zJDqHUVtMJ06HgZY3KB3g",
+                   "response_sheet_url":  "https://docs.google.com/spreadsheets/d/1TKevvCpLDWbcXBAl7WZ9rS7h_1GfGd3VrMEt4dhERzU"
+               },
+    "documents":  [
+                      {
+                          "document_id":  "agi-asi-part-01-sample",
+                          "file":  "documents/agi-asi-part-01-sample.json",
+                          "status":  "sample",
+                          "title":  "From AGI to ASI - Part 01 Reading Sample",
+                          "title_zh":  "从 AGI 到 ASI - Part 01 阅读样本",
+                          "language_variants":  {
+                                                    "en":  {
+                                                               "title":  "From AGI to ASI - Part 01 Reading Sample"
+                                                           },
+                                                    "zh":  {
+                                                               "title":  "从 AGI 到 ASI - Part 01 阅读样本"
+                                                           }
+                                                },
+                          "section_count":  2,
+                          "segment_count":  5,
+                          "annotation_count":  3,
+                          "updated_at":  "2026-06-21T15:39:47Z"
+                      }
+                  ]
+}

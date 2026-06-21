@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Learning System - Bilingual MVP</title>
+  <title>Paper Learning System - Personal Workflow</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
       <div class="brand-block">
         <div class="brand-mark" aria-hidden="true">PL</div>
         <div>
-          <p class="eyebrow">Bilingual JSON MVP</p>
+          <p class="eyebrow">Personal static reader</p>
           <h1>Paper Learning System</h1>
         </div>
       </div>
@@ -23,10 +23,11 @@
           <button class="language-button" data-language-mode="both" type="button">中英对照</button>
         </div>
         <button id="outlineToggle" class="outline-toggle" type="button" aria-expanded="false" aria-controls="sectionList">Outline</button>
+        <button id="uploadTopButton" class="text-button top-upload-button" type="button">上传新文档</button>
         <div class="status-strip" aria-label="System status">
-          <span class="status-pill ok">SQL paused</span>
-          <span class="status-pill ok">Codex worker</span>
-          <span class="status-pill warn">Canonical translation</span>
+          <span class="status-pill ok">Static JSON</span>
+          <span class="status-pill ok">Manual GPT</span>
+          <span class="status-pill warn">No SQL</span>
         </div>
       </div>
     </header>
@@ -36,7 +37,7 @@
         <section class="panel doc-panel">
           <div class="panel-heading">
             <h2>Document</h2>
-            <span id="versionBadge" class="mini-badge">v1</span>
+            <span id="versionBadge" class="mini-badge">v2</span>
           </div>
           <p id="docTitle" class="doc-title">Loading...</p>
           <div class="metric-grid">
@@ -55,10 +56,10 @@
           </div>
           <div class="source-box" aria-label="Loaded data source">
             <div class="source-row">
-              <span id="sourceTypeBadge" class="mini-badge">Sample</span>
-              <span id="sourcePath">./data/document.sample.json</span>
+              <span id="sourceTypeBadge" class="mini-badge">Static</span>
+              <span id="sourcePath">./data/library.json</span>
             </div>
-            <button id="importPlaceholder" class="text-button" type="button" disabled>Full paper import pending</button>
+            <select id="documentSelect" class="document-select" aria-label="Select document"></select>
           </div>
           <label class="search-box">
             <span>Find</span>
@@ -73,13 +74,15 @@
           <nav id="sectionList" class="section-list"></nav>
         </section>
 
-        <section class="panel queue-panel">
+        <section class="panel intake-panel">
           <div class="panel-heading">
-            <h2>Worker</h2>
-            <button id="clearLocalTasks" class="icon-button" type="button" title="Clear local browser-created tasks" aria-label="Clear local tasks">x</button>
+            <h2>Upload</h2>
+            <span id="uploadBadge" class="mini-badge">Form</span>
           </div>
-          <div id="queueStats" class="queue-stats"></div>
-          <div id="taskList" class="task-list"></div>
+          <div class="intake-body">
+            <button id="uploadPanelButton" class="primary-action" type="button">上传新文档</button>
+            <p id="uploadStatus" class="hint">Google Form URL not configured yet.</p>
+          </div>
         </section>
       </aside>
 
@@ -105,23 +108,19 @@
           <div class="tabs" role="tablist" aria-label="Detail view">
             <button class="tab is-active" data-tab="annotations" type="button">Notes</button>
             <button class="tab" data-tab="questions" type="button">Q&amp;A</button>
-            <button class="tab" data-tab="contract" type="button">Contract</button>
+            <button class="tab" data-tab="system" type="button">System</button>
           </div>
           <div id="detailContent" class="detail-content"></div>
         </section>
 
-        <section class="panel ask-panel">
+        <section class="panel manual-panel">
           <div class="panel-heading">
-            <h2>Ask</h2>
+            <h2>Manual GPT</h2>
             <span id="selectedSegmentBadge" class="mini-badge">segment</span>
           </div>
-          <form id="questionForm" class="question-form">
-            <textarea id="questionInput" rows="4" placeholder="Ask about the active segment"></textarea>
-            <div class="form-row">
-              <span class="hint">Saved to browser local queue</span>
-              <button type="submit">Create task</button>
-            </div>
-          </form>
+          <div class="manual-body">
+            <p class="hint">Analysis is imported through run-paper.bat after manual ChatGPT work. The reader does not write online tasks.</p>
+          </div>
         </section>
       </aside>
     </main>
@@ -130,14 +129,14 @@
       <button class="mobile-nav-button is-active" data-mobile-panel="body" type="button">正文</button>
       <button class="mobile-nav-button" data-mobile-panel="annotations" type="button">Notes</button>
       <button class="mobile-nav-button" data-mobile-panel="questions" type="button">Q&amp;A</button>
-      <button class="mobile-nav-button" data-mobile-panel="ask" type="button">Ask</button>
+      <button class="mobile-nav-button" data-mobile-panel="system" type="button">More</button>
     </nav>
   </div>
 
   <template id="emptyTemplate">
     <div class="empty-state">
       <strong>No content</strong>
-      <span>Select a segment or create a local task.</span>
+      <span>No static content is available for this view.</span>
     </div>
   </template>
 

@@ -237,9 +237,9 @@ h2 {
 
 .doc-panel,
 .section-panel,
-.queue-panel,
+.intake-panel,
 .detail-panel,
-.ask-panel {
+.manual-panel {
   overflow: hidden;
 }
 
@@ -295,7 +295,7 @@ h2 {
 }
 
 .search-box input,
-.question-form textarea {
+.document-select {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -310,7 +310,7 @@ h2 {
 }
 
 .search-box input:focus,
-.question-form textarea:focus {
+.document-select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(22, 121, 111, 0.12);
 }
@@ -667,9 +667,26 @@ h2 {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.document-select {
+  height: 36px;
+  padding: 0 10px;
+}
+
+.intake-body,
+.manual-body {
+  display: grid;
+  gap: 10px;
+  padding: 0 12px 12px;
+}
+
+.system-list li strong {
+  display: block;
+  margin-bottom: 4px;
+}
 
 .text-button,
-.outline-toggle {
+.outline-toggle,
+.primary-action {
   min-height: 34px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -679,8 +696,20 @@ h2 {
 }
 
 .text-button {
-  width: 100%;
   color: var(--muted);
+}
+
+.top-upload-button {
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
+.primary-action {
+  width: 100%;
+  min-height: 38px;
+  border-color: var(--accent-strong);
+  color: #ffffff;
+  background: var(--accent-strong);
 }
 
 .text-button:disabled {
@@ -834,7 +863,7 @@ h2 {
   }
 
   .language-switch {
-    flex: 1 1 240px;
+    flex: 1 1 220px;
     min-width: 0;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -848,6 +877,10 @@ h2 {
 
   .status-strip {
     display: none;
+  }
+
+  .top-upload-button {
+    flex: 1 1 112px;
   }
 
   .workspace {
@@ -935,12 +968,8 @@ h2 {
     pointer-events: auto;
   }
 
-  .rail-right[data-mobile-panel="annotations"] .ask-panel,
-  .rail-right[data-mobile-panel="questions"] .ask-panel {
-    display: none;
-  }
-
-  .rail-right[data-mobile-panel="ask"] .detail-panel {
+  .rail-right[data-mobile-panel="annotations"] .manual-panel,
+  .rail-right[data-mobile-panel="questions"] .manual-panel {
     display: none;
   }
 

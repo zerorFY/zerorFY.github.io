@@ -1,12 +1,9 @@
 const DATA_PATHS = {
-  document: "./data/document.sample.json",
-  annotations: "./data/annotations.sample.json",
-  thread: "./data/thread.sample.json",
-  tasks: "./data/tasks.sample.json"
+  library: "./data/library.json",
+  documentBase: "./data/"
 };
 
-const LOCAL_TASK_KEY = "pls.localTasks.v1";
-const LOCAL_LANGUAGE_KEY = "pls.languageMode.v1";
+const LOCAL_LANGUAGE_KEY = "pls.languageMode.v2";
 
 const LANGUAGE_LABELS = {
   en: "English Original",
@@ -14,17 +11,16 @@ const LANGUAGE_LABELS = {
 };
 
 const state = {
+  library: null,
   document: null,
-  annotations: [],
-  thread: null,
-  tasks: [],
-  localTasks: [],
+  activeDocumentId: null,
   activeSegmentId: null,
   activeTab: "annotations",
   languageMode: "zh",
   mobilePanel: "body",
   search: "",
-  outlineOpen: false
+  outlineOpen: false,
+  currentDocumentPath: ""
 };
 
 const dom = {
@@ -35,28 +31,26 @@ const dom = {
   annotationCount: document.querySelector("#annotationCount"),
   sourceTypeBadge: document.querySelector("#sourceTypeBadge"),
   sourcePath: document.querySelector("#sourcePath"),
-  importPlaceholder: document.querySelector("#importPlaceholder"),
+  documentSelect: document.querySelector("#documentSelect"),
   loadSummary: document.querySelector("#loadSummary"),
   segmentSearch: document.querySelector("#segmentSearch"),
   sectionList: document.querySelector("#sectionList"),
-  queueStats: document.querySelector("#queueStats"),
-  taskList: document.querySelector("#taskList"),
   activeSegmentTitle: document.querySelector("#activeSegmentTitle"),
   prevSegment: document.querySelector("#prevSegment"),
   nextSegment: document.querySelector("#nextSegment"),
   segmentList: document.querySelector("#segmentList"),
   detailContent: document.querySelector("#detailContent"),
-  questionForm: document.querySelector("#questionForm"),
-  questionInput: document.querySelector("#questionInput"),
   selectedSegmentBadge: document.querySelector("#selectedSegmentBadge"),
-  clearLocalTasks: document.querySelector("#clearLocalTasks"),
   languageButtons: [...document.querySelectorAll("[data-language-mode]")],
-  mobileNav: document.querySelector("#mobileNav"),
   mobileButtons: [...document.querySelectorAll("[data-mobile-panel]")],
   outlineToggle: document.querySelector("#outlineToggle"),
   outlineScrim: document.querySelector("#outlineScrim"),
   railLeft: document.querySelector(".rail-left"),
-  railRight: document.querySelector(".rail-right")
+  railRight: document.querySelector(".rail-right"),
+  uploadTopButton: document.querySelector("#uploadTopButton"),
+  uploadPanelButton: document.querySelector("#uploadPanelButton"),
+  uploadStatus: document.querySelector("#uploadStatus"),
+  uploadBadge: document.querySelector("#uploadBadge")
 };
 
 function escapeHtml(value) {
@@ -70,9 +64,7 @@ function escapeHtml(value) {
 
 async function loadJson(path) {
   const response = await fetch(path, { cache: "no-store" });
-  if (!response.ok) {
-    throw new Error(`Failed to load ${path}: ${response.status}`);
-  }
+  if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
   return response.json();
 }
 
@@ -89,7 +81,9 @@ function readLanguageMode() {
 }
 
 function saveLanguageMode() {
-  localStorage.setItem(LOCAL_LANGUAGE_KEY, state.languageMode);
+  try {
+    localStorage.setItem(LOCAL_LANGUAGE_KEY, state.languageMode);
+  } catch {}
 }
 
 function usesPageScroll() {
@@ -119,56 +113,66 @@ function getDisplayLanguage() {
 }
 
 function getDisplayText(item, field, language = getDisplayLanguage()) {
+  const directField = field === "text_content" ? `content_${language}` : null;
   const variant = getVariant(item, language);
-  return variant?.[field] ?? item?.[field] ?? "";
+  return variant?.[field] ?? (directField ? item?.[directField] : "") ?? item?.[field] ?? "";
 }
 
 function getAllVariantText(item) {
   const variants = item?.language_variants ?? {};
-  return Object.values(variants)
-    .flatMap((variant) => Object.values(variant ?? {}))
+  return [item?.content_en, item?.content_zh, ...Object.values(variants).flatMap((variant) => Object.values(variant ?? {}))]
+    .filter(Boolean)
     .join(" ");
+}
+
+function getSectionSegments(section) {
+  if (Array.isArray(section.segments)) return section.segments;
+  return (state.document?.segments ?? []).filter((segment) => segment.section_id === section.section_id);
 }
 
 function getAllSegments() {
   if (!state.document) return [];
-  return state.document.sections.flatMap((section) =>
-    section.segments.map((segment) => ({
-      ...segment,
-      sectionId: section.section_id,
-      sectionTitle: getDisplayText(section, "title")
-    }))
-  );
+  if (Array.isArray(state.document.sections)) {
+    return state.document.sections.flatMap((section) =>
+      getSectionSegments(section).map((segment) => ({
+        ...segment,
+        sectionId: section.section_id,
+        sectionTitle: getDisplayText(section, "title")
+      }))
+    );
+  }
+  return (state.document.segments ?? []).map((segment) => ({
+    ...segment,
+    sectionId: segment.section_id,
+    sectionTitle: segment.section_id
+  }));
+}
+
+function getAnnotations() {
+  return state.document?.annotations ?? [];
+}
+
+function getQuestionThreads() {
+  return state.document?.question_threads ?? [];
 }
 
 function getActiveSegment() {
   return getAllSegments().find((segment) => segment.segment_id === state.activeSegmentId) ?? null;
 }
 
-function getCombinedTasks() {
-  return [...state.localTasks, ...state.tasks].sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)));
+function getDocumentEntry(documentId = state.activeDocumentId) {
+  return state.library?.documents?.find((item) => item.document_id === documentId) ?? null;
 }
 
-function loadLocalTasks() {
-  try {
-    const raw = localStorage.getItem(LOCAL_TASK_KEY);
-    state.localTasks = raw ? JSON.parse(raw) : [];
-  } catch {
-    state.localTasks = [];
-  }
-}
-
-function saveLocalTasks() {
-  localStorage.setItem(LOCAL_TASK_KEY, JSON.stringify(state.localTasks));
+function getDocumentPath(entry) {
+  return entry?.file ? `${DATA_PATHS.documentBase}${entry.file}` : "";
 }
 
 function setActiveSegment(segmentId) {
   state.activeSegmentId = segmentId;
   render();
   const element = document.querySelector(`[data-segment-id="${CSS.escape(segmentId)}"]`);
-  if (element) {
-    element.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  }
+  if (element) element.scrollIntoView({ block: "nearest", behavior: "smooth" });
   if (usesOutlineDrawer()) setOutlineOpen(false);
 }
 
@@ -189,8 +193,32 @@ function setMobilePanel(mobilePanel) {
   state.mobilePanel = mobilePanel;
   if (mobilePanel === "annotations") state.activeTab = "annotations";
   if (mobilePanel === "questions") state.activeTab = "questions";
+  if (mobilePanel === "system") state.activeTab = "system";
   renderDetail();
   renderMobilePanel();
+}
+
+async function setActiveDocument(documentId) {
+  const entry = getDocumentEntry(documentId);
+  if (!entry) return;
+  state.activeDocumentId = documentId;
+  state.currentDocumentPath = getDocumentPath(entry);
+  state.document = await loadJson(state.currentDocumentPath);
+  state.activeSegmentId = getAllSegments()[0]?.segment_id ?? null;
+  state.search = "";
+  dom.segmentSearch.value = "";
+  render();
+  restoreReaderScrollTop(0);
+}
+
+function openUploadForm() {
+  const url = state.library?.upload?.form_url?.trim();
+  if (url) {
+    window.open(url, "_blank", "noopener,noreferrer");
+    return;
+  }
+  dom.uploadStatus.textContent = "Google Form has not been connected yet. Stage 2A will add the real Form URL here.";
+  dom.uploadBadge.textContent = "Pending";
 }
 
 function renderLanguageControls() {
@@ -221,49 +249,65 @@ function renderOutlineDrawer() {
   dom.outlineToggle.setAttribute("aria-expanded", String(open));
 }
 
+function renderDocumentSelect() {
+  const documents = state.library?.documents ?? [];
+  dom.documentSelect.innerHTML = documents.map((entry) => `
+    <option value="${escapeHtml(entry.document_id)}" ${entry.document_id === state.activeDocumentId ? "selected" : ""}>
+      ${escapeHtml(getDisplayText(entry, "title") || entry.title || entry.document_id)}
+    </option>
+  `).join("");
+}
+
 function renderDocPanel() {
   const segments = getAllSegments();
-  const sectionTotal = state.document.sections.length;
-  const sampleOnly = DATA_PATHS.document.includes("sample") || String(state.document.version_label ?? "").toLowerCase().includes("local");
-  dom.versionBadge.textContent = state.document.version_label;
-  dom.docTitle.textContent = getDisplayText(state.document, "title");
+  const sectionTotal = state.document?.sections?.length ?? 0;
+  const annotationTotal = getAnnotations().length;
+  const entry = getDocumentEntry();
+  dom.versionBadge.textContent = state.document?.document_version?.version_label ?? state.document?.version_label ?? "v2";
+  dom.docTitle.textContent = getDisplayText(state.document, "title") || entry?.title || "Untitled document";
   dom.sectionCount.textContent = String(sectionTotal);
   dom.segmentCount.textContent = String(segments.length);
-  dom.annotationCount.textContent = String(state.annotations.length);
+  dom.annotationCount.textContent = String(annotationTotal);
   dom.loadSummary.textContent = `${sectionTotal} sections / ${segments.length} segments loaded`;
-  dom.sourceTypeBadge.textContent = sampleOnly ? "Sample only" : "Imported";
-  dom.sourcePath.textContent = DATA_PATHS.document;
-  dom.importPlaceholder.textContent = sampleOnly ? "Full paper import pending" : "Import full paper";
-  dom.importPlaceholder.disabled = true;
+  dom.sourceTypeBadge.textContent = entry?.status === "sample" ? "Sample" : "Static";
+  dom.sourcePath.textContent = state.currentDocumentPath || DATA_PATHS.library;
+  renderDocumentSelect();
+
+  const formUrl = state.library?.upload?.form_url?.trim();
+  dom.uploadBadge.textContent = formUrl ? "Ready" : "Pending";
+  dom.uploadStatus.textContent = formUrl
+    ? "Google Form opens in a new tab for file upload."
+    : "Google Form URL not configured yet; reader is ready for the connection.";
 }
 
 function renderSections() {
   const activeSegment = getActiveSegment();
-  dom.sectionList.innerHTML = state.document.sections.map((section) => {
+  const sections = state.document?.sections ?? [];
+  dom.sectionList.innerHTML = sections.map((section) => {
     const isActive = activeSegment?.sectionId === section.section_id;
     return `
       <button class="section-button ${isActive ? "is-active" : ""}" type="button" data-section-id="${escapeHtml(section.section_id)}">
-        <span>${escapeHtml(getDisplayText(section, "title"))}</span>
-        <span>${section.segments.length}</span>
+        <span>${escapeHtml(getDisplayText(section, "title") || section.section_id)}</span>
+        <span>${getSectionSegments(section).length}</span>
       </button>
     `;
   }).join("");
 
   dom.sectionList.querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
-      const section = state.document.sections.find((item) => item.section_id === button.dataset.sectionId);
-      if (section?.segments[0]) setActiveSegment(section.segments[0].segment_id);
+      const section = sections.find((item) => item.section_id === button.dataset.sectionId);
+      const firstSegment = section ? getSectionSegments(section)[0] : null;
+      if (firstSegment) setActiveSegment(firstSegment.segment_id);
     });
   });
 }
 
 function renderLanguageBlock(item, language, fields = ["title", "text_content"]) {
   const variant = getVariant(item, language);
-  if (!variant) return "";
-  const title = fields.includes("title") ? variant.title : "";
-  const bodyField = fields.find((field) => field !== "title" && variant[field]);
-  const body = bodyField ? variant[bodyField] : "";
-  const status = item.translation_status ? `<span>${escapeHtml(item.translation_status)}</span>` : "";
+  const title = fields.includes("title") ? (variant?.title ?? item?.[`title_${language}`] ?? "") : "";
+  const bodyField = fields.find((field) => field !== "title" && (variant?.[field] || item?.[`content_${language}`]));
+  const body = bodyField ? (variant?.[bodyField] ?? item?.[`content_${language}`] ?? "") : "";
+  const status = item?.translation_status ? `<span>${escapeHtml(item.translation_status)}</span>` : "";
   return `
     <div class="language-block" lang="${escapeHtml(language)}">
       <div class="language-label"><span>${escapeHtml(LANGUAGE_LABELS[language] ?? language)}</span>${status}</div>
@@ -288,6 +332,7 @@ function renderSegmentContent(segment) {
 function renderSegments() {
   const query = state.search.trim().toLowerCase();
   const allSegments = getAllSegments();
+  const annotations = getAnnotations();
   const segments = allSegments.filter((segment) => {
     if (!query) return true;
     return [segment.anchor_key, segment.sectionTitle, getAllVariantText(segment)]
@@ -303,15 +348,15 @@ function renderSegments() {
 
   const segmentMarkup = segments.map((segment, index) => {
     const active = segment.segment_id === state.activeSegmentId;
-    const annotationTotal = state.annotations.filter((annotation) => annotation.segment_id === segment.segment_id).length;
+    const annotationTotal = annotations.filter((annotation) => annotation.segment_id === segment.segment_id).length;
     return `
       <section class="segment ${active ? "is-active" : ""}" data-segment-id="${escapeHtml(segment.segment_id)}">
         <button class="segment-index icon-button" type="button" title="Select segment ${escapeHtml(segment.anchor_key)}" aria-label="Select segment ${escapeHtml(segment.anchor_key)}">${String(index + 1).padStart(2, "0")}</button>
         <div class="segment-body">
           ${renderSegmentContent(segment)}
           <div class="segment-meta">
-            <span>${escapeHtml(segment.anchor_key)}</span>
-            <span>${escapeHtml(segment.sectionTitle)}</span>
+            <span>${escapeHtml(segment.anchor_key ?? segment.segment_id)}</span>
+            <span>${escapeHtml(segment.sectionTitle ?? "Section")}</span>
             <span>${annotationTotal} notes</span>
           </div>
         </div>
@@ -328,7 +373,7 @@ function renderSegments() {
     <footer class="document-end" aria-label="${escapeHtml(endTitle)}">
       <strong>${escapeHtml(endTitle)} / 文档结束</strong>
       <span>${escapeHtml(endSubtitle)}</span>
-      <span class="document-end-source">Source: ${escapeHtml(DATA_PATHS.document)}</span>
+      <span class="document-end-source">Source: ${escapeHtml(state.currentDocumentPath)}</span>
     </footer>
   `;
 
@@ -339,48 +384,29 @@ function renderSegments() {
 
 function renderActiveHeader() {
   const segment = getActiveSegment();
-  dom.activeSegmentTitle.textContent = segment ? `${segment.anchor_key} - ${getDisplayText(segment, "title")}` : "No segment selected";
-  dom.selectedSegmentBadge.textContent = segment ? segment.anchor_key : "segment";
-}
-
-function renderQueue() {
-  const tasks = getCombinedTasks();
-  const queued = tasks.filter((task) => ["queued", "pending", "running"].includes(task.status)).length;
-  const done = tasks.filter((task) => ["done", "succeeded"].includes(task.status)).length;
-  const failed = tasks.filter((task) => task.status === "failed").length;
-
-  dom.queueStats.innerHTML = `
-    <div><span>${queued}</span><label>Open</label></div>
-    <div><span>${done}</span><label>Done</label></div>
-    <div><span>${failed}</span><label>Failed</label></div>
-  `;
-
-  dom.taskList.innerHTML = tasks.slice(0, 8).map((task) => `
-    <div class="task-item">
-      <span class="task-status ${escapeHtml(task.status)}">${escapeHtml(task.status)}</span>
-      <strong>${escapeHtml(task.task_type)}</strong>
-      <p>${escapeHtml(getDisplayText(task, "title") || task.task_id)}</p>
-    </div>
-  `).join("") || document.querySelector("#emptyTemplate").innerHTML;
+  dom.activeSegmentTitle.textContent = segment ? `${segment.anchor_key ?? segment.segment_id} - ${getDisplayText(segment, "title")}` : "No segment selected";
+  dom.selectedSegmentBadge.textContent = segment ? (segment.anchor_key ?? segment.segment_id) : "segment";
 }
 
 function renderAnnotationVariant(annotation, language) {
   const variant = getVariant(annotation, language);
-  if (!variant) return "";
+  const content = annotation?.[`content_${language}`];
+  if (!variant && !content) return "";
   return `
     <div class="language-block" lang="${escapeHtml(language)}">
-      <div class="language-label"><span>${escapeHtml(LANGUAGE_LABELS[language] ?? language)}</span><span>${escapeHtml(annotation.translation_status)}</span></div>
-      <h3>${escapeHtml(variant.title)}</h3>
-      <p>${escapeHtml(variant.summary)}</p>
-      <div class="note-block"><p>${escapeHtml(variant.explanation)}</p></div>
-      <div class="note-block"><p><strong>Boundary: </strong>${escapeHtml(variant.boundary_notes)}</p></div>
+      <div class="language-label"><span>${escapeHtml(LANGUAGE_LABELS[language] ?? language)}</span><span>${escapeHtml(annotation.translation_status ?? "static")}</span></div>
+      ${variant?.title ? `<h3>${escapeHtml(variant.title)}</h3>` : ""}
+      ${variant?.summary ? `<p>${escapeHtml(variant.summary)}</p>` : ""}
+      ${variant?.explanation ? `<div class="note-block"><p>${escapeHtml(variant.explanation)}</p></div>` : ""}
+      ${variant?.boundary_notes ? `<div class="note-block"><p><strong>Boundary: </strong>${escapeHtml(variant.boundary_notes)}</p></div>` : ""}
+      ${content ? `<p>${escapeHtml(content)}</p>` : ""}
     </div>
   `;
 }
 
 function renderAnnotations() {
   const segment = getActiveSegment();
-  const annotations = state.annotations.filter((annotation) => annotation.segment_id === segment?.segment_id);
+  const annotations = getAnnotations().filter((annotation) => annotation.segment_id === segment?.segment_id);
   if (!segment || annotations.length === 0) {
     dom.detailContent.innerHTML = document.querySelector("#emptyTemplate").innerHTML;
     return;
@@ -407,7 +433,7 @@ function renderMessage(message) {
   }).join("");
   return `
     <div class="message translation-stack">
-      <strong>${escapeHtml(message.role)} - ${escapeHtml(message.created_at)}</strong>
+      <strong>${escapeHtml(message.role)} - ${escapeHtml(message.created_at ?? "static")}</strong>
       ${blocks}
     </div>
   `;
@@ -415,17 +441,9 @@ function renderMessage(message) {
 
 function renderQuestions() {
   const segment = getActiveSegment();
-  const baseMessages = (state.thread?.messages ?? []).filter((message) => !state.thread?.segment_id || state.thread.segment_id === segment?.segment_id);
-  const localMessages = state.localTasks
-    .filter((task) => task.segment_id === segment?.segment_id)
-    .map((task) => ({
-      role: "user",
-      original_language: task.original_language,
-      original_text: task.question,
-      language_variants: task.language_variants,
-      created_at: task.created_at
-    }));
-  const messages = [...localMessages, ...baseMessages];
+  const messages = getQuestionThreads()
+    .filter((thread) => !thread.segment_id || thread.segment_id === segment?.segment_id)
+    .flatMap((thread) => thread.messages ?? []);
 
   if (!messages.length) {
     dom.detailContent.innerHTML = document.querySelector("#emptyTemplate").innerHTML;
@@ -435,27 +453,19 @@ function renderQuestions() {
   dom.detailContent.innerHTML = messages.map(renderMessage).join("");
 }
 
-function renderContract() {
-  const copy = {
-    en: [
-      ["Canonical Translation", "Only approved translation-provider output is treated as official page content."],
-      ["Language Variant", "Document, segment, annotation, question, and answer content are displayed through language variants."],
-      ["Worker", "Codex currently orchestrates tasks; later workers must consume the same bilingual task/result contracts."],
-      ["SQL", "Remote import remains paused until the bilingual tables are frozen in the schema draft."]
-    ],
-    zh: [
-      ["Canonical Translation", "网页正式内容只使用已批准的 Translation Provider 输出。"],
-      ["Language Variant", "文档、Segment、批注、问题和回答都通过语言变体显示。"],
-      ["Worker", "Codex 当前负责任务编排；后续 Worker 必须消费同一套双语任务/结果契约。"],
-      ["SQL", "远端导入仍暂停，等双语表在 schema 草稿中冻结后再接入。"]
-    ]
-  };
-  const languages = state.languageMode === "both" ? ["en", "zh"] : [state.languageMode];
-  dom.detailContent.innerHTML = languages.map((language) => `
-    <ul class="contract-list" lang="${escapeHtml(language)}">
-      ${copy[language].map(([title, body]) => `<li><strong>${escapeHtml(title)}</strong><p>${escapeHtml(body)}</p></li>`).join("")}
+function renderSystem() {
+  const entry = getDocumentEntry();
+  const uploadMode = state.library?.upload?.mode ?? "not_configured";
+  const formUrl = state.library?.upload?.form_url?.trim();
+  dom.detailContent.innerHTML = `
+    <ul class="contract-list system-list">
+      <li><strong>Active workflow</strong><p>V2.0 personal static workflow. The reader loads GitHub Pages JSON only.</p></li>
+      <li><strong>Data source</strong><p>${escapeHtml(state.currentDocumentPath || DATA_PATHS.library)}</p></li>
+      <li><strong>Upload</strong><p>${formUrl ? "Google Form is configured." : `Pending Google Form URL (${escapeHtml(uploadMode)}).`}</p></li>
+      <li><strong>No SQL</strong><p>No database, online queue, or concurrent worker is required for this stage.</p></li>
+      <li><strong>Document</strong><p>${escapeHtml(entry?.document_id ?? "none")}</p></li>
     </ul>
-  `).join("");
+  `;
 }
 
 function renderDetail() {
@@ -465,7 +475,7 @@ function renderDetail() {
 
   if (state.activeTab === "annotations") renderAnnotations();
   if (state.activeTab === "questions") renderQuestions();
-  if (state.activeTab === "contract") renderContract();
+  if (state.activeTab === "system") renderSystem();
 }
 
 function render() {
@@ -475,7 +485,6 @@ function render() {
   renderSections();
   renderSegments();
   renderActiveHeader();
-  renderQueue();
   renderDetail();
   renderMobilePanel();
 }
@@ -487,50 +496,12 @@ function moveSegment(delta) {
   if (next) setActiveSegment(next.segment_id);
 }
 
-function createLocalTask(question) {
-  const segment = getActiveSegment();
-  const now = new Date().toISOString();
-  const idSeed = Math.random().toString(16).slice(2, 10);
-  const originalLanguage = state.languageMode === "en" ? "en" : "zh";
-  const title = originalLanguage === "en" ? `Question for ${segment.anchor_key}` : `${segment.anchor_key} 的问题`;
-  const task = {
-    task_id: `local-${Date.now()}-${idSeed}`,
-    task_type: "answer_question",
-    status: "queued",
-    original_language: originalLanguage,
-    question,
-    document_id: state.document.document_id,
-    version_id: state.document.version_id,
-    segment_id: segment.segment_id,
-    created_at: now,
-    language_variants: {
-      [originalLanguage]: {
-        title,
-        body: question
-      }
-    }
-  };
-  state.localTasks.unshift(task);
-  saveLocalTasks();
-}
-
 async function init() {
   try {
-    const [documentData, annotationData, threadData, taskData] = await Promise.all([
-      loadJson(DATA_PATHS.document),
-      loadJson(DATA_PATHS.annotations),
-      loadJson(DATA_PATHS.thread),
-      loadJson(DATA_PATHS.tasks)
-    ]);
-
-    state.document = documentData;
-    state.annotations = annotationData.annotations;
-    state.thread = threadData;
-    state.tasks = taskData.tasks;
-    state.activeSegmentId = getAllSegments()[0]?.segment_id ?? null;
+    state.library = await loadJson(DATA_PATHS.library);
+    state.activeDocumentId = state.library.active_document_id || state.library.documents?.[0]?.document_id;
     state.languageMode = readLanguageMode();
-    loadLocalTasks();
-    render();
+    await setActiveDocument(state.activeDocumentId);
   } catch (error) {
     dom.segmentList.innerHTML = `<div class="empty-state"><strong>Load failed</strong><span>${escapeHtml(error.message)}</span></div>`;
   }
@@ -539,6 +510,12 @@ async function init() {
 dom.segmentSearch.addEventListener("input", (event) => {
   state.search = event.target.value;
   renderSegments();
+});
+
+dom.documentSelect.addEventListener("change", (event) => {
+  setActiveDocument(event.target.value).catch((error) => {
+    dom.segmentList.innerHTML = `<div class="empty-state"><strong>Load failed</strong><span>${escapeHtml(error.message)}</span></div>`;
+  });
 });
 
 dom.languageButtons.forEach((button) => {
@@ -567,22 +544,7 @@ document.querySelectorAll(".tab").forEach((tab) => {
 
 dom.prevSegment.addEventListener("click", () => moveSegment(-1));
 dom.nextSegment.addEventListener("click", () => moveSegment(1));
-
-dom.questionForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const question = dom.questionInput.value.trim();
-  if (!question || !getActiveSegment()) return;
-  createLocalTask(question);
-  dom.questionInput.value = "";
-  state.activeTab = "questions";
-  state.mobilePanel = "questions";
-  render();
-});
-
-dom.clearLocalTasks.addEventListener("click", () => {
-  state.localTasks = [];
-  saveLocalTasks();
-  render();
-});
+dom.uploadTopButton.addEventListener("click", openUploadForm);
+dom.uploadPanelButton.addEventListener("click", openUploadForm);
 
 init();
