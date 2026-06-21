@@ -23,14 +23,20 @@ const state = {
   activeTab: "annotations",
   languageMode: "zh",
   mobilePanel: "body",
-  search: ""
+  search: "",
+  outlineOpen: false
 };
 
 const dom = {
   versionBadge: document.querySelector("#versionBadge"),
   docTitle: document.querySelector("#docTitle"),
+  sectionCount: document.querySelector("#sectionCount"),
   segmentCount: document.querySelector("#segmentCount"),
   annotationCount: document.querySelector("#annotationCount"),
+  sourceTypeBadge: document.querySelector("#sourceTypeBadge"),
+  sourcePath: document.querySelector("#sourcePath"),
+  importPlaceholder: document.querySelector("#importPlaceholder"),
+  loadSummary: document.querySelector("#loadSummary"),
   segmentSearch: document.querySelector("#segmentSearch"),
   sectionList: document.querySelector("#sectionList"),
   queueStats: document.querySelector("#queueStats"),
@@ -47,6 +53,9 @@ const dom = {
   languageButtons: [...document.querySelectorAll("[data-language-mode]")],
   mobileNav: document.querySelector("#mobileNav"),
   mobileButtons: [...document.querySelectorAll("[data-mobile-panel]")],
+  outlineToggle: document.querySelector("#outlineToggle"),
+  outlineScrim: document.querySelector("#outlineScrim"),
+  railLeft: document.querySelector(".rail-left"),
   railRight: document.querySelector(".rail-right")
 };
 
@@ -81,6 +90,23 @@ function readLanguageMode() {
 
 function saveLanguageMode() {
   localStorage.setItem(LOCAL_LANGUAGE_KEY, state.languageMode);
+}
+
+function usesPageScroll() {
+  return window.matchMedia("(max-width: 820px)").matches;
+}
+
+function usesOutlineDrawer() {
+  return window.matchMedia("(max-width: 1100px)").matches;
+}
+
+function getReaderScrollTop() {
+  return usesPageScroll() ? window.scrollY : dom.segmentList.scrollTop;
+}
+
+function restoreReaderScrollTop(scrollTop) {
+  if (usesPageScroll()) window.scrollTo(0, scrollTop);
+  else dom.segmentList.scrollTop = scrollTop;
 }
 
 function getVariant(item, language) {
@@ -143,14 +169,20 @@ function setActiveSegment(segmentId) {
   if (element) {
     element.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }
+  if (usesOutlineDrawer()) setOutlineOpen(false);
 }
 
 function setLanguageMode(mode) {
+  const readerScrollTop = getReaderScrollTop();
   state.languageMode = normalizeLanguageMode(mode);
   saveLanguageMode();
-  const readerScrollTop = dom.segmentList.scrollTop;
   render();
-  dom.segmentList.scrollTop = readerScrollTop;
+  restoreReaderScrollTop(readerScrollTop);
+}
+
+function setOutlineOpen(open) {
+  state.outlineOpen = Boolean(open) && usesOutlineDrawer();
+  renderOutlineDrawer();
 }
 
 function setMobilePanel(mobilePanel) {
@@ -178,14 +210,31 @@ function renderMobilePanel() {
   });
   dom.railRight.classList.toggle("is-mobile-open", state.mobilePanel !== "body");
   dom.railRight.dataset.mobilePanel = state.mobilePanel;
+  renderOutlineDrawer();
+}
+
+function renderOutlineDrawer() {
+  const open = state.outlineOpen && usesOutlineDrawer();
+  dom.railLeft.classList.toggle("is-outline-open", open);
+  dom.outlineScrim.classList.toggle("is-visible", open);
+  dom.outlineToggle.classList.toggle("is-active", open);
+  dom.outlineToggle.setAttribute("aria-expanded", String(open));
 }
 
 function renderDocPanel() {
   const segments = getAllSegments();
+  const sectionTotal = state.document.sections.length;
+  const sampleOnly = DATA_PATHS.document.includes("sample") || String(state.document.version_label ?? "").toLowerCase().includes("local");
   dom.versionBadge.textContent = state.document.version_label;
   dom.docTitle.textContent = getDisplayText(state.document, "title");
+  dom.sectionCount.textContent = String(sectionTotal);
   dom.segmentCount.textContent = String(segments.length);
   dom.annotationCount.textContent = String(state.annotations.length);
+  dom.loadSummary.textContent = `${sectionTotal} sections / ${segments.length} segments loaded`;
+  dom.sourceTypeBadge.textContent = sampleOnly ? "Sample only" : "Imported";
+  dom.sourcePath.textContent = DATA_PATHS.document;
+  dom.importPlaceholder.textContent = sampleOnly ? "Full paper import pending" : "Import full paper";
+  dom.importPlaceholder.disabled = true;
 }
 
 function renderSections() {
@@ -238,7 +287,8 @@ function renderSegmentContent(segment) {
 
 function renderSegments() {
   const query = state.search.trim().toLowerCase();
-  const segments = getAllSegments().filter((segment) => {
+  const allSegments = getAllSegments();
+  const segments = allSegments.filter((segment) => {
     if (!query) return true;
     return [segment.anchor_key, segment.sectionTitle, getAllVariantText(segment)]
       .join(" ")
@@ -251,7 +301,7 @@ function renderSegments() {
     return;
   }
 
-  dom.segmentList.innerHTML = segments.map((segment, index) => {
+  const segmentMarkup = segments.map((segment, index) => {
     const active = segment.segment_id === state.activeSegmentId;
     const annotationTotal = state.annotations.filter((annotation) => annotation.segment_id === segment.segment_id).length;
     return `
@@ -268,6 +318,19 @@ function renderSegments() {
       </section>
     `;
   }).join("");
+
+  const endTitle = query ? "End of results" : "End of document";
+  const endSubtitle = query
+    ? `${segments.length} of ${allSegments.length} segments visible from ${state.document.sections.length} sections.`
+    : `${allSegments.length} segments loaded from ${state.document.sections.length} sections.`;
+
+  dom.segmentList.innerHTML = `${segmentMarkup}
+    <footer class="document-end" aria-label="${escapeHtml(endTitle)}">
+      <strong>${escapeHtml(endTitle)} / 文档结束</strong>
+      <span>${escapeHtml(endSubtitle)}</span>
+      <span class="document-end-source">Source: ${escapeHtml(DATA_PATHS.document)}</span>
+    </footer>
+  `;
 
   dom.segmentList.querySelectorAll(".segment").forEach((element) => {
     element.addEventListener("click", () => setActiveSegment(element.dataset.segmentId));
@@ -484,6 +547,13 @@ dom.languageButtons.forEach((button) => {
 
 dom.mobileButtons.forEach((button) => {
   button.addEventListener("click", () => setMobilePanel(button.dataset.mobilePanel));
+});
+
+dom.outlineToggle.addEventListener("click", () => setOutlineOpen(!state.outlineOpen));
+dom.outlineScrim.addEventListener("click", () => setOutlineOpen(false));
+window.addEventListener("resize", renderOutlineDrawer);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setOutlineOpen(false);
 });
 
 document.querySelectorAll(".tab").forEach((tab) => {

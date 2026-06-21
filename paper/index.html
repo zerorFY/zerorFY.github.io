@@ -22,6 +22,7 @@
           <button class="language-button" data-language-mode="en" type="button">English</button>
           <button class="language-button" data-language-mode="both" type="button">中英对照</button>
         </div>
+        <button id="outlineToggle" class="outline-toggle" type="button" aria-expanded="false" aria-controls="sectionList">Outline</button>
         <div class="status-strip" aria-label="System status">
           <span class="status-pill ok">SQL paused</span>
           <span class="status-pill ok">Codex worker</span>
@@ -40,6 +41,10 @@
           <p id="docTitle" class="doc-title">Loading...</p>
           <div class="metric-grid">
             <div>
+              <span id="sectionCount">0</span>
+              <label>Sections</label>
+            </div>
+            <div>
               <span id="segmentCount">0</span>
               <label>Segments</label>
             </div>
@@ -47,6 +52,13 @@
               <span id="annotationCount">0</span>
               <label>Notes</label>
             </div>
+          </div>
+          <div class="source-box" aria-label="Loaded data source">
+            <div class="source-row">
+              <span id="sourceTypeBadge" class="mini-badge">Sample</span>
+              <span id="sourcePath">./data/document.sample.json</span>
+            </div>
+            <button id="importPlaceholder" class="text-button" type="button" disabled>Full paper import pending</button>
           </div>
           <label class="search-box">
             <span>Find</span>
@@ -71,11 +83,14 @@
         </section>
       </aside>
 
+      <button id="outlineScrim" class="outline-scrim" type="button" aria-label="Close outline"></button>
+
       <section class="reader" aria-label="Paper reader">
         <div class="reader-toolbar">
           <div>
             <p class="eyebrow">Active segment</p>
             <h2 id="activeSegmentTitle">Loading...</h2>
+            <p id="loadSummary" class="load-summary">0 sections / 0 segments loaded</p>
           </div>
           <div class="toolbar-actions">
             <button id="prevSegment" class="icon-button" type="button" title="Previous segment" aria-label="Previous segment">&lt;</button>
