@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 1200 720">
+  <title id="title">Lora找妈妈配图</title>
+  <desc id="desc">Lora拿着地图走在花草小路上，远处有一座亮着灯的家。</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff2d5" />
+      <stop offset="0.52" stop-color="#dceeff" />
+      <stop offset="1" stop-color="#f8fff1" />
+    </linearGradient>
+    <linearGradient id="path" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f6ca78" />
+      <stop offset="1" stop-color="#ed9c83" />
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#8a5a37" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="720" fill="url(#sky)" />
+  <circle cx="1000" cy="134" r="68" fill="#ffd56a" opacity="0.86" />
+  <circle cx="1035" cy="104" r="92" fill="#fff0b8" opacity="0.3" />
+
+  <path d="M0 520 C200 480 326 540 520 500 C740 456 884 476 1200 418 L1200 720 L0 720Z" fill="#bfe4b4" />
+  <path d="M0 588 C188 536 338 596 552 552 C790 504 936 540 1200 496 L1200 720 L0 720Z" fill="#8fcf9b" opacity="0.7" />
+  <path d="M505 720 C548 628 615 566 715 500 C790 452 860 425 944 392 L1018 442 C888 492 812 548 760 622 C732 661 720 695 716 720Z" fill="url(#path)" />
+
+  <g transform="translate(790 300)" filter="url(#softShadow)">
+    <path d="M0 88 L126 0 L252 88 V262 H0Z" fill="#fff9ef" />
+    <path d="M-18 95 L126 -16 L270 95 L244 126 L126 36 L8 126Z" fill="#d95c72" />
+    <rect x="98" y="166" width="58" height="96" rx="10" fill="#5b483a" />
+    <rect x="36" y="124" width="58" height="48" rx="8" fill="#9bd0ff" />
+    <rect x="158" y="124" width="58" height="48" rx="8" fill="#9bd0ff" />
+    <path d="M38 262 H214" stroke="#e6d1b5" stroke-width="16" stroke-linecap="round" />
+    <circle cx="138" cy="214" r="5" fill="#ffd56a" />
+  </g>
+
+  <g transform="translate(320 304)" filter="url(#softShadow)">
+    <path d="M46 172 C-8 222 -4 314 62 334 C137 356 190 308 178 244 C166 184 101 128 46 172Z" fill="#1d62c8" opacity="0.14" />
+    <path d="M108 162 C141 192 159 251 154 328 H49 C44 254 62 194 94 162Z" fill="#f5828f" />
+    <path d="M70 328 H93 L88 402 H55Z" fill="#335270" />
+    <path d="M112 328 H137 L162 402 H128Z" fill="#335270" />
+    <path d="M64 402 H96" stroke="#25211d" stroke-width="16" stroke-linecap="round" />
+    <path d="M127 402 H169" stroke="#25211d" stroke-width="16" stroke-linecap="round" />
+    <circle cx="104" cy="101" r="56" fill="#f3b27f" />
+    <path d="M52 94 C62 36 134 22 167 68 C149 62 130 61 107 70 C86 78 70 88 52 94Z" fill="#5b382b" />
+    <path d="M62 110 C79 140 124 154 153 124 C148 165 126 184 94 177 C65 171 50 146 62 110Z" fill="#5b382b" />
+    <circle cx="86" cy="104" r="5" fill="#25211d" />
+    <circle cx="127" cy="104" r="5" fill="#25211d" />
+    <path d="M92 130 C104 140 119 139 131 130" fill="none" stroke="#7f4339" stroke-width="6" stroke-linecap="round" />
+    <path d="M65 190 C30 218 16 254 24 296" fill="none" stroke="#f3b27f" stroke-width="24" stroke-linecap="round" />
+    <path d="M145 190 C178 212 196 245 200 286" fill="none" stroke="#f3b27f" stroke-width="24" stroke-linecap="round" />
+    <g transform="translate(178 256) rotate(-8)">
+      <rect x="0" y="0" width="98" height="72" rx="8" fill="#fff7d9" stroke="#d3a85f" stroke-width="5" />
+      <path d="M16 50 C34 24 54 58 82 18" fill="none" stroke="#1d62c8" stroke-width="6" stroke-linecap="round" />
+      <circle cx="28" cy="25" r="7" fill="#d95c72" />
+      <circle cx="75" cy="49" r="7" fill="#8fcf9b" />
+    </g>
+  </g>
+
+  <g fill="#f56b78" opacity="0.9">
+    <circle cx="160" cy="575" r="12" />
+    <circle cx="198" cy="616" r="9" />
+    <circle cx="1020" cy="570" r="11" />
+    <circle cx="1086" cy="610" r="8" />
+  </g>
+  <g stroke="#5a9e63" stroke-width="7" stroke-linecap="round">
+    <path d="M162 588 V626" />
+    <path d="M1020 584 V626" />
+    <path d="M1086 622 V650" />
+  </g>
+</svg>

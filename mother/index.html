@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lora找妈妈</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fff8ef;
+        --ink: #25211d;
+        --muted: #6d6258;
+        --blue: #1d62c8;
+        --rose: #d95c72;
+        --line: rgba(37, 33, 29, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          linear-gradient(180deg, #fff8ef 0%, #f6fbff 100%);
+        color: var(--ink);
+        font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          "SF Pro Display",
+          "SF Pro Text",
+          "Microsoft YaHei",
+          "PingFang SC",
+          system-ui,
+          sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      main {
+        width: min(960px, 100%);
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 28px 20px 44px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        min-height: 36px;
+        align-items: center;
+        color: var(--blue);
+        font-size: 15px;
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .page {
+        display: grid;
+        gap: 26px;
+        align-items: center;
+        padding-top: clamp(24px, 7vw, 72px);
+        text-align: center;
+      }
+
+      .picture {
+        width: min(720px, 100%);
+        margin: 0 auto;
+      }
+
+      .picture img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 24px 70px rgba(93, 68, 44, 0.16);
+      }
+
+      h1,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(44px, 9vw, 92px);
+        line-height: 1.04;
+        letter-spacing: 0;
+      }
+
+      p {
+        max-width: 620px;
+        margin: 14px auto 0;
+        color: var(--muted);
+        font-size: clamp(18px, 3vw, 24px);
+        line-height: 1.45;
+      }
+
+      .mark {
+        color: var(--rose);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back-link" href="/">返回 zeror.ca</a>
+
+      <section class="page" aria-labelledby="page-title">
+        <figure class="picture">
+          <img src="lora-mother.svg" alt="Lora拿着小地图朝妈妈所在的家走去" />
+        </figure>
+
+        <div>
+          <h1 id="page-title">Lora<span class="mark">找妈妈</span></h1>
+          <p>一张小小的网页，给 Lora 和妈妈留一盏温柔的灯。</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
