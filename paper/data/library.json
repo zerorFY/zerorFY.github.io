@@ -1,13 +1,13 @@
 {
     "schema_version":  "paper-library-v2.0",
     "active_document_id":  "agi-asi-part-01-sample",
-    "generated_at":  "2026-06-21T15:39:47Z",
+    "generated_at":  "2026-06-21T16:25:15Z",
     "upload":  {
-                   "form_url":  "",
-                   "mode":  "google_form_pending",
-                   "note":  "Google Form URL is still pending; Drive intake folder and Response Sheet template are ready.",
-                   "upload_folder_url":  "https://drive.google.com/drive/folders/11_nV6T9_qR8zJDqHUVtMJ06HgZY3KB3g",
-                   "response_sheet_url":  "https://docs.google.com/spreadsheets/d/1TKevvCpLDWbcXBAl7WZ9rS7h_1GfGd3VrMEt4dhERzU"
+                   "form_url":  "https://docs.google.com/forms/d/e/1FAIpQLSfFE67AQJugl67v7fbw7qNczD6lAqMfk_h7-UC00bvhj9IpSA/viewform?usp=publish-editor",
+                   "mode":  "google_form_connected",
+                   "note":  "Google Form is published. Responses are linked to the native Google Sheets response file; file uploads go to the Forms-managed file responses folder.",
+                   "upload_folder_url":  "https://drive.google.com/drive/folders/1sKhv5r4BPOybQNGPIThcnIQLjUQn6whVUtAGF0Kf32fl-MeT89SXxWBw43qYQGVSIsjLuhlL",
+                   "response_sheet_url":  "https://docs.google.com/spreadsheets/d/1JrdbnyMNaOkVCWnfFeM7deEgEB07MUNa77JEL9-q6ns"
                },
     "documents":  [
                       {
