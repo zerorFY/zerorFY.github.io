@@ -4,13 +4,31 @@
   "messages": [
     {
       "role": "user",
-      "body": "How is digital intelligence different from ordinary software automation?",
-      "created_at": "2026-06-20T00:10:00Z"
+      "original_language": "en",
+      "original_text": "How is digital intelligence different from ordinary software automation?",
+      "created_at": "2026-06-20T00:10:00Z",
+      "language_variants": {
+        "en": {
+          "body": "How is digital intelligence different from ordinary software automation?"
+        },
+        "zh": {
+          "body": "数字智能和普通软件自动化有什么区别？"
+        }
+      }
     },
     {
       "role": "assistant",
-      "body": "Ordinary automation follows fixed procedures. Digital intelligence matters when it can transfer across tasks, combine tools, and improve strategies over time.",
-      "created_at": "2026-06-20T00:11:00Z"
+      "original_language": "en",
+      "translation_status": "approved",
+      "created_at": "2026-06-20T00:11:00Z",
+      "language_variants": {
+        "en": {
+          "body": "Ordinary automation follows fixed procedures. Digital intelligence matters when it can transfer across tasks, combine tools, and improve strategies over time."
+        },
+        "zh": {
+          "body": "普通自动化主要执行固定流程。数字智能的关键在于它能跨任务迁移、组合工具，并随着时间改进策略。"
+        }
+      }
     }
   ]
 }

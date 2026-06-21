@@ -1,54 +1,194 @@
 {
   "document_id": "00000000-0000-4000-8000-000000000001",
   "version_id": "00000000-0000-4000-8000-000000000002",
-  "version_label": "v1-local",
-  "title": "From AGI to ASI - Part 01 Reading Sample",
+  "version_label": "v1-bilingual-local",
   "source_kind": "local_sample",
+  "original_language": "en",
+  "translation_status": "approved",
+  "canonical_translation": {
+    "language": "zh",
+    "provider_key": "chatgpt-web",
+    "model_name": "gpt-canonical-sample",
+    "translation_version": "ct-2026-06-21-001",
+    "prompt_version": "paper-translation-v1",
+    "status": "approved",
+    "created_at": "2026-06-21T00:00:00Z",
+    "approved_at": "2026-06-21T00:10:00Z"
+  },
+  "language_variants": {
+    "en": {
+      "title": "From AGI to ASI - Part 01 Reading Sample"
+    },
+    "zh": {
+      "title": "从 AGI 到 ASI - Part 01 阅读样本"
+    }
+  },
   "sections": [
     {
       "section_id": "sec-001",
-      "title": "Opening: why AGI is not the endpoint",
+      "content_item_id": "content-section-001",
+      "language_variants": {
+        "en": {
+          "title": "Opening: why AGI is not the endpoint"
+        },
+        "zh": {
+          "title": "开篇：为什么 AGI 不是终点"
+        }
+      },
       "segments": [
         {
           "segment_id": "seg-001",
+          "content_item_id": "content-segment-001",
           "anchor_key": "p01-s001",
-          "title": "Core question",
           "segment_type": "paragraph",
-          "text_content": "The paper does not only ask how AGI should be defined. It asks whether systems that reach human-level general capability can keep scaling toward ASI."
+          "original_language": "en",
+          "translation_status": "approved",
+          "canonical_translation": {
+            "language": "zh",
+            "provider_key": "chatgpt-web",
+            "model_name": "gpt-canonical-sample",
+            "translation_version": "ct-2026-06-21-001",
+            "prompt_version": "paper-translation-v1",
+            "status": "approved",
+            "created_at": "2026-06-21T00:00:00Z",
+            "approved_at": "2026-06-21T00:10:00Z"
+          },
+          "language_variants": {
+            "en": {
+              "title": "Core question",
+              "text_content": "The paper does not only ask how AGI should be defined. It asks whether systems that reach human-level general capability can keep scaling toward ASI."
+            },
+            "zh": {
+              "title": "核心问题",
+              "text_content": "这篇论文不只是追问 AGI 应该如何定义。它更关心已经达到人类水平通用能力的系统，是否还能继续扩展并走向 ASI。"
+            }
+          }
         },
         {
           "segment_id": "seg-002",
+          "content_item_id": "content-segment-002",
           "anchor_key": "p01-s002",
-          "title": "From capability to ceiling",
           "segment_type": "paragraph",
-          "text_content": "AGI can mean human-level general intelligence across tasks, but that does not imply intelligence has reached its ceiling. Digital systems may still gain advantages in speed, replication, coordination, and search."
+          "original_language": "en",
+          "translation_status": "approved",
+          "canonical_translation": {
+            "language": "zh",
+            "provider_key": "chatgpt-web",
+            "model_name": "gpt-canonical-sample",
+            "translation_version": "ct-2026-06-21-001",
+            "prompt_version": "paper-translation-v1",
+            "status": "approved",
+            "created_at": "2026-06-21T00:00:00Z",
+            "approved_at": "2026-06-21T00:10:00Z"
+          },
+          "language_variants": {
+            "en": {
+              "title": "From capability to ceiling",
+              "text_content": "AGI can mean human-level general intelligence across tasks, but that does not imply intelligence has reached its ceiling. Digital systems may still gain advantages in speed, replication, coordination, and search."
+            },
+            "zh": {
+              "title": "从能力到上限",
+              "text_content": "AGI 可以表示跨任务的人类水平通用智能，但这并不意味着智能已经触及上限。数字系统仍可能在速度、复制、协同和搜索方面获得优势。"
+            }
+          }
         },
         {
           "segment_id": "seg-003",
+          "content_item_id": "content-segment-003",
           "anchor_key": "p01-s003",
-          "title": "System view",
           "segment_type": "paragraph",
-          "text_content": "From a systems view, ASI may not come from one model becoming stronger in isolation. It may emerge from models, tools, memory, retrieval, executors, and multi-agent structures working as a capability network."
+          "original_language": "en",
+          "translation_status": "approved",
+          "canonical_translation": {
+            "language": "zh",
+            "provider_key": "chatgpt-web",
+            "model_name": "gpt-canonical-sample",
+            "translation_version": "ct-2026-06-21-001",
+            "prompt_version": "paper-translation-v1",
+            "status": "approved",
+            "created_at": "2026-06-21T00:00:00Z",
+            "approved_at": "2026-06-21T00:10:00Z"
+          },
+          "language_variants": {
+            "en": {
+              "title": "System view",
+              "text_content": "From a systems view, ASI may not come from one model becoming stronger in isolation. It may emerge from models, tools, memory, retrieval, executors, and multi-agent structures working as a capability network."
+            },
+            "zh": {
+              "title": "系统视角",
+              "text_content": "从系统视角看，ASI 未必来自单个模型孤立地变强。它可能来自模型、工具、记忆、检索、执行器和多智能体结构共同形成的能力网络。"
+            }
+          }
         }
       ]
     },
     {
       "section_id": "sec-002",
-      "title": "How the learning system handles papers",
+      "content_item_id": "content-section-002",
+      "language_variants": {
+        "en": {
+          "title": "How the learning system handles papers"
+        },
+        "zh": {
+          "title": "学习系统如何处理论文"
+        }
+      },
       "segments": [
         {
           "segment_id": "seg-004",
+          "content_item_id": "content-segment-004",
           "anchor_key": "p01-s004",
-          "title": "Structured text",
           "segment_type": "paragraph",
-          "text_content": "The paper learning system first splits a source document into stable sections and segments, so notes, questions, and model results can anchor to a concrete segment in a concrete version."
+          "original_language": "en",
+          "translation_status": "approved",
+          "canonical_translation": {
+            "language": "zh",
+            "provider_key": "chatgpt-web",
+            "model_name": "gpt-canonical-sample",
+            "translation_version": "ct-2026-06-21-001",
+            "prompt_version": "paper-translation-v1",
+            "status": "approved",
+            "created_at": "2026-06-21T00:00:00Z",
+            "approved_at": "2026-06-21T00:10:00Z"
+          },
+          "language_variants": {
+            "en": {
+              "title": "Structured text",
+              "text_content": "The paper learning system first splits a source document into stable sections and segments, so notes, questions, and model results can anchor to a concrete segment in a concrete version."
+            },
+            "zh": {
+              "title": "结构化正文",
+              "text_content": "论文学习系统首先把源文档拆成稳定的章节和段落单元，让批注、问题和模型结果都能锚定到某个具体版本里的具体 Segment。"
+            }
+          }
         },
         {
           "segment_id": "seg-005",
+          "content_item_id": "content-segment-005",
           "anchor_key": "p01-s005",
-          "title": "Worker role",
           "segment_type": "paragraph",
-          "text_content": "The Worker does not own core business logic. It claims tasks, prepares context, calls a model, preserves raw output, validates structured results, and writes results back through shared contracts."
+          "original_language": "en",
+          "translation_status": "approved",
+          "canonical_translation": {
+            "language": "zh",
+            "provider_key": "chatgpt-web",
+            "model_name": "gpt-canonical-sample",
+            "translation_version": "ct-2026-06-21-001",
+            "prompt_version": "paper-translation-v1",
+            "status": "approved",
+            "created_at": "2026-06-21T00:00:00Z",
+            "approved_at": "2026-06-21T00:10:00Z"
+          },
+          "language_variants": {
+            "en": {
+              "title": "Worker role",
+              "text_content": "The Worker does not own core business logic. It claims tasks, prepares context, calls a model, preserves raw output, validates structured results, and writes results back through shared contracts."
+            },
+            "zh": {
+              "title": "Worker 角色",
+              "text_content": "Worker 不拥有核心业务逻辑。它只负责领取任务、准备上下文、调用模型、保留原始输出、校验结构化结果，并通过共享契约回写结果。"
+            }
+          }
         }
       ]
     }

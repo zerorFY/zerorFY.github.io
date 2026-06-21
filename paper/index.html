@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Learning System - Local MVP</title>
+  <title>Paper Learning System - Bilingual MVP</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -12,14 +12,21 @@
       <div class="brand-block">
         <div class="brand-mark" aria-hidden="true">PL</div>
         <div>
-          <p class="eyebrow">Local JSON MVP</p>
+          <p class="eyebrow">Bilingual JSON MVP</p>
           <h1>Paper Learning System</h1>
         </div>
       </div>
-      <div class="status-strip" aria-label="System status">
-        <span class="status-pill ok">SQL paused</span>
-        <span class="status-pill ok">Codex worker</span>
-        <span class="status-pill warn">Local queue</span>
+      <div class="topbar-controls">
+        <div class="language-switch" role="group" aria-label="Language display mode">
+          <button class="language-button is-active" data-language-mode="zh" type="button">中文</button>
+          <button class="language-button" data-language-mode="en" type="button">English</button>
+          <button class="language-button" data-language-mode="both" type="button">中英对照</button>
+        </div>
+        <div class="status-strip" aria-label="System status">
+          <span class="status-pill ok">SQL paused</span>
+          <span class="status-pill ok">Codex worker</span>
+          <span class="status-pill warn">Canonical translation</span>
+        </div>
       </div>
     </header>
 
@@ -103,6 +110,13 @@
         </section>
       </aside>
     </main>
+
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile paper tools">
+      <button class="mobile-nav-button is-active" data-mobile-panel="body" type="button">正文</button>
+      <button class="mobile-nav-button" data-mobile-panel="annotations" type="button">Notes</button>
+      <button class="mobile-nav-button" data-mobile-panel="questions" type="button">Q&amp;A</button>
+      <button class="mobile-nav-button" data-mobile-panel="ask" type="button">Ask</button>
+    </nav>
   </div>
 
   <template id="emptyTemplate">

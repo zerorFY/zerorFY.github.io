@@ -4,15 +4,29 @@
       "task_id": "task-sample-001",
       "task_type": "generate_annotation",
       "status": "succeeded",
-      "title": "Generate fixed annotation for p01-s002",
-      "created_at": "2026-06-20T00:00:00Z"
+      "created_at": "2026-06-20T00:00:00Z",
+      "language_variants": {
+        "en": {
+          "title": "Generate fixed annotation for p01-s002"
+        },
+        "zh": {
+          "title": "为 p01-s002 生成固定批注"
+        }
+      }
     },
     {
       "task_id": "task-sample-002",
       "task_type": "answer_question",
       "status": "queued",
-      "title": "Answer sample thread question",
-      "created_at": "2026-06-20T00:12:00Z"
+      "created_at": "2026-06-20T00:12:00Z",
+      "language_variants": {
+        "en": {
+          "title": "Answer sample thread question"
+        },
+        "zh": {
+          "title": "回答样例线程问题"
+        }
+      }
     }
   ]
 }

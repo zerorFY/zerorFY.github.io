@@ -2,30 +2,99 @@
   "annotations": [
     {
       "annotation_id": "ann-001",
+      "content_item_id": "content-annotation-001",
       "segment_id": "seg-001",
       "annotation_type": "fixed",
-      "title": "Shift in question",
-      "summary": "The focus moves from defining AGI to asking what can happen after AGI.",
-      "explanation": "This matters because the paper studies possible paths for continued intelligence growth, not only whether AGI is possible.",
-      "boundary_notes": "This does not claim ASI is guaranteed. It defines the research question."
+      "original_language": "en",
+      "translation_status": "approved",
+      "canonical_translation": {
+        "language": "zh",
+        "provider_key": "chatgpt-web",
+        "model_name": "gpt-canonical-sample",
+        "translation_version": "ct-2026-06-21-001",
+        "prompt_version": "annotation-translation-v1",
+        "status": "approved",
+        "created_at": "2026-06-21T00:00:00Z",
+        "approved_at": "2026-06-21T00:10:00Z"
+      },
+      "language_variants": {
+        "en": {
+          "title": "Shift in question",
+          "summary": "The focus moves from defining AGI to asking what can happen after AGI.",
+          "explanation": "This matters because the paper studies possible paths for continued intelligence growth, not only whether AGI is possible.",
+          "boundary_notes": "This does not claim ASI is guaranteed. It defines the research question."
+        },
+        "zh": {
+          "title": "问题重心转移",
+          "summary": "关注点从定义 AGI 转向追问 AGI 之后还可能发生什么。",
+          "explanation": "这很重要，因为论文研究的是智能继续增长的可能路径，而不只是 AGI 是否可能出现。",
+          "boundary_notes": "这里并不是断言 ASI 必然出现，而是在界定研究问题。"
+        }
+      }
     },
     {
       "annotation_id": "ann-002",
+      "content_item_id": "content-annotation-002",
       "segment_id": "seg-002",
       "annotation_type": "fixed",
-      "title": "Digital intelligence advantage",
-      "summary": "Speed, replication, and coordination are key reasons digital systems may exceed a single human mind.",
-      "explanation": "The advantage is not only higher IQ. It is also the ability to scale computation and organization.",
-      "boundary_notes": "Real bottlenecks may still come from data, energy, environment interaction, and goal setting."
+      "original_language": "en",
+      "translation_status": "approved",
+      "canonical_translation": {
+        "language": "zh",
+        "provider_key": "chatgpt-web",
+        "model_name": "gpt-canonical-sample",
+        "translation_version": "ct-2026-06-21-001",
+        "prompt_version": "annotation-translation-v1",
+        "status": "approved",
+        "created_at": "2026-06-21T00:00:00Z",
+        "approved_at": "2026-06-21T00:10:00Z"
+      },
+      "language_variants": {
+        "en": {
+          "title": "Digital intelligence advantage",
+          "summary": "Speed, replication, and coordination are key reasons digital systems may exceed a single human mind.",
+          "explanation": "The advantage is not only higher IQ. It is also the ability to scale computation and organization.",
+          "boundary_notes": "Real bottlenecks may still come from data, energy, environment interaction, and goal setting."
+        },
+        "zh": {
+          "title": "数字智能的优势",
+          "summary": "速度、复制和协同，是数字系统可能超越单个人类心智的重要原因。",
+          "explanation": "优势不只是更高的智商，还包括计算和组织方式可以规模化。",
+          "boundary_notes": "现实瓶颈仍可能来自数据、能源、环境交互和目标设定。"
+        }
+      }
     },
     {
       "annotation_id": "ann-003",
+      "content_item_id": "content-annotation-003",
       "segment_id": "seg-005",
       "annotation_type": "fixed",
-      "title": "Worker as execution boundary",
-      "summary": "The Worker is replaceable and should not contaminate core data contracts.",
-      "explanation": "Codex is useful now because it can execute tasks. Later, a script or background service should consume the same task and result contracts.",
-      "boundary_notes": "A Worker may orchestrate and validate, but should not silently rewrite paper facts or user understanding state."
+      "original_language": "en",
+      "translation_status": "approved",
+      "canonical_translation": {
+        "language": "zh",
+        "provider_key": "chatgpt-web",
+        "model_name": "gpt-canonical-sample",
+        "translation_version": "ct-2026-06-21-001",
+        "prompt_version": "annotation-translation-v1",
+        "status": "approved",
+        "created_at": "2026-06-21T00:00:00Z",
+        "approved_at": "2026-06-21T00:10:00Z"
+      },
+      "language_variants": {
+        "en": {
+          "title": "Worker as execution boundary",
+          "summary": "The Worker is replaceable and should not contaminate core data contracts.",
+          "explanation": "Codex is useful now because it can execute tasks. Later, a script or background service should consume the same task and result contracts.",
+          "boundary_notes": "A Worker may orchestrate and validate, but should not silently rewrite paper facts or user understanding state."
+        },
+        "zh": {
+          "title": "Worker 作为执行边界",
+          "summary": "Worker 是可替换执行节点，不应该污染核心数据契约。",
+          "explanation": "Codex 现在有用，是因为它能执行任务。以后脚本或后台服务也应该消费同一套任务与结果契约。",
+          "boundary_notes": "Worker 可以编排和校验，但不能静默改写论文事实或用户理解状态。"
+        }
+      }
     }
   ]
 }
