@@ -3,6 +3,7 @@ const DATA_PATHS = {
   documentBase: "./data/"
 };
 
+const JSON_TIMEOUT_MS = 45000;
 const LOCAL_LANGUAGE_KEY = "pls.languageMode.v2";
 
 const LANGUAGE_LABELS = {
@@ -78,10 +79,32 @@ function buildAdapterUrl(action, params = {}) {
   });
   return url.toString();
 }
+async function fetchJson(path, { label = path, timeoutMs = JSON_TIMEOUT_MS } = {}) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(path, { cache: "no-store", signal: controller.signal });
+    if (!response.ok) throw new Error(`Failed to load ${label}: ${response.status}`);
+
+    const text = await response.text();
+    try {
+      return JSON.parse(text);
+    } catch {
+      const contentType = response.headers.get("content-type") || "unknown content type";
+      const snippet = text.trim().slice(0, 80).replace(/\s+/g, " ");
+      throw new Error(`Expected JSON from ${label}, got ${contentType}${snippet ? ` (${snippet})` : ""}`);
+    }
+  } catch (error) {
+    if (error.name === "AbortError") throw new Error(`Timed out loading ${label}`);
+    throw error;
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
 async function loadJson(path) {
-  const response = await fetch(path, { cache: "no-store" });
-  if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
-  return response.json();
+  return fetchJson(path);
 }
 
 function normalizeLanguageMode(mode) {
@@ -266,13 +289,20 @@ async function refreshDriveLibrary() {
   if (dom.refreshDriveButton) dom.refreshDriveButton.disabled = true;
 
   try {
-    const response = await fetch(buildAdapterUrl("refresh"), { cache: "no-store" });
-    if (!response.ok) throw new Error(`Apps Script refresh failed: ${response.status}`);
-    const payload = await response.json();
+    const payload = await fetchJson(buildAdapterUrl("refresh"), { label: "Apps Script refresh" });
     if (payload.ok === false) throw new Error(payload.error || "Apps Script refresh returned an error.");
 
-    if (payload.library) state.library = payload.library;
-    else state.library = await loadJson(buildAdapterUrl("library"));
+    const refreshedLibrary = payload.library || await fetchJson(buildAdapterUrl("library"), { label: "Apps Script library" });
+    const refreshedDocuments = refreshedLibrary?.documents ?? [];
+    if (!refreshedDocuments.length) {
+      state.lastRefreshMessage = `Drive refresh complete. Processed ${payload.processed_count ?? 0} latest file(s); no published Drive documents yet, keeping the current document.`;
+      dom.uploadStatus.textContent = state.lastRefreshMessage;
+      dom.uploadBadge.textContent = "Drive";
+      renderDetail();
+      return;
+    }
+
+    state.library = refreshedLibrary;
 
     const hasPreviousDocument = state.library.documents?.some((entry) => entry.document_id === previousDocumentId);
     const nextDocumentId = hasPreviousDocument
