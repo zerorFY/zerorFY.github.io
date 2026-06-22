@@ -1,13 +1,15 @@
 {
     "schema_version":  "paper-library-v2.0",
     "active_document_id":  "agi-asi-part-01-sample",
-    "generated_at":  "2026-06-21T21:33:37Z",
+    "generated_at":  "2026-06-22T00:26:26Z",
     "upload":  {
                    "form_url":  "https://docs.google.com/forms/d/e/1FAIpQLSfFE67AQJugl67v7fbw7qNczD6lAqMfk_h7-UC00bvhj9IpSA/viewform?usp=publish-editor",
                    "mode":  "google_form_connected",
                    "note":  "Google Form is published. Responses are linked to the native Google Sheets response file; file uploads go to the Forms-managed file responses folder.",
                    "upload_folder_url":  "https://drive.google.com/drive/folders/1sKhv5r4BPOybQNGPIThcnIQLjUQn6whVUtAGF0Kf32fl-MeT89SXxWBw43qYQGVSIsjLuhlL",
-                   "response_sheet_url":  "https://docs.google.com/spreadsheets/d/1JrdbnyMNaOkVCWnfFeM7deEgEB07MUNa77JEL9-q6ns"
+                   "response_sheet_url":  "https://docs.google.com/spreadsheets/d/1JrdbnyMNaOkVCWnfFeM7deEgEB07MUNa77JEL9-q6ns",
+                   "source_upload_folder_url":  "https://drive.google.com/drive/folders/1mmzn_Yi0GV-3bLHdjQxHQOtIex3nT_Ko5JmvluQH5w5bTGqQliamgZF1BvlQgvMlqF0ppJ5k",
+                   "gpt_result_upload_folder_url":  "https://drive.google.com/drive/folders/1mgfUmKP6Pld0xV1MhZvYbdMCIkGuBsEij4bLBA9xf5-4AOC5tXBxn3DK3WIuTswHTgkZL76X"
                },
     "documents":  [
                       {
@@ -32,8 +34,8 @@
                   ],
     "adapter":  {
                     "type":  "apps_script",
-                    "status":  "pending",
-                    "url":  "",
+                    "status":  "configured",
+                    "url":  "https://script.google.com/macros/s/AKfycbybyhZRUQSa6Uj_biLdTJv0XLPFGvaWb4vSaEtQTesMxb8NjqCzomgAIpVDkYFjx28/exec",
                     "actions":  {
                                     "refresh":  "action=refresh",
                                     "library":  "action=library",
@@ -52,6 +54,10 @@
                            "hash_check":  "sha256(gpt-latest) must equal sha256(batch archive) before merge",
                            "merge_owner":  "apps_script",
                            "web_reads":  "{base_name}.json",
-                           "gpt_writes":  "{base_name}.gpt-latest.json"
+                           "gpt_writes":  "{base_name}.gpt-latest.json",
+                           "document_folder_id":  "1bPh8va3rKNseBBrhmTZPofvLT5yb8von",
+                           "form_response_folder_id":  "1sKhv5r4BPOybQNGPIThcnIQLjUQn6whVUtAGF0Kf32fl-MeT89SXxWBw43qYQGVSIsjLuhlL",
+                           "source_upload_folder_id":  "1mmzn_Yi0GV-3bLHdjQxHQOtIex3nT_Ko5JmvluQH5w5bTGqQliamgZF1BvlQgvMlqF0ppJ5k",
+                           "gpt_result_upload_folder_id":  "1mgfUmKP6Pld0xV1MhZvYbdMCIkGuBsEij4bLBA9xf5-4AOC5tXBxn3DK3WIuTswHTgkZL76X"
                        }
 }
