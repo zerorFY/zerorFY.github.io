@@ -5,41 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Math Kangaroo Photo Upload QR Code</title>
     <style>
+      :root {
+        color-scheme: light;
+        --bg: #fff8ed;
+        --ink: #2c241c;
+        --muted: #6f5a44;
+        --primary: #2563eb;
+        --card: #ffffff;
+        --line: #ead7bd;
+      }
+
       * { box-sizing: border-box; }
+
       body {
         margin: 0;
         min-height: 100vh;
         display: grid;
         place-items: center;
-        padding: 24px;
-        background: #ffffff;
-        color: #111827;
+        padding: 22px;
+        background:
+          radial-gradient(circle at 12% 12%, #ffe2ad 0 36px, transparent 37px),
+          radial-gradient(circle at 86% 18%, #f7d49c 0 44px, transparent 45px),
+          radial-gradient(circle at 15% 88%, #ffe2ad 0 48px, transparent 49px),
+          var(--bg);
+        color: var(--ink);
         font-family: Arial, Helvetica, sans-serif;
         text-align: center;
       }
-      main { width: min(420px, 100%); }
-      h1 { margin: 0 0 16px; font-size: 28px; line-height: 1.15; }
-      img { width: min(320px, 100%); height: auto; border: 1px solid #d9dee7; border-radius: 8px; }
+
+      main {
+        width: min(520px, 100%);
+        display: grid;
+        gap: 16px;
+      }
+
+      .poster {
+        width: 100%;
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--card);
+        box-shadow: 0 18px 45px rgba(122, 70, 31, 0.18);
+      }
+
+      .actions {
+        display: grid;
+        gap: 10px;
+      }
+
       a {
+        min-height: 52px;
         display: inline-flex;
-        min-height: 48px;
-        margin-top: 18px;
-        padding: 0 18px;
         align-items: center;
         justify-content: center;
         border-radius: 8px;
-        background: #1f6feb;
+        background: var(--primary);
         color: #ffffff;
+        font-size: 17px;
         font-weight: 700;
         text-decoration: none;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.4;
       }
     </style>
   </head>
   <body>
     <main>
-      <h1>Math Kangaroo Photo Upload</h1>
-      <img src="math-kangaroo-qr.png" alt="QR code for Math Kangaroo Photo Upload" />
-      <a href="https://zeror.ca/math-kangaroo/">Open Upload Page</a>
+      <img class="poster" src="math-kangaroo-qr.png" alt="Cute kangaroo QR code for Math Kangaroo Photo Upload" />
+      <div class="actions">
+        <a href="https://zeror.ca/math-kangaroo/">Open Upload Page</a>
+        <p>Share the photos</p>
+      </div>
     </main>
   </body>
 </html>
