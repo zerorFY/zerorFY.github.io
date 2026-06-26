@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $PSScriptRoot
 $indexPath = Join-Path $root 'index.html'
@@ -100,4 +100,48 @@ if ($mathKangarooHtml -notmatch [regex]::Escape("APPS_SCRIPT_WEB_APP_URL.include
     throw 'Math Kangaroo wrapper must keep the placeholder-only configuration guard'
 }
 
+
+$appsScriptIndexPath = Join-Path $root 'math-kangaroo\apps-script\Index.html'
+if (-not (Test-Path -LiteralPath $appsScriptIndexPath -PathType Leaf)) {
+    throw 'Missing math-kangaroo/apps-script/Index.html'
+}
+
+$appsScriptIndexHtml = Get-Content -LiteralPath $appsScriptIndexPath -Raw -Encoding UTF8
+$requiredMathKangarooText = @(
+    'I confirm that I took these photos or have permission to upload them. If children appear in the photos, I confirm that I have permission to share them. I understand that anyone with this page link may view and download these photos.',
+    'Photo Download Notice',
+    'These photos are for personal, non-commercial use only. Please do not publicly repost or misuse photos containing other people, especially children.',
+    'I Agree and Download',
+    'Anyone with this link can view and download these photos. Please do not share this link publicly.',
+    'To request the removal of a photo, please contact:',
+    'hello@zeror.ca'
+)
+
+foreach ($text in $requiredMathKangarooText) {
+    if ($appsScriptIndexHtml -notmatch [regex]::Escape($text)) {
+        throw "Math Kangaroo upload page missing required text: $text"
+    }
+}
+
+$requiredMathKangarooSnippets = @(
+    'id="uploadConsent"',
+    'sessionStorage.getItem',
+    'downloadNoticeAccepted',
+    'pendingDownloadUrl',
+    'showDownloadNotice',
+    'handleDownloadClick'
+)
+
+foreach ($snippet in $requiredMathKangarooSnippets) {
+    if ($appsScriptIndexHtml -notmatch [regex]::Escape($snippet)) {
+        throw "Math Kangaroo upload page missing required behavior snippet: $snippet"
+    }
+}
+
+$qrPath = Join-Path $root 'math-kangaroo\math-kangaroo-qr.png'
+if (-not (Test-Path -LiteralPath $qrPath -PathType Leaf)) {
+    throw 'Missing math-kangaroo QR code image'
+}
+
 Write-Host 'Homepage verification passed.'
+

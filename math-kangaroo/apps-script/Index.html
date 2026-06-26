@@ -204,6 +204,99 @@
         text-align: center;
       }
 
+      .consent-label,
+      .notice-box,
+      .removal-request {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--soft);
+        color: var(--ink);
+        line-height: 1.45;
+      }
+
+      .consent-label {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        gap: 12px;
+        padding: 14px;
+        font-size: 15px;
+      }
+
+      .consent-label input {
+        width: 20px;
+        height: 20px;
+        margin: 2px 0 0;
+        accent-color: var(--primary);
+      }
+
+      .notice-box {
+        margin-top: 14px;
+        padding: 14px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .removal-request {
+        margin-top: 36px;
+        padding: 14px;
+        color: var(--muted);
+        font-size: 15px;
+        text-align: center;
+      }
+
+      .removal-request a {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: rgba(17, 24, 39, 0.48);
+      }
+
+      .modal-backdrop.visible {
+        display: flex;
+      }
+
+      .modal-dialog {
+        width: min(460px, 100%);
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 22px;
+        box-shadow: 0 24px 70px rgba(17, 24, 39, 0.28);
+      }
+
+      .modal-dialog h3 {
+        margin: 0;
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .modal-dialog p {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .modal-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .modal-actions button {
+        min-height: 48px;
+        font-size: 15px;
+      }
+
       @media (max-width: 480px) {
         main {
           padding-top: 24px;
@@ -212,6 +305,10 @@
         .photo-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 10px;
+        }
+
+        .modal-actions {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -225,6 +322,10 @@
         <label class="button secondary" for="photoInput">Choose Photos</label>
         <input id="photoInput" type="file" accept=".jpg,.jpeg,.png,.heic,.heif,.webp,image/jpeg,image/png,image/heic,image/heif,image/webp" multiple />
         <p id="selectedCount" class="selected-count">No photos selected</p>
+        <label class="consent-label" for="uploadConsent">
+          <input id="uploadConsent" type="checkbox" />
+          <span>I confirm that I took these photos or have permission to upload them. If children appear in the photos, I confirm that I have permission to share them. I understand that anyone with this page link may view and download these photos.</span>
+        </label>
         <button id="uploadButton" type="button" disabled>Upload Photos</button>
         <p id="message" class="message" aria-live="polite"></p>
       </section>
@@ -234,10 +335,24 @@
           <h2>Uploaded Photos</h2>
           <button id="refreshButton" class="refresh-button secondary" type="button">Refresh</button>
         </div>
+        <p class="notice-box">Anyone with this link can view and download these photos. Please do not share this link publicly.</p>
         <p id="galleryStatus" class="gallery-status" aria-live="polite">Loading photos...</p>
         <div id="photoGrid" class="photo-grid"></div>
       </section>
+
+      <p class="removal-request">To request the removal of a photo, please contact: <a href="mailto:hello@zeror.ca">hello@zeror.ca</a></p>
     </main>
+
+    <div id="downloadNotice" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="downloadNoticeTitle" aria-hidden="true">
+      <div class="modal-dialog">
+        <h3 id="downloadNoticeTitle">Photo Download Notice</h3>
+        <p>These photos are for personal, non-commercial use only. Please do not publicly repost or misuse photos containing other people, especially children.</p>
+        <div class="modal-actions">
+          <button id="cancelDownloadButton" class="secondary" type="button">Cancel</button>
+          <button id="agreeDownloadButton" type="button">I Agree and Download</button>
+        </div>
+      </div>
+    </div>
 
     <script>
       const MAX_FILES = 30;
@@ -254,15 +369,20 @@
       };
 
       const input = document.getElementById('photoInput');
+      const uploadConsent = document.getElementById('uploadConsent');
       const uploadButton = document.getElementById('uploadButton');
       const selectedCount = document.getElementById('selectedCount');
       const message = document.getElementById('message');
       const refreshButton = document.getElementById('refreshButton');
       const galleryStatus = document.getElementById('galleryStatus');
       const photoGrid = document.getElementById('photoGrid');
+      const downloadNotice = document.getElementById('downloadNotice');
+      const cancelDownloadButton = document.getElementById('cancelDownloadButton');
+      const agreeDownloadButton = document.getElementById('agreeDownloadButton');
 
       let selectedFiles = [];
       let isUploading = false;
+      let pendingDownloadUrl = '';
 
       input.addEventListener('change', () => {
         selectedFiles = Array.from(input.files || []);
@@ -272,24 +392,33 @@
           selectedFiles = [];
           input.value = '';
           selectedCount.textContent = 'No photos selected';
-          uploadButton.disabled = true;
+          updateUploadButtonState();
           setMessage(validation, 'error');
           return;
         }
 
         selectedCount.textContent = selectedFiles.length === 1 ? '1 photo selected' : `${selectedFiles.length} photos selected`;
-        uploadButton.disabled = selectedFiles.length === 0 || isUploading;
+        updateUploadButtonState();
         setMessage('', '');
       });
 
+      uploadConsent.addEventListener('change', updateUploadButtonState);
       uploadButton.addEventListener('click', uploadSelectedPhotos);
       refreshButton.addEventListener('click', refreshGallery);
+      cancelDownloadButton.addEventListener('click', hideDownloadNotice);
+      agreeDownloadButton.addEventListener('click', agreeAndDownload);
+      downloadNotice.addEventListener('click', (event) => {
+        if (event.target === downloadNotice) {
+          hideDownloadNotice();
+        }
+      });
 
+      updateUploadButtonState();
       refreshGallery();
       setInterval(refreshGallery, REFRESH_MS);
 
       async function uploadSelectedPhotos() {
-        if (isUploading || selectedFiles.length === 0) return;
+        if (isUploading || selectedFiles.length === 0 || !uploadConsent.checked) return;
 
         const validation = validateFiles(selectedFiles);
         if (validation) {
@@ -298,7 +427,7 @@
         }
 
         isUploading = true;
-        uploadButton.disabled = true;
+        updateUploadButtonState();
         input.disabled = true;
 
         try {
@@ -320,8 +449,12 @@
         } finally {
           isUploading = false;
           input.disabled = false;
-          uploadButton.disabled = selectedFiles.length === 0;
+          updateUploadButtonState();
         }
+      }
+
+      function updateUploadButtonState() {
+        uploadButton.disabled = isUploading || selectedFiles.length === 0 || !uploadConsent.checked;
       }
 
       function validateFiles(files) {
@@ -439,13 +572,47 @@
           const download = document.createElement('a');
           download.className = 'button download-link';
           download.href = photo.downloadUrl;
+          download.dataset.downloadUrl = photo.downloadUrl;
           download.target = '_blank';
           download.rel = 'noopener';
           download.textContent = 'Download';
+          download.addEventListener('click', handleDownloadClick);
 
           body.append(name, meta, download);
           card.append(image, body);
           photoGrid.appendChild(card);
+        }
+      }
+
+      function handleDownloadClick(event) {
+        const url = event.currentTarget.dataset.downloadUrl || event.currentTarget.href;
+        if (sessionStorage.getItem('downloadNoticeAccepted') === 'true') {
+          return;
+        }
+
+        event.preventDefault();
+        pendingDownloadUrl = url;
+        showDownloadNotice();
+      }
+
+      function showDownloadNotice() {
+        downloadNotice.classList.add('visible');
+        downloadNotice.setAttribute('aria-hidden', 'false');
+        agreeDownloadButton.focus();
+      }
+
+      function hideDownloadNotice() {
+        pendingDownloadUrl = '';
+        downloadNotice.classList.remove('visible');
+        downloadNotice.setAttribute('aria-hidden', 'true');
+      }
+
+      function agreeAndDownload() {
+        sessionStorage.setItem('downloadNoticeAccepted', 'true');
+        const url = pendingDownloadUrl;
+        hideDownloadNotice();
+        if (url) {
+          window.open(url, '_blank', 'noopener');
         }
       }
 
