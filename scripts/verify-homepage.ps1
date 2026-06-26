@@ -82,4 +82,22 @@ if ($html -match 'sophia-tracker' -or $html -match '>lora<') {
     throw 'Homepage should not list sophia-tracker or lora separately; they belong under trackers'
 }
 
+
+$mathKangarooPath = Join-Path $root 'math-kangaroo\index.html'
+if (-not (Test-Path -LiteralPath $mathKangarooPath -PathType Leaf)) {
+    throw 'Missing math-kangaroo/index.html'
+}
+
+$mathKangarooHtml = Get-Content -LiteralPath $mathKangarooPath -Raw -Encoding UTF8
+$appsScriptUrl = 'https://script.google.com/macros/s/AKfycbzd0u8UVG4-8lVw1MJz4rqtNg3Fxdt7kWNvz2s8zq8hPsB8peZXKq0iN2JX4LXPsXIx/exec'
+if ($mathKangarooHtml -notmatch [regex]::Escape($appsScriptUrl)) {
+    throw 'Math Kangaroo wrapper must include the deployed Apps Script URL'
+}
+if ($mathKangarooHtml -match [regex]::Escape("APPS_SCRIPT_WEB_APP_URL.includes('$appsScriptUrl')")) {
+    throw 'Math Kangaroo wrapper must not treat the deployed Apps Script URL as the placeholder'
+}
+if ($mathKangarooHtml -notmatch [regex]::Escape("APPS_SCRIPT_WEB_APP_URL.includes('PASTE_APPS_SCRIPT_WEB_APP_URL_HERE')")) {
+    throw 'Math Kangaroo wrapper must keep the placeholder-only configuration guard'
+}
+
 Write-Host 'Homepage verification passed.'
