@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math Kangaroo Photo Upload</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #ffffff;
+        --ink: #111827;
+        --muted: #5b6472;
+        --line: #d9dee7;
+        --primary: #1f6feb;
+        --primary-dark: #174ea6;
+        --danger: #b42318;
+        --success: #067647;
+        --soft: #f5f7fa;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      main {
+        width: min(760px, 100%);
+        margin: 0 auto;
+        padding: 32px 18px 48px;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(30px, 7vw, 44px);
+        line-height: 1.1;
+        letter-spacing: 0;
+      }
+
+      .intro {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      .upload-panel {
+        margin-top: 28px;
+        display: grid;
+        gap: 16px;
+      }
+
+      input[type="file"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+      }
+
+      .button,
+      button {
+        width: 100%;
+        min-height: 56px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--primary);
+        border-radius: 8px;
+        background: var(--primary);
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .button.secondary,
+      button.secondary {
+        background: #ffffff;
+        color: var(--primary);
+      }
+
+      button:disabled {
+        border-color: #a8b3c5;
+        background: #a8b3c5;
+        cursor: not-allowed;
+      }
+
+      .selected-count {
+        min-height: 24px;
+        color: var(--muted);
+        font-size: 17px;
+        text-align: center;
+      }
+
+      .message {
+        min-height: 28px;
+        padding: 2px 0;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+      }
+
+      .message.error {
+        color: var(--danger);
+      }
+
+      .message.success {
+        color: var(--success);
+      }
+
+      .gallery-header {
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      h2 {
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .refresh-button {
+        width: auto;
+        min-height: 42px;
+        padding: 0 16px;
+        font-size: 15px;
+      }
+
+      .gallery-status {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .photo-grid {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 14px;
+      }
+
+      .photo-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+      }
+
+      .thumb {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        display: block;
+        object-fit: cover;
+        background: var(--soft);
+      }
+
+      .photo-body {
+        padding: 10px;
+      }
+
+      .photo-name {
+        overflow-wrap: anywhere;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .photo-meta {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .download-link {
+        min-height: 42px;
+        margin-top: 10px;
+        font-size: 15px;
+      }
+
+      .empty-state {
+        margin-top: 16px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 480px) {
+        main {
+          padding-top: 24px;
+        }
+
+        .photo-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Math Kangaroo Photo Upload</h1>
+      <p class="intro">Please upload your photos from today's Math Kangaroo event. You may select multiple photos at once.</p>
+
+      <section class="upload-panel" aria-label="Photo upload">
+        <label class="button secondary" for="photoInput">Choose Photos</label>
+        <input id="photoInput" type="file" accept=".jpg,.jpeg,.png,.heic,.heif,.webp,image/jpeg,image/png,image/heic,image/heif,image/webp" multiple />
+        <p id="selectedCount" class="selected-count">No photos selected</p>
+        <button id="uploadButton" type="button" disabled>Upload Photos</button>
+        <p id="message" class="message" aria-live="polite"></p>
+      </section>
+
+      <section aria-label="Uploaded photos">
+        <div class="gallery-header">
+          <h2>Uploaded Photos</h2>
+          <button id="refreshButton" class="refresh-button secondary" type="button">Refresh</button>
+        </div>
+        <p id="galleryStatus" class="gallery-status" aria-live="polite">Loading photos...</p>
+        <div id="photoGrid" class="photo-grid"></div>
+      </section>
+    </main>
+
+    <script>
+      const MAX_FILES = 30;
+      const MAX_BYTES = 20 * 1024 * 1024;
+      const REFRESH_MS = 10000;
+      const allowedExtensions = new Set(['jpg', 'jpeg', 'png', 'heic', 'heif', 'webp']);
+      const mimeByExtension = {
+        jpg: 'image/jpeg',
+        jpeg: 'image/jpeg',
+        png: 'image/png',
+        heic: 'image/heic',
+        heif: 'image/heif',
+        webp: 'image/webp'
+      };
+
+      const input = document.getElementById('photoInput');
+      const uploadButton = document.getElementById('uploadButton');
+      const selectedCount = document.getElementById('selectedCount');
+      const message = document.getElementById('message');
+      const refreshButton = document.getElementById('refreshButton');
+      const galleryStatus = document.getElementById('galleryStatus');
+      const photoGrid = document.getElementById('photoGrid');
+
+      let selectedFiles = [];
+      let isUploading = false;
+
+      input.addEventListener('change', () => {
+        selectedFiles = Array.from(input.files || []);
+        const validation = validateFiles(selectedFiles);
+
+        if (validation) {
+          selectedFiles = [];
+          input.value = '';
+          selectedCount.textContent = 'No photos selected';
+          uploadButton.disabled = true;
+          setMessage(validation, 'error');
+          return;
+        }
+
+        selectedCount.textContent = selectedFiles.length === 1 ? '1 photo selected' : `${selectedFiles.length} photos selected`;
+        uploadButton.disabled = selectedFiles.length === 0 || isUploading;
+        setMessage('', '');
+      });
+
+      uploadButton.addEventListener('click', uploadSelectedPhotos);
+      refreshButton.addEventListener('click', refreshGallery);
+
+      refreshGallery();
+      setInterval(refreshGallery, REFRESH_MS);
+
+      async function uploadSelectedPhotos() {
+        if (isUploading || selectedFiles.length === 0) return;
+
+        const validation = validateFiles(selectedFiles);
+        if (validation) {
+          setMessage(validation, 'error');
+          return;
+        }
+
+        isUploading = true;
+        uploadButton.disabled = true;
+        input.disabled = true;
+
+        try {
+          for (let index = 0; index < selectedFiles.length; index += 1) {
+            const file = selectedFiles[index];
+            setMessage(`Uploading your photos... Please do not close this page. (${index + 1} of ${selectedFiles.length})`, '');
+            const payload = await readFilePayload(file);
+            await uploadPhoto(payload);
+          }
+
+          setMessage('Thank you! Your photos have been uploaded successfully.', 'success');
+          input.value = '';
+          selectedFiles = [];
+          selectedCount.textContent = 'No photos selected';
+          await refreshGallery();
+        } catch (error) {
+          console.error(error);
+          setMessage('Upload failed. Please check your internet connection and try again.', 'error');
+        } finally {
+          isUploading = false;
+          input.disabled = false;
+          uploadButton.disabled = selectedFiles.length === 0;
+        }
+      }
+
+      function validateFiles(files) {
+        if (files.length > MAX_FILES) {
+          return 'You may upload up to 30 photos at once.';
+        }
+
+        for (const file of files) {
+          const extension = getExtension(file.name);
+          if (!allowedExtensions.has(extension)) {
+            return 'Only JPG, JPEG, PNG, HEIC, and WebP images are allowed.';
+          }
+
+          if (file.size > MAX_BYTES) {
+            return 'Each image must be 20 MB or smaller.';
+          }
+        }
+
+        return '';
+      }
+
+      function readFilePayload(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const dataUrl = String(reader.result || '');
+            const commaIndex = dataUrl.indexOf(',');
+            if (commaIndex === -1) {
+              reject(new Error('Unable to read file.'));
+              return;
+            }
+
+            const extension = getExtension(file.name);
+            resolve({
+              name: file.name,
+              mimeType: file.type || mimeByExtension[extension] || 'application/octet-stream',
+              base64: dataUrl.slice(commaIndex + 1)
+            });
+          };
+          reader.onerror = () => reject(reader.error || new Error('Unable to read file.'));
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function uploadPhoto(payload) {
+        return new Promise((resolve, reject) => {
+          google.script.run
+            .withSuccessHandler(resolve)
+            .withFailureHandler(reject)
+            .uploadPhoto(payload);
+        });
+      }
+
+      function refreshGallery() {
+        return new Promise((resolve) => {
+          if (!window.google || !google.script || !google.script.run) {
+            galleryStatus.textContent = 'Photo gallery is available after the upload service is deployed.';
+            resolve();
+            return;
+          }
+
+          google.script.run
+            .withSuccessHandler((photos) => {
+              renderGallery(Array.isArray(photos) ? photos : []);
+              resolve();
+            })
+            .withFailureHandler((error) => {
+              console.error(error);
+              galleryStatus.textContent = 'Unable to load uploaded photos.';
+              resolve();
+            })
+            .listPhotos();
+        });
+      }
+
+      function renderGallery(photos) {
+        photoGrid.innerHTML = '';
+
+        if (photos.length === 0) {
+          galleryStatus.textContent = 'No photos uploaded yet.';
+          const empty = document.createElement('div');
+          empty.className = 'empty-state';
+          empty.textContent = 'Uploaded photos will appear here.';
+          photoGrid.appendChild(empty);
+          return;
+        }
+
+        galleryStatus.textContent = `${photos.length} photo${photos.length === 1 ? '' : 's'} available. This list refreshes automatically.`;
+
+        for (const photo of photos) {
+          const card = document.createElement('article');
+          card.className = 'photo-card';
+
+          const image = document.createElement('img');
+          image.className = 'thumb';
+          image.loading = 'lazy';
+          image.alt = photo.name || 'Uploaded photo';
+          image.src = photo.thumbnailUrl;
+          image.onerror = () => {
+            image.removeAttribute('src');
+            image.alt = 'Preview unavailable';
+          };
+
+          const body = document.createElement('div');
+          body.className = 'photo-body';
+
+          const name = document.createElement('p');
+          name.className = 'photo-name';
+          name.textContent = photo.name || 'Uploaded photo';
+
+          const meta = document.createElement('p');
+          meta.className = 'photo-meta';
+          meta.textContent = `${formatBytes(photo.sizeBytes)} | ${photo.uploadedAt || ''}`;
+
+          const download = document.createElement('a');
+          download.className = 'button download-link';
+          download.href = photo.downloadUrl;
+          download.target = '_blank';
+          download.rel = 'noopener';
+          download.textContent = 'Download';
+
+          body.append(name, meta, download);
+          card.append(image, body);
+          photoGrid.appendChild(card);
+        }
+      }
+
+      function getExtension(name) {
+        const match = String(name || '').toLowerCase().match(/\.([a-z0-9]+)$/);
+        return match ? match[1] : '';
+      }
+
+      function formatBytes(bytes) {
+        const size = Number(bytes || 0);
+        if (size >= 1024 * 1024) return `${(size / 1024 / 1024).toFixed(1)} MB`;
+        if (size >= 1024) return `${Math.round(size / 1024)} KB`;
+        return `${size} B`;
+      }
+
+      function setMessage(text, type) {
+        message.textContent = text;
+        message.className = `message ${type || ''}`.trim();
+      }
+    </script>
+  </body>
+</html>

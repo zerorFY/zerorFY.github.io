@@ -40,6 +40,7 @@ $requiredLinks = @(
     '/trackers/',
     '/mathpuzzle/',
     '/shirt/',
+    '/math-kangaroo/',
     'https://zerorfy-tradetest.streamlit.app/',
     '/ai-fluency-learning/',
     '/kids-math-practice/',
@@ -71,6 +72,10 @@ foreach ($label in $requiredLabels) {
 
 if ($html -notmatch 'Puzzle Generator') {
     throw 'Homepage must include the math puzzle project title'
+}
+
+if ($html -notmatch 'Math Kangaroo Photo Upload') {
+    throw 'Homepage must include the Math Kangaroo upload project title'
 }
 
 if ($html -match 'sophia-tracker' -or $html -match '>lora<') {

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math Kangaroo Photo Upload</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #ffffff;
+        --ink: #111827;
+        --muted: #5b6472;
+        --line: #d9dee7;
+        --primary: #1f6feb;
+        --soft: #f5f7fa;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      main {
+        width: min(840px, 100%);
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 18px;
+      }
+
+      h1,
+      p {
+        margin: 0;
+      }
+
+      .fallback {
+        display: none;
+        margin: 28px auto 0;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--soft);
+        line-height: 1.5;
+      }
+
+      .fallback h1 {
+        font-size: 28px;
+        line-height: 1.15;
+      }
+
+      .fallback p {
+        margin-top: 10px;
+        color: var(--muted);
+      }
+
+      .fallback a {
+        display: inline-flex;
+        min-height: 48px;
+        margin-top: 16px;
+        padding: 0 18px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: var(--primary);
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      iframe {
+        width: 100%;
+        min-height: calc(100vh - 36px);
+        border: 0;
+        display: block;
+      }
+
+      .not-configured iframe {
+        display: none;
+      }
+
+      .not-configured .fallback {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="page">
+      <iframe id="uploadFrame" title="Math Kangaroo Photo Upload" loading="eager"></iframe>
+      <section class="fallback" aria-live="polite">
+        <h1>Math Kangaroo Photo Upload</h1>
+        <p>Please upload your photos from today's Math Kangaroo event. You may select multiple photos at once.</p>
+        <p>The upload service is not configured yet.</p>
+        <a id="directLink" href="#">Open Upload Page</a>
+      </section>
+    </main>
+
+    <script>
+      const APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzd0u8UVG4-8lVw1MJz4rqtNg3Fxdt7kWNvz2s8zq8hPsB8peZXKq0iN2JX4LXPsXIx/exec';
+      const page = document.getElementById('page');
+      const frame = document.getElementById('uploadFrame');
+      const directLink = document.getElementById('directLink');
+
+      if (APPS_SCRIPT_WEB_APP_URL.includes('https://script.google.com/macros/s/AKfycbzd0u8UVG4-8lVw1MJz4rqtNg3Fxdt7kWNvz2s8zq8hPsB8peZXKq0iN2JX4LXPsXIx/exec')) {
+        page.classList.add('not-configured');
+      } else {
+        frame.src = APPS_SCRIPT_WEB_APP_URL;
+        directLink.href = APPS_SCRIPT_WEB_APP_URL;
+      }
+    </script>
+  </body>
+</html>
+
