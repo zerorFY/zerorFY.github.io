@@ -1,0 +1,33 @@
+{
+  "brand": "Northstar (fictional)",
+  "document_id": "product.northstar.local-ai-station",
+  "document_type": "product-document",
+  "generated_at": "2026-08-08T20:00:00Z",
+  "model": "LAS-1",
+  "offers": [
+    {
+      "available": false,
+      "currency": "USD",
+      "locale": "en-US",
+      "market": "us",
+      "observed_at": "2026-08-08T20:00:00Z",
+      "price": null,
+      "purchase_url": null
+    },
+    {
+      "available": false,
+      "currency": "CAD",
+      "locale": "en-CA",
+      "market": "ca",
+      "observed_at": "2026-08-08T20:00:00Z",
+      "price": null,
+      "purchase_url": null
+    }
+  ],
+  "producer_version": "demo-0.1.0",
+  "product_id": "northstar.local-ai-station",
+  "schema_version": "v1",
+  "summary": "A fictional local-first AI workstation used to preview Zeror's evidence and decision modules without making a real product recommendation.",
+  "title": "Northstar Local AI Station",
+  "updated_at": "2026-08-08T20:00:00Z"
+}

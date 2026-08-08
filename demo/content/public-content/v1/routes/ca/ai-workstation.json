@@ -1,0 +1,84 @@
+{
+  "answer_gains": [
+    {
+      "gain_id": "gain.decision-rule.1",
+      "gain_type": "decision_rule",
+      "text": "Choose a local-first system when private drafts, predictable latency, and offline continuity matter more than access to the largest hosted models."
+    },
+    {
+      "gain_id": "gain.qualification.1",
+      "gain_type": "qualification",
+      "text": "For Canadian buyers, evaluate the complete CAD configuration, provincial tax and support terms; this demo intentionally provides none of those commercial fields."
+    },
+    {
+      "gain_id": "gain.comparison.1",
+      "gain_type": "comparison",
+      "text": "The useful comparison is workflow fit per task, not a single synthetic speed score across unrelated model sizes."
+    }
+  ],
+  "canonical_key": "best.local-ai-workstation",
+  "citations": [
+    {
+      "citation_id": "source.synthetic.system-brief",
+      "observed_at": "2026-08-08T20:00:00Z",
+      "published_at": "2026-08-08T20:00:00Z",
+      "source_name": "Synthetic reference",
+      "title": "Canadian local AI workstation system brief (demo fixture)",
+      "url": "https://example.com/zeror-demo/ca-system-brief"
+    },
+    {
+      "citation_id": "source.synthetic.workflow-notes",
+      "observed_at": "2026-08-08T20:00:00Z",
+      "published_at": null,
+      "source_name": "Synthetic reference",
+      "title": "Private AI workflow evaluation notes (demo fixture)",
+      "url": "https://example.com/zeror-demo/workflow-notes"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim.workflow.privacy",
+      "confidence": "high",
+      "text": "Local execution can keep selected working documents on the user's own system when the configured application makes no external request."
+    },
+    {
+      "claim_id": "claim.workflow.latency",
+      "confidence": "medium",
+      "text": "Interactive latency depends on model size, quantization, memory bandwidth, context length, and software configuration."
+    },
+    {
+      "claim_id": "claim.market.ca",
+      "confidence": "low",
+      "text": "Canadian availability and CAD pricing are intentionally disabled until a verified market feed is connected."
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction_id": "contradiction.measurement.1",
+      "contradiction_type": "measurement",
+      "explanation": "Vendor throughput figures are not directly comparable when model, quantization, context, prompt length, and sampling settings differ."
+    },
+    {
+      "contradiction_id": "contradiction.market.1",
+      "contradiction_type": "market",
+      "explanation": "A US listing does not prove Canadian availability, bilingual support, warranty coverage, duties, or final CAD cost."
+    }
+  ],
+  "disclosure": "Preview only. The product, evidence and citations on this page are synthetic. Canadian price and purchase links are deliberately unavailable.",
+  "document_id": "route.ca.best.local-ai-workstation",
+  "document_type": "route-document",
+  "generated_at": "2026-08-08T20:00:00Z",
+  "intent_key": "best.local-ai-workstation",
+  "locale": "en-CA",
+  "market": "ca",
+  "path": "/ca/ai-workstation/",
+  "producer_version": "demo-0.1.0",
+  "product_ids": [
+    "northstar.local-ai-station"
+  ],
+  "route_key": "ca:best.local-ai-workstation",
+  "schema_version": "v1",
+  "summary": "A Canadian-market preview for heavy AI users evaluating privacy, latency and offline continuity. CAD pricing is intentionally not connected.",
+  "title": "A local AI workstation for Canadian power users — decision preview",
+  "updated_at": "2026-08-08T20:00:00Z"
+}

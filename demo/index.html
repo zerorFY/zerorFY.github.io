@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      name="description"
+      content="A synthetic preview of Zeror's evidence-first research interface."
+    />
+    <meta name="theme-color" content="#f4f1e8" />
+    <title>Zeror Research — Evidence interface preview</title>
+    <link rel="stylesheet" href="./assets/css/tokens.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="wordmark" href="../" aria-label="Back to zeror.ca">
+          <span class="wordmark__mark" aria-hidden="true">Z</span>
+          <span>Zeror Research</span>
+        </a>
+        <div class="preview-label"><span></span> Isolated demo</div>
+      </div>
+    </header>
+
+    <main id="page" class="page is-loading">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero__copy">
+          <p class="eyebrow">Evidence before confidence</p>
+          <h1 id="page-title">Loading the research brief…</h1>
+          <p id="page-summary" class="hero__summary">
+            Reading a versioned public content contract.
+          </p>
+        </div>
+
+        <div class="market-control" aria-label="Choose market view">
+          <span class="market-control__label">Market lens</span>
+          <div class="segmented" role="group" aria-label="Market">
+            <button type="button" data-market="global">Global</button>
+            <button type="button" data-market="us">United States</button>
+            <button type="button" data-market="ca">Canada</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-ribbon" aria-label="Demo boundaries">
+        <div><strong>v1</strong><span>Public contract</span></div>
+        <div><strong>3</strong><span>Market overlays</span></div>
+        <div><strong>0</strong><span>Private fields</span></div>
+        <div><strong>100%</strong><span>Synthetic content</span></div>
+      </section>
+
+      <div id="error-state" class="error-state" role="alert" hidden>
+        <strong>The preview could not load.</strong>
+        <span id="error-message">Check the local server and try again.</span>
+      </div>
+
+      <div class="content-grid">
+        <aside class="decision-rail" aria-label="Decision summary">
+          <div id="verdict-root" class="rail-card rail-card--dark"></div>
+          <div id="product-root" class="rail-card"></div>
+          <div class="contract-note">
+            <span class="contract-note__icon" aria-hidden="true">↳</span>
+            <p>
+              The interface knows only public JSON. Changing storage or analysis does not change
+              this page contract.
+            </p>
+          </div>
+        </aside>
+
+        <article class="research-flow" aria-label="Evidence review">
+          <section class="module" aria-labelledby="claims-title">
+            <header class="module__header">
+              <div>
+                <p class="module__kicker">01 / What holds up</p>
+                <h2 id="claims-title">Verified claims</h2>
+              </div>
+              <span class="module__hint">Confidence is claim-specific</span>
+            </header>
+            <div id="claims-root" class="claim-list"></div>
+          </section>
+
+          <section class="module module--tinted" aria-labelledby="gains-title">
+            <header class="module__header">
+              <div>
+                <p class="module__kicker">02 / What the synthesis adds</p>
+                <h2 id="gains-title">Decision rules</h2>
+              </div>
+            </header>
+            <div id="gains-root" class="gain-grid"></div>
+          </section>
+
+          <section class="module" aria-labelledby="contradictions-title">
+            <header class="module__header">
+              <div>
+                <p class="module__kicker">03 / Where evidence diverges</p>
+                <h2 id="contradictions-title">Contradictions to keep visible</h2>
+              </div>
+            </header>
+            <div id="contradictions-root" class="contradiction-list"></div>
+          </section>
+
+          <section class="module module--sources" aria-labelledby="sources-title">
+            <header class="module__header">
+              <div>
+                <p class="module__kicker">04 / Traceability</p>
+                <h2 id="sources-title">Sources & disclosure</h2>
+              </div>
+            </header>
+            <div id="sources-root"></div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>Zeror evidence interface preview · Synthetic content · Not a recommendation</p>
+      <a href="../">Return to zeror.ca</a>
+    </footer>
+
+    <script type="module" src="./assets/js/app.js"></script>
+  </body>
+</html>

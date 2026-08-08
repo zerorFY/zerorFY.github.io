@@ -1,0 +1,84 @@
+{
+  "answer_gains": [
+    {
+      "gain_id": "gain.decision-rule.1",
+      "gain_type": "decision_rule",
+      "text": "Choose a local-first system when private drafts, predictable latency, and offline continuity matter more than access to the largest hosted models."
+    },
+    {
+      "gain_id": "gain.qualification.1",
+      "gain_type": "qualification",
+      "text": "A local workstation complements cloud tools; it does not replace hosted research, frontier reasoning, or collaboration services."
+    },
+    {
+      "gain_id": "gain.comparison.1",
+      "gain_type": "comparison",
+      "text": "The useful comparison is workflow fit per task, not a single synthetic speed score across unrelated model sizes."
+    }
+  ],
+  "canonical_key": "best.local-ai-workstation",
+  "citations": [
+    {
+      "citation_id": "source.synthetic.system-brief",
+      "observed_at": "2026-08-08T20:00:00Z",
+      "published_at": "2026-08-08T20:00:00Z",
+      "source_name": "Synthetic reference",
+      "title": "Local AI workstation system brief (demo fixture)",
+      "url": "https://example.com/zeror-demo/system-brief"
+    },
+    {
+      "citation_id": "source.synthetic.workflow-notes",
+      "observed_at": "2026-08-08T20:00:00Z",
+      "published_at": null,
+      "source_name": "Synthetic reference",
+      "title": "Private AI workflow evaluation notes (demo fixture)",
+      "url": "https://example.com/zeror-demo/workflow-notes"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim.workflow.privacy",
+      "confidence": "high",
+      "text": "Local execution can keep selected working documents on the user's own system when the configured application makes no external request."
+    },
+    {
+      "claim_id": "claim.workflow.latency",
+      "confidence": "medium",
+      "text": "Interactive latency depends on model size, quantization, memory bandwidth, context length, and software configuration."
+    },
+    {
+      "claim_id": "claim.workflow.offline",
+      "confidence": "high",
+      "text": "Previously downloaded local models can remain usable during a network outage when their runtime has no online dependency."
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction_id": "contradiction.measurement.1",
+      "contradiction_type": "measurement",
+      "explanation": "Vendor throughput figures are not directly comparable when model, quantization, context, prompt length, and sampling settings differ."
+    },
+    {
+      "contradiction_id": "contradiction.temporal.1",
+      "contradiction_type": "temporal",
+      "explanation": "Runtime and model updates can materially change the same hardware's observed performance after publication."
+    }
+  ],
+  "disclosure": "Preview only. The product, evidence and citations on this page are synthetic. There are no purchase links or commercial relationships in this demo.",
+  "document_id": "route.global.best.local-ai-workstation",
+  "document_type": "route-document",
+  "generated_at": "2026-08-08T20:00:00Z",
+  "intent_key": "best.local-ai-workstation",
+  "locale": "en",
+  "market": "global",
+  "path": "/research/ai-workstation/",
+  "producer_version": "demo-0.1.0",
+  "product_ids": [
+    "northstar.local-ai-station"
+  ],
+  "route_key": "global:best.local-ai-workstation",
+  "schema_version": "v1",
+  "summary": "A decision-first preview for heavy AI users comparing private local workflows with cloud tools. Every module below is rendered from a public JSON contract.",
+  "title": "Should a heavy AI user add a local workstation?",
+  "updated_at": "2026-08-08T20:00:00Z"
+}
