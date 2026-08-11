@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://zeror.ca/</loc>
-    <lastmod>2026-08-08</lastmod>
-  </url>
-  <url>
-    <loc>https://zeror.ca/008test/</loc>
-    <lastmod>2026-08-08</lastmod>
-  </url>
-  <url>
-    <loc>https://zeror.ca/math-kangaroo/</loc>
-  </url>
-  <url>
-    <loc>https://zeror.ca/mother/</loc>
-  </url>
-  <url>
-    <loc>https://zeror.ca/paper/</loc>
-  </url>
-  <url>
-    <loc>https://zeror.ca/shirt/</loc>
-  </url>
+  <url><loc>https://zeror.ca/</loc><lastmod>2026-08-11</lastmod></url>
+  <url><loc>https://zeror.ca/ca/ai-voice-foot-pedal/</loc><lastmod>2026-08-11</lastmod></url>
+  <url><loc>https://zeror.ca/research/ai-voice-foot-pedal/</loc><lastmod>2026-08-11</lastmod></url>
+  <url><loc>https://zeror.ca/us/ai-voice-foot-pedal/</loc><lastmod>2026-08-11</lastmod></url>
 </urlset>

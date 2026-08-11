@@ -1,0 +1,38 @@
+{
+  "schema_version": "v1",
+  "build_id": "4b9b392bf987913a930b",
+  "source_bundle_hash": "6bfc6b04442770ab23500a77685708f97dd3b281aafbff3aea3c1e95bc7ec9b1",
+  "generated_at": "2026-08-11T12:18:41.751Z",
+  "files": [
+    {
+      "path": "ca/ai-voice-foot-pedal/index.html",
+      "size": 8701,
+      "sha256": "15cee269bafdd7ba6e6ae161d9ed519006198633d6f380f3c7f768208180fe62"
+    },
+    {
+      "path": "index.html",
+      "size": 5352,
+      "sha256": "d9afa3fb0f41e8790c99bddd3c12eeacdb3c87fc03c65cdbdb1d3e1a6351af87"
+    },
+    {
+      "path": "research/ai-voice-foot-pedal/index.html",
+      "size": 9101,
+      "sha256": "7cc6a47368f06cd551c94d3e05dbecb40550dde04c5ab4b59e1e0f97783aa008"
+    },
+    {
+      "path": "robots.txt",
+      "size": 61,
+      "sha256": "0f9dec62c150a9532e7ce6dd1757210a34e5d4f45c88c2bc72ed94ff8498a2c8"
+    },
+    {
+      "path": "sitemap.xml",
+      "size": 469,
+      "sha256": "f51148b2452479146d00152591e5841e1bb11dc6ee5421e2c010af0e513edec0"
+    },
+    {
+      "path": "us/ai-voice-foot-pedal/index.html",
+      "size": 8686,
+      "sha256": "8cee18d06cec46b0af81a7c90600b4e682cd89398f7a35d28b96471b6bc1cd7f"
+    }
+  ]
+}
