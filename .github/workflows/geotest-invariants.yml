@@ -8,6 +8,7 @@ on:
       - "index.html"
       - "sitemap.xml"
       - "llms.txt"
+      - "googleee5d9e523463e13c.html"
       - "008test/**"
       - "geotest-*/**"
       - "scripts/verify-geo-pilot.ps1"

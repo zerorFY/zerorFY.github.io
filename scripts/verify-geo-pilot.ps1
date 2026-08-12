@@ -7,6 +7,8 @@ $llmsPath = Join-Path $repoRoot 'llms.txt'
 $originalPath = Join-Path $repoRoot '008test\index.html'
 $expectedOriginalBlob = 'd92721128c4e06b05f4ffe69aa552e440d768172'
 $expectedLlmsBlob = '0a101eab9a18ba75225631323106f7c6317d0252'
+$googleVerificationFile = Join-Path $repoRoot 'googleee5d9e523463e13c.html'
+$googleVerificationBody = 'google-site-verification: googleee5d9e523463e13c.html'
 
 function Assert-True {
     param([bool]$Condition, [string]$Message)
@@ -23,6 +25,8 @@ $originalBlob = (& git -C $repoRoot hash-object --path='008test/index.html' $ori
 $llmsBlob = (& git -C $repoRoot hash-object --path='llms.txt' $llmsPath).Trim()
 Assert-True ($originalBlob -eq $expectedOriginalBlob) 'the historical /008test/ page must remain unchanged'
 Assert-True ($llmsBlob -eq $expectedLlmsBlob) 'llms.txt must remain frozen'
+Assert-True (Test-Path -LiteralPath $googleVerificationFile -PathType Leaf) 'Google Search Console ownership verification file must exist'
+Assert-True ((Get-Content -LiteralPath $googleVerificationFile -Raw -Encoding UTF8).Trim() -eq $googleVerificationBody) 'Google Search Console ownership verification file must retain its exact content'
 
 foreach ($number in 1..8) {
     $id = "ZR-GEO-GEOTEST-$number"
