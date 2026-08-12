@@ -5,8 +5,8 @@ $homePath = Join-Path $repoRoot 'index.html'
 $sitemapPath = Join-Path $repoRoot 'sitemap.xml'
 $llmsPath = Join-Path $repoRoot 'llms.txt'
 $originalPath = Join-Path $repoRoot '008test\index.html'
-$expectedOriginalHash = '2280B7B33E60714056E14B4948576F8C1FFAECFF6F1C4EB9C0408E5BC90B7AA9'
-$expectedLlmsHash = 'F4AA1CF7725BEAE27555F497FAEA44F53C181E6594C7191E02B2443E2A9259D8'
+$expectedOriginalBlob = 'd92721128c4e06b05f4ffe69aa552e440d768172'
+$expectedLlmsBlob = '0a101eab9a18ba75225631323106f7c6317d0252'
 
 function Assert-True {
     param([bool]$Condition, [string]$Message)
@@ -19,8 +19,10 @@ $llms = Get-Content -LiteralPath $llmsPath -Raw -Encoding UTF8
 $phrases = @()
 $bodies = @()
 
-Assert-True ((Get-FileHash -Algorithm SHA256 -LiteralPath $originalPath).Hash -eq $expectedOriginalHash) 'the historical /008test/ page must remain unchanged'
-Assert-True ((Get-FileHash -Algorithm SHA256 -LiteralPath $llmsPath).Hash -eq $expectedLlmsHash) 'llms.txt must remain frozen'
+$originalBlob = (& git -C $repoRoot hash-object --path='008test/index.html' $originalPath).Trim()
+$llmsBlob = (& git -C $repoRoot hash-object --path='llms.txt' $llmsPath).Trim()
+Assert-True ($originalBlob -eq $expectedOriginalBlob) 'the historical /008test/ page must remain unchanged'
+Assert-True ($llmsBlob -eq $expectedLlmsBlob) 'llms.txt must remain frozen'
 
 foreach ($number in 1..8) {
     $id = "ZR-GEO-GEOTEST-$number"
