@@ -23,12 +23,14 @@ Assert-True ((Get-FileHash -Algorithm SHA256 -LiteralPath $originalPath).Hash -e
 Assert-True ((Get-FileHash -Algorithm SHA256 -LiteralPath $llmsPath).Hash -eq $expectedLlmsHash) 'llms.txt must remain frozen'
 
 foreach ($number in 1..8) {
-    $id = "ZR-GEO-008-$number"
-    $relativeUrl = "/008-$number/"
+    $id = "ZR-GEO-GEOTEST-$number"
+    $relativeUrl = "/geotest-$number/"
     $canonical = "https://zeror.ca$relativeUrl"
-    $pagePath = Join-Path $repoRoot "008-$number\index.html"
+    $pagePath = Join-Path $repoRoot "geotest-$number\index.html"
+    $retiredPagePath = Join-Path $repoRoot "008-$number\index.html"
 
     Assert-True (Test-Path -LiteralPath $pagePath -PathType Leaf) "$relativeUrl must exist"
+    Assert-True (-not (Test-Path -LiteralPath $retiredPagePath)) "/008-$number/ must be retired after the clean restart"
     $page = Get-Content -LiteralPath $pagePath -Raw -Encoding UTF8
     Assert-True ($page -match [regex]::Escape("<title>$id | Zeror GEO Pilot</title>")) "$id must have a unique title"
     Assert-True (([regex]::Matches($page, '<h1(?:\s[^>]*)?>')).Count -eq 1) "$id must have exactly one H1"
@@ -38,7 +40,7 @@ foreach ($number in 1..8) {
     Assert-True ($page -notmatch '<meta[^>]+noindex') "$id must not contain noindex"
     Assert-True ($page -match [regex]::Escape($id)) "$id must be visible in server HTML"
     Assert-True ($page -match '<code class="phrase">(?<phrase>[^<]+)</code>') "$id must expose one verification phrase"
-    Assert-True ($page -match 'datetime="2026-08-10"') "$id must expose its publication date"
+    Assert-True ($page -match 'datetime="2026-08-11"') "$id must expose its restart publication date"
     Assert-True ($page -notmatch '<script') "$id core content must not depend on JavaScript"
 
     $phrase = [regex]::Match($page, '<code class="phrase">(?<phrase>[^<]+)</code>').Groups['phrase'].Value
@@ -65,7 +67,9 @@ foreach ($number in 1..8) {
 
 Assert-True (($phrases | Sort-Object -Unique).Count -eq 8) 'all verification phrases must be unique'
 Assert-True (($bodies | Sort-Object -Unique).Count -eq 8) 'all independent article bodies must be unique'
-Assert-True ($llms -notmatch 'ZR-GEO-008-[1-8]') 'llms.txt must not mention pilot pages'
+Assert-True ($llms -notmatch 'ZR-GEO-GEOTEST-[1-8]') 'llms.txt must not mention pilot pages'
+Assert-True ($homepage -notmatch 'href="/008-[1-8]/"') 'homepage must not retain retired pilot URLs'
+Assert-True ($sitemap -notmatch 'https://zeror.ca/008-[1-8]/') 'sitemap must not retain retired pilot URLs'
 
 [xml]$sitemapXml = $sitemap
 Assert-True ($null -ne $sitemapXml.urlset) 'sitemap.xml must remain valid XML'

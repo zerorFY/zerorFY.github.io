@@ -1,0 +1,23 @@
+name: Verify GEOTEST invariants
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - "index.html"
+      - "sitemap.xml"
+      - "llms.txt"
+      - "008test/**"
+      - "geotest-*/**"
+      - "scripts/verify-geo-pilot.ps1"
+      - ".github/workflows/geotest-invariants.yml"
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify discovery controls and immutable files
+        shell: pwsh
+        run: ./scripts/verify-geo-pilot.ps1
