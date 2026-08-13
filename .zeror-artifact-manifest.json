@@ -1,23 +1,23 @@
 {
   "schema_version": "v1",
-  "build_id": "4b9b392bf987913a930b",
-  "source_bundle_hash": "6bfc6b04442770ab23500a77685708f97dd3b281aafbff3aea3c1e95bc7ec9b1",
-  "generated_at": "2026-08-11T12:18:41.751Z",
+  "build_id": "eed380e00169cac0e6d8",
+  "source_bundle_hash": "1f16f1aa75e6f6395f47056288c0414427ec5cd57aab89d358f446f80d80dc17",
+  "generated_at": "2026-08-13T15:52:16.862Z",
   "files": [
     {
       "path": "ca/ai-voice-foot-pedal/index.html",
-      "size": 8701,
-      "sha256": "15cee269bafdd7ba6e6ae161d9ed519006198633d6f380f3c7f768208180fe62"
+      "size": 9095,
+      "sha256": "fa1d23258d1d231d74e736496b1cb11f6edd5b410148519cc26ac1cc8f3a6da4"
     },
     {
       "path": "index.html",
-      "size": 5965,
-      "sha256": "70951d891b1c1d0849ae5797b42b19c04daf0ad9709867e9b137aac80f37caad"
+      "size": 6358,
+      "sha256": "1726c968ab7ae0b43d328b4e35b49c377e195cc35a8391a96711b8314c6e4a9f"
     },
     {
       "path": "research/ai-voice-foot-pedal/index.html",
-      "size": 9101,
-      "sha256": "7cc6a47368f06cd551c94d3e05dbecb40550dde04c5ab4b59e1e0f97783aa008"
+      "size": 9495,
+      "sha256": "18b6854a5346f298a5c56b258266ae89f98855f0792e809154a799a0639b6ddc"
     },
     {
       "path": "robots.txt",
@@ -26,13 +26,13 @@
     },
     {
       "path": "sitemap.xml",
-      "size": 1041,
-      "sha256": "b6b22a71d6c6b85a480fd4cdb10a620e8171ad3c3ca9ead4a8c3fe2dbf3e436a"
+      "size": 1036,
+      "sha256": "e57fdff41653686c649b14b966c3f0d304c6bf4db6ebdb3f115a12293e2e9984"
     },
     {
       "path": "us/ai-voice-foot-pedal/index.html",
-      "size": 8686,
-      "sha256": "8cee18d06cec46b0af81a7c90600b4e682cd89398f7a35d28b96471b6bc1cd7f"
+      "size": 9080,
+      "sha256": "896b5ec0d4762ff911850558c6297d6c9163c5f578daf85a50ea91ba1d0f2a2f"
     }
   ]
 }
