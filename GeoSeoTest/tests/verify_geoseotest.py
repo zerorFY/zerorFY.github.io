@@ -18,21 +18,22 @@ from urllib.parse import parse_qs, urlparse
 HERE = Path(__file__).resolve()
 PROJECT = HERE.parents[1]
 REPO = PROJECT.parent
-BASE_SHA = "80ffdd01c72cfcac00a398a5333d5bbad05030d2"
+BASE_SHA = "a40a5cd"
+PRODUCTION_MEASUREMENT_ID = "G-PR0BY6KP92"
 EXPECTED_TREATMENTS = {"control", "seo", "geo", "seo_geo"}
 EXPECTED_INTENTS = {"commercial", "problem", "compatibility"}
 OFFICIAL_HOSTS = {"www.elgato.com", "help.elgato.com", "support.microsoft.com", "support.apple.com"}
 CTA_TEXT = "View the full product analysis"
 DESTINATION = "https://zeror.ca/research/ai-voice-foot-pedal/"
 PROTECTED_OBJECTS = {
-    "index.html": "bad2b0c86b81f16a52a15220167ad9f327667545",
+    "index.html": "342ab7e20c1c1cddbc7b247bd3972eead77a7a6d",
     "sitemap.xml": "c2e801a526f7a76513bb06aac1b561b16123142c",
     "robots.txt": "f2198d513bf7aab23276bded1b90026c1797316b",
     "llms.txt": "0a101eab9a18ba75225631323106f7c6317d0252",
     "008test": "131f6f11b2f352492eea66c67b4b93d5d51da162",
-    "research": "108e140a91eaa15c9b9f5311238d78bb5a52db86",
-    "us": "213a48834f52fd8a83d0c515adf086b4ea52ec61",
-    "ca": "a285cbdd23ee3f28104f94e0111ae620fb70147d",
+    "research": "858710de8af816351c875f8ef871ebc3961d759d",
+    "us": "6197c34d4d223242e0d58a90fbdeec18eaa033c1",
+    "ca": "75a7be70ede66cfb812bb0d79fcfbf5d7db2d306",
 }
 
 
@@ -369,8 +370,10 @@ def verify() -> int:
     config_js = config.read_text(encoding="utf-8")
     tokens = js_tokens(js)
     config_tokens = js_tokens(config_js)
-    expected_config = ["id:window", ".", "id:GeoSeoAnalyticsConfig", "=", "id:Object", ".", "id:freeze", "(", "{", "id:measurementId", ":", "str:", "}", ")"]
-    checks.that(config_tokens in (expected_config, expected_config + [";"]), "production analytics config is exactly one frozen empty measurementId object")
+    expected_config = ["id:window", ".", "id:GeoSeoAnalyticsConfig", "=", "id:Object", ".", "id:freeze", "(", "{", "id:measurementId", ":", f"str:{PRODUCTION_MEASUREMENT_ID}", "}", ")"]
+    checks.that(config_tokens in (expected_config, expected_config + [";"]), "production analytics config is exactly one frozen configured measurementId object")
+    root_html = (REPO / "index.html").read_text(encoding="utf-8")
+    checks.that(f'name="zeror-ga4-id" content="{PRODUCTION_MEASUREMENT_ID}"' in root_html, "GeoSeoTest measurement id matches the user-configured V1 production id")
     checks.that("anonymous analytics" not in js.lower() and "anonymous analytics" not in privacy_text, "consent copy does not describe GA4 as anonymous")
     checks.that(re.search(r"measurementIdPattern\s*=\s*/\^G-\[A-Z0-9\]\{10\}\$/", js) is not None, "analytics accepts only a G- prefix plus ten alphanumeric characters")
     consent_position = token_sequence(tokens, "id:gtag", "(", "str:consent", ",", "str:default", ",", "{")
