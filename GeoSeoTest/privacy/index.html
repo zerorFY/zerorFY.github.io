@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="How optional, consent-based recommendation click measurement works in GeoSeoTest.">
+  <link rel="canonical" href="https://zeror.ca/GeoSeoTest/privacy/">
+  <link rel="stylesheet" href="/GeoSeoTest/assets/styles.css">
+  <title>Privacy and Measurement | GeoSeoTest</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","description":"Privacy and consent behavior for the GeoSeoTest exploratory study.","headline":"GeoSeoTest Privacy and Measurement","inLanguage":"en","url":"https://zeror.ca/GeoSeoTest/privacy/"}</script>
+  <script src="/GeoSeoTest/assets/analytics-config.js"></script>
+  <script src="/GeoSeoTest/assets/analytics.js" defer></script>
+</head>
+<body>
+<header class="site-header"><nav aria-label="Primary"><a href="/GeoSeoTest/">GeoSeoTest</a><a href="/GeoSeoTest/privacy/" aria-current="page">Privacy</a></nav></header>
+<main>
+<article class="privacy-page">
+  <header><p class="eyebrow">GeoSeoTest</p><h1>Privacy and measurement</h1></header>
+  <section>
+    <h2>Analysis is off by default</h2>
+    <p>Analytics storage is denied by default. Measurement remains disabled unless a visitor makes an explicit consent choice. Declining consent leaves analysis off, and an absent or invalid measurement identifier must fail closed without loading the remote analytics library.</p>
+  </section>
+  <section>
+    <h2>Standard measurement and one custom experiment event</h2>
+    <p>If consent is granted and measurement is validly configured, Google Analytics may collect its standard page and device measurements under Google's policies. Advertising storage, ad user data, and ad personalization remain denied by this site.</p>
+    <p>GeoSeoTest adds one custom experiment event: <code>recommendation_click</code>. Its custom payload is limited to these five fields: <code>experiment_id</code>, <code>batch_id</code>, <code>treatment</code>, <code>page_id</code>, and <code>destination_path</code>.</p>
+    <p>The custom experiment event does not add prompt text, dictated text, names, email addresses, form contents, or the destination query string. The native link still works when analysis is off.</p>
+  </section>
+  <section>
+    <h2>Consent choice</h2>
+    <p>An explicit allow or decline choice may be stored locally in the browser so the site can honor that choice on later pages. Clearing site data removes the locally stored choice. This Batch01 hub is an exploratory content study, not a sales page.</p>
+  </section>
+  <p><a href="/GeoSeoTest/">Return to the GeoSeoTest Batch01 hub</a></p>
+</article>
+</main>
+<footer><p>GeoSeoTest privacy notice · Batch batch01</p></footer>
+</body>
+</html>

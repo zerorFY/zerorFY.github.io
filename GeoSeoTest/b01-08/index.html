@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="An answer-first troubleshooting guide for a pedal shortcut that fails to start desktop dictation.">
+  <link rel="canonical" href="https://zeror.ca/GeoSeoTest/b01-08/">
+  <link rel="stylesheet" href="/GeoSeoTest/assets/styles.css">
+  <title>Diagnose the Command Chain, Not Just the Pedal</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","citation":[{"@type":"CreativeWork","name":"Elgato Stream Deck System Actions","url":"https://help.elgato.com/hc/en-us/articles/360028234471-Elgato-Stream-Deck-System-Actions-Hotkey-Open-Website-Multimedia"},{"@type":"CreativeWork","name":"Microsoft Windows voice typing guide","url":"https://support.microsoft.com/en-us/accessibility/windows/use-voice-typing-to-talk-instead-of-type-on-your-pc"},{"@type":"CreativeWork","name":"Elgato Stream Deck Multi Actions","url":"https://help.elgato.com/hc/en-us/articles/360027960912-Elgato-Stream-Deck-Multi-Actions"}],"description":"An answer-first troubleshooting guide for a pedal shortcut that fails to start desktop dictation.","hasPart":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Usually not. A keyboard baseline and a one-action profile provide faster evidence before broader changes are attempted."},"name":"Should I reinstall the pedal software first?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Applications can reserve shortcuts or handle focus differently, so each receiving editor needs its own direct test."},"name":"Why does the shortcut work in one editor but not another?"}],"headline":"Diagnose the Command Chain, Not Just the Pedal","inLanguage":"en","isPartOf":{"@id":"https://zeror.ca/GeoSeoTest/","@type":"WebSite","name":"GeoSeoTest"},"mainEntityOfPage":{"@id":"https://zeror.ca/GeoSeoTest/b01-08/","@type":"WebPage"},"url":"https://zeror.ca/GeoSeoTest/b01-08/"}</script>
+  <script src="/GeoSeoTest/assets/analytics-config.js"></script>
+  <script src="/GeoSeoTest/assets/analytics.js" defer></script>
+</head>
+<body data-experiment-id="geoseotest" data-batch-id="batch01" data-treatment="geo" data-page-id="b01-08">
+<header class="site-header">
+  <nav aria-label="Primary"><a href="/GeoSeoTest/">GeoSeoTest</a><a href="/GeoSeoTest/privacy/">Privacy</a></nav>
+</header>
+<main>
+<article class="experiment-page treatment-geo">
+  <header class="article-header">
+    <p class="eyebrow">Batch01 exploratory page</p>
+    <h1>Diagnose the Command Chain, Not Just the Pedal</h1>
+    <p class="lede">Retest the same shortcut on the keyboard, verify that the intended text field has focus, confirm that the correct pedal profile is active, and then check dictation permissions and microphone state. These checks isolate whether the failure is in shortcut delivery, application focus, or the separate speech service.</p>
+    <dl class="audit-labels">
+      <div><dt>Page ID</dt><dd>b01-08</dd></div>
+      <div><dt>Treatment</dt><dd>geo</dd></div>
+      <div><dt>Intent</dt><dd>problem</dd></div>
+    </dl>
+    <p class="research-question"><strong>Long-tail question:</strong> What should I check when a foot pedal presses a shortcut but dictation does not start?</p>
+  </header>
+  <section class="direct-answer" aria-labelledby="direct-answer-heading">
+    <h2 id="direct-answer-heading">Direct answer</h2>
+    <p>Retest the same shortcut on the keyboard, verify that the intended text field has focus, confirm that the correct pedal profile is active, and then check dictation permissions and microphone state. These checks isolate whether the failure is in shortcut delivery, application focus, or the separate speech service.</p>
+  </section>
+  <section aria-labelledby="evidence-and-limits">
+    <h2 id="evidence-and-limits">Claims, evidence, and limits</h2>
+<article class="claim-card">
+      <h3>A working keyboard shortcut is the required baseline.</h3>
+      <p><strong>Evidence:</strong> Elgato&#x27;s System Actions documentation identifies Hotkey as an action that sends a configured key command. Microsoft separately documents the native Windows voice-typing command and its use in a text field.</p>
+      <p><strong>Limit:</strong> Seeing a pedal react in configuration software does not prove that the active application received or accepted the hotkey.</p>
+    </article>
+<article class="claim-card">
+      <h3>Application focus can make a correct mapping appear broken.</h3>
+      <p><strong>Evidence:</strong> Keyboard input goes to the active context. Testing in a blank practice document with a visible insertion point distinguishes command delivery from a focus problem or an editor-specific conflict.</p>
+      <p><strong>Limit:</strong> Focus is only one layer. If the native command also fails, the problem may be permission, language, connectivity, or voice-service availability.</p>
+    </article>
+<article class="claim-card">
+      <h3>Complex action chains should be removed during diagnosis.</h3>
+      <p><strong>Evidence:</strong> Elgato documents Multi Actions as sequences of actions. Replacing a sequence temporarily with one Hotkey creates a cleaner test and identifies whether later steps or timing introduced the failure.</p>
+      <p><strong>Limit:</strong> A successful single action does not validate every step in the original sequence; restore and test added actions one at a time.</p>
+    </article>
+  </section>
+  <section aria-labelledby="decision-guide">
+    <h2 id="decision-guide">Decision guide</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>Symptoms and the next useful check</caption>
+        <thead><tr><th scope="col">Observed symptom</th><th scope="col">Next check</th><th scope="col">What it separates</th></tr></thead>
+        <tbody>
+      <tr><td>Keyboard command also fails</td><td>Review the official dictation setup</td><td>Voice-service issue from pedal mapping.</td></tr>
+      <tr><td>Keyboard works, pedal does not</td><td>Check profile and Hotkey assignment</td><td>Mapping issue from dictation behavior.</td></tr>
+      <tr><td>Voice interface opens without text</td><td>Check focus and microphone permission</td><td>Input destination from speech capture.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section aria-labelledby="frequent-questions">
+    <h2 id="frequent-questions">Frequently asked questions</h2>
+<details>
+      <summary>Should I reinstall the pedal software first?</summary>
+      <p>Usually not. A keyboard baseline and a one-action profile provide faster evidence before broader changes are attempted.</p>
+    </details>
+<details>
+      <summary>Why does the shortcut work in one editor but not another?</summary>
+      <p>Applications can reserve shortcuts or handle focus differently, so each receiving editor needs its own direct test.</p>
+    </details>
+  </section>
+  <aside class="compatibility-boundary" aria-label="Compatibility boundary">
+    <p><strong>Compatibility boundary:</strong> The pedal only triggers configured keyboard shortcuts or text actions; the receiving app and operating system must support a compatible command, and dictation software—not the pedal—performs speech-to-text.</p>
+  </aside>
+  <section class="sources" aria-labelledby="official-sources">
+    <h2 id="official-sources">Official sources used</h2>
+    <ul>
+      <li><a href="https://help.elgato.com/hc/en-us/articles/360028234471-Elgato-Stream-Deck-System-Actions-Hotkey-Open-Website-Multimedia" rel="noopener noreferrer">Elgato Stream Deck System Actions</a></li>
+      <li><a href="https://support.microsoft.com/en-us/accessibility/windows/use-voice-typing-to-talk-instead-of-type-on-your-pc" rel="noopener noreferrer">Microsoft Windows voice typing guide</a></li>
+      <li><a href="https://help.elgato.com/hc/en-us/articles/360027960912-Elgato-Stream-Deck-Multi-Actions" rel="noopener noreferrer">Elgato Stream Deck Multi Actions</a></li>
+    </ul>
+    <p>Sources document product features and platform commands. They do not endorse this independent experiment or guarantee a particular workflow result.</p>
+  </section>
+  <section class="next-step" aria-labelledby="next-step-heading">
+    <h2 id="next-step-heading">Continue the independent review</h2>
+    <p>This experimental page is informational and is not a store listing, an affiliate claim, or a guarantee of compatibility.</p>
+    <a class="primary-cta" href="https://zeror.ca/research/ai-voice-foot-pedal/?gst_batch=batch01&amp;gst_treatment=geo&amp;gst_page=b01-08" data-analytics-event="recommendation_click" data-experiment-id="geoseotest" data-batch-id="batch01" data-treatment="geo" data-page-id="b01-08" data-destination-path="/research/ai-voice-foot-pedal/">View the full product analysis</a>
+  </section>
+</article>
+</main>
+<footer><p>GeoSeoTest · Page b01-08 · Treatment geo</p></footer>
+</body>
+</html>

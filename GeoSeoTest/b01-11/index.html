@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="A direct, sourced setup for three Stream Deck Pedal actions: dictation control, prompt submission, and undo.">
+  <link rel="canonical" href="https://zeror.ca/GeoSeoTest/b01-11/">
+  <link rel="stylesheet" href="/GeoSeoTest/assets/styles.css">
+  <title>Configure Stream Deck Pedal for Dictation, Prompt Submission, and Undo</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","citation":[{"@type":"CreativeWork","name":"Elgato Stream Deck System Actions","url":"https://help.elgato.com/hc/en-us/articles/360028234471-Elgato-Stream-Deck-System-Actions-Hotkey-Open-Website-Multimedia"},{"@type":"CreativeWork","name":"Elgato Stream Deck Multi Actions","url":"https://help.elgato.com/hc/en-us/articles/360027960912-Elgato-Stream-Deck-Multi-Actions"},{"@type":"CreativeWork","name":"Microsoft Windows voice typing guide","url":"https://support.microsoft.com/en-us/accessibility/windows/use-voice-typing-to-talk-instead-of-type-on-your-pc"}],"description":"A direct, sourced setup for three Stream Deck Pedal actions: dictation control, prompt submission, and undo.","hasPart":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Not initially. Separate controls are easier to verify and reduce the chance of submitting incomplete or unintended text."},"name":"Should prompt submission and dictation start be one sequence?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Create and test app-specific mappings rather than assuming one command has the same scope in every editor."},"name":"What if undo behaves differently in two apps?"}],"headline":"Configure Stream Deck Pedal for Dictation, Prompt Submission, and Undo","inLanguage":"en","isPartOf":{"@id":"https://zeror.ca/GeoSeoTest/","@type":"WebSite","name":"GeoSeoTest"},"mainEntityOfPage":{"@id":"https://zeror.ca/GeoSeoTest/b01-11/","@type":"WebPage"},"url":"https://zeror.ca/GeoSeoTest/b01-11/"}</script>
+  <script src="/GeoSeoTest/assets/analytics-config.js"></script>
+  <script src="/GeoSeoTest/assets/analytics.js" defer></script>
+</head>
+<body data-experiment-id="geoseotest" data-batch-id="batch01" data-treatment="seo_geo" data-page-id="b01-11">
+<header class="site-header">
+  <nav aria-label="Primary"><a href="/GeoSeoTest/">GeoSeoTest</a><a href="/GeoSeoTest/privacy/">Privacy</a></nav>
+</header>
+<main>
+<article class="experiment-page treatment-seo_geo">
+  <header class="article-header">
+    <p class="eyebrow">Batch01 exploratory page</p>
+    <h1>Configure Stream Deck Pedal for Dictation, Prompt Submission, and Undo</h1>
+    <p class="lede">Verify all three keyboard commands first, then assign one simple Hotkey action to each pedal position. Test dictation control in a blank document, test submission with harmless text in the target interface, and test undo on disposable content. Add a Multi Action only after each single command works reliably.</p>
+    <dl class="audit-labels">
+      <div><dt>Page ID</dt><dd>b01-11</dd></div>
+      <div><dt>Treatment</dt><dd>seo_geo</dd></div>
+      <div><dt>Intent</dt><dd>problem</dd></div>
+    </dl>
+    <p class="research-question"><strong>Long-tail question:</strong> How can I configure three Stream Deck Pedal actions for dictation, prompt submission, and undo?</p>
+  </header>
+  <section class="direct-answer" aria-labelledby="direct-answer-heading">
+    <h2 id="direct-answer-heading">Direct answer</h2>
+    <p>Verify all three keyboard commands first, then assign one simple Hotkey action to each pedal position. Test dictation control in a blank document, test submission with harmless text in the target interface, and test undo on disposable content. Add a Multi Action only after each single command works reliably.</p>
+  </section>
+  <section aria-labelledby="evidence-and-limits">
+    <h2 id="evidence-and-limits">Claims, evidence, and limits</h2>
+<article class="claim-card">
+      <h3>Single Hotkey actions create the clearest initial setup.</h3>
+      <p><strong>Evidence:</strong> Elgato documents Hotkey as a System Action. Mapping one verified command per pedal keeps dictation, submission, and undo independent, so a failed press has one obvious path to inspect.</p>
+      <p><strong>Limit:</strong> A correctly stored hotkey still depends on focus and on the receiving app accepting that command in its current context.</p>
+    </article>
+<article class="claim-card">
+      <h3>The dictation command should be proved outside Stream Deck first.</h3>
+      <p><strong>Evidence:</strong> Microsoft documents how Windows voice typing is invoked and used. Running the native command in the intended text field establishes whether permissions, microphone access, and the voice service are ready.</p>
+      <p><strong>Limit:</strong> The same command may not apply on macOS or in an application that captures the shortcut for another purpose.</p>
+    </article>
+<article class="claim-card">
+      <h3>Multi Actions are a later optimization, not a starting point.</h3>
+      <p><strong>Evidence:</strong> Elgato&#x27;s Multi Actions documentation describes executing multiple actions in sequence. Once individual commands pass, a sequence can be introduced and each added step tested in order.</p>
+      <p><strong>Limit:</strong> A sequence can introduce timing and state dependencies; it should never submit sensitive or unreviewed text during setup.</p>
+    </article>
+  </section>
+  <section aria-labelledby="decision-guide">
+    <h2 id="decision-guide">Decision guide</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>Three-pedal assignment and safe test</caption>
+        <thead><tr><th scope="col">Pedal role</th><th scope="col">Initial action</th><th scope="col">Safe verification</th></tr></thead>
+        <tbody>
+      <tr><td>Dictation control</td><td>Verified voice-input hotkey</td><td>Speak a neutral sentence into a blank document.</td></tr>
+      <tr><td>Prompt submission</td><td>App&#x27;s confirmed submit command</td><td>Send harmless sample text in a test context.</td></tr>
+      <tr><td>Undo</td><td>App&#x27;s confirmed undo command</td><td>Reverse a disposable edit and inspect the result.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section aria-labelledby="frequent-questions">
+    <h2 id="frequent-questions">Frequently asked questions</h2>
+<details>
+      <summary>Should prompt submission and dictation start be one sequence?</summary>
+      <p>Not initially. Separate controls are easier to verify and reduce the chance of submitting incomplete or unintended text.</p>
+    </details>
+<details>
+      <summary>What if undo behaves differently in two apps?</summary>
+      <p>Create and test app-specific mappings rather than assuming one command has the same scope in every editor.</p>
+    </details>
+  </section>
+  <aside class="compatibility-boundary" aria-label="Compatibility boundary">
+    <p><strong>Compatibility boundary:</strong> The pedal only triggers configured keyboard shortcuts or text actions; the receiving app and operating system must support a compatible command, and dictation software—not the pedal—performs speech-to-text.</p>
+  </aside>
+  <section class="sources" aria-labelledby="official-sources">
+    <h2 id="official-sources">Official sources used</h2>
+    <ul>
+      <li><a href="https://help.elgato.com/hc/en-us/articles/360028234471-Elgato-Stream-Deck-System-Actions-Hotkey-Open-Website-Multimedia" rel="noopener noreferrer">Elgato Stream Deck System Actions</a></li>
+      <li><a href="https://help.elgato.com/hc/en-us/articles/360027960912-Elgato-Stream-Deck-Multi-Actions" rel="noopener noreferrer">Elgato Stream Deck Multi Actions</a></li>
+      <li><a href="https://support.microsoft.com/en-us/accessibility/windows/use-voice-typing-to-talk-instead-of-type-on-your-pc" rel="noopener noreferrer">Microsoft Windows voice typing guide</a></li>
+    </ul>
+    <p>Sources document product features and platform commands. They do not endorse this independent experiment or guarantee a particular workflow result.</p>
+  </section>
+  <section class="next-step" aria-labelledby="next-step-heading">
+    <h2 id="next-step-heading">Continue the independent review</h2>
+    <p>This experimental page is informational and is not a store listing, an affiliate claim, or a guarantee of compatibility.</p>
+    <a class="primary-cta" href="https://zeror.ca/research/ai-voice-foot-pedal/?gst_batch=batch01&amp;gst_treatment=seo_geo&amp;gst_page=b01-11" data-analytics-event="recommendation_click" data-experiment-id="geoseotest" data-batch-id="batch01" data-treatment="seo_geo" data-page-id="b01-11" data-destination-path="/research/ai-voice-foot-pedal/">View the full product analysis</a>
+  </section>
+</article>
+</main>
+<footer><p>GeoSeoTest · Page b01-11 · Treatment seo + geo</p></footer>
+</body>
+</html>
