@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "build_id": "eed380e00169cac0e6d8",
   "source_bundle_hash": "1f16f1aa75e6f6395f47056288c0414427ec5cd57aab89d358f446f80d80dc17",
-  "generated_at": "2026-08-13T15:52:16.862Z",
+  "generated_at": "2026-08-13T16:59:25.137Z",
   "files": [
     {
       "path": "ca/ai-voice-foot-pedal/index.html",
@@ -11,8 +11,8 @@
     },
     {
       "path": "index.html",
-      "size": 6358,
-      "sha256": "1726c968ab7ae0b43d328b4e35b49c377e195cc35a8391a96711b8314c6e4a9f"
+      "size": 22489,
+      "sha256": "8a356ebfb37fc6e6fce4bdfc2c73769d8d080ff122668733d6ba4433df6c27e3"
     },
     {
       "path": "research/ai-voice-foot-pedal/index.html",
