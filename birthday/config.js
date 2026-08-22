@@ -1,0 +1,12 @@
+window.MAXWELL_CONFIG = {
+  // Agent: fill these before deploying. Keep the anon key public; never put a service_role key in frontend code.
+  supabaseUrl: "https://jcwwmgipbnzzdnanbdqu.supabase.co",
+  supabaseAnonKey: "sb_publishable__9nexu_yZbToQstkdPGmPA_X0ftYEtb",
+  bucket: "maxwell-birthday",
+  table: "birthday_photos",
+  publicBasePath: "/birthday/",
+  uploadPath: "/birthday/upload/",
+  rotationMs: 2800,
+  maxVisiblePhotos: 5,
+  maxUploadMb: 18
+};

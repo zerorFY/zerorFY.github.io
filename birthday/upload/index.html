@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090b14">
+  <title>Upload Photos · Maxwell Birthday</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../config.js"></script>
+  <script src="../shared.js"></script>
+  <link rel="stylesheet" href="upload.css">
+</head>
+<body>
+  <main class="upload-app">
+    <header>
+      <div class="eyebrow">MAXWELL · HAPPY BIRTHDAY</div>
+      <h1>Add photos</h1>
+      <p>Pick photos on your phone. They will appear on the party screen automatically.</p>
+    </header>
+
+    <section id="backendWarning" class="backend-warning" hidden>
+      Photo backend is not configured yet. Agent needs to fill <code>config.js</code> before deployment.
+    </section>
+
+    <label class="mega-upload" for="photoInput">
+      <span class="plus">＋</span>
+      <strong>UPLOAD PHOTOS</strong>
+      <small>Tap here · choose multiple photos</small>
+    </label>
+    <input id="photoInput" type="file" accept="image/*" multiple>
+
+    <section class="status-card" aria-live="polite">
+      <div class="status-line"><strong id="statusTitle">Ready</strong><span id="countLabel">0 selected</span></div>
+      <div class="progress"><span id="progressBar"></span></div>
+      <p id="statusText">Choose photos above. You can keep adding more anytime.</p>
+    </section>
+
+    <div id="previewGrid" class="preview-grid"></div>
+
+    <label class="secondary-upload" for="photoInput">＋ Add more photos</label>
+    <a class="viewer-link" href="../">Open birthday screen</a>
+  </main>
+  <script src="upload.js"></script>
+</body>
+</html>
