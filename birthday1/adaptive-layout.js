@@ -34,7 +34,7 @@
     const card = img?.closest?.('.photo');
     if (!card) return null;
 
-    const sourceAtStart = img.currentSrc || img.src || '';
+    const sourceAtStart = img.getAttribute?.('src') || img.src || '';
     card.removeAttribute('data-photo-ready');
 
     try {
@@ -43,7 +43,7 @@
       // Natural dimensions below provide a stable fallback for failed images.
     }
 
-    if (sourceAtStart !== (img.currentSrc || img.src || '')) return null;
+    if (sourceAtStart !== (img.getAttribute?.('src') || img.src || '')) return null;
 
     const layout = getPhotoLayout(img.naturalWidth, img.naturalHeight);
     card.classList.remove(...PHOTO_CLASSES);
