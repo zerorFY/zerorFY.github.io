@@ -6,6 +6,7 @@
   const bar = document.getElementById('progressBar');
   const badge = document.getElementById('liveBadge');
   const api = window.MaxwellPhotos;
+  const photoPool = window.MaxwellPhotoPool;
   const cfg = window.MAXWELL_CONFIG || {};
 
   if (matchMedia('(max-width: 760px)').matches) document.body.dataset.viewerMobile = '1';
@@ -19,12 +20,11 @@
     cardSvg('#4b78f1','#172c6a','SPIDER-MAN','SWING MODE','🕸️'),
     cardSvg('#f2ba48','#7a4c1d','LABUBU','SPIDER SUIT','⚽'),
     cardSvg('#5c9aff','#1a3c8c','SPIDER-MAN','ACTION SHOT','🕷️'),
-    cardSvg('#d46f9c','#6f2a4a','LABUBU','SUPER KICK','⚽'),
-    cardSvg('#4bc37a','#155939','PARTY','MATCH DAY','⚽'),
-    cardSvg('#aa79da','#4f2d78','MAXWELL','HAPPY BIRTHDAY','✦')
+    cardSvg('#4bc37a','#155939','FOOTBALL','MATCH DAY','⚽')
   ];
 
-  let pool = [...defaults];
+  let cloudPhotos = [];
+  let pool = photoPool.buildPhotoPool(cloudPhotos, defaults, 5);
   let nextPoolIndex = 0;
   let nextCardIndex = 0;
 
@@ -61,13 +61,15 @@
     if(!api?.ready){ badge.textContent='DEMO PHOTO WALL'; return; }
     try{
       const cloud=await api.listPhotos(200);
-      pool=cloud.length ? [...cloud, ...defaults] : [...defaults];
+      cloudPhotos=[...new Set(cloud.filter(Boolean))];
+      pool=photoPool.buildPhotoPool(cloudPhotos, defaults, 5);
       renderCards();
       badge.textContent='LIVE PHOTO WALL'; badge.classList.add('live');
       api.subscribe(row=>{
         if(!row?.public_url)return;
-        pool=[row.public_url, ...pool.filter(x=>x!==row.public_url)];
-        swapOne(row.public_url);
+        cloudPhotos=[row.public_url, ...cloudPhotos.filter(x=>x!==row.public_url)];
+        pool=photoPool.buildPhotoPool(cloudPhotos, defaults, 5);
+        renderCards();
         badge.textContent='NEW PHOTO'; badge.classList.remove('new-photo'); void badge.offsetWidth; badge.classList.add('new-photo');
         setTimeout(()=>badge.textContent='LIVE PHOTO WALL',1400);
       });
