@@ -18,7 +18,7 @@ The existing upload button on `birthday1` links to `/birthday/upload/`. There is
 
 ## Birthday1-only files
 
-- `birthday1/index.html`: a test entry page with the same scene markup as the production viewer, absolute references to shared `/birthday/` resources, and a `data-adaptive-photos` marker.
+- `birthday1/index.html`: a small test loader that fetches `/birthday/index.html`, injects its existing body markup, rewrites the fallback-audio and upload links to absolute `/birthday/` URLs, loads the shared production scripts, and adds a `data-adaptive-photos` marker. It does not duplicate the large scene markup.
 - `birthday1/adaptive-layout.js`: observes photo elements created by the shared viewer, reads each loaded image's natural dimensions, and classifies it as portrait, square, landscape, or wide.
 - `birthday1/adaptive-layout.css`: overrides only photo-frame dimensions and position constraints under the `data-adaptive-photos` marker.
 
