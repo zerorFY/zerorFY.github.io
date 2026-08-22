@@ -1,0 +1,82 @@
+body[data-adaptive-photos="1"] .photo {
+  aspect-ratio: var(--photo-ratio, 4 / 3);
+  height: auto;
+  max-width: 35vw;
+  max-height: 58vh;
+}
+
+body[data-adaptive-photos="1"] .photo:not([data-photo-ready="1"]) {
+  opacity: 0;
+}
+
+body[data-adaptive-photos="1"] .photo-portrait {
+  width: auto;
+  height: min(54vh, 560px);
+  max-width: 30vw;
+}
+
+body[data-adaptive-photos="1"] .photo-square {
+  width: min(26vw, 370px);
+}
+
+body[data-adaptive-photos="1"] .photo-landscape {
+  width: min(30vw, 430px);
+}
+
+body[data-adaptive-photos="1"] .photo-wide {
+  width: min(34vw, 500px);
+}
+
+body[data-adaptive-photos="1"] .photo-portrait.p0 { left: 5%; top: 1%; }
+body[data-adaptive-photos="1"] .photo-portrait.p1 { left: 39%; top: 0; }
+body[data-adaptive-photos="1"] .photo-portrait.p2 { right: 5%; top: 2%; }
+body[data-adaptive-photos="1"] .photo-portrait.p3 { left: 23%; bottom: 0; }
+body[data-adaptive-photos="1"] .photo-portrait.p4 { right: 23%; bottom: 0; }
+
+body[data-adaptive-photos="1"] .photo[data-photo-extreme="1"]::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  z-index: 0;
+  border-radius: 15px;
+  background-image: var(--photo-bg);
+  background-position: center;
+  background-size: cover;
+  filter: blur(18px) saturate(.8);
+  transform: scale(1.14);
+  opacity: .72;
+}
+
+body[data-adaptive-photos="1"] .photo[data-photo-extreme="1"] img {
+  position: relative;
+  z-index: 1;
+  object-fit: contain;
+  background: rgba(8, 10, 18, .3);
+}
+
+body[data-adaptive-photos="1"] .photo::after {
+  z-index: 2;
+}
+
+@media (max-width: 760px) {
+  body[data-adaptive-photos="1"] .photo {
+    max-width: 46vw;
+    max-height: 48vh;
+  }
+
+  body[data-adaptive-photos="1"] .photo-portrait {
+    width: auto;
+    height: min(42vh, 420px);
+    max-width: 42vw;
+  }
+
+  body[data-adaptive-photos="1"] .photo-square { width: 40vw; }
+  body[data-adaptive-photos="1"] .photo-landscape { width: 44vw; }
+  body[data-adaptive-photos="1"] .photo-wide { width: 46vw; }
+
+  body[data-adaptive-photos="1"] .photo-portrait.p0 { left: 2%; }
+  body[data-adaptive-photos="1"] .photo-portrait.p1 { left: 31%; }
+  body[data-adaptive-photos="1"] .photo-portrait.p2 { right: 2%; }
+  body[data-adaptive-photos="1"] .photo-portrait.p3 { left: 15%; }
+  body[data-adaptive-photos="1"] .photo-portrait.p4 { right: 15%; }
+}
