@@ -18,7 +18,7 @@
 
 - [ ] **Step 1: Write the failing classification tests**
 
-Create tests for portrait (`9:16`), square (`1:1`), landscape (`4:3`), wide (`2:1`), invalid dimensions, and safe-ratio clamping to `0.58–1.78`.
+Create tests for portrait (`9:16`), square (`1:1`), landscape (`4:3`), wide (`2:1`), invalid dimensions, and safe-ratio clamping to `9:16–16:9`.
 
 - [ ] **Step 2: Run the test and verify RED**
 
@@ -28,7 +28,7 @@ Expected: FAIL because `adaptive-layout.js` does not exist.
 
 - [ ] **Step 3: Implement the pure layout function**
 
-Expose `getPhotoLayout(width, height)` from a browser/CommonJS module. Return `{ kind, ratio, extreme }`, using thresholds `<0.82` portrait, `0.82–1.18` square, `1.18–1.70` landscape, and `>1.70` wide. Clamp the CSS ratio to `0.58–1.78`; invalid dimensions return `{ kind: 'landscape', ratio: 4 / 3, extreme: false }`.
+Expose `getPhotoLayout(width, height)` from a browser/CommonJS module. Return `{ kind, ratio, extreme }`, using thresholds `<0.82` portrait, `0.82–1.18` square, `1.18–1.70` landscape, and `>1.70` wide. Clamp the CSS ratio to `9:16–16:9`; invalid dimensions return `{ kind: 'landscape', ratio: 4 / 3, extreme: false }`.
 
 - [ ] **Step 4: Run the test and verify GREEN**
 
