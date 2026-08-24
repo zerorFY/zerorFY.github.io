@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090b14">
+  <title>Upload Photos · Children's Party</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/birthday-demo/config.js"></script>
+  <script src="/birthday-demo/party-store.js"></script>
+  <link rel="stylesheet" href="upload.css">
+  <link rel="stylesheet" href="end-party.css">
+</head>
+<body>
+  <main class="upload-app">
+    <header>
+      <div class="eyebrow">CHILDREN'S PARTY · AGE 8</div>
+      <h1>Add photos</h1>
+      <p>Pick photos on your phone. They will appear on the party screen automatically.</p>
+    </header>
+
+    <section id="backendWarning" class="backend-warning" hidden>
+      Photo backend is not configured yet. Please contact the party host.
+    </section>
+
+    <label class="mega-upload" for="photoInput">
+      <span class="plus">＋</span>
+      <strong>UPLOAD PHOTOS</strong>
+      <small>Tap here · choose multiple photos</small>
+    </label>
+    <input id="photoInput" type="file" accept="image/*" multiple>
+
+    <section class="status-card" aria-live="polite">
+      <div class="status-line"><strong id="statusTitle">Ready</strong><span id="countLabel">0 selected</span></div>
+      <div class="progress"><span id="progressBar"></span></div>
+      <p id="statusText">Choose photos above. You can keep adding more anytime.</p>
+    </section>
+
+    <div id="previewGrid" class="preview-grid"></div>
+
+    <label class="secondary-upload" for="photoInput">＋ Add more photos</label>
+    <a class="viewer-link" href="/birthday-demo/">Open birthday screen</a>
+    <button id="endPartyBtn" class="end-party" type="button">END PARTY</button>
+  </main>
+
+  <dialog id="endPartyDialog" class="end-party-dialog">
+    <form method="dialog">
+      <h2>END PARTY?</h2>
+      <p>All party photos will be permanently deleted.</p>
+      <div class="dialog-actions">
+        <button id="cancelEndPartyBtn" value="cancel" type="submit">CANCEL</button>
+        <button id="confirmEndPartyBtn" value="confirm" type="button">END PARTY</button>
+      </div>
+    </form>
+  </dialog>
+  <script src="upload.js"></script>
+</body>
+</html>
