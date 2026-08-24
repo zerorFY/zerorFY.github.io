@@ -28,31 +28,72 @@
     return (await listPhotoRows(client, cfg, limit)).map(row => row.public_url).filter(Boolean);
   }
 
-  async function uploadPhoto(file) {
-    if (!client) throw new Error('PHOTO_BACKEND_NOT_CONFIGURED');
-    const maxBytes = (cfg.maxUploadMb || 18) * 1024 * 1024;
+  async function getPhotoCount(activeClient = client, activeCfg = cfg) {
+    if (!activeClient) throw new Error('PHOTO_BACKEND_NOT_CONFIGURED');
+    const { count, error } = await activeClient
+      .from(activeCfg.table)
+      .select('*', { count: 'exact', head: true });
+    if (error) throw error;
+    return count || 0;
+  }
+
+  async function uploadPhotoWithClient(file, activeClient, activeCfg) {
+    if (!activeClient) throw new Error('PHOTO_BACKEND_NOT_CONFIGURED');
+    const maxBytes = (activeCfg.maxUploadMb || 18) * 1024 * 1024;
     if (!file?.type?.startsWith('image/')) throw new Error('NOT_AN_IMAGE');
     if (file.size > maxBytes) throw new Error('FILE_TOO_LARGE');
 
     const path = `uploads/${safeName(file.name)}`;
-    const { error: uploadError } = await client.storage.from(cfg.bucket).upload(path, file, {
+    const storage = activeClient.storage.from(activeCfg.bucket);
+    const { error: uploadError } = await storage.upload(path, file, {
       cacheControl: '3600',
       upsert: false,
       contentType: file.type || undefined
     });
     if (uploadError) throw uploadError;
 
-    const { data: publicData } = client.storage.from(cfg.bucket).getPublicUrl(path);
+    const { data: publicData } = storage.getPublicUrl(path);
     const publicUrl = publicData?.publicUrl;
     if (!publicUrl) throw new Error('NO_PUBLIC_URL');
 
-    const { data: row, error: insertError } = await client
-      .from(cfg.table)
+    const { data: row, error: insertError } = await activeClient
+      .from(activeCfg.table)
       .insert({ storage_path: path, public_url: publicUrl })
       .select('id,storage_path,public_url,created_at')
       .single();
-    if (insertError) throw insertError;
+    if (insertError) {
+      await storage.remove([path]);
+      if (String(insertError.message || '').includes('BIRTHDAY_PHOTO_LIMIT_REACHED')) {
+        const error = new Error('PHOTO_LIMIT_REACHED');
+        error.code = 'PHOTO_LIMIT_REACHED';
+        throw error;
+      }
+      throw insertError;
+    }
     return row;
+  }
+
+  async function uploadPhoto(file) {
+    return uploadPhotoWithClient(file, client, cfg);
+  }
+
+  async function startUsageSession(sessionId, scene, activeClient = client) {
+    if (!activeClient) throw new Error('PHOTO_BACKEND_NOT_CONFIGURED');
+    const { error } = await activeClient.rpc('birthday_usage_start', {
+      p_session_id: sessionId,
+      p_scene: scene
+    });
+    if (error) throw error;
+  }
+
+  async function heartbeatUsageSession(sessionId, durationSeconds, scene, activeClient = client) {
+    if (!activeClient) throw new Error('PHOTO_BACKEND_NOT_CONFIGURED');
+    const { error } = await activeClient.rpc('birthday_usage_heartbeat', {
+      p_session_id: sessionId,
+      p_duration_seconds: Math.max(0, Math.floor(Number(durationSeconds) || 0)),
+      p_scene: scene
+    });
+    if (error) throw error;
   }
 
   async function deleteAllPhotos(activeClient = client, activeCfg = cfg) {
@@ -101,5 +142,19 @@
     return () => client.removeChannel(channel);
   }
 
-  return { client, ready, cfg, safeName, listPhotoRows, listPhotos, uploadPhoto, deleteAllPhotos, subscribe };
+  return {
+    client,
+    ready,
+    cfg,
+    safeName,
+    listPhotoRows,
+    listPhotos,
+    getPhotoCount,
+    uploadPhotoWithClient,
+    uploadPhoto,
+    startUsageSession,
+    heartbeatUsageSession,
+    deleteAllPhotos,
+    subscribe
+  };
 });

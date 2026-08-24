@@ -7,6 +7,7 @@
   <title>Upload Photos · Children's Party</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="/birthday-demo/config.js"></script>
+  <script src="/birthday-demo/photo-capacity.js"></script>
   <script src="/birthday-demo/party-store.js"></script>
   <link rel="stylesheet" href="upload.css">
   <link rel="stylesheet" href="end-party.css">
@@ -21,6 +22,10 @@
 
     <section id="backendWarning" class="backend-warning" hidden>
       Photo backend is not configured yet. Please contact the party host.
+    </section>
+
+    <section id="photoLimitNotice" class="limit-notice" role="status" hidden>
+      Photo limit reached — this demo supports up to 20 photos.
     </section>
 
     <label class="mega-upload" for="photoInput">

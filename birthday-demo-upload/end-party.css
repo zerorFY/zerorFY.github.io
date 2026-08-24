@@ -29,3 +29,15 @@
 .dialog-actions button:first-child { background: rgba(255, 255, 255, .1); color: #fff; }
 .dialog-actions button:last-child { background: #d9364f; color: #fff; }
 .dialog-actions button:disabled { opacity: .5; cursor: wait; }
+.limit-notice[hidden] { display: none; }
+.limit-notice {
+  margin: 0 0 14px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 190, 91, .45);
+  border-radius: 16px;
+  background: rgba(136, 82, 17, .28);
+  color: #ffe1aa;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.45;
+}

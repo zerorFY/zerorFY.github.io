@@ -27,3 +27,13 @@ test('uploader requires dialog confirmation before deleting every party photo', 
   assert.match(source, /api\.deleteAllPhotos\(\)/);
   assert.doesNotMatch(source, /Maxwell/);
 });
+
+test('only the viewer loads the background usage counter and reports scene changes', () => {
+  const viewerHtml = read('birthday-demo/index.html');
+  const uploaderHtml = read('birthday-demo-upload/index.html');
+  const viewerSource = read('birthday-demo/viewer.js');
+
+  assert.match(viewerHtml, /<script src="usage-counter\.js"><\/script>/);
+  assert.doesNotMatch(uploaderHtml, /usage-counter\.js/);
+  assert.match(viewerSource, /window\.BirthdayUsageCounter\?\.setScene\(id\)/);
+});

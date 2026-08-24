@@ -8,5 +8,6 @@ window.BIRTHDAY_DEMO_CONFIG = {
   uploadPath: "/birthday-demo-upload/",
   rotationMs: 2800,
   maxVisiblePhotos: 5,
+  maxPhotos: 20,
   maxUploadMb: 18
 };

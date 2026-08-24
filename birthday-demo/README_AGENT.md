@@ -9,7 +9,15 @@
 
 Both routes use the existing Supabase `birthday_photos` table and the dedicated `maxwell-birthday` storage bucket. Browser code contains only the public anon key.
 
-Run `ADD_DELETE_POLICIES.sql` once in the Supabase SQL Editor before enabling `END PARTY`. The migration is idempotent and grants anonymous delete access only to the birthday table and dedicated bucket.
+Run `ADD_USAGE_AND_LIMIT.sql` in the Supabase SQL Editor. The migration is idempotent and adds the private usage-session RPCs, the database-enforced shared 20-photo limit, and anonymous delete access limited to the birthday table and dedicated bucket.
+
+## Shared photo limit
+
+The entire active party pool supports at most 20 uploaded photos. The uploader preflights remaining capacity, while the database trigger prevents concurrent phones from creating a 21st row. The English limit notice remains hidden until an upload attempt exceeds available capacity.
+
+## Usage counter
+
+Only the viewer starts a random usage session. It sends visible playback duration and the current animation scene every 30 seconds through narrowly scoped RPC functions. The usage table has no anonymous read policy, and the birthday pages show no statistics panel.
 
 ## END PARTY
 

@@ -93,6 +93,7 @@
     if(id==='opening'){document.body.classList.add('mode-opening');all.forEach(x=>x.classList.add('active'))}
     else{all.forEach(x=>x.classList.toggle('active',x.dataset.scene===id));if(id==='labubu')document.body.classList.add('mode-labubu');if(id==='spider')document.body.classList.add('mode-spider');if(id==='football')document.body.classList.add('mode-football');if(id==='mixed')document.body.classList.add('mode-mixed');if(id==='finale'){finale.classList.add('active');document.body.classList.add('mode-finale')}}
     if(id==='opening'||id==='mixed'||id==='spider')shuffle();
+    window.BirthdayUsageCounter?.setScene(id);
   }
 
   const q=new URLSearchParams(location.search); const offset=Math.max(0,Math.min(179999,Number(q.get('t')||0)*1000)); const start=performance.now()-offset; let cur='';
