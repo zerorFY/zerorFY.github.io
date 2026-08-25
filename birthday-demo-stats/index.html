@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Birthday Demo Stats</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/birthday-demo/config.js"></script>
+  <script src="stats-model.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <section id="lockPanel" class="lock-panel" aria-labelledby="lockTitle">
+      <p class="eyebrow">INTERNAL</p>
+      <h1 id="lockTitle">Birthday Demo Stats</h1>
+      <p class="muted">Enter the access key to view usage.</p>
+      <form id="accessForm">
+        <label for="accessKey">Access key</label>
+        <div class="key-row">
+          <input id="accessKey" name="accessKey" type="password" autocomplete="current-password" required>
+          <button type="submit">Unlock</button>
+        </div>
+      </form>
+      <p id="accessError" class="error" role="alert" hidden>Access denied.</p>
+    </section>
+
+    <section id="dashboard" hidden>
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">INTERNAL · AMERICA/TORONTO</p>
+          <h1>Birthday Demo Stats</h1>
+        </div>
+        <p id="refreshStatus" class="muted" role="status">Loading…</p>
+      </header>
+
+      <section class="metrics" aria-label="Usage summary">
+        <article><span>Live Now</span><strong id="liveNow">0</strong></article>
+        <article><span>Today Opens</span><strong id="todayOpens">0</strong></article>
+        <article><span>Today Watch Time</span><strong id="todayWatchTime">0s</strong></article>
+        <article><span>Total Opens</span><strong id="totalOpens">0</strong></article>
+        <article><span>Total Watch Time</span><strong id="totalWatchTime">0s</strong></article>
+        <article><span>Average Session</span><strong id="averageSession">0s</strong></article>
+      </section>
+
+      <section class="section-block">
+        <h2>Current Sessions</h2>
+        <div id="liveSessions" class="session-grid"></div>
+        <p id="noLiveSessions" class="empty">No live sessions.</p>
+      </section>
+
+      <section class="section-block">
+        <h2>Recent Sessions</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Started</th><th>Duration</th><th>Last Scene</th><th>Status</th></tr></thead>
+            <tbody id="recentSessions"></tbody>
+          </table>
+        </div>
+        <p id="noRecentSessions" class="empty">No sessions yet.</p>
+      </section>
+    </section>
+  </main>
+  <script src="stats.js"></script>
+</body>
+</html>
