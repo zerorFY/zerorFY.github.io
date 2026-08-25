@@ -1,5 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const { readFileSync } = require('node:fs');
+const { join } = require('node:path');
 const { createUsageCounter } = require('./usage-counter.js');
 
 function createHarness() {
@@ -87,4 +89,10 @@ test('start is idempotent', async () => {
   await harness.counter.start();
   await harness.counter.start();
   assert.equal(harness.starts.length, 1);
+});
+
+test('browser bootstrap does not require crypto.randomUUID', () => {
+  const source = readFileSync(join(__dirname, 'usage-counter.js'), 'utf8');
+  assert.match(source, /if \(root\.document && root\.BirthdayPartyStore\?\.ready\)/);
+  assert.match(source, /birthday-\$\{Date\.now\(\)\.toString\(36\)\}/);
 });

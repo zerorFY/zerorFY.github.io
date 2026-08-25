@@ -3,11 +3,15 @@
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root) {
     root.BirthdayUsageCounterModule = api;
-    if (root.document && root.BirthdayPartyStore?.ready && root.crypto?.randomUUID) {
+    if (root.document && root.BirthdayPartyStore?.ready) {
+      const createSessionId = () => {
+        if (root.crypto?.randomUUID) return root.crypto.randomUUID();
+        return `birthday-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+      };
       const counter = api.createUsageCounter({
         transport: root.BirthdayPartyStore,
         now: () => Date.now(),
-        randomUUID: () => root.crypto.randomUUID(),
+        randomUUID: createSessionId,
         documentRef: root.document,
         windowRef: root,
         setIntervalFn: root.setInterval.bind(root),
