@@ -94,5 +94,5 @@ test('start is idempotent', async () => {
 test('browser bootstrap does not require crypto.randomUUID', () => {
   const source = readFileSync(join(__dirname, 'usage-counter.js'), 'utf8');
   assert.match(source, /if \(root\.document && root\.BirthdayPartyStore\?\.ready\)/);
-  assert.match(source, /birthday-\$\{Date\.now\(\)\.toString\(36\)\}/);
+  assert.match(source, /xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx/);
 });
