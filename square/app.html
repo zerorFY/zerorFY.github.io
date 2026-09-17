@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Square 权限选择</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+<!-- Square 权限选择 · author: ZEROR -->
+<style>
+:root{
+  --bg:#f4f5f7; --panel:#fff; --panel-2:#f8f9fb; --text:#17202b; --muted:#5b6675; --faint:#8b95a3;
+  --line:#e2e6ec; --line-2:#cfd6df; --accent:#2350cc; --accent-bg:#e7edfb; --accent-text:#fff;
+  --yes:#11734a; --yes-bg:#e0f3e9; --yes-bar:#1f9a64;
+  --no:#48525f; --no-bg:#e9ecf0; --no-bar:#7d8794;
+  --unk:#94570a; --unk-bg:#fcefd9; --unk-bar:#d58a1c;
+  --sens:#b3261e; --sens-bg:#fdeceb;
+  --shadow:0 1px 2px rgba(16,24,40,.05);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101318; --panel:#171b22; --panel-2:#1c212a; --text:#e4e8ee; --muted:#a2acb9; --faint:#76808d;
+    --line:#2a313c; --line-2:#3a4350; --accent:#7b9cff; --accent-bg:#1e2a4a; --accent-text:#0d1320;
+    --yes:#6fd3a2; --yes-bg:#123224; --yes-bar:#3fb37d;
+    --no:#b8c0cb; --no-bg:#262c35; --no-bar:#8b95a3;
+    --unk:#f0b760; --unk-bg:#352812; --unk-bar:#d99a3a;
+    --sens:#ff8a80; --sens-bg:#3a1a19;
+    --shadow:none; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101318; --panel:#171b22; --panel-2:#1c212a; --text:#e4e8ee; --muted:#a2acb9; --faint:#76808d;
+  --line:#2a313c; --line-2:#3a4350; --accent:#7b9cff; --accent-bg:#1e2a4a; --accent-text:#0d1320;
+  --yes:#6fd3a2; --yes-bg:#123224; --yes-bar:#3fb37d;
+  --no:#b8c0cb; --no-bg:#262c35; --no-bar:#8b95a3;
+  --unk:#f0b760; --unk-bg:#352812; --unk-bar:#d99a3a;
+  --sens:#ff8a80; --sens-bg:#3a1a19;
+  --shadow:none; color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+h1,h2,h3{margin:0;line-height:1.3}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.en{color:var(--faint);font-size:12px;font-weight:400}
+
+/* 顶部 */
+.top{background:var(--panel);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;padding-top:14px;padding-bottom:12px}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-right:auto}
+.brand h1{font-size:19px;letter-spacing:.2px}
+.sync{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.sync::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--faint);flex:none}
+.sync.ok::before{background:var(--yes-bar)}
+.sync.busy::before{background:var(--accent)}
+.sync.warn{color:var(--sens)}
+.sync.warn::before{background:var(--sens)}
+.people-row{width:100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.people-row .lbl{color:var(--muted);font-size:13px}
+.people{display:flex;flex-wrap:wrap;gap:8px}
+.person{display:inline-flex;align-items:baseline;gap:6px;padding:6px 12px;border:1px solid var(--line-2);border-radius:999px;background:var(--panel)}
+.person .p-name{font-weight:600}
+.person .p-prog{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.person:hover{border-color:var(--accent)}
+.person[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-text)}
+.person[aria-pressed="true"] .p-prog{color:inherit;opacity:.8}
+
+.tabs-bar{position:sticky;top:0;z-index:20;background:var(--panel);border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:0;background:none;padding:11px 14px;color:var(--muted);border-bottom:2px solid transparent;font-weight:500}
+.tabs button:hover{color:var(--text)}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+
+main{padding-top:16px;padding-bottom:60px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:16px 18px;margin-bottom:14px}
+.empty{text-align:center;padding:40px 18px}
+.empty h2{font-size:18px;margin-bottom:6px}
+
+/* 通用小部件 */
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;background:var(--panel);flex:none}
+.seg button{border:0;border-left:1px solid var(--line-2);background:none;padding:6px 12px;color:var(--muted);white-space:nowrap}
+.seg button:first-child{border-left:0}
+.seg button:hover{background:var(--panel-2);color:var(--text)}
+.seg button[aria-pressed="true"]{background:var(--accent-bg);color:var(--accent);font-weight:600}
+.seg button[data-c="y"][aria-pressed="true"],.seg button[data-bulk="y"][aria-pressed="true"]{background:var(--yes-bg);color:var(--yes)}
+.seg button[data-c="n"][aria-pressed="true"],.seg button[data-bulk="n"][aria-pressed="true"]{background:var(--no-bg);color:var(--no)}
+.seg button[data-c="u"][aria-pressed="true"],.seg button[data-bulk="u"][aria-pressed="true"]{background:var(--unk-bg);color:var(--unk)}
+.chip{display:inline-block;font-size:11.5px;line-height:1.5;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--panel-2);white-space:nowrap}
+.conf-ok{color:var(--yes);border-color:transparent;background:var(--yes-bg)}
+.conf-scope{color:var(--unk);border-color:transparent;background:var(--unk-bg)}
+.conf-na{color:var(--no);border-color:transparent;background:var(--no-bg)}
+.sugg{background:none}
+.sugg-on{color:var(--yes);border-color:var(--yes-bar)}
+.sugg-off{color:var(--no)}
+.sugg-mid{color:var(--unk);border-color:var(--unk-bar)}
+.sens{color:var(--sens);background:var(--sens-bg);border-color:transparent;font-weight:600}
+.btn{border:1px solid var(--accent);background:var(--accent);color:var(--accent-text);border-radius:8px;padding:7px 14px;font-weight:600}
+.btn.ghost{background:none;color:var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* 填写页 */
+.intro{display:grid;grid-template-columns:1fr 240px;gap:18px;align-items:center}
+.intro h2{font-size:17px;margin-bottom:4px}
+.intro .who{color:var(--accent)}
+.intro p{margin:4px 0}
+.hint{font-size:13px;color:var(--muted)}
+.progress span{display:block;margin-top:6px;font-size:13px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--yes-bar);transition:width .25s}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.toolbar input[type=search]{flex:1 1 220px;min-width:0;padding:7px 12px;border:1px solid var(--line-2);border-radius:8px;background:var(--panel)}
+.toolbar select{padding:7px 10px;border:1px solid var(--line-2);border-radius:8px;background:var(--panel);display:none}
+.layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:16px;align-items:start}
+.nav{position:sticky;top:58px;max-height:calc(100vh - 74px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px}
+.nav a{display:grid;grid-template-columns:22px 1fr auto;gap:4px;align-items:baseline;padding:5px 8px;border-radius:6px;color:var(--text);text-decoration:none;font-size:13px}
+.nav a:hover{background:var(--panel-2)}
+.nav .n-no{color:var(--faint);font-size:11px;font-variant-numeric:tabular-nums}
+.nav .n-cnt{color:var(--faint);font-size:11px;font-variant-numeric:tabular-nums}
+.nav a.done .n-cnt{color:var(--yes);font-weight:600}
+.group{padding:0;overflow:hidden;scroll-margin-top:58px}
+.g-head{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;padding:14px 18px;background:var(--panel-2);border-bottom:1px solid var(--line)}
+.g-name{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.g-no{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
+.g-name h3{font-size:16px}
+.g-purpose{margin:4px 0 0;color:var(--muted);font-size:13px}
+.g-tpl{margin:6px 0 0;font-size:12.5px}
+.tpl-lbl{color:var(--faint);margin-right:6px}
+.g-side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none}
+.bulk{display:flex;align-items:center;gap:6px}
+.bulk-lbl{font-size:12px;color:var(--muted)}
+.g-count{font-size:12px;color:var(--faint);text-align:right}
+.k-y{color:var(--yes)}.k-n{color:var(--no)}.k-u{color:var(--unk)}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding:12px 18px 12px 15px;border-top:1px solid var(--line);border-left:3px solid transparent}
+.items .item:first-child{border-top:0}
+.item.is-y{border-left-color:var(--yes-bar)}
+.item.is-n{border-left-color:var(--no-bar)}
+.item.is-u{border-left-color:var(--unk-bar)}
+.i-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.i-title .zh{font-weight:600;font-size:14.5px}
+.i-desc{margin:2px 0 6px;color:var(--muted)}
+.i-meta{display:flex;flex-wrap:wrap;gap:6px}
+.i-act{display:flex;align-items:center;gap:8px;align-self:center}
+.note-btn{border:0;background:none;color:var(--faint);padding:6px 4px;font-size:12.5px;white-space:nowrap}
+.note-btn:hover{color:var(--accent)}
+.note-btn.has{color:var(--accent);font-weight:600}
+.i-note{grid-column:1/-1}
+.i-note textarea{width:100%;resize:vertical;min-height:38px;padding:7px 10px;border:1px solid var(--line-2);border-radius:8px;background:var(--panel)}
+
+/* 汇总页 */
+.card h2{font-size:16px;margin-bottom:10px}
+.sum-bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:8px}
+.sum-bar .spacer{flex:1}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.legend{font-size:12px;color:var(--faint);margin:0 0 10px}
+.prog-table{border-collapse:collapse;min-width:420px}
+.prog-table th,.prog-table td{padding:6px 12px 6px 0;text-align:left;font-variant-numeric:tabular-nums}
+.prog-table th{font-size:12px;color:var(--faint);font-weight:500}
+.prog-table .bar{width:120px;display:inline-block;vertical-align:middle;margin-right:8px;height:6px}
+.matrix-wrap{max-height:78vh;overflow:auto;border:1px solid var(--line);border-radius:8px}
+.matrix{border-collapse:separate;border-spacing:0;width:100%;min-width:860px;font-size:13px}
+.matrix th,.matrix td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:middle;background:var(--panel)}
+.matrix thead th{position:sticky;top:0;z-index:3;background:var(--panel-2);font-size:12px;color:var(--muted);font-weight:600;text-align:center;white-space:nowrap}
+.matrix .c-perm{position:sticky;left:0;z-index:2;text-align:left;min-width:220px;max-width:280px;font-weight:400;box-shadow:1px 0 0 var(--line)}
+.matrix thead .c-perm{z-index:4}
+.matrix .c-perm .zh{font-weight:600}
+.matrix .c-perm .chip{margin-left:4px}
+.matrix td.cell{text-align:center;font-weight:700;min-width:62px;position:relative}
+.matrix td.num{text-align:center;font-variant-numeric:tabular-nums;color:var(--muted)}
+.matrix td.c-sugg{text-align:center;white-space:nowrap}
+.matrix td.c-notes{min-width:200px;font-size:12px;color:var(--muted)}
+.cell.c-y{background:var(--yes-bg);color:var(--yes)}
+.cell.c-n{background:var(--no-bg);color:var(--no)}
+.cell.c-u{background:var(--unk-bg);color:var(--unk)}
+.cell.c-e{color:var(--faint);font-weight:400}
+.cell.has-note::after{content:"";position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.matrix tr.g-row th,.matrix tr.g-row td{background:var(--panel-2);font-size:12px;color:var(--muted);border-top:1px solid var(--line-2)}
+.matrix tr.g-row .c-perm{color:var(--text);font-weight:700;font-size:13px}
+.matrix tr.diff .c-perm{box-shadow:inset 3px 0 var(--unk-bar),1px 0 0 var(--line)}
+
+/* 说明页 */
+.prose h2{margin-bottom:8px}
+.prose p,.prose li{max-width:900px}
+.prose ol{padding-left:20px;margin:0}
+.prose li{margin:4px 0}
+.prose table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
+.prose th,.prose td{border-bottom:1px solid var(--line);padding:7px 10px 7px 0;text-align:left;vertical-align:top}
+.prose th{font-size:12px;color:var(--faint);font-weight:500;white-space:nowrap}
+.marks{display:grid;grid-template-columns:max-content 1fr;gap:8px 14px;margin:0 0 10px}
+.marks dt{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.marks dd{margin:0;color:var(--muted)}
+.src{columns:2 260px;padding-left:18px;margin:8px 0 0}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .nav{display:none}
+  .toolbar select{display:block}
+  .intro{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .g-head{flex-direction:column}
+  .g-side{align-items:flex-start;width:100%}
+  .g-count{text-align:left}
+  .item{grid-template-columns:1fr;padding-right:14px}
+  .i-act{align-self:start}
+  .seg button{padding:7px 12px}
+  .marks{grid-template-columns:1fr}
+  .marks dd{margin-bottom:6px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><h1>Square 权限选择</h1><span class="small muted" id="ver"></span></div>
+    <div class="sync" id="sync">连接中…</div>
+    <div class="people-row"><span class="lbl">我是</span><div class="people" id="people"></div></div>
+  </div>
+</header>
+<div class="tabs-bar">
+  <nav class="wrap tabs" id="tabs" role="tablist">
+    <button type="button" role="tab" data-tab="sales">Sales 权限</button>
+    <button type="button" role="tab" data-tab="office">Office 权限</button>
+    <button type="button" role="tab" data-tab="summary">汇总 / 下载</button>
+    <button type="button" role="tab" data-tab="guide">说明</button>
+  </nav>
+</div>
+<main class="wrap" id="main"></main>
+
+<script src="permissions.js"></script>
+<script>
+(function () {
+'use strict';
+
+const DATA = window.PERM_DATA;
+const API = 'api.php';
+const PEOPLE = DATA.people;
+const MENUS = DATA.menus;
+const MENU_BY_KEY = {};
+MENUS.forEach(m => { MENU_BY_KEY[m.key] = m; });
+const ITEMS = [];
+MENUS.forEach(m => m.items.forEach(it => ITEMS.push(it)));
+const TOTAL = ITEMS.length;
+const SENS_COUNT = ITEMS.filter(it => it.sensitive).length;
+const PARTS = { sales: { label: 'Sales 权限', short: 'Sales' }, office: { label: 'Office 权限', short: 'Office' } };
+const PART_KEYS = Object.keys(PARTS);
+const CHOICES = [['y', '需要'], ['n', '不需要'], ['u', '不确定']];
+const CLABEL = { y: '需要', n: '不需要', u: '不确定' };
+const CSYM = { y: '✓', n: '✕', u: '?' };
+const CONF_TIP = {
+  '已确认': '官方公开手册明确确认有这一项',
+  '功能范围': '官方确认有这个功能，但不一定是 Square 里单独的勾选项',
+  '未公开': '官方没公开完整细项，以 Square 账户实际页面为准'
+};
+const SENS_TIP = '手册建议 Sales 和 Office 默认都不开，一般只给 Owner / 管理员 / IT';
+const ROLE = {};
+DATA.roles.forEach(r => { ROLE[r.role] = r; });
+const TABS = ['sales', 'office', 'summary', 'guide'];
+
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* 无痕模式等 */ } }
+};
+const LS_PERSON = 'sqperm.person', LS_TAB = 'sqperm.tab', LS_LOCAL = 'sqperm.localState';
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const hhmm = d => d ? d.toLocaleTimeString('zh-CN', { hour12: false }) : '';
+
+const ui = {
+  person: PEOPLE.indexOf(store.get(LS_PERSON)) >= 0 ? store.get(LS_PERSON) : null,
+  tab: TABS.indexOf(store.get(LS_TAB)) >= 0 ? store.get(LS_TAB) : 'sales',
+  filter: 'all', q: '',
+  sumPart: 'sales', diffOnly: false, sensOnly: false,
+  noteOpen: new Map()
+};
+
+/* ---------------- 数据与同步 ---------------- */
+let mode = 'connecting';                 // 'server' | 'local'
+let state = { rev: 0, updatedAt: null, answers: {} };
+const pending = new Map();               // "person|part|key" -> {c, n}  等待发送
+const inflight = new Map();              // 已发出、还没确认
+let flushTimer = null, retryTimer = null, flushing = false, retries = 0;
+let sync = { kind: 'connecting', msg: '', at: null };
+
+function pk(p, part, key) { return p + '|' + part + '|' + key; }
+
+function saved(p, part, key) {
+  const a = state.answers[p];
+  return (a && a[part] && a[part][key]) || null;
+}
+function getAns(p, part, key) {
+  const k = pk(p, part, key);
+  if (pending.has(k)) return pending.get(k);
+  if (inflight.has(k)) return inflight.get(k);
+  return saved(p, part, key);
+}
+function applyToState(p, part, key, v, t) {
+  const a = state.answers[p] || (state.answers[p] = {});
+  const b = a[part] || (a[part] = {});
+  if (v.c == null && !v.n) delete b[key];
+  else b[key] = { c: v.c == null ? null : v.c, n: v.n || '', t: t || new Date().toISOString() };
+}
+function normalize(s) {
+  const out = { rev: +s.rev || 0, updatedAt: s.updatedAt || null, answers: {} };
+  const ans = s.answers && typeof s.answers === 'object' && !Array.isArray(s.answers) ? s.answers : {};
+  PEOPLE.forEach(p => {
+    PART_KEYS.forEach(part => {
+      const b = ans[p] && ans[p][part];
+      if (b && typeof b === 'object' && !Array.isArray(b)) {
+        (out.answers[p] || (out.answers[p] = {}))[part] = b;
+      }
+    });
+  });
+  return out;
+}
+
+function setAns(p, part, key, c, n) {
+  const cur = getAns(p, part, key) || { c: null, n: '' };
+  const next = { c: c === undefined ? (cur.c == null ? null : cur.c) : c, n: n === undefined ? (cur.n || '') : n };
+  if (next.c === (cur.c == null ? null : cur.c) && next.n === (cur.n || '')) return;
+  if (mode === 'local') {
+    applyToState(p, part, key, { c: next.c, n: next.n.trim() });
+    store.set(LS_LOCAL, JSON.stringify(state));
+    return;
+  }
+  pending.set(pk(p, part, key), next);
+  scheduleFlush(n !== undefined ? 800 : 350);
+}
+
+function scheduleFlush(delay) {
+  clearTimeout(flushTimer);
+  flushTimer = setTimeout(flush, delay);
+  if (sync.kind !== 'error') setSync('saving');
+}
+
+async function flush(keepalive) {
+  if (mode !== 'server' || flushing || !pending.size) return;
+  flushing = true;
+  clearTimeout(retryTimer);
+  const groups = new Map();
+  pending.forEach((v, k) => {
+    const parts = k.split('|');
+    const g = parts[0] + '|' + parts[1];
+    if (!groups.has(g)) groups.set(g, []);
+    groups.get(g).push({ k: k, key: parts[2], v: v });
+    inflight.set(k, v);
+  });
+  pending.clear();
+  setSync('saving');
+
+  let failure = null, rejected = null;
+  for (const [g, list] of groups) {
+    const [person, part] = g.split('|');
+    for (let i = 0; i < list.length; i += 200) {
+      const chunk = list.slice(i, i + 200);
+      let res = null, j = null;
+      try {
+        res = await fetch(API, {
+          method: 'POST', keepalive: !!keepalive, cache: 'no-store',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ person: person, part: part, changes: chunk.map(x => ({ key: x.key, c: x.v.c, n: x.v.n.trim() })) })
+        });
+        j = await res.json().catch(() => null);
+      } catch (e) { /* 网络错误 */ }
+      if (res && res.ok && j && j.ok) {
+        chunk.forEach(x => {
+          applyToState(person, part, x.key, { c: x.v.c, n: x.v.n.trim() }, j.updatedAt);
+          if (inflight.get(x.k) === x.v) inflight.delete(x.k);
+        });
+        state.rev = Math.max(state.rev, +j.rev || 0);
+        if (j.updatedAt) state.updatedAt = j.updatedAt;
+      } else if (res && res.status >= 400 && res.status < 500 && res.status !== 408 && res.status !== 429) {
+        // 服务器明确拒绝（名单/编号对不上），重试也没用：丢弃并提示
+        rejected = (j && j.error) || ('HTTP ' + res.status);
+        chunk.forEach(x => { if (inflight.get(x.k) === x.v) inflight.delete(x.k); });
+      } else {
+        failure = (j && j.error) || (res ? 'HTTP ' + res.status : '网络连不上');
+        chunk.forEach(x => {
+          if (inflight.get(x.k) === x.v) {
+            inflight.delete(x.k);
+            if (!pending.has(x.k)) pending.set(x.k, x.v);
+          }
+        });
+      }
+    }
+  }
+  flushing = false;
+
+  if (rejected) { setSync('rejected', rejected); load(); }
+  else if (failure) {
+    retries++;
+    setSync('error', failure);
+    retryTimer = setTimeout(flush, Math.min(30000, 2000 * Math.pow(2, retries - 1)));
+  } else {
+    retries = 0;
+    if (pending.size) scheduleFlush(300); else setSync('saved');
+  }
+  softRender();
+}
+
+async function load(initial) {
+  if (mode === 'local') return;
+  try {
+    const res = await fetch(API + '?t=' + Date.now(), { cache: 'no-store' });
+    const j = await res.json();
+    if (!res.ok || !j || typeof j.answers !== 'object') throw new Error((j && j.error) || ('HTTP ' + res.status));
+    state = normalize(j);
+    if (initial) mode = 'server';
+    if (!pending.size && !inflight.size && sync.kind !== 'error' && sync.kind !== 'rejected') setSync('saved');
+  } catch (e) {
+    if (initial) {
+      mode = 'local';
+      try { state = normalize(JSON.parse(store.get(LS_LOCAL) || '{}')); } catch (err) { state = normalize({}); }
+      setSync('local');
+    } else if (sync.kind === 'saved') {
+      setSync('offline');
+    }
+  }
+  if (initial) render(); else softRender();
+}
+
+function setSync(kind, msg) {
+  sync = { kind: kind, msg: msg || '', at: new Date() };
+  const el = $('#sync');
+  const map = {
+    connecting: ['', '连接中…'],
+    saving: ['busy', '保存中…'],
+    saved: ['ok', '云端已同步 · ' + hhmm(sync.at)],
+    offline: ['warn', '暂时连不上服务器，恢复后会自动同步'],
+    error: ['warn', '保存失败，稍后自动重试（' + sync.msg + '）'],
+    rejected: ['warn', '有选择被服务器拒绝：' + sync.msg + '，请刷新页面'],
+    local: ['warn', '没连上服务器：现在只保存在这台电脑的浏览器里']
+  };
+  const m = map[kind] || map.connecting;
+  el.className = 'sync ' + m[0];
+  el.textContent = m[1];
+  el.title = kind === 'saved' && state.updatedAt ? '云端最后更新：' + new Date(state.updatedAt).toLocaleString('zh-CN', { hour12: false }) : '';
+}
+
+/* ---------------- 头部：名字 + 标签 ---------------- */
+function doneCount(p, part) {
+  let n = 0;
+  (part ? [part] : PART_KEYS).forEach(pt => ITEMS.forEach(it => { const a = getAns(p, pt, it.key); if (a && a.c) n++; }));
+  return n;
+}
+
+function buildPeople() {
+  $('#people').innerHTML = PEOPLE.map(p =>
+    '<button type="button" class="person" data-person="' + esc(p) + '" aria-pressed="false">' +
+    '<span class="p-name">' + esc(p) + '</span><span class="p-prog"></span></button>').join('');
+}
+function paintPeople() {
+  document.querySelectorAll('.person').forEach(b => {
+    const p = b.dataset.person;
+    b.setAttribute('aria-pressed', String(p === ui.person));
+    b.querySelector('.p-prog').textContent = doneCount(p) + '/' + TOTAL * 2;
+    b.title = p + '：Sales 已选 ' + doneCount(p, 'sales') + '/' + TOTAL + '，Office 已选 ' + doneCount(p, 'office') + '/' + TOTAL;
+  });
+}
+function paintTabs() {
+  document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === ui.tab)));
+}
+
+/* ---------------- 填写页 ---------------- */
+function confClass(c) { return c === '已确认' ? 'ok' : c === '功能范围' ? 'scope' : 'na'; }
+function suggClass(s) { return /^开($|（|；)/.test(s) ? 'on' : s.indexOf('关') === 0 ? 'off' : 'mid'; }
+
+function segHTML(attr, label) {
+  return '<div class="seg" role="group" aria-label="' + esc(label) + '">' +
+    CHOICES.map(c => '<button type="button" ' + attr + '="' + c[0] + '" aria-pressed="false">' + c[1] + '</button>').join('') + '</div>';
+}
+
+function itemHTML(it, part) {
+  const s = it[part];
+  return '<div class="item" data-key="' + esc(it.key) + '">' +
+    '<div class="i-main">' +
+      '<div class="i-title"><span class="zh">' + esc(it.zh) + '</span><span class="en">' + esc(it.en) + '</span></div>' +
+      '<p class="i-desc">' + esc(it.desc) + '</p>' +
+      '<div class="i-meta">' +
+        '<span class="chip conf conf-' + confClass(it.confirm) + '" title="' + esc(CONF_TIP[it.confirm] || '') + '">' + esc(it.confirm) + '</span>' +
+        '<span class="chip sugg sugg-' + suggClass(s) + '" title="手册对 ' + PARTS[part].short + ' 的配置建议，仅供参考">手册建议：' + esc(s) + '</span>' +
+        (it.sensitive ? '<span class="chip sens" title="' + SENS_TIP + '">敏感</span>' : '') +
+      '</div>' +
+    '</div>' +
+    '<div class="i-act">' + segHTML('data-c', it.zh) +
+      '<button type="button" class="note-btn" data-note-toggle>备注</button></div>' +
+    '<div class="i-note" hidden><textarea rows="2" maxlength="200" aria-label="' + esc(it.zh) + ' 的备注" placeholder="备注（可选，最多 200 字），比如：只有退货时需要"></textarea></div>' +
+  '</div>';
+}
+
+function groupHTML(m, part) {
+  return '<section class="card group" id="g-' + m.key + '" data-menu="' + m.key + '">' +
+    '<header class="g-head">' +
+      '<div class="g-title">' +
+        '<div class="g-name"><span class="g-no">' + m.no + '</span><h3>' + esc(m.zh) + '</h3><span class="en">' + esc(m.en) + ' · ' + m.items.length + ' 项</span></div>' +
+        '<p class="g-purpose">' + esc(m.purpose) + '</p>' +
+        '<p class="g-tpl"><span class="tpl-lbl">手册初始建议</span><span class="chip sugg sugg-' + suggClass(m.template[part]) + '">' + esc(m.template[part]) + '</span></p>' +
+      '</div>' +
+      '<div class="g-side">' +
+        '<div class="bulk"><span class="bulk-lbl">整组</span>' + segHTML('data-bulk', m.zh + ' 整组') + '</div>' +
+        '<div class="g-count" data-gcount></div>' +
+      '</div>' +
+    '</header>' +
+    '<div class="items">' + m.items.map(it => itemHTML(it, part)).join('') + '</div>' +
+  '</section>';
+}
+
+function pickHTML(part) {
+  if (!ui.person) {
+    return '<div class="card empty"><h2>先点上面的名字</h2>' +
+      '<p class="muted">名字只用来区分每个人的选择，不需要密码。请只点自己的名字。</p>' +
+      '<p class="muted">不填也可以直接看「汇总 / 下载」和「说明」。</p></div>';
+  }
+  const role = ROLE[PARTS[part].short] || { form: '', principle: '' };
+  const filters = [['all', '全部'], ['empty', '未选'], ['y', '需要'], ['n', '不需要'], ['u', '不确定']];
+  return '<section class="card intro">' +
+      '<div><h2><span class="who">' + esc(ui.person) + '</span> 正在填写 · ' + PARTS[part].label + '</h2>' +
+      '<p class="muted">' + esc(role.form) + '：' + esc(role.principle) + '</p>' +
+      '<p class="hint">每项选「需要 / 不需要 / 不确定」，点一下就自动保存，再点一次可以取消。一级菜单右侧的「整组」可以一次选好整组，再单独改个别项。「手册建议」只供参考，按实际工作需要选。</p></div>' +
+      '<div class="progress"><div class="bar"><i id="progBar"></i></div><span id="progText"></span></div>' +
+    '</section>' +
+    '<div class="toolbar">' +
+      '<input type="search" id="q" placeholder="搜索权限（中文或英文）" value="' + esc(ui.q) + '">' +
+      '<div class="seg" role="group" aria-label="筛选">' + filters.map(f => '<button type="button" data-filter="' + f[0] + '" aria-pressed="' + (ui.filter === f[0]) + '">' + f[1] + '</button>').join('') + '</div>' +
+      '<select id="jump" aria-label="跳转到一级菜单"><option value="">跳转到菜单…</option>' +
+        MENUS.map(m => '<option value="' + m.key + '">' + m.no + ' ' + esc(m.zh) + '</option>').join('') + '</select>' +
+    '</div>' +
+    '<div class="layout">' +
+      '<nav class="nav" aria-label="一级菜单">' + MENUS.map(m =>
+        '<a href="#g-' + m.key + '" data-jump="' + m.key + '"><span class="n-no">' + m.no + '</span><span>' + esc(m.zh) + '</span><span class="n-cnt" data-cnt="' + m.key + '"></span></a>').join('') + '</nav>' +
+      '<div>' + MENUS.map(m => groupHTML(m, part)).join('') +
+        '<div class="card empty" id="noResult" hidden><p class="muted">没有符合条件的权限。</p></div></div>' +
+    '</div>';
+}
+
+let pickRows = new Map();
+
+function matches(it, m, c, q) {
+  const f = ui.filter;
+  if (f === 'empty' ? !!c : (f !== 'all' && c !== f)) return false;
+  if (!q) return true;
+  return (it.zh + ' ' + it.en + ' ' + it.desc + ' ' + m.zh + ' ' + m.en).toLowerCase().indexOf(q) >= 0;
+}
+
+function countHTML(cnt, total) {
+  if (cnt.e === total) return '未选 ' + total + ' 项';
+  const out = [];
+  if (cnt.y) out.push('<span class="k-y">需要 ' + cnt.y + '</span>');
+  if (cnt.n) out.push('<span class="k-n">不需要 ' + cnt.n + '</span>');
+  if (cnt.u) out.push('<span class="k-u">不确定 ' + cnt.u + '</span>');
+  if (cnt.e) out.push('未选 ' + cnt.e);
+  return out.join(' · ');
+}
+
+function refreshPick() {
+  const part = ui.tab;
+  if (!ui.person || !PARTS[part] || !pickRows.size) return;
+  const p = ui.person;
+  const q = ui.q.trim().toLowerCase();
+  let done = 0, anyVisible = false;
+  MENUS.forEach(m => {
+    const sec = document.getElementById('g-' + m.key);
+    const cnt = { y: 0, n: 0, u: 0, e: 0 };
+    let visible = 0;
+    m.items.forEach(it => {
+      const row = pickRows.get(it.key);
+      const a = getAns(p, part, it.key);
+      const c = (a && a.c) || null;
+      const n = (a && a.n) || '';
+      cnt[c || 'e']++;
+      if (c) done++;
+      row.classList.toggle('is-y', c === 'y');
+      row.classList.toggle('is-n', c === 'n');
+      row.classList.toggle('is-u', c === 'u');
+      row.querySelectorAll('[data-c]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.c === c)));
+      const ta = row.querySelector('textarea');
+      const focused = document.activeElement === ta;
+      if (!focused && ta.value !== n) ta.value = n;
+      const open = focused || (ui.noteOpen.has(it.key) ? ui.noteOpen.get(it.key) : !!n);
+      row.querySelector('.i-note').hidden = !open;
+      const nb = row.querySelector('[data-note-toggle]');
+      nb.classList.toggle('has', !!n.trim());
+      nb.textContent = n.trim() ? '备注 ●' : '备注';
+      nb.setAttribute('aria-expanded', String(open));
+      const show = matches(it, m, c, q);
+      row.hidden = !show;
+      if (show) visible++;
+    });
+    const total = m.items.length;
+    sec.querySelector('[data-gcount]').innerHTML = countHTML(cnt, total);
+    const all = ['y', 'n', 'u'].filter(k => cnt[k] === total)[0] || null;
+    sec.querySelectorAll('[data-bulk]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bulk === all)));
+    sec.hidden = visible === 0;
+    if (visible) anyVisible = true;
+    const nav = document.querySelector('[data-cnt="' + m.key + '"]');
+    nav.textContent = (total - cnt.e) + '/' + total;
+    nav.parentNode.classList.toggle('done', cnt.e === 0);
+  });
+  $('#noResult').hidden = anyVisible;
+  $('#progBar').style.width = (done / TOTAL * 100).toFixed(1) + '%';
+  $('#progText').textContent = '已选 ' + done + ' / ' + TOTAL + (done === TOTAL ? ' · 全部完成 ✓' : '');
+}
+
+function bulk(menuKey, c) {
+  const m = MENU_BY_KEY[menuKey], p = ui.person, part = ui.tab;
+  const cur = m.items.map(it => getAns(p, part, it.key));
+  if (cur.every(a => a && a.c === c)) {
+    if (!confirm('清空「' + m.zh + '」整组 ' + m.items.length + ' 项的选择？')) return;
+    m.items.forEach(it => setAns(p, part, it.key, null));
+  } else {
+    const other = cur.filter(a => a && a.c && a.c !== c).length;
+    if (other && !confirm('把「' + m.zh + '」整组 ' + m.items.length + ' 项都设为「' + CLABEL[c] + '」？\n其中 ' + other + ' 项已经选了别的，会被覆盖。')) return;
+    m.items.forEach(it => setAns(p, part, it.key, c));
+  }
+  refreshPick();
+  paintPeople();
+}
+
+/* ---------------- 汇总页 ---------------- */
+function summaryHTML() {
+  return '<section class="card"><h2>填写进度</h2><div class="table-wrap"><table class="prog-table" id="progTable"></table></div></section>' +
+    '<section class="card">' +
+      '<div class="sum-bar">' +
+        '<div class="seg" role="group" aria-label="部分">' + PART_KEYS.map(k => '<button type="button" data-sumpart="' + k + '" aria-pressed="' + (ui.sumPart === k) + '">' + PARTS[k].label + '</button>').join('') + '</div>' +
+        '<label class="chk"><input type="checkbox" id="diffOnly"' + (ui.diffOnly ? ' checked' : '') + '> 只看意见不一致的</label>' +
+        '<label class="chk"><input type="checkbox" id="sensOnly"' + (ui.sensOnly ? ' checked' : '') + '> 只看敏感项</label>' +
+        '<span class="spacer"></span>' +
+        '<button type="button" class="btn" data-export="csv">下载 Excel（CSV）</button>' +
+        '<button type="button" class="btn ghost" data-export="json">下载 JSON 备份</button>' +
+      '</div>' +
+      '<p class="legend">✓ 需要　✕ 不需要　? 不确定　— 未选　· 格子右上角的蓝点表示有备注（鼠标停在格子上可看）；左侧黄线表示大家意见不一致。下载的 CSV 包含 Sales 和 Office 两部分，Excel 可直接打开。</p>' +
+      '<div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>' +
+    '</section>';
+}
+
+function renderSummary() {
+  const pt = $('#progTable');
+  if (!pt) return;
+  pt.innerHTML = '<thead><tr><th>名字</th>' + PART_KEYS.map(k => '<th>' + PARTS[k].short + '</th>').join('') + '</tr></thead><tbody>' +
+    PEOPLE.map(p => '<tr><td><b>' + esc(p) + '</b></td>' + PART_KEYS.map(k => {
+      const d = doneCount(p, k);
+      return '<td><span class="bar"><i style="width:' + (d / TOTAL * 100).toFixed(1) + '%"></i></span>' + d + ' / ' + TOTAL + (d === TOTAL ? ' ✓' : '') + '</td>';
+    }).join('') + '</tr>').join('') + '</tbody>';
+
+  const part = ui.sumPart;
+  let body = '';
+  MENUS.forEach(m => {
+    const rows = [];
+    const gcount = PEOPLE.map(() => ({ y: 0, n: 0, u: 0, e: 0 }));
+    m.items.forEach(it => {
+      const vals = PEOPLE.map(p => getAns(p, part, it.key));
+      vals.forEach((a, i) => { gcount[i][(a && a.c) || 'e']++; });
+      const answered = vals.filter(a => a && a.c).map(a => a.c);
+      const diff = new Set(answered).size > 1;
+      if (ui.diffOnly && !diff) return;
+      if (ui.sensOnly && !it.sensitive) return;
+      const cnt = { y: 0, n: 0, u: 0 };
+      answered.forEach(c => { cnt[c]++; });
+      const notes = [];
+      const cells = vals.map((a, i) => {
+        const c = (a && a.c) || 'e';
+        const n = (a && a.n) || '';
+        if (n) notes.push('<b>' + esc(PEOPLE[i]) + '</b>：' + esc(n));
+        const tip = PEOPLE[i] + '：' + (CLABEL[c] || '未选') + (n ? '\n备注：' + n : '');
+        return '<td class="cell c-' + c + (n ? ' has-note' : '') + '" title="' + esc(tip) + '">' + (CSYM[c] || '—') + '</td>';
+      }).join('');
+      rows.push('<tr' + (diff ? ' class="diff"' : '') + '>' +
+        '<th class="c-perm" scope="row"><span class="zh">' + esc(it.zh) + '</span>' + (it.sensitive ? '<span class="chip sens" title="' + SENS_TIP + '">敏感</span>' : '') +
+        '<div class="en">' + esc(it.en) + '</div></th>' +
+        '<td class="c-sugg"><span class="chip sugg sugg-' + suggClass(it[part]) + '">' + esc(it[part]) + '</span></td>' +
+        cells +
+        '<td class="num k-y">' + (cnt.y || '') + '</td><td class="num k-n">' + (cnt.n || '') + '</td><td class="num k-u">' + (cnt.u || '') + '</td>' +
+        '<td class="c-notes">' + notes.join('<br>') + '</td></tr>');
+    });
+    if (!rows.length) return;
+    body += '<tr class="g-row"><th class="c-perm" scope="rowgroup">' + m.no + ' ' + esc(m.zh) + ' <span class="en">' + esc(m.en) + '</span></th>' +
+      '<td class="c-sugg">' + esc(m.template[part]) + '</td>' +
+      gcount.map((g, i) => '<td class="num" title="' + esc(PEOPLE[i]) + '：需要 ' + g.y + '，不需要 ' + g.n + '，不确定 ' + g.u + '，未选 ' + g.e + '">' +
+        (g.e === m.items.length ? '' : '<span class="k-y">✓' + g.y + '</span>/' + m.items.length) + '</td>').join('') +
+      '<td colspan="4"></td></tr>' + rows.join('');
+  });
+  if (!body) body = '<tr><td colspan="' + (PEOPLE.length + 6) + '" class="muted" style="text-align:center;padding:24px">没有符合条件的项</td></tr>';
+
+  $('#matrix').innerHTML = '<thead><tr><th class="c-perm">' + PARTS[part].label + '</th><th>手册建议</th>' +
+    PEOPLE.map(p => '<th>' + esc(p) + '</th>').join('') +
+    '<th>需要</th><th>不需要</th><th>不确定</th><th>备注</th></tr></thead><tbody>' + body + '</tbody>';
+}
+
+function stamp() {
+  const d = new Date(), z = n => String(n).padStart(2, '0');
+  return d.getFullYear() + z(d.getMonth() + 1) + z(d.getDate()) + '_' + z(d.getHours()) + z(d.getMinutes());
+}
+function download(blob, name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+}
+function csvCell(v) {
+  let s = String(v == null ? '' : v);
+  if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;   // 防止 Excel 把备注当公式
+  return '"' + s.replace(/"/g, '""') + '"';
+}
+function exportCSV() {
+  const head = ['部分', '一级菜单', '一级菜单中文', '英文权限', '中文权限', '功能说明', '确认', '敏感', '手册建议']
+    .concat(PEOPLE, ['需要人数', '不需要人数', '不确定人数', '未选人数', '备注']);
+  const rows = [head];
+  PART_KEYS.forEach(part => MENUS.forEach(m => m.items.forEach(it => {
+    const vals = PEOPLE.map(p => getAns(p, part, it.key));
+    const cnt = { y: 0, n: 0, u: 0, e: 0 };
+    vals.forEach(a => { cnt[(a && a.c) || 'e']++; });
+    const notes = vals.map((a, i) => a && a.n ? PEOPLE[i] + '：' + a.n : '').filter(Boolean).join('；');
+    rows.push([PARTS[part].short, m.no + ' ' + m.en, m.zh, it.en, it.zh, it.desc, it.confirm, it.sensitive ? '是' : '', it[part]]
+      .concat(vals.map(a => (a && a.c) ? CLABEL[a.c] : ''), [cnt.y, cnt.n, cnt.u, cnt.e, notes]));
+  })));
+  const csv = rows.map(r => r.map(csvCell).join(',')).join('\r\n');
+  download(new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' }), 'Square权限选择_' + stamp() + '.csv');
+}
+function exportJSON() {
+  const out = { exportedAt: new Date().toISOString(), manualVersion: DATA.version, people: PEOPLE, state: state };
+  download(new Blob([JSON.stringify(out, null, 1)], { type: 'application/json' }), 'Square权限选择_备份_' + stamp() + '.json');
+}
+
+/* ---------------- 说明页 ---------------- */
+function guideHTML() {
+  const table = (head, rows) => '<div class="table-wrap"><table><thead><tr>' + head.map(h => '<th>' + h + '</th>').join('') +
+    '</tr></thead><tbody>' + rows.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+  return '<section class="card prose"><h2>怎么填</h2><ol>' +
+      '<li>在最上面点你的名字。名字只用来区分每个人，不需要密码，请只点自己的名字。</li>' +
+      '<li>分别打开「Sales 权限」和「Office 权限」，按你对这个岗位日常工作的了解，每项选「需要 / 不需要 / 不确定」。再点一次同一个按钮可以取消。</li>' +
+      '<li>每个一级菜单（例如「收银 / 结账」）右侧有「整组」按钮，可以一次选好整组，再单独改个别二级权限。</li>' +
+      '<li>拿不准的选「不确定」，可以点「备注」写原因。每次点选都会自动保存到云端，换电脑后点同一个名字就能接着填。</li>' +
+      '<li>「汇总 / 下载」页能看到所有人的选择，随时可以下载 Excel。</li>' +
+    '</ol></section>' +
+    '<section class="card prose"><h2>标记说明</h2><dl class="marks">' +
+      '<dt><span class="chip conf conf-ok">已确认</span></dt><dd>官方公开手册明确确认有这一项。</dd>' +
+      '<dt><span class="chip conf conf-scope">功能范围</span></dt><dd>官方确认有这个功能范围，但不一定是 Square 里单独的勾选项。</dd>' +
+      '<dt><span class="chip conf conf-na">未公开</span></dt><dd>官方没公开完整细项，以 Square 账户实际页面为准。</dd>' +
+      '<dt><span class="chip sugg sugg-on">开</span><span class="chip sugg sugg-mid">有限 / 按需 / 审批</span><span class="chip sugg sugg-off">关</span></dt>' +
+      '<dd>「手册建议」是手册给 Sales / Office 的配置建议，不是 Square 官方默认值。「有限 / 按需 / 审批」表示根据内部流程谨慎开放。</dd>' +
+      '<dt><span class="chip sens">敏感</span></dt><dd>手册建议连 Office 都默认关闭的项（共 ' + SENS_COUNT + ' 项），一般只给 Owner / 管理员 / IT。</dd>' +
+    '</dl><p class="muted">' + esc(DATA.intro) + '</p></section>' +
+    '<section class="card prose"><h2>三种角色</h2>' +
+      table(['角色', 'Square 中的形式', '设计原则'], DATA.roles.map(r => ['<b>' + esc(r.role) + '</b>', esc(r.form), esc(r.principle)])) +
+    '</section>' +
+    '<section class="card prose"><h2>一级菜单总览与初始建议</h2><p class="muted">' + esc(DATA.templateNote) + '</p>' +
+      table(['No.', '一级菜单', '用途', '项数', 'Sales 初始建议', 'Office 初始建议'], MENUS.map(m => [
+        m.no, '<b>' + esc(m.zh) + '</b><div class="en">' + esc(m.en) + '</div>', esc(m.purpose), m.items.length, esc(m.template.sales), esc(m.template.office)])) +
+    '</section>' +
+    '<section class="card prose"><h2>VIVA / ACE 替换项目注意事项</h2>' +
+      table(['事项', '执行原则'], DATA.notes.map(n => ['<b>' + esc(n.topic) + '</b>', esc(n.rule)])) +
+    '</section>' +
+    '<section class="card prose"><h2>官方资料与局限</h2><p>' + esc(DATA.limitation) + '</p><ul class="src">' +
+      DATA.sources.map(s => '<li>' + (/^https:\/\//.test(s.url) ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' + esc(s.topic) + '</a>' : esc(s.topic + '：' + s.url)) + '</li>').join('') +
+    '</ul></section>' +
+    '<section class="card prose"><h2>关于数据</h2><p class="muted">选择保存在网站服务器上，所有人都能在「汇总 / 下载」里看到。每次修改都会记录时间和修改内容，改错了可以找管理员按记录恢复。本页内容来自《' +
+      esc(DATA.title) + '》版本 ' + esc(DATA.version) + '，共 ' + MENUS.length + ' 个一级菜单、' + TOTAL + ' 项二级权限。</p></section>';
+}
+
+/* ---------------- 渲染与事件 ---------------- */
+function render() {
+  paintPeople();
+  paintTabs();
+  const main = $('#main');
+  pickRows = new Map();
+  if (ui.tab === 'summary') {
+    main.innerHTML = summaryHTML();
+    renderSummary();
+  } else if (ui.tab === 'guide') {
+    main.innerHTML = guideHTML();
+  } else {
+    main.innerHTML = pickHTML(ui.tab);
+    main.querySelectorAll('.item').forEach(r => pickRows.set(r.dataset.key, r));
+    refreshPick();
+  }
+}
+function softRender() {
+  paintPeople();
+  if (ui.tab === 'summary') renderSummary();
+  else if (PARTS[ui.tab]) refreshPick();
+}
+
+$('#ver').textContent = '手册版本 ' + DATA.version + ' · ' + MENUS.length + ' 个一级菜单 · ' + TOTAL + ' 项权限';
+buildPeople();
+
+$('#people').addEventListener('click', e => {
+  const b = e.target.closest('[data-person]');
+  if (!b) return;
+  ui.person = b.dataset.person;
+  store.set(LS_PERSON, ui.person);
+  ui.noteOpen.clear();
+  if (!PARTS[ui.tab]) { ui.tab = 'sales'; store.set(LS_TAB, ui.tab); }
+  render();
+});
+
+$('#tabs').addEventListener('click', e => {
+  const b = e.target.closest('[data-tab]');
+  if (!b || b.dataset.tab === ui.tab) return;
+  ui.tab = b.dataset.tab;
+  store.set(LS_TAB, ui.tab);
+  ui.noteOpen.clear();
+  render();
+  window.scrollTo(0, 0);
+});
+
+const main = $('#main');
+main.addEventListener('click', e => {
+  const t = e.target.closest('button, a[data-jump]');
+  if (!t) return;
+  if (t.dataset.c) {
+    const key = t.closest('.item').dataset.key;
+    const cur = getAns(ui.person, ui.tab, key);
+    setAns(ui.person, ui.tab, key, cur && cur.c === t.dataset.c ? null : t.dataset.c);
+    refreshPick();
+    paintPeople();
+  } else if (t.dataset.bulk) {
+    bulk(t.closest('.group').dataset.menu, t.dataset.bulk);
+  } else if (t.hasAttribute('data-note-toggle')) {
+    const row = t.closest('.item');
+    const open = row.querySelector('.i-note').hidden;
+    ui.noteOpen.set(row.dataset.key, open);
+    refreshPick();
+    if (open) row.querySelector('textarea').focus();
+  } else if (t.dataset.filter) {
+    ui.filter = t.dataset.filter;
+    main.querySelectorAll('[data-filter]').forEach(b => b.setAttribute('aria-pressed', String(b === t)));
+    refreshPick();
+  } else if (t.dataset.jump) {
+    e.preventDefault();
+    const g = document.getElementById('g-' + t.dataset.jump);
+    if (g && !g.hidden) g.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else if (t.dataset.sumpart) {
+    ui.sumPart = t.dataset.sumpart;
+    main.querySelectorAll('[data-sumpart]').forEach(b => b.setAttribute('aria-pressed', String(b === t)));
+    renderSummary();
+  } else if (t.dataset.export === 'csv') {
+    exportCSV();
+  } else if (t.dataset.export === 'json') {
+    exportJSON();
+  }
+});
+
+main.addEventListener('input', e => {
+  const t = e.target;
+  if (t.id === 'q') {
+    ui.q = t.value;
+    refreshPick();
+  } else if (t.matches('.item textarea')) {
+    setAns(ui.person, ui.tab, t.closest('.item').dataset.key, undefined, t.value.slice(0, 200));
+    refreshPick();
+  }
+});
+
+main.addEventListener('change', e => {
+  const t = e.target;
+  if (t.id === 'jump' && t.value) {
+    const g = document.getElementById('g-' + t.value);
+    if (g) { if (ui.filter !== 'all' || ui.q) { ui.filter = 'all'; ui.q = ''; render(); } document.getElementById('g-' + t.value).scrollIntoView({ block: 'start' }); }
+    t.value = '';
+  } else if (t.id === 'diffOnly') {
+    ui.diffOnly = t.checked; renderSummary();
+  } else if (t.id === 'sensOnly') {
+    ui.sensOnly = t.checked; renderSummary();
+  }
+});
+
+main.addEventListener('focusout', e => {
+  if (e.target.matches('.item textarea') && pending.size) scheduleFlush(50);
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    if (pending.size) { clearTimeout(flushTimer); flush(true); }
+  } else if (mode === 'server' && !pending.size && !inflight.size) {
+    load();
+  }
+});
+window.addEventListener('beforeunload', e => {
+  if (pending.size || inflight.size) { e.preventDefault(); e.returnValue = ''; }
+});
+setInterval(() => {
+  if (mode === 'server' && document.visibilityState === 'visible' && !pending.size && !inflight.size && !flushing) load();
+}, 20000);
+
+paintTabs();
+setSync('connecting');
+load(true);
+})();
+</script>
+</body>
+</html>
