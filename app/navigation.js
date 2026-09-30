@@ -31,6 +31,9 @@
   }
   function updateUnderlay() {
     underlay?.remove(); underlay=null;
+    // A top-level tab is a gesture boundary, even if browser history includes
+    // other tabs. Only drill-down screens expose a swipe-back underlay.
+    if (!detail) return;
     const previous=entries.get(current?.parent);
     if (!previous) return;
     if (!previous.node) {
@@ -132,7 +135,7 @@
   window.addEventListener('pagehide',capture);
   document.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.stopImmediatePropagation()}},true);
   function excluded(target) {
-    if(state.tab==='scan' || overlay.childNodes.length || !entries.get(current.parent)?.node) return true;
+    if(!detail || state.tab==='scan' || overlay.childNodes.length || !entries.get(current.parent)?.node) return true;
     if(target.closest('input,textarea,select,video,.camera,[data-no-swipe],[role="slider"]')) return true;
     for(let n=target;n&&n!==viewport;n=n.parentElement) {
       const overflow=getComputedStyle(n).overflowX;
