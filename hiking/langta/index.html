@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>狼塔C线＋狼塔V线 14天连环穿越游记</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f7f4ec;color:#2e2a24;line-height:1.9;font-size:17px}
+header.hero{background:linear-gradient(160deg,#2b3a2e,#4a5d43);color:#f5efe0;padding:48px 20px 40px;text-align:center}
+header.hero h1{font-size:24px;line-height:1.5;margin-bottom:12px}
+header.hero p{font-size:14px;opacity:.85}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+.day-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.day-grid button{border:1px solid #d8cfb8;background:#fffdf7;border-radius:12px;padding:16px 10px;font-size:16px;color:#2e2a24;cursor:pointer;text-align:center;line-height:1.5}
+.day-grid button small{display:block;font-size:12px;color:#8a7f63;margin-top:4px}
+.day-grid button:active{background:#efe8d3}
+section.day{display:none}
+section.day.active{display:block}
+.day-head{background:#fffdf7;border:1px solid #d8cfb8;border-radius:12px;padding:20px;margin-bottom:16px}
+.day-head h2{font-size:21px;margin-bottom:6px}
+.day-head .meta{font-size:13px;color:#8a7f63}
+.prose{background:#fffdf7;border:1px solid #d8cfb8;border-radius:12px;padding:20px;margin-bottom:16px}
+.prose p{margin-bottom:14px;text-align:justify}
+.prose figure.ph{margin:8px 0 20px}
+.prose figure.ph img{width:100%;border-radius:10px;display:block;background:#e8e2d2;cursor:zoom-in}
+.img-missing{border:1px dashed #b09a6a;background:#faf6ea;border-radius:10px;padding:24px 16px;text-align:center;color:#8a7f63;margin:8px 0 20px;font-size:14px}
+.img-missing .fn{font-size:11px;color:#b3a684;margin-top:6px;word-break:break-all}
+.img-pending{border:1px dashed #999;background:#f0ede4;border-radius:10px;padding:24px 16px;text-align:center;color:#8a7f63;margin:8px 0 20px;font-size:14px}
+@media(min-width:700px){.day-grid{grid-template-columns:repeat(3,1fr)}}
+.nav{display:flex;gap:10px;margin-top:24px}
+.nav button{flex:1;border:1px solid #d8cfb8;background:#fffdf7;border-radius:10px;padding:12px;font-size:15px;cursor:pointer}
+.nav button.primary{background:#4a5d43;color:#f5efe0;border-color:#4a5d43}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:99;padding:12px}
+#lightbox img{max-width:100%;max-height:100%;border-radius:6px}
+#lightbox.show{display:flex}
+footer.site{text-align:center;font-size:12px;color:#a89c7d;padding:30px 16px}
+</style>
+</head>
+<body>
+<header class="hero">
+<h1>全国首例江苏第一之<br>无向导传统狼塔C线＋狼塔V线14天连环穿越</h1>
+<p>作者：好人锅 ｜ 8264户外论坛游记 ｜ 进山8月25日—出山9月7日</p>
+</header>
+<div class="wrap" id="home">
+<div class="day-grid">
+<button data-day="kaipian">开篇<small>全国首例江苏第一之无向导传统狼塔C线＋狼塔V线14天连环穿越 · 0图</small></button>
+<button data-day="xianlu">线路简介<small>狼塔C线 · 狼塔V线 · 0图</small></button>
+<button data-day="luxian">此行路线图<small>8月25日进山 — 9月7日出山 · 14天 · 0图</small></button>
+<button data-day="chengyuan">此行成员<small>7人同行 · 5人全程连穿狼C＋狼V · 14图</small></button>
+<button data-day="d0">第零天<small>8月24日 · 南京 — 乌鲁木齐 · 4图</small></button>
+<button data-day="d1">D1<small>8月25日 · 狼塔C线第一天 · 27图</small></button>
+<button data-day="d2">D2<small>8月26日 · 狼塔C线第二天 · 34图</small></button>
+<button data-day="d3">D3<small>8月27日 · 狼塔C线第三天 · 60图</small></button>
+<button data-day="d4">D4<small>8月28日 · 狼塔C线第四天 · 59图</small></button>
+<button data-day="d5">D5<small>8月29日 · 狼塔C线第五天 · 34图</small></button>
+<button data-day="d6">D6<small>8月30日 · 狼塔C线第六天 · 71图</small></button>
+<button data-day="d7">D7<small>8月31日 · 狼塔C线第七天（走出狼C） · 39图</small></button>
+<button data-day="d8">D8<small>9月1日 · 狼塔V线第一天 · 26图</small></button>
+<button data-day="d9">D9<small>9月2日 · 狼塔V线第二天 · 49图</small></button>
+<button data-day="d10">D10<small>9月3日 · 狼塔V线第三天 · 23图</small></button>
+<button data-day="d11">D11<small>9月4日 · 狼塔V线第四天 · 51图</small></button>
+<button data-day="d12">D12<small>9月5日 · 狼塔V线第五天 · 41图</small></button>
+<button data-day="d13">D13<small>9月6日 · 狼塔V线第六天 · 35图</small></button>
+<button data-day="d14">D14<small>9月7日 · 狼塔V线第七天（安全出山） · 42图</small></button>
+<button data-day="houji">后记<small>游记完结 · 1图</small></button>
+</div>
+</div>
+<div class="wrap">
+<section class="day" id="day-kaipian">
+<div class="day-head"><h2>开篇</h2><div class="meta">全国首例江苏第一之无向导传统狼塔C线＋狼塔V线14天连环穿越 · 本节0张照片</div></div>
+<div class="prose">
+<p>《全国首例江苏第一之无向导传统狼塔C线+狼塔V线14天连环穿越》</p>
+<p>此行多得新疆山友 树OO（树兄） 从狼V线路轨迹到包车进出山、食宿等方面的热情建议与帮助，在此先向树兄致谢：）</p>
+<p>据说发帖标题一定要够摆才烧眼<br>在经过仔细研究发现前面连穿狼C狼V的队伍所走路线都是从废金矿斜插到狼V，但没翻狼C的哈拉哈提达坂这段传统路线，也不是从树OO最初探线的奎克达坂进入狼塔V线后，俺总算钻了个空子逮着了吹牛的机会，整了个够骚的标题——《全国首例江苏第一之无向导传统狼塔C线+狼塔V线14天连环穿越》——看官若有不悦请略过。</p>
+<p>此行计划徒步穿越的时间为13天，加2天机动，预计最多15天出山。<br>因所走之地为天山腹地，除了偶尔能遇见几个不定期进山放牧的牧民外，沿途没有人烟也没有物资补给，所以个人背负了总重达30余公斤、足够维持15天野外生存的吃穿住行装备物资。</p>
+</div>
+<div class="nav"><button class="primary" data-go="home">返回目录</button><button data-go="xianlu">下一篇：线路简介 →</button></div>
+</section>
+<section class="day" id="day-xianlu">
+<div class="day-head"><h2>线路简介</h2><div class="meta">狼塔C线 · 狼塔V线 · 本节0张照片</div></div>
+<div class="prose">
+<p>线路简介：<br>狼塔C线：<br>是以南北为贯穿方向，穿越西天山中部纵深最长的线路。高耸入云的河源峰、清澈透明的激流、年久失修的栈道、茂密的雪岭云杉、奇异的沟壑峡谷、肥沃的高山牧场等构成沿途的无限风光。<br>在哈萨克语中，河源峰被称为&quot;狼塔&quot;，意即&quot;有群狼守护的塔山&quot;，由于进山线路极其艰险漫长，当地牧民也很少接近。在后山纵深130公里的无人区里，冰山隘口令人生畏，那里是野生动物的乐园，也是冒险家向往之地。这条道横断北天山160余公里，途径天山原始森林，翻越常年积雪的冰达坂，数十次在河谷的激流穿梭，加上悬崖、栈道峭壁、栈道、猛兽等无不使徒步者心惊胆战。狼塔之路正是穿越这一地区抵达南疆巴伦台的一条最为漫长和最为艰险的徒步线路，同时也是新疆目前开辟的最为漫长和危险的徒步线路,更是一条锤炼你的意志、锻炼你心智的自虐之路。</p>
+<p>狼塔v线：<br>打开新疆地图，在西天山中部地区分布着大大小小几十条河流，其中较大的有四条，自西向东依次是玛纳斯河、呼图壁河、三屯河和头屯河，其中以玛纳斯河最长，流域面积最大。这四条河流流域是新疆天山北坡经济带的核心地区，养育着数百多万的流域子民。<br>狼塔v线的首次探路是在2011年8月，由树oo、背包者、石头、公格尔和清风五人组队，首次对位于中天山之玛纳斯河、呼图壁河、三屯河和头屯河源头地区进行了一次探险式穿越考察。回来后，把这条全新的穿越中天山南北的探险线路命名为---狼塔v线。<br>理由有三：一、这条线路与传统的狼塔c线呈&quot;v&quot;型排列，狼塔c线的南出口就是狼塔v线的南入口。二、狼塔v线的第一座达坂--古仁郭勒奎克达坂是一座由河源峰（狼塔）延伸出来的山脊上的垭口。是围绕河源峰（狼塔）的众多达坂中的一座。三、是想借用狼塔这个在户外响当当名字，尽快将狼塔v线推广开来，让全国驴友了解并记住狼塔v线。这是一条难度、强度和风景都堪与号称新疆三大线路的狼塔c线、乌孙古道和夏特古道相媲美的顶级徒步探险路线。</p>
+</div>
+<div class="nav"><button data-go="kaipian">← 上一篇：开篇</button><button class="primary" data-go="home">返回目录</button><button data-go="luxian">下一篇：此行路线图 →</button></div>
+</section>
+<section class="day" id="day-luxian">
+<div class="day-head"><h2>此行路线图</h2><div class="meta">8月25日进山 — 9月7日出山 · 14天 · 本节0张照片</div></div>
+<div class="prose">
+<p>此行路线图:<br>将传统狼塔C线与狼塔V线连贯穿越，进山时间8月25日，出山时间9月7日，连头带尾耗时14天。</p>
+<p>起点：乌市——昌吉——白杨树煤矿向上至海拔2055米处的大油罐处<br>途径：（传统狼塔C线）——白杨沟达坂——台普希克马河——库勒阿特腾阿苏达坂——奥尔塔兰特尔河谷<br>——蒙哥特开增达坂——哈尔嘎特开尔茨达坂——哈尔哈提达坂——（2011年以树OO为首的、背包者、公格尔、石头、清风等5人新探的狼塔V线）——奎克达坂3780m——夏热达坂——呼图壁河源头三角洲——绿湖3500m——乌拉布图达坂3977m——三屯河源头三角洲——天格尔达坂3780m——头屯河源头三角洲——头屯河峡谷——乔楞格尔垭口<br>终点：昌吉市庙尔沟镇农大林场——庙尔沟镇——昌吉市</p>
+</div>
+<div class="nav"><button data-go="xianlu">← 上一篇：线路简介</button><button class="primary" data-go="home">返回目录</button><button data-go="chengyuan">下一篇：此行成员 →</button></div>
+</section>
+<section class="day" id="day-chengyuan">
+<div class="day-head"><h2>此行成员</h2><div class="meta">7人同行 · 5人全程连穿狼C＋狼V · 本节14张照片</div></div>
+<div class="prose">
+<p>此行成员：<br>狼塔C线+狼塔V线全程连穿者：好人锅、阿生、华女、字母、鸟院长</p>
+<p>1、好人锅 资深黒导，此行路线的计划、组织者，二度带队走狼C，首度蹿狼V。<br>背负全队除外科缝合之外的所有应急药物，扁带、主锁、卫星电话，营灯（转狼V后交给字母背负）<br>因6月中下旬才开膛剖肚做了阑尾手术，然后又遵医嘱静养2月、避免激烈运动以渐进恢复身体，所以此次出行体质、体能都极差，全程病怏怏，走的慢吞吞，拖了全队的后腿。</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/101535wrxie00x4pe5emiq.jpg" loading="lazy" alt=""></figure>
+<p>2、阿生 铁杆病友、苦力、吃货（好像这次吃货的名头被鸟院劫了）。<br>此行是二度狼C，首次狼V。负责背负公用的60米5毫米辅绳.</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/101651bt1wklwmuyjxtkfj.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/101653q059qji9ijqdjgss.jpg" loading="lazy" alt=""></figure>
+<p>添加本人的其它游记、路书与装备帖：<br>1、人生是一场漫长的旅途:一路风尘一路歌 一骑绝尘至布宫(新藏线纪行 全局终)<br>http://bbs.8264.com/thread-789740-1-1.html</p>
+<p>2、挖掘新线--无向导之新疆禾木河探源环线穿越--笑看源头浪漫的婚纱照<br>http://bbs.8264.com/thread-999457-1-1.html<br>3、新藏线路书28天完备版（含装备、路况、海拔、补给、药物等信息）---2012年7月更新<br>http://bbs.8264.com/thread-1315032-1-1.html</p>
+<p>4、原创：有关水袋的选购经验和MSR单峰驼水袋的测试<br>http://bbs.8264.com/thread-1074997-1-1.html</p>
+<p>5、全国首例江苏第一之无向导传统狼塔C线+狼塔V线14天连环穿越（更新完毕）<br>http://bbs.8264.com/thread-1401949-1-1.html</p>
+<p>6、原创：试论冬季冲锋衣的合理搭配与使用<br>http://bbs.8264.com/thread-1561311-1-1.html</p>
+<p>7、冬季鳌太穿越纪实--20130211~0222--纯AA无向导无背夫（完）<br>http://bbs.8264.com/thread-1631363-1-1.html</p>
+<p>3、华女 铁杆病友、急先锋，一手好厨艺，有她在，茶有得喝，饭有得吃（嗯，就是得飞油飞盐），病有得治（队医，背负外科清创缝合急救物资）。能背能走，背负公用的喷枪。还主动帮新人阿高减负。<br>这张照片还是出山到农大林场附近等车时才拍到的，汗啊！话说下次你还能走的慢点？追不上咋拍哎？</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/101826qgjgke85wwqgjpkp.jpg" loading="lazy" alt=""></figure>
+<p>4、字母 重症病友，首度狼C+狼V 。<br>好脾性（途中咱几次累的不愿讲话，顶的字母无语也无不悦，谢了）。<br>能驮能做能吃能走能带路。全程背负公用的30米主绳，狼C背负黑锅、狼V背负营灯。但为了减负，牙刷裁短只带半截！</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1027084zzqhqakubqqkerb.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/102707nyc1ug0d7n3bugu7.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/102707a1jkmccwbc8zwm7j.jpg" loading="lazy" alt=""></figure>
+<p>5、鸟院 （隆重推出青龙山精神病院 鸟院长）<br>鸟院4年不出门，出门就是狼C+狼V连穿。全程背负公用的工兵铲，并负责扎营后的生火烧水事宜，其生火水平从柴火到牛粪、垃圾全能搞定。<br>出发之前饭量平平，进山以后每餐递增。走的急，蹦的快，撵的华女永远在前不停歇，皮糙肉厚不怕唠叨。最后两天主动要求帮俺减负背气罐，被俺生硬拒绝而不恼，谢了。<br>不过，Y的，你以后还能主动慢点、不要急啊！！！</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/102922yqv8yymqpmhvhmy8.jpg" loading="lazy" alt=""></figure>
+<p>上了白杨沟达坂的鸟院身姿很&quot;曼妙&quot;</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1029186oc40cbuzyvbobu6.jpg" loading="lazy" alt=""></figure>
+<p>嗯，别把村长不当干部，鸟院不当院长</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/102919k72x3121n2qzg3fz.jpg" loading="lazy" alt=""></figure>
+<p>鸟院在发挥博导神功--牛粪生火</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/102921rwnqrc6owu5nnwu9.jpg" loading="lazy" alt=""></figure>
+<p>只参与狼塔V线者：雪梨、阿高</p>
+<p>6、雪梨 铁杆病友 ，首度狼V。<br>此行主粮只带了一斤宽面走狼V，实在是太摆了。。</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103322mswmqwc6kmc2w6gs.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103323n4hj67wfiz47wf05.jpg" loading="lazy" alt=""></figure>
+<p>7、阿高 新进病友，重症与否待定。<br>首度走狼V，从字母手上接过黑锅，负责狼V全程背锅。走路不急不躁，遇险不慌，有潜质。</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103335vhufvvqz3hhhr3hh.jpg" loading="lazy" alt=""></figure>
+<p>兄台的插入速度很快呀。。</p>
+</div>
+<div class="nav"><button data-go="luxian">← 上一篇：此行路线图</button><button class="primary" data-go="home">返回目录</button><button data-go="d0">下一篇：第零天 →</button></div>
+</section>
+<section class="day" id="day-d0">
+<div class="day-head"><h2>第零天</h2><div class="meta">8月24日 · 南京 — 乌鲁木齐 · 本节4张照片</div></div>
+<div class="prose">
+<p>我心飞翔</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103710tpq33mud99up9339.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103710uuk80xidngt8crgu.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103709smm2ryhyryshh2me.jpg" loading="lazy" alt=""></figure>
+<p>字母先到乌市，与树兄联系敲定乘车事宜，然后辛苦奔波、按照每人5个高山扁罐的配给帮大伙买好气罐等物资<br>咱到乌市后则只需与大伙会合抓紧进补--大盘鸡</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103706udygm6pinpnayequ.jpg" loading="lazy" alt=""></figure>
+</div>
+<div class="nav"><button data-go="chengyuan">← 上一篇：此行成员</button><button class="primary" data-go="home">返回目录</button><button data-go="d1">下一篇：D1 →</button></div>
+</section>
+<section class="day" id="day-d1">
+<div class="day-head"><h2>D1</h2><div class="meta">8月25日 · 狼塔C线第一天 · 本节27张照片</div></div>
+<div class="prose">
+<p>在乌鲁木齐坐最早07:10的车<br>08:00到昌吉<br>08:58坐上包车去白杨树煤矿，途中下雨不止，临上山时越下越大<br>12:10到狼塔C线徒步起点（海拔2055米油罐处），雨停<br>放鞭炮、敬酒祈求山神、土地公等众神众仙保佑平安<br>13:13正式起步<br>13:33到标志性地点：蛤蟆嘴，然后硬切湿滑的陡坡<br>14:29午餐<br>19:07决定扎营<br>19:46扎营于海拔2513米的矿道旁的草地<br>23:00睡觉</p>
+<p>今日感受：<br>1、老天极其赏脸，上午下雨，但正式徒步就停雨了。<br>2、个人感觉：因6月份阑尾术后需静养2个月以免伤口崩裂，没法锻炼，所以今天感觉背负60余斤的全套装备物资走起来极其吃力、极其困乏，每一步的前进都是咬牙坚持前挪的结果，以至到19点的时候终于坚持不住而决定提前扎营于海拔2513米。<br>3、路况:有几个横切陡坡比较过瘾，尤其雨后山坡湿滑更加坑爹！总体感觉还是2009年8月9日从呼图壁林场经希勒木呼、喀腊莫伊纳克达坂到白杨沟达坂的路段好走多了。</p>
+<p>白杨树煤矿</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/104106j9dovh6p9mzdgpkv.jpg" loading="lazy" alt=""></figure>
+<p>徒步起点：海拔2055米</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/104107rygiar4v0agsis75.jpg" loading="lazy" alt=""></figure>
+<p>岔路口标志性的大油罐</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1041064mik8h2kl9maonqb.jpg" loading="lazy" alt=""></figure>
+<p>字母、鸟院、好人锅、阿生、华女合影出发</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/104355epvs4omomwkwepqv.jpg" loading="lazy" alt=""></figure>
+<p>雨后绿意盎然</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1043579ejzcz9aq2icoxu9.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/104354l7yw99f7sl7ybwa2.jpg" loading="lazy" alt=""></figure>
+<p>标志性地点--蛤蟆嘴</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1046088cpd5e15t5ggd3bu.jpg" loading="lazy" alt=""></figure>
+<p>没走多久，很快湿滑的陡坡就给人几个下马威</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/104610posbagaauunmaz1t.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1046031ncj24sg2s2qq2gj.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1048007bc27vzav0cd8re7.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/104803xoxj5x1x1wo6otbj.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1047586wwhvzlnquskkk5m.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/104958ccvszrlsbccscnvm.jpg" loading="lazy" alt=""></figure>
+<p>徒步开始后，过桥之前一直逆河沿左岸上行，过桥之后一直沿右岸上行，无需过水</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1050012a00mk5v82vr3fmm.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/10495725yo2omsesomqkly.jpg" loading="lazy" alt=""></figure>
+<p>不下水就得多爬羊道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105037vvut7vsovcb7zwiz.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/10503322sazfk9e1mme1z5.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105031h2y5056yy866orzo.jpg" loading="lazy" alt=""></figure>
+<p>鸟院轻装回来看咱过来后继续向前</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105028i2xqi3qytioee8g2.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1050257muhh9jsjjy9iwmh.jpg" loading="lazy" alt=""></figure>
+<p>爬爬歇歇看看</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105115ra8baba6d12d8161.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105118raqup9ucfzuwmpau.jpg" loading="lazy" alt=""></figure>
+<p>回拍山头上的牧民石窑子</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105934j8j82nnj6dztktmo.jpg" loading="lazy" alt=""></figure>
+<p>此时的俺已经累的走不动、眼发黑，随时想扎营了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105936d4wqpyqylp7bjspe.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1059331hnt5x17bujguteg.jpg" loading="lazy" alt=""></figure>
+<p>暮色降临羊儿归</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/110223nnqs1gs5j1zl5ljb.jpg" loading="lazy" alt=""></figure>
+<p>为了减少背负<br>请字母背了一个1983年制造的铝制钢筋锅进山<br>扎营后 用柴火烧水 即节约气罐又提高了烧水的效率<br>鸟院长的烧火才能从今天开始迸发并日益精进 其学术和实践水准从小学直升博导</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1050248j4k3sg8b3dipyii.jpg" loading="lazy" alt=""></figure>
+</div>
+<div class="nav"><button data-go="d0">← 上一篇：第零天</button><button class="primary" data-go="home">返回目录</button><button data-go="d2">下一篇：D2 →</button></div>
+</section>
+<section class="day" id="day-d2">
+<div class="day-head"><h2>D2</h2><div class="meta">8月26日 · 狼塔C线第二天 · 本节34张照片</div></div>
+<div class="prose">
+<p>晴 当天海拔上升1342米 下降428米</p>
+<p>09:40出发 继续沿河右岸逆流而上<br>18:13从白杨沟达坂山脚开始爬升<br>21:05爬到海拔3855米的白杨沟达坂<br>22:40摸黑下降至海拔3427米的无水草坪将就扎营</p>
+<p>进山后，海拔提升，早起晚歇的赶路，刷牙都是费力的事，这人就邋遢起来了。<br>但鸟院不然，一如往日开始勤奋的洗漱。<br>字母懒得刷了。鸟院说：字母啊，你不刷牙还叫着带牙膏？<br>字母悄悄的和俺打赌说鸟院到第七天肯定不刷牙。。<br>唉，哪知鸟院不但每天刷牙，而且每天早晚各刷一次，中午心里还默刷一次，直是深受外企牙膏广告和垃圾牙医的毒害，估计以后垃圾广告说每隔10分钟刷牙一次，鸟院还会坚持执行呢。</p>
+<p>这是咱们昨夜的营地<br>啥都好，就是没有烧火的木柴<br>整的昨夜阿生、鸟院、字母跑的老远去捡柴火回来烧<br>每天烧柴火的好处有二：<br>1、减少气罐消耗，提升烧水总量（一锅烧开就是5L水）；<br>2、可以将每天产生的垃圾焚烧干净。</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2029013n3i8r9zd2s28n6s.jpg" loading="lazy" alt=""></figure>
+<p>出发即沿着矿道爬升<br>沿途可遇见几户牧民点</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/202905xgbkyaeyyy4hh5hk.jpg" loading="lazy" alt=""></figure>
+<p>这是牧民在给羊喂盐</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/202908bh95i2zb922bh9b3.jpg" loading="lazy" alt=""></figure>
+<p>矿道向上延伸<br>待到矿道拐弯向上与河道分开的时候<br>请务必记住离开矿道继续沿着河道向南逆流而上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2029111lrqr7vkvh1kjbak.jpg" loading="lazy" alt=""></figure>
+<p>在此离开矿道继续走马道通向白杨沟达坂</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2029128wmvsyp2g6yk8vms.jpg" loading="lazy" alt=""></figure>
+<p>你拍花 俺拍你</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2029152mgr20sa00w70qai.jpg" loading="lazy" alt=""></figure>
+<p>不怕你会跑 绳儿捆住脚</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/202916hoof722j7pweufu7.jpg" loading="lazy" alt=""></figure>
+<p>在此附近遇见一个牧民向俺讨要穿的鞋，直接拒绝<br>然后未行多久又遇见一支总人数达20多人的商业队伍<br>向其打听水情，说水最深到裆部，顿时放心<br>后听同伴说这商业队里走在最后的一个人是南京的，耗资3800跟商业走狼C<br>俱皆为之痛惜，钱多烧的慌</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/202917ssqsxll388nh4blh.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/202900j117u83531bb11zu.jpg" loading="lazy" alt=""></figure>
+<p>大约13点 中途停歇吃路餐<br>吃好后 华女借着冰水刷牙</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/203659jjrzwrxbw2hidymx.jpg" loading="lazy" alt=""></figure>
+<p>字母跟风</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/203700r2hf91rf1ir00709.jpg" loading="lazy" alt=""></figure>
+<p>海拔3855米的白杨沟达坂就在前方<br>一直沿着河道的右岸逆流而上 无需过河 就可沿清晰的马道走到白杨沟达坂脚下<br>对于耗水量大的人来说 务必记得在海拔3100米-3200米左右补充水源<br>否则在爬升达坂期间是无水可补的</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2037035lpsk6scf7wp7sv4.jpg" loading="lazy" alt=""></figure>
+<p>远远的看着白杨沟达坂</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/203715fz321ivmf1l7wye6.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/203732d9w9dkouew96qqow.jpg" loading="lazy" alt=""></figure>
+<p>已能望见通向白杨沟达坂的马道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/204815kxzw3b6t6ew1hn21.jpg" loading="lazy" alt=""></figure>
+<p>但在上白杨沟达坂的马道前需要先过冰河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/203754ir0rfq0poyohggfr.jpg" loading="lazy" alt=""></figure>
+<p>为避免湿鞋 阿生陪着华女从冰河上端绕行而至</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/203814h7c5nsshjqh0e2n2.jpg" loading="lazy" alt=""></figure>
+<p>这马道远看很清晰 靠近爬起来很陡峭</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/203623l6r3xw7303k7hmm4.jpg" loading="lazy" alt=""></figure>
+<p>吭哧吭哧往上爬</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205319jvg5ssttdcngssgg.jpg" loading="lazy" alt=""></figure>
+<p>偶见西安元宝8月初走狼C做的标记<br>咱也在那玛尼堆上添了一块小石头</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2053238r08r8sf09phsp8h.jpg" loading="lazy" alt=""></figure>
+<p>回看白杨沟<br>却显得一片荒芜 毫无生机</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2053243pe6siskrhepphhk.jpg" loading="lazy" alt=""></figure>
+<p>小冰湖</p>
+<div class="img-missing">📷 原图已从8264服务器删除，无法恢复<div class="fn">原文件名：205325z1z2z5hhz8eiphv4.jpg</div></div>
+<p>偶有起雾 影响不大</p>
+<div class="img-missing">📷 原图已从8264服务器删除，无法恢复<div class="fn">原文件名：205327ez0pfrjxps1jz9t3.jpg</div></div>
+<p>海拔3800米</p>
+<div class="img-missing">📷 原图已从8264服务器删除，无法恢复<div class="fn">原文件名：2053284ds74u6rdz0sc2d0.jpg</div></div>
+<p>4位同伴已经先到白杨沟达坂了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/20533100fbfoffa3bbebll.jpg" loading="lazy" alt=""></figure>
+<p>遥想2009年8月初首度穿越狼C 翻爬白杨沟达坂<br>却在爬到海拔3550米处因风雪雾交加而回撤到海拔3200米处扎营时饥寒交迫的囧况<br>此时再见白杨沟达坂<br>心境淡然 我又来了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205229rblz01a0y1y11wzw.jpg" loading="lazy" alt=""></figure>
+<p>鸟院神采飞扬 舞姿曼妙</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2111469a4cq3h93743u7y3.jpg" loading="lazy" alt=""></figure>
+<p>白杨沟达坂 海拔3855米</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/211147ywrypsrs7fg7g7g0.jpg" loading="lazy" alt=""></figure>
+<p>夕阳已下 夜幕降临 偶有雾气 景色别有不同</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/211147116jn1zj129ne259.jpg" loading="lazy" alt=""></figure>
+<p>合影 ，借用阿生所拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/212104ieh6b0khk9t36ggi.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/212103040l8i14nxa4es6w.jpg" loading="lazy" alt=""></figure>
+<p>稍作停留 抓紧下山</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/212314den4zpx8cdxsynan.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/212315uurrorqasbburdm7.jpg" loading="lazy" alt=""></figure>
+<p>夜路伸手不见五指<br>但鸟院的头灯却坏了<br>幸得俺的备用手电应急<br>离水边营地尚远<br>最后下降到海拔3427米的无水草坪将就扎营</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/212246ybhjqatrmgoypbs4.jpg" loading="lazy" alt=""></figure>
+</div>
+<div class="nav"><button data-go="d1">← 上一篇：D1</button><button class="primary" data-go="home">返回目录</button><button data-go="d3">下一篇：D3 →</button></div>
+</section>
+<section class="day" id="day-d3">
+<div class="day-head"><h2>D3</h2><div class="meta">8月27日 · 狼塔C线第三天 · 本节60张照片</div></div>
+<div class="prose">
+<p>当天海拔下降1049米 扎营于大塌方&quot;老虎嘴&quot;下 （海拔2378米）<br>今日从出发到扎营耗时12.5小时</p>
+<p>因昨夜的营地无水源<br>所以没吃早饭于08:34就出发，计划赶到水源地去进餐<br>10:20 到马鞍营地 牧民点 喝水两杯<br>10:47到达水边 早午餐一起解决<br>12:48出发<br>13:20下降到水边开始过河<br>经过数次过河后爬上栈道<br>15:52爬上可俯瞰台普希克马河的栈道垭口<br>16:30左右从栈道下到台普希克马河边的五星营地稍作休息、补充路餐<br>17:00继续出发<br>在过了2座桥和用绳做保护渡河两次后<br>21:05从大塌方&quot;老虎嘴&quot;上方硬切而过后在&quot;老虎嘴&quot;下方扎营，营地海拔2378米</p>
+<p>这是我们昨夜临时选择的无水营地<br>整的晚饭几乎没吃 喉咙干的冒火 早餐没吃就出发<br>最擅长的下坡都走的俺脚发软眼发花心发慌</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/22101136xzie2he0exxd7s.jpg" loading="lazy" alt=""></figure>
+<p>昨夜就是从这片碎石沙砾上下来的</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221011z28xkgg84n6zg8ej.jpg" loading="lazy" alt=""></figure>
+<p>天气不错<br>向着阳光出发</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221013olpnb9h2l8j519b8.jpg" loading="lazy" alt=""></figure>
+<p>下山到马鞍营地的路也多是横切路 谁走谁爽</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221016p52nfp22dfzf22pn.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2210177nhnerzkmen9nn7z.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221019afrgeweueydegker.jpg" loading="lazy" alt=""></figure>
+<p>俯瞰峡谷 那是我们的方向</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221021n2ess1bls6ne4omy.jpg" loading="lazy" alt=""></figure>
+<p>终于看见马鞍营地了<br>记得2009年8月初走到这里 没见一人<br>咱还走错了方向 从马鞍营地向右走羊道硬切到河对岸后再顺河而下未遂又强切回来 且只从望远镜里看见远处有一头大野猪在活动</p>
+<p>而今这里有3位牧民 真是喜事<br>赶紧向他们讨水喝以湿润干渴的喉咙</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221025wmwmumwebmcsw6w2.jpg" loading="lazy" alt=""></figure>
+<p>喝水后与牧民道别 从马鞍营地左侧往下前往水源地进餐</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/220902r7l6nn6llxppfcpp.jpg" loading="lazy" alt=""></figure>
+<p>眼看阿生、华女、鸟院他们已到水边开始烧煮进餐<br>咱却是腿脚发软眼发花的走不动<br>好不容易挨到水边补水补食带休息2小时有余才缓过劲来</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2219144c990qw32mfdv6m4.jpg" loading="lazy" alt=""></figure>
+<p>继续出发</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221915ydzra7ap6z8wpff9.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221917665h66576y63b85k.jpg" loading="lazy" alt=""></figure>
+<p>下降到水边有玛尼堆的位置开始过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2219202lze68588bl21pep.jpg" loading="lazy" alt=""></figure>
+<p>水流看起来有点急<br>在俺探好水路后<br>大伙跟上安全过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221922m2mac4wfcncmnme2.jpg" loading="lazy" alt=""></figure>
+<p>回拍首次过河点</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221925cy1w6wl3lwffldd3.jpg" loading="lazy" alt=""></figure>
+<p>乱石滩中穿过<br>记忆里2009年8月晚间22点走到此处就在乱石堆中扎营一宿</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221929svsoqvkhvpow199c.jpg" loading="lazy" alt=""></figure>
+<p>这里第二次过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221931vcjdvljeszlnyyjo.jpg" loading="lazy" alt=""></figure>
+<p>下包、轻身下降</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/221813qnmvhnrvesobzbnk.jpg" loading="lazy" alt=""></figure>
+<p>若不轻身下包 就得做好坠水准备</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/222850jbwfwb9i2jffbyfb.jpg" loading="lazy" alt=""></figure>
+<p>第三次过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2228531lhxrgh3bdbx7xf9.jpg" loading="lazy" alt=""></figure>
+<p>第四次过河点</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/222856xa8y4w6ika6kkw79.jpg" loading="lazy" alt=""></figure>
+<p>第五次过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/222859r0a39y5a04fa1jaj.jpg" loading="lazy" alt=""></figure>
+<p>第六次过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2229056dpppzhk9zk35zzk.jpg" loading="lazy" alt=""></figure>
+<p>峡谷深深</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2229069tiht5kn5q9p9hot.jpg" loading="lazy" alt=""></figure>
+<p>直下过桥上栈道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/222907rh1zkw6kihk8jfcr.jpg" loading="lazy" alt=""></figure>
+<p>这个直下很是突兀<br>走到近前才发现陡降到桥边</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/222910rtggmmmm7ri5isit.jpg" loading="lazy" alt=""></figure>
+<p>快到栈道垭口的时候发现两只蝴蝶难舍难分<br>未敢打扰 拍照 绕道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/222849f0cpcyf1acyr9130.jpg" loading="lazy" alt=""></figure>
+<p>记忆里感觉这个上栈道垭口的马道真是比2009年8月初的时候不是好了一点点<br>2009年咱探路至此只有树倒拦路的向上直攀、貌似路径的硬切道<br>而今却是之字形向上 路径清晰 且难度不大的大马道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/223753f52zxuliddujxtdj.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/223755ppunpgpnphamchpc.jpg" loading="lazy" alt=""></figure>
+<p>翻上栈道垭口之后更加让俺吃惊的是<br>2009年探路时看着太险、逼着俺们去渡台普希克马河的滑沙斜切羊道而今变成了马道<br>虽然看起来还稍微有些险 但好走的很 只要小心些就行了<br>至此才真正为自己选择走栈道而不是过水路的决定大舒了一口气</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/223757499amqmgmevacxmz.jpg" loading="lazy" alt=""></figure>
+<p>栈道掠影 行进仍需小心谨慎</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/223800hlux9uww9l49g0vn.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2238026p2fgj9fz22mao69.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/223805uny44nqqhzm47nyu.jpg" loading="lazy" alt=""></figure>
+<p>回看栈道如一线在崖</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/223807tdn8gm0p8d7injfd.jpg" loading="lazy" alt=""></figure>
+<p>下面就是五星级营地</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/223814g6qw8i68wgkkskkn.jpg" loading="lazy" alt=""></figure>
+<p>下切即到</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2236006ssrowbslsio6oi3.jpg" loading="lazy" alt=""></figure>
+<p>又见当年修栈道时废弃的机器</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2248042wczl9o3uxlpuxey.jpg" loading="lazy" alt=""></figure>
+<p>此地如果水大就只能过河<br>现在可以贴着河边的山崖而过</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/224805unwvjwn1jdddntag.jpg" loading="lazy" alt=""></figure>
+<p>又见一个营地<br>这个塑料垃圾不该遗留啊<br>恳请山友能带走或烧光自己产生的、无法降解的塑料垃圾<br>否则狼C不用多久就变成垃圾场了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/224807ajmwjfjawsjsusiw.jpg" loading="lazy" alt=""></figure>
+<p>竟然有桥<br>这是原来没有的<br>很开心的走过</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2248108yf99i9w8c56fwlf.jpg" loading="lazy" alt=""></figure>
+<p>狼粪里尽是动物毛发</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/224813ugdy3czc01reculr.jpg" loading="lazy" alt=""></figure>
+<p>再见一个营地</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/224816iebliiw8iaieiriq.jpg" loading="lazy" alt=""></figure>
+<p>又见一座新桥<br>真是太好了<br>两座桥至少让我们少渡2次河<br>今天的过河难事在顺利的翻过高空栈道和2座新桥的帮助下目前都很顺利的完成了<br>这是咱之前所没想到的<br>实属意外之喜呀</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/224818r6ibaaa8z0ww8076.jpg" loading="lazy" alt=""></figure>
+<p>在此处向上走羊道以避免渡河而未遂</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/224822phgd9k6hljlml43m.jpg" loading="lazy" alt=""></figure>
+<p>回到河边 主绳捆腰打保护渡河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/224723ezzel8lzl40aalac.jpg" loading="lazy" alt=""></figure>
+<p>水又急又冷</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/225542t05hdenxjebnyz3w.jpg" loading="lazy" alt=""></figure>
+<p>俺先锋过河<br>然后是鸟院、华女、字母<br>最后阿生收尾</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/225545mlwmopiuzvkxxmii.jpg" loading="lazy" alt=""></figure>
+<p>阿生过河后和鸟院在整理保护主绳</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/225548d6idui0rr11wzkkr.jpg" loading="lazy" alt=""></figure>
+<p>未过多久第二次过河<br>这次过河点的水深达大腿根<br>又比较急<br>经选探过河点后<br>继续咱先锋过河<br>然后鸟院、华女、字母、阿生<br>好在有惊无险安然渡过</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2256212700bzva108gag7u.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/225624yyobzaccep4csiyy.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/225626eehhu1h1p6eaulf1.jpg" loading="lazy" alt=""></figure>
+<p>滔滔河水</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/225627kbhb37w1iz1wwbrk.jpg" loading="lazy" alt=""></figure>
+<p>前方有牧民点<br>有赶羊转场出山的几位牧民<br>这也是2009年8月的时候所没有的<br>看来狼C较以往确实热闹多了<br>遇见的牧民建议俺们就在他们这里休息<br>咱想在翻过大塌方&quot;老虎嘴&quot;后再宿营<br>所以婉拒</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/225629u3diia1awtaauawa.jpg" loading="lazy" alt=""></figure>
+<p>继续走栈道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2255410tyt8q8urtqyrf81.jpg" loading="lazy" alt=""></figure>
+<p>此时字母背的湿绳分外沉重<br>也不便于行走<br>所以咱建议他上来后将保护绳打包放好再走</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/230332tu732t6ue33dssu7.jpg" loading="lazy" alt=""></figure>
+<p>前方大塌方位置就是&quot;老虎嘴&quot;<br>遥想2009年8月初走到此处硬切老虎嘴未遂而重新返回河边渡河的惨状<br>现在无论如何也不愿意再走回头路去过河<br>所以选择从&quot;老虎嘴&quot;的上方硬切过去<br>山坡上的白点都是转场的羊<br>因为我们挡住了去路<br>所以羊不敢过来<br>有两位牧民跟着咱们过来看羊<br>并且告诉咱们刚才在塌方位置他们还用铁锹铲出了脚窝子可以走<br>但咱还是选择从&quot;老虎嘴&quot;上方硬切<br>毕竟牧民走羊道的能力可不是咱们能比的<br>得有自知之明呀</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2303378334nn4ercl9m4ml.jpg" loading="lazy" alt=""></figure>
+<p>从&quot;老虎嘴&quot;上方俯瞰河谷<br>这地方掉下去可不保证能活哟</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/230339z0j0r2i0hrip42hi.jpg" loading="lazy" alt=""></figure>
+<p>硬切的羊道也不好走<br>这只要看登山杖前伸的角度、长度以及人往前倾的身体就知了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/230341lqgz7l3gl2rr7002.jpg" loading="lazy" alt=""></figure>
+<p>好心的牧民还提醒咱们小心上方的羊踢石头下来砸到人</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/230343qmlvdlklyvz7ed6l.jpg" loading="lazy" alt=""></figure>
+<p>下切到&quot;老虎嘴&quot;的下方河边扎营<br>看鸟院忙于搭帐<br>所以咱在将灶台架好烧火煮水并交给鸟院看管后才开始搭帐<br>后又请阿生另起一堆篝火烘烤湿物<br>今晚有两位牧民也在河边露天而住看护转场的羊<br>牧民确实很是辛苦</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/230331sxcxcsixe3efa6ef.jpg" loading="lazy" alt=""></figure>
+<p>尊重他人隐私，未经他人同意不发他人正面清晰照。。</p>
+<p>一般而言，传统狼C+狼V11天走不下来，俺们是计划13天走完，加2天机动，背负了15天的补给物资。</p>
+<p>是啊 ，开始咱也想到库达坂的沟口扎营。<br>但上午空腹行走太伤人，影响了后续进程。<br>还好翻栈道绕行部分台普希克马河以及后续渡河都十分顺利，才得以切过&quot;老虎嘴&quot;扎营。</p>
+</div>
+<div class="nav"><button data-go="d2">← 上一篇：D2</button><button class="primary" data-go="home">返回目录</button><button data-go="d4">下一篇：D4 →</button></div>
+</section>
+<section class="day" id="day-d4">
+<div class="day-head"><h2>D4</h2><div class="meta">8月28日 · 狼塔C线第四天 · 本节59张照片</div></div>
+<div class="prose">
+<p>全天海拔上升1172米，下降1065米，徒步耗时12.5小时。</p>
+<p>07:00叫早，<br>09:46出发，徒步起点海拔2378米，<br>13:02爬出栈道到达库勒阿特腾阿苏达坂沟口，<br>13:59开始翻越今日最高点库勒阿特腾阿苏达坂海拔3550米，<br>19:41爬到库达坂（今次爬升较2009年8月爬库达坂慢了足足1小时，这既有体能下降的原因，也有感觉今年从库达坂最后几百米的右侧马道、碎石上切的难度远大于2009年8月从库达坂最后几百米的左侧滑沙路上切的因素）。<br>22:28下降到海拔2485米的水边三岔营地扎营。</p>
+<p>这是俺们昨夜的营地<br>牧民也老早起来到大塌方&quot;老虎嘴&quot;位置将羊往山外赶</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150427fn5kfsesyyvfuskl.jpg" loading="lazy" alt=""></figure>
+<p>而牧民昨夜就在河边石滩露天而卧</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150431t8nosywmp3nnzxwl.jpg" loading="lazy" alt=""></figure>
+<p>收拾完毕准备出发</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1504356656621wog4m4ht4.jpg" loading="lazy" alt=""></figure>
+<p>继续走栈道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150438c2ocmncyb2yc2o66.jpg" loading="lazy" alt=""></figure>
+<p>只走20分钟左右就来到了通往库达坂沟口的栈道的标志性木桥处<br>过桥转上栈道再到翻上库达坂至下降到河边营地之前都无需渡河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150442w0p7s7320rwnwzez.jpg" loading="lazy" alt=""></figure>
+<p>台普希克马河从上游峡谷滚滚而来</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150445zf07eszsu212332e.jpg" loading="lazy" alt=""></figure>
+<p>峡谷望天</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150447n398dcznmn93pm0l.jpg" loading="lazy" alt=""></figure>
+<p>过桥没走多久就遇上赶羊转场出山的牧民</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150451j7vwc9wssjwuw449.jpg" loading="lazy" alt=""></figure>
+<p>马可过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151616cow6mozrp55979o9.jpg" loading="lazy" alt=""></figure>
+<p>但羊只能走羊道<br>人、羊相遇<br>羊不敢走 人过不去<br>僵持着</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15161911g2112v7nc91e4g.jpg" loading="lazy" alt=""></figure>
+<p>最后牧民从栈道上羊群后面切下来让俺们再躲的远些<br>俺们依言躲到石头下<br>羊才在牧民的催促下急走</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15162245eavw1ydboyao8d.jpg" loading="lazy" alt=""></figure>
+<p>羊走了、牧民也走了<br>在山里偶尔能遇见的几个牧民在天气转冷后就更难见着了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151626dnqnnnnkhqdzqn1w.jpg" loading="lazy" alt=""></figure>
+<p>踏上栈道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151630fypbc1z1ybfpttxf.jpg" loading="lazy" alt=""></figure>
+<p>看阿生（红衣）的姿势就知道栈道陡峭</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151636z9qmja2rjpajzanz.jpg" loading="lazy" alt=""></figure>
+<p>华女阿生华女字母噌噌的就上去了<br>俺在后面慢吞吞的挪呀挪</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1516395w5ewz1x5w8wgu5p.jpg" loading="lazy" alt=""></figure>
+<p>爬栈道要小心谨慎以免滑坠<br>务必记住 走路不看景、看景不走路</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151643p8t7zl2zh6n8rlpk.jpg" loading="lazy" alt=""></figure>
+<p>继续上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15132247rqm648myfhfzam.jpg" loading="lazy" alt=""></figure>
+<p>然后下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152630yd9v2f32iik9v2ym.jpg" loading="lazy" alt=""></figure>
+<p>脚下就是峡谷</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152632wsv30m3xxp0bdxkx.jpg" loading="lazy" alt=""></figure>
+<p>前方是七星级的库达坂沟口营地</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1526366rdr6p7ttbpmrr47.jpg" loading="lazy" alt=""></figure>
+<p>看来今年的水很大<br>将沟口的草坪冲出许多的碎石滩</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152639cxxlnngn7qvsnxxc.jpg" loading="lazy" alt=""></figure>
+<p>看见这片开阔地 下了栈道 走到左侧有一棵孤树的第一个沟口就是上库达坂的沟口<br>千万别再走到前面的河源峰去了<br>今年这有牧民放牧 但咱们进山的时候他们也开始赶羊转场出山</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15264267scxsvfxfcinkvd.jpg" loading="lazy" alt=""></figure>
+<p>几位同伴先到上库达坂的沟口 吃路餐 晒装备</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152644qn1d00mn19z9on1u.jpg" loading="lazy" alt=""></figure>
+<p>库达坂沟口标志性的小树<br>沟口很小 但肚里乾坤大</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152648hpvvkkfs4o6jcg3f.jpg" loading="lazy" alt=""></figure>
+<p>之前被云层笼罩的河源峰渐现真容</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152649ke7aett2ymeaezdk.jpg" loading="lazy" alt=""></figure>
+<p>俺在库达坂沟口 堆了2个小玛尼堆 希望对后来者有所帮助</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152555qw393pl9yjy6rsr9.jpg" loading="lazy" alt=""></figure>
+<p>靠近沟口再堆一个玛尼堆<br>如果没有山洪爆发的冲击 众人添砖加瓦 这个玛尼堆就会越来越大 大伙就会更好辨别路径了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1543466e33b6hfmzmbobh4.jpg" loading="lazy" alt=""></figure>
+<p>循着乱石沟向上攀爬</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153648qtqaund6dnk6klzd.jpg" loading="lazy" alt=""></figure>
+<p>回拍沟口</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153653yk6qvxpvscmepccm.jpg" loading="lazy" alt=""></figure>
+<p>努力向上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153658yieytqrqq21kr2h2.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153702zzr3yfy3r8s7tzys.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153705hz3nhq3qz4t3kk67.jpg" loading="lazy" alt=""></figure>
+<p>渐进爬升 回看身后 已经能到达沟口对面山体的一半高度了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153709w1hataszttaxw2u0.jpg" loading="lazy" alt=""></figure>
+<p>继续无尽的乱石</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153711tr2rngvnm66646fr.jpg" loading="lazy" alt=""></figure>
+<p>好不容易快爬出乱石沟<br>却远远看见草坡上的华女、阿生、鸟院三位牲口级别的重症精神强力背夫早就快翻过草坡了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153542vsjjov66o6sfosjl.jpg" loading="lazy" alt=""></figure>
+<p>从乱石沟抬头上看库达坂</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155423kkpocaobfrpxr62k.jpg" loading="lazy" alt=""></figure>
+<p>爬上草坡 回拍身后爬过的路</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155426j53jyj34bzggp2gj.jpg" loading="lazy" alt=""></figure>
+<p>然后继续如同爬楼梯一样的爬陡陡的草坡</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155431mqq2ipphmohy2i8o.jpg" loading="lazy" alt=""></figure>
+<p>这样回拍就看得出草坡的陡峭了<br>俺想在这字母是不会想滑草的</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155434otombmo5v6qtqodt.jpg" loading="lazy" alt=""></figure>
+<p>身后风景依然</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155437kewkb99jnob9ywbo.jpg" loading="lazy" alt=""></figure>
+<p>上面是俺努力的方向</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155439qqfszrz1xw4rz1fu.jpg" loading="lazy" alt=""></figure>
+<p>抬头望的脖子酸</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155441lxndzlr8dh4rjnnj.jpg" loading="lazy" alt=""></figure>
+<p>看得见几位已经爬上库达坂滑沙路的疯子么？</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155443u776ok9ookzuuw76.jpg" loading="lazy" alt=""></figure>
+<p>拉近镜头看见华女、阿生、鸟院已经快到库达坂顶了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160231k3s5vvs33cdbsom3.jpg" loading="lazy" alt=""></figure>
+<p>俺才到库达坂下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161527ts9hf75s5snt5csn.jpg" loading="lazy" alt=""></figure>
+<p>2009年8月翻库达坂是从左侧的滑沙路上切的<br>当时感觉很好爬 没难度没强度<br>这次看右侧上库达坂的滑沙路径明显更清晰<br>感觉应该更好爬<br>但为啥华女、阿生、鸟院仨人却迟迟不能到顶呢<br>一下没想明白</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161208v4736x36uclvvxzp.jpg" loading="lazy" alt=""></figure>
+<p>等到走上上库达坂的右侧滑沙马道才发现这路明显不好爬呀<br>跟2009年8月爬的感觉差别太大了 一步一滑 抓着石头还是风化会掉的<br>看字母在前面挪动艰难就知道了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161212czjtr99kad786ddu.jpg" loading="lazy" alt=""></figure>
+<p>累了 就歇息 顺便看看风景</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/16121927gy45y4yeezz5yf.jpg" loading="lazy" alt=""></figure>
+<p>走到近前发现那个马道是没法爬了<br>于是选定一条靠近山体石头的、不是路的路 开始硬切<br>当时就想不管它风化石头会不会掉 有石头依靠总比在滑沙碎石上孤悬着好</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1612231b1hjlx6twt6pgw1.jpg" loading="lazy" alt=""></figure>
+<p>拍的这段碎石马道没有体现出实际的陡峭呀<br>反正俺们都不去爬了<br>想想就知嘞</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/16122754trrwnxawh9bk4s.jpg" loading="lazy" alt=""></figure>
+<p>能找出最后横切上库达坂的路么</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1612303y633afcfw3zcz2k.jpg" loading="lazy" alt=""></figure>
+<p>终于翻上了库达坂 虽然耗时较以往多了一小时<br>但是咱没感觉自己在中间有啥歇息 一直都在找点 下脚 硬切</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161232d3dd3oxx9d8sxdpd.jpg" loading="lazy" alt=""></figure>
+<p>快到库达坂的时候 俺大喊掌声在哪里<br>华女、 阿生 掌声响起来 谢嘞</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/16105239qm9het3y9qm6qr.jpg" loading="lazy" alt=""></figure>
+<p>库达坂合影</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161940mzov6ilkom1ornwm.jpg" loading="lazy" alt=""></figure>
+<p>合影--阿生所拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161942eer5cma78z5g5g4g.jpg" loading="lazy" alt=""></figure>
+<p>时间已迟 抓紧下山</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/162058he24rg4zaj324olh.jpg" loading="lazy" alt=""></figure>
+<p>滑沙而下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1621013b8obbnorzxa0aa5.jpg" loading="lazy" alt=""></figure>
+<p>一路未见合适的营地 今天走夜路难免了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/162104o1ktkkcbtkp61jpl.jpg" loading="lazy" alt=""></figure>
+<p>黑暗中看见一个北山羊角</p>
+<p>最后摸黑走到三岔河口营地扎营<br>今天将 鸟院、字母有些走劈了<br>字母差点饭都不想吃就睡<br>而鸟院脚起泡了 明显状态也不好<br>俺强打起精神 找出便携盆 建议大伙烧热水泡脚去乏<br>华女、阿生一如既往的稳定发挥<br>所以请阿生他们找些柴火（营地周围的柴火都被人烧光了，真是难找呀）<br>再请鸟院坚持烧好开水、泡脚， 然后咱来帮他处理脚泡<br>无他 只想在这种时候以行动来昭示大伙精神不能垮<br>但鸟院的理解却是十分特殊 烂人说 你给我处理脚泡还不是怕队员拖后腿啊<br>我擦 气得吐血 是以为记</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/162054lt1zfwe4rwjwyt01.jpg" loading="lazy" alt=""></figure>
+<p>谢谢关注，是的。</p>
+<p>别羡慕别嫉妒更别恨，只要你愿意坚持锻炼并做细致准备、累积经验、下定决心你也能！</p>
+</div>
+<div class="nav"><button data-go="d3">← 上一篇：D3</button><button class="primary" data-go="home">返回目录</button><button data-go="d5">下一篇：D5 →</button></div>
+</section>
+<section class="day" id="day-d5">
+<div class="day-head"><h2>D5</h2><div class="meta">8月29日 · 狼塔C线第五天 · 本节34张照片</div></div>
+<div class="prose">
+<p>出发时海拔2485米，扎营地海拔3310米，当日海拔上升825米<br>出发时间10:26，扎营时间18:38，当日徒步时间8小时余。</p>
+<p>07:25阿生叫早<br>10:26出发就直接过河<br>10:55到达2009年8月走狼C时的塑营地，华女刚过宿营地的河道就要求换上登山鞋，咱说前面河道变化大，估计还要过水，但拗不过她也就同意了她的换鞋主张，集体换鞋后再出发。结果没走多久又是连续过河，嫌换鞋耽误时间，最后还是穿着溯溪鞋走到蒙格特开增达坂附近的牧屋处吃路餐、晒鞋袜。<br>14:51出发<br>18:38爬升到海拔3310米处因蒙格特开增达坂上面起雾不利前行而扎营。此营地平整、水源足，较早休息也算是赚到一次比较好的休整。</p>
+<p>俺们昨夜营地就扎在从库达坂一直沿河而下到与主河道交叉的河边三岔口的一片草地上<br>今天出发向右拐、渡河后逆流而上即可</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/202055mc7uqnl24lelqye9.jpg" loading="lazy" alt=""></figure>
+<p>字母做的早餐:面糊糊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/202057kh0zo6zh244e4o49.jpg" loading="lazy" alt=""></figure>
+<p>收拾完毕</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2020593to0pb3w9fb9byb4.jpg" loading="lazy" alt=""></figure>
+<p>到河边右拐,渡河后逆流而上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/202101ipdmeq1qdreqe4eo.jpg" loading="lazy" alt=""></figure>
+<p>逆流而上，接着连续渡河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2021038g7hhtttcgfh3t5x.jpg" loading="lazy" alt=""></figure>
+<p>前行没超过半小时即可到前方三角洲处<br>这是我们2009年8月的曾经宿营之地<br>如今河滩的地貌与2009年8月时相比已经大变</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2021056f15111vlm0v3mal.jpg" loading="lazy" alt=""></figure>
+<p>放大来看，<br>这里有两条河流相并，<br>一条是我们循着逆流而上的主河道，一条是左侧山谷里流出来的河道，<br>继续逆主河道渡河而上，千万别走进左侧的山谷！！！</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/202108vp6v35np8555uxp0.jpg" loading="lazy" alt=""></figure>
+<p>又沿马道逆流前行半小时左右又到一个三角洲<br>这里也有两河交汇，<br>千万别走右侧峡谷，<br>而应循马道向左（直行）渡河，连过3次，翻过对面乱石小坡即可看见一片开阔的河滩</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2021138lwih8uwdltroykr.jpg" loading="lazy" alt=""></figure>
+<p>爬上乱石后就可看见下面的开阔河滩<br>继续逆流而上吧</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/200626fd2xlppwxtlwxido.jpg" loading="lazy" alt=""></figure>
+<p>沿乱石滩逆流而上<br>直到出现河道收拢、草坡上有牧屋时午休加路餐</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/20415895gcwfejxx9oeddr.jpg" loading="lazy" alt=""></figure>
+<p>牧屋就在大片黄色草坪中央的小块绿色草坪上<br>坡下的河道上也有羊圈</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2042052aprapllp3e3rjmz.jpg" loading="lazy" alt=""></figure>
+<p>路餐后开始脱离河道<br>向前方草坡爬升（但仍与右下方的河道并行）</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/204213hixmqj1o4bugygzc.jpg" loading="lazy" alt=""></figure>
+<p>千万不要因为俺的帖子之类杂事影响了工作哦。。</p>
+<p>在草坡上我们脱离了传统的通往CD线分叉的马道<br>循着草坡向左前方上行 到了前方出现一座山<br>两山之间有一个峡谷 峡谷口（即草坡下方)平地有个羊圈和一座牧屋的地方<br>不下到牧屋，而是继续沿着左侧山体向左侧峡谷走去</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/204222v3gz646tl3i6v343.jpg" loading="lazy" alt=""></figure>
+<p>在山坡上看到右下方的马道上有位牧民骑马向CD线分叉方向而去</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/204242apn333329zir3n4p.jpg" loading="lazy" alt=""></figure>
+<p>下图就是牧屋和羊圈，牧民已经转场了<br>2009年8月，我们在翻过白杨沟达坂后，因水大耽搁，连续5天未见一个外人才走到此处，<br>幸得此处牧民指点才知牧屋对面的峡谷向上走，翻过右侧的山头也能到达蒙达坂冰川处，<br>不过翻这个山头得有负重爬羊道甚至攀岩、硬切的能力却是他未曾说的</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/204253ee1erxe1rhr3xk3x.jpg" loading="lazy" alt=""></figure>
+<p>沿着峡谷向着冰川爬升<br>这个冰川并不是蒙达坂<br>只有到前方冰川附近在寻机翻过冰川右侧的山才能翻到蒙格特开增达坂的冰川左侧</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2043001c44dcu40zheuydh.jpg" loading="lazy" alt=""></figure>
+<p>顺着草坡向上爬</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/204310x1u8zxw49585x58z.jpg" loading="lazy" alt=""></figure>
+<p>回拍才感觉海拔升高挺多</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/204153xixpidm3oj83x3pv.jpg" loading="lazy" alt=""></figure>
+<p>回拍风景这边独好</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2056263393ffc3f7utwsmu.jpg" loading="lazy" alt=""></figure>
+<p>草坡越来越陡</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205622vu4l71pzqthkv44k.jpg" loading="lazy" alt=""></figure>
+<p>遥见冰达坂上云层加厚</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205417zthelll6fubmn7t7.jpg" loading="lazy" alt=""></figure>
+<p>前方云层还在聚集</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205423dcvetll8gwln5m8z.jpg" loading="lazy" alt=""></figure>
+<p>左侧山体冰川溶解流下冰水</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205431l2vlv8tj8jfjwjdf.jpg" loading="lazy" alt=""></figure>
+<p>回看爬过的风景</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205434urwma9g53f9afg5r.jpg" loading="lazy" alt=""></figure>
+<p>随着海拔升高，草地减少，碎石增多<br>这是回拍翻过的一个乱石坡</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205438cdj9z556gkff969r.jpg" loading="lazy" alt=""></figure>
+<p>当时看前方冰达坂云层聚集，明显变天，不宜再爬，遂果断决定就地扎营<br>所谓欲速则不达，不能为快而快<br>户外出行永远记住安全第一 快乐第二<br>人生之路也是这样不可能一直前进，要懂得是滴停整、适度迂回甚至适度后退<br>但附近走过的地方既不平整也无水源<br>都不适合扎营<br>请字母前探，字母看过回来说前面都是乱石，不如回撤几十米到刚才经过的一个无水乱石处扎营<br>后阿生、华女依稀记得2009年8月时咱们也在这附近因下雪而临时扎营，当时的营地平整而有水源<br>所以请阿生又上去看了看，发现再爬升一小段就可到达适合扎营之地<br>于是咱们继续向前</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205448z6s65tdee2566s6u.jpg" loading="lazy" alt=""></figure>
+<p>周围山体魅影如同黑风怪的住所</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/205411cwpksdt46tfqskhl.jpg" loading="lazy" alt=""></figure>
+<p>冰达坂上空云层密布</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/2103354db1qt4bmqrt9jbb.jpg" loading="lazy" alt=""></figure>
+<p>周边山体云层遮蔽</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/21034023t8n893ws83yj4j.jpg" loading="lazy" alt=""></figure>
+<p>爬到有水源的草坪处早早扎营<br>过了这片草地再往上就真难早合适的营地了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/210346hvycyvpv1y153cho.jpg" loading="lazy" alt=""></figure>
+<p>山下也被云雾笼罩</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/210349444h784bm84e8mrl.jpg" loading="lazy" alt=""></figure>
+<p>搭好帐篷后 冰达坂就已经被云雾遮蔽的看不见了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/210353f35en3hh3tfg15f3.jpg" loading="lazy" alt=""></figure>
+<p>一直到进帐睡觉 冰达坂处的云雾也不曾散开</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/210358b9xt71x99xp6999b.jpg" loading="lazy" alt=""></figure>
+<p>今天走的少、扎营早、吃的早，时间充裕精神好，<br>所以临时搭了一座玛尼堆，希望帮到误打误撞来到此处者<br>但郑重提醒：<br>从此处上行到无路的乱石处开始翻过右侧山头到蒙达坂冰川左侧的山体极其陡峭，且没马道，得硬切、甚至攀岩爬升几百米的海拔高度才能到达，需要很强的方向感、找路能力，且极易滑坠、极不安全，故请行者三思而后行！！<br>强烈建议后来者仍循常用攻略到CD线分岔口上蒙达坂！！！</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/210322hcsc029rb8lacpf1.jpg" loading="lazy" alt=""></figure>
+<p>这种问题问的冒冷汗呀，咱的游记已经讲的很清楚了。</p>
+<p>具体没有算过。主要开支是进出新疆的交通费和前期的装备升级费用。真正到了新疆反而没啥开支。</p>
+<p>墨脱显然不是一个级别的了。但墨脱年年有人玩完哎，所以也是不能掉以轻心哦。</p>
+</div>
+<div class="nav"><button data-go="d4">← 上一篇：D4</button><button class="primary" data-go="home">返回目录</button><button data-go="d6">下一篇：D6 →</button></div>
+</section>
+<section class="day" id="day-d6">
+<div class="day-head"><h2>D6</h2><div class="meta">8月30日 · 狼塔C线第六天 · 本节71张照片</div></div>
+<div class="prose">
+<p>当天海拔上升600余米，下降1000米多点，全天徒步耗时12小时。</p>
+<p>出发时海拔3310米，<br>当天翻越海拔3900多米的蒙格特开增达坂后、再横切翻越海拔3700多米的哈尔嘎特开尔茨达坂，<br>宿营地（牧屋）海拔2893米</p>
+<p>09:55出发<br>14:40爬上蒙格特开增达坂<br>17:25到达哈尔嘎特开尔茨达坂（但华女、阿生、字母仨人一路狂飙，只耗时80分钟就从蒙达坂奔到了哈尔嘎特开尔茨达坂）<br>20:30循乱石沟一直下降至两河交界的沟口<br>21:55到沟口左拐循水路逆流而上至右岸的牧屋宿营</p>
+<p>早起看冰达坂处的云雾渐散</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/131145tt877o8sas0stjwl.jpg" loading="lazy" alt=""></figure>
+<p>山下云雾飘渺</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/131305e71qztjnqttsej78.jpg" loading="lazy" alt=""></figure>
+<p>爬高看俺们的营地和前方的冰达坂<br>今天咱们要靠右向上走到冰达坂前再翻过右侧的山头</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/131303r4qh55hr0i8z07di.jpg" loading="lazy" alt=""></figure>
+<p>收拾营地、处理垃圾<br>走过路过但不抛弃或残留无法降解的垃圾是我们每个户外出行人员的应尽责任</p>
+<p>出发时偶有雾气笼罩</p>
+<p>爬升</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151256uzzvlusvvxbi8i3i.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1512571u5e57nz5av1sena.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1512540210ryiwggrri202.jpg" loading="lazy" alt=""></figure>
+<p>山下雾气涌上来</p>
+<p>硬切</p>
+<p>一切靠自己</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1517467b8rtjqrzb8r1vrz.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1517485at2ni457lalqo78.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151749ozdzr4dzqyhl4hfa.jpg" loading="lazy" alt=""></figure>
+<p>但得随时小心上方落石</p>
+<p>看看最后一个字母的姿势就知山体的陡峭程度了<br>但这远不是最陡的时候</p>
+<p>上切到一个小草坡处稍息后准备下一波冲刺</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151751gqso99qwr445ubpw.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1517536y6g3vg56vdy9oyz.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151755hef2ezef2s2utequ.jpg" loading="lazy" alt=""></figure>
+<p>下到乱石处</p>
+<p>硬切才是主题</p>
+<p>向上并不容易</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151756mwwx1zv40hmwwpwy.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151759npio9ixvs8w6svm8.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151745vbd3l36d68y5el0b.jpg" loading="lazy" alt=""></figure>
+<p>冰川仿佛触手可及</p>
+<p>这世上本没有路 走地多了 路就成形了<br>至于是人走 或是兽爬 待议</p>
+<p>看看山下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152633y76uty8yugk1zrui.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152633i6mad4eehndiaikq.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15263576sc9m905r3js9zw.jpg" loading="lazy" alt=""></figure>
+<p>云雾缠绕间 荒芜之地也有美感</p>
+<p>但不能忘记目标是向上</p>
+<p>你们好快</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152638klg2utbdcmny39ul.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152639xuaabtizay61y42q.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152640vpc177vpj4vcyy22.jpg" loading="lazy" alt=""></figure>
+<p>华女喜欢增加难度和强度单练</p>
+<p>看着山体寻找、计划、确定合适的攀爬路线<br>最后确定沿着右侧有些草皮 相对碎石少些的山体上切 以减少碎石滑坠的危险<br>但在这里 阿生华女犯了经验冒进主义 决意从左侧的乱石处上切 喊都喊不回<br>导致队伍分成2支 各走一边上切<br>这是一个危险的信号<br>需要加以重视<br>否则不知啥时候危险就会降临</p>
+<p>爬高望远--回望</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152643la8yqt8tatlm6m61.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152645so2gag2xovoo4y33.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152521cdi6j22ffdjc0c2j.jpg" loading="lazy" alt=""></figure>
+<p>我看你怎么上来，嘿嘿嘿</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153648k1dkg3xhlh1lmh29.jpg" loading="lazy" alt=""></figure>
+<p>从这上啊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153649pudzcw64w5ywufc3.jpg" loading="lazy" alt=""></figure>
+<p>俩锅甩裤</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153651ss9z456ed4xxdff1.jpg" loading="lazy" alt=""></figure>
+<p>哇，这也是飒爽英姿</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153653tntmtffwttswztf9.jpg" loading="lazy" alt=""></figure>
+<p>好不容易找个适合摆酷的地方也不知斯文点<br>唉 张牙舞爪的 斯文扫地呀</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1536566mzcrdjozccojppo.jpg" loading="lazy" alt=""></figure>
+<p>抬头望P 小心落石</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15365869lnv1rsf9f2fv1n.jpg" loading="lazy" alt=""></figure>
+<p>鸟院一马当先 字母紧跟其后 俺缓缓而上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153700o3mb88yo80d1ydy8.jpg" loading="lazy" alt=""></figure>
+<p>手脚并用 真是爬呀<br>但好在选择的这段硬切路径上草皮相对多些<br>比碎石陡坡好爬多多</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153703nfljnnhji1nkhlgn.jpg" loading="lazy" alt=""></figure>
+<p>终于攀上了海拔3800来米的山头<br>到达蒙达坂冰川的左侧<br>不过2009年8月爬到此处时曾经看见的玛尼堆已经踪迹皆无<br>沿途羊屎也少 且不新鲜<br>看来此段硬切路由于山体风化 石头崩塌的影响已经久已不用</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1536257o8tt2ypj7lu8ytu.jpg" loading="lazy" alt=""></figure>
+<p>到顶后 短暂分开的两队会合<br>硬切下到蒙达坂冰川的左侧</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1545294wshcasylc947yc7.jpg" loading="lazy" alt=""></figure>
+<p>再次郑重提醒：<br>咱们这次翻过山头硬切到蒙达坂冰川左侧的山体极其陡峭，且没马道，得硬切、甚至攀岩爬升几百米的海拔高度才能到达，需要很强的方向感、找路能力，且极易滑坠、极不安全，故请行者三思而后行！！<br>建议后人仍循常用攻略到CD线分岔口上蒙达坂！！！</p>
+<p>回拍常规上蒙达坂冰川的路口</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154531mhblmehwxfb9jnre.jpg" loading="lazy" alt=""></figure>
+<p>爬冰达坂最怕的是暗冰裂缝<br>但这又没法探测<br>只好听着脚下冰川里的冰河流水声走一步算一步</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154533vpphwf7ofn7zz1f7.jpg" loading="lazy" alt=""></figure>
+<p>明冰裂缝</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154535jv3zxkw6q7ez9jww.jpg" loading="lazy" alt=""></figure>
+<p>2009年8月走到此地 雪深及大腿<br>今年的蒙达坂冰川表面却几乎没啥雪<br>剩下的只是被阳光照射的表面在迅速溶解的硬雪（冰）壳<br>表面布满了如刀切般的一道道冰川错层痕迹<br>这即降低了冰川的厚度 也让人担心冰川的稳定性<br>行走其上步步惊心</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154537zazj02icjft11tm1.jpg" loading="lazy" alt=""></figure>
+<p>后面的 悠着点啊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154539rfnxhhntkftfphk4.jpg" loading="lazy" alt=""></figure>
+<p>冰达坂滑溜溜 得小心滑坠</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154541vu33ngr35m3d3mma.jpg" loading="lazy" alt=""></figure>
+<p>不断扩大的冰河 泥土裸露 但不知泥土下面是冰川还是实地？</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1545439rz9b8p77hr3x9r3.jpg" loading="lazy" alt=""></figure>
+<p>各自选择合适的路径上行</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154545km3phqcy1jsc7hzw.jpg" loading="lazy" alt=""></figure>
+<p>走走拍拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154548h4gvsk44gvga2zc4.jpg" loading="lazy" alt=""></figure>
+<p>看见蒙达坂了 真的快爬出冰川了 快了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154549qj8djmj0v20zqmq3.jpg" loading="lazy" alt=""></figure>
+<p>冰川在哭泣</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1545277904yl94frpp8p73.jpg" loading="lazy" alt=""></figure>
+<p>华女、阿生、鸟院、字母先上到蒙达坂上晒太阳、补充路餐</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1603488xu21hi1v9uoo1ki.jpg" loading="lazy" alt=""></figure>
+<p>背包是我们全程的忠实伙伴</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160349qzt4rq7oqe4eql93.jpg" loading="lazy" alt=""></figure>
+<p>回拍蒙达坂冰川<br>若气候继续变暖<br>不知它还能存在几年？</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160351oa5v5a99861f52kw.jpg" loading="lazy" alt=""></figure>
+<p>随拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160352mwwwxttqwwkemak6.jpg" loading="lazy" alt=""></figure>
+<p>狼的本性--吃</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160354vru5qyqmr95yr0cy.jpg" loading="lazy" alt=""></figure>
+<p>蒙达坂合影--阿生拍摄</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161020zne0w9v6fpp434vj.jpg" loading="lazy" alt=""></figure>
+<p>碎石下切</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160356tcbctg7dyobjeodz.jpg" loading="lazy" alt=""></figure>
+<p>山腰横切</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1603589qr6v63r8ygr8g9g.jpg" loading="lazy" alt=""></figure>
+<p>这就是路</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160401rzv34mpvnp4eepk2.jpg" loading="lazy" alt=""></figure>
+<p>不知哪位高人背了3个馕放到这里</p>
+<p>背到此才减负未免太辛苦了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/170531bm664xbn1c36zce4.jpg" loading="lazy" alt=""></figure>
+<p>2009年8月的时候咱们是走到图中间的大石头处就继续往大石头上方硬切到海拔3900光景的未知达坂口再从陡峭的滑沙坡直接滑下<br>现在蒙达坂通往哈尔嘎特开尔茨达坂的马道十分清晰<br>循着走就行了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/170918575boz532m312xbl.jpg" loading="lazy" alt=""></figure>
+<p>风景随拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/170919skkajsjk90ummueu.jpg" loading="lazy" alt=""></figure>
+<p>回拍横切道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/17092041t9m4xt5mflnn99.jpg" loading="lazy" alt=""></figure>
+<p>至哈尔嘎特开尔茨达坂之前的一个玛尼堆</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/170921g30xgn0ndw7nza1q.jpg" loading="lazy" alt=""></figure>
+<p>本想喊他们仨继续循2009年8月的老路从大石头那上翻未知达坂再直接滑沙下切到乱石沟<br>但或许他们因为俺走的太慢而被拖沓许多天的脚步此时终于抑制不住的爆发了<br>所以华女、阿生、字母自蒙达坂下来后就循着马道一路狂飙、中间不停不歇的80分钟走到哈尔嘎特开尔茨达坂<br>鸟院在中间前不见他们仨 后不见俺<br>阔怜俺一个老残在后没啥停歇的奔了快2个半小时走到哈尔嘎特开尔茨达坂才见到几个等的浑身发凉的疯子<br>气的俺走到哈尔嘎特开尔茨达坂就问：能不能 骂人。。。。。。</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/170924kq87g3h11bkv7arr.jpg" loading="lazy" alt=""></figure>
+<p>在哈尔嘎特开尔茨达坂上可以很清晰的看见我们即将下降要走的乱石沟</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1709257f64fbtxffyxttcc.jpg" loading="lazy" alt=""></figure>
+<p>群山环抱</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/170926tiiiblp1sl9lb1ir.jpg" loading="lazy" alt=""></figure>
+<p>哈尔嘎特开尔茨达坂合影--阿生拍摄</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1717241bsa7bp6a607sa0b.jpg" loading="lazy" alt=""></figure>
+<p>开始部分下切以滑沙碎石为主</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/170928rzrczl4lrt4iooir.jpg" loading="lazy" alt=""></figure>
+<p>回拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1709302srnjta4s2idn1df.jpg" loading="lazy" alt=""></figure>
+<p>随着海拔的下降 乱石渐大</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1709328m111oici7yiizz7.jpg" loading="lazy" alt=""></figure>
+<p>乱石沟与2009年8月相比草皮更少 乱石更多</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/170530ob0r0fro7705zdjn.jpg" loading="lazy" alt=""></figure>
+<p>硌的脚生疼</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/172253z4ygz7aco29wag9n.jpg" loading="lazy" alt=""></figure>
+<p>又见内含动物毛发的粪便</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/172254wwkktkt959lk95d1.jpg" loading="lazy" alt=""></figure>
+<p>走走歇歇<br>下降走过10公里的碎石滩<br>来到了两河交界的沟口<br>本想在沟口扎营<br>但是沟口没有一个像样的营地<br>大伙的意见也是继续走<br>所以左拐溯溪而上<br>傍晚下冰水的感觉就一个字： 冷； 两个字：冷痛<br>趁天没全黑抓紧渡河、找营地，待到走出溪谷都21点20光景<br>天也黑了<br>待摸到河右岸高地的一个牧屋时都21:55了，<br>所以直到宿营都没再拍照</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/172229rcuocdeehu7icjej.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/172229rcuocdeehu7icjej.jpg" loading="lazy" alt=""></figure>
+<p>今天除了神衰的鸟院外都住牧屋里，<br>请阿生拿出一挂鞭炮在屋外打了以警告野兽不要靠近鸟院。<br>当然这也是顺带帮华女减负。</p>
+<p>字母、阿生、鸟院仨去打水来后，<br>鸟院、阿生柴火烧水，<br>华女这位特级模范厨娘继续帮俺们煲饭，<br>俺则架炉头烧点水，泡点豆奶、果珍大伙一起喝喝。</p>
+<p>今天是我们在狼C里的最后一天，<br>明天就能翻出哈拉哈提达坂转向狼V。</p>
+<p>是夜，<br>鸟院十分正式、郑重的请求华女：<br>华女啊！<br>这个， 今天帮我们煲饭 能不能先帮字母煲3两5 ，然后再帮我煲4两米？</p>
+<p>华女说，一次煲不了啊！</p>
+<p>鸟院说:<br>这个，我的意思就是你先帮字母煲，然后再帮我煲，我最后吃不急。</p>
+<p>华女说：行啊。</p>
+<p>鸟院继续说：<br>我和字母商量过了，以后每餐我都吃4两米，字母3两5，<br>之前我和字母一起是6两米，<br>字母稍多点，我稍少点，<br>但是一直吃不饱啊，<br>所以郑重决定以后我要吃4两米了。</p>
+<p>哇，哈哈哈哈，，<br>众人大笑。<br>敢情你俩开了遵义会议啊，<br>做了这么重大的决定，<br>从此鸟院变成 鸟四两，从此我们几个人里饭量排前二的阿生、字母被鸟院无视的超过且狠狠的甩在了后面，<br>从此鸟院饭量每餐递增，<br>只要停下就看见鸟院在吃吃吃。。。。。。</p>
+<p>进山之前鸟院说： 压缩饼干、馕 ，谁吃啊？！打死也不吃！！！<br>结果后来鸟院吃的那个欢呀，随时抱着啃呀。。<br>自己的不够吃，就一直撵着华女走走走，因为华女有吃的啊！！！<br>然后只要停下休息， 看见偶就直奔主题，要风干牛肉补充体能。。<br>Y的，不但自己走的快，还撵的华女跑的不见影，<br>给你吃饱了就更加跑的不见烟，不但拖垮还拖残俺呀！<br>不划算呀！<br>但是俺心软嘛，只好一再满足鸟院那填不满的胃口。。。。。。<br>鸟院、鸟四两、鸟疯子、鸟不饱真是无愧&quot;吃货&quot;这个名号。。。。。。</p>
+<p>是的。但反映： 充电效率不高，不建议使用这款太阳能充电器。</p>
+<p>天上掉馅饼还是石头？</p>
+<p>报告，看到些塑料垃圾，但是没见杯子。否则俺肯定会捡了进补。</p>
+<p>报告，俺是一天掉半斤肉，14天掉了7斤。</p>
+<p>呀，圈点你也在啊，，好巧好巧，，<br>俺大人大量，你不带俺混，那俺带你混好嘞。。</p>
+<p>不认识也不想认识，知道太多很累。</p>
+<p>当时俺只想赶紧趁天没黑下山。。</p>
+<p>谢谢支持哦</p>
+<p>谢谢，千万别佩服。</p>
+<p>卡片机的好处就是方便拍摄，以作记录。。</p>
+<p>谢谢点评。。</p>
+<p>汗，俺真不强悍、</p>
+<p>俺可当不得强人二字。</p>
+<p>感谢支持是必须滴。</p>
+<p>还好不是AV大湿</p>
+</div>
+<div class="nav"><button data-go="d5">← 上一篇：D5</button><button class="primary" data-go="home">返回目录</button><button data-go="d7">下一篇：D7 →</button></div>
+</section>
+<section class="day" id="day-d7">
+<div class="day-head"><h2>D7</h2><div class="meta">8月31日 · 狼塔C线第七天（走出狼C） · 本节39张照片</div></div>
+<div class="prose">
+<p>当天海拔上升947米，下降452米，徒步耗时9小时（若无咱的拖慢，其他4人至少可提前2小时到达营地）</p>
+<p>11:45出发<br>19:53到达哈拉哈提达坂，海拔3840米（鸟院、字母、华女、阿生等四人19点就到了）<br>20:45左右下降到哈拉哈提达坂下方、海拔3388米、可望见前方拐弯处砖房的草坪上扎营等候一起穿越狼塔V线的雪梨、阿高前来会合</p>
+<p>出发前 回拍昨夜走过的沟口和乱石河滩</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155023bg61bgk240xfz71b.jpg" loading="lazy" alt=""></figure>
+<p>原来河滩上还长些杂草<br>且较平整<br>如今的河滩被冲的寸草不长<br>变化好大</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155024moq2z33h1c32kbzb.jpg" loading="lazy" alt=""></figure>
+<p>咱们昨夜入住的牧屋和待伙出发要走的路</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155026yqtdqd8y7712qqt0.jpg" loading="lazy" alt=""></figure>
+<p>这片高山牧场如果没有人为破坏是很漂亮的</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1551257rahrrrrwqffqyst.jpg" loading="lazy" alt=""></figure>
+<p>走在乱石河滩上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15512532rdeatdagwiwh9m.jpg" loading="lazy" alt=""></figure>
+<p>未几就走上了为开采金矿而挖出的矿路<br>这路开在高山牧场上就好比在一个瘢痕体质的人的腹部做了一个特大剖腹手术遗留下来的无法消除的疤痕<br>且这疤痕还会不断增长 一个留神还可能崩裂出血</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155127p74jdhapdjjp6p9i.jpg" loading="lazy" alt=""></figure>
+<p>又一个不知什么矿的营房要建在此处<br>挖掘机就地破坏草场挖土、装卸车则就近拉填河道<br>真是老伤未愈又添新伤</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155129ctlvsqn7ngcqsq7e.jpg" loading="lazy" alt=""></figure>
+<p>工程机械在草场上留下的车辙痕</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155131fjjpemi1zmu1i6a1.jpg" loading="lazy" alt=""></figure>
+<p>回拍工地</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15513352jwzhrr2z5cjse7.jpg" loading="lazy" alt=""></figure>
+<p>回拍工地的老营房<br>估计这两年许多走狼C的人都是走到此处就搭车出山</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155136lj2kj5llb27ublwu.jpg" loading="lazy" alt=""></figure>
+<p>好在经过的施工区道路并不长<br>没有多久我们就离开了施工区<br>走进了暂时没有外人打搅的<br>通向哈拉哈提达坂的高山牧场</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155137an2z4k11l4ta99eh.jpg" loading="lazy" alt=""></figure>
+<p>循着马道逆流而上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155022mfojhc4s0hxzejx4.jpg" loading="lazy" alt=""></figure>
+<p>抬升平缓 景色漂亮</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160119z8a2n95piq98ipxj.jpg" loading="lazy" alt=""></figure>
+<p>不知哪位高人丢的军胶<br>话说你背军胶那么辛苦<br>就近放到经过的牧屋旁<br>以利牧民捡着重新利用<br>也强于乱扔军胶做垃圾啊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160120wrll11rwwqrrzwxe.jpg" loading="lazy" alt=""></figure>
+<p>鸟院从右边滑坡带硬切过去<br>导致沙石滑落<br>俺们几个下到河边选择渡河而过</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1601227hzq230z5hj6ba00.jpg" loading="lazy" alt=""></figure>
+<p>寂静的冬季牧场此时唯有我们静静的走过</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160124qec02ceeqpq3202n.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160127csioa9kkzcqicsos.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160128to8qpt1q3uqiiu28.jpg" loading="lazy" alt=""></figure>
+<p>想要庄稼好 全靠肥当家<br>而缺少柴火的牧民过日子生火烧水造饭同样离不开牛粪</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1601310g0kliggiqk7g1gu.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1601336x6byxtx7pr6myrl.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1601347ymp7dquc3rj7rop.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1601360zeewyttckiwzkb8.jpg" loading="lazy" alt=""></figure>
+<p>唯有大伙等俺一起休息后起步的时候才能拍拍疯子们的正面</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160139yll7uut26du62ud6.jpg" loading="lazy" alt=""></figure>
+<p>绝大多数时候 老弱病残滴俺只能看他们绝尘而去</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1601084gajza4ajjwscqzk.jpg" loading="lazy" alt=""></figure>
+<p>山上好多北山羊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161117q9uo6udtosoolbi3.jpg" loading="lazy" alt=""></figure>
+<p>拉近看看</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161118irurth5uu5zk7z6r.jpg" loading="lazy" alt=""></figure>
+<p>好大一群</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/16112043xr7g6d3834dz6p.jpg" loading="lazy" alt=""></figure>
+<p>自得其乐</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161122xqo9fkczkxhzkkqp.jpg" loading="lazy" alt=""></figure>
+<p>继续向前</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161125f6f12cjmfkh7janz.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/16112620vf368b38sczivv.jpg" loading="lazy" alt=""></figure>
+<p>一直逆流而上<br>直到前方这个有牧屋的三岔路口往左拐后继续逆流而上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161127nxnz1nvzrn6ffvhn.jpg" loading="lazy" alt=""></figure>
+<p>经过一些沼泽湿地后 渐渐来到哈拉哈提达坂之下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161130z9wzswvqwdm6bmw5.jpg" loading="lazy" alt=""></figure>
+<p>同伴在前</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161029lodvttlvl9hvt7v7.jpg" loading="lazy" alt=""></figure>
+<p>达坂在上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161649p7i778f8n9ph748i.jpg" loading="lazy" alt=""></figure>
+<p>看着很近 走着很累</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161651w6rrg1r2141wke1g.jpg" loading="lazy" alt=""></figure>
+<p>快到了<br>这段了路俺计算了下<br>估计中间休息六次后能上去<br>最后是休息了5次上了达坂</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1616537mzltd7x0du6htna.jpg" loading="lazy" alt=""></figure>
+<p>俺走累了<br>他们几个在哈拉哈提达坂上等冷了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161655qbmpxjun9kzz1z4q.jpg" loading="lazy" alt=""></figure>
+<p>哈拉哈提达坂合影--阿生拍摄</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1618179iiihin6van8djng.jpg" loading="lazy" alt=""></figure>
+<p>暮色深深</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/161616gj1gmmzqyj1ywgjq.jpg" loading="lazy" alt=""></figure>
+<p>你是底子厚，减的起啊</p>
+<p>1、恭喜你安全回来；</p>
+<p>2、目前为止网上可查到的游记里走传统狼C从哈拉哈提达坂出来再连上奎克达坂的走狼V的还真没第二支队伍；</p>
+<p>3、之前走狼塔CV连穿的都是走到的狼C废金矿位置转向乌兰达坂后再走狼V的；</p>
+<p>4、你说的&quot;别人走过却不为外界所知&quot;那也不关俺的事，他不发帖，自己闷头享受了穿越的快感是他的事，如你这样口说无凭，外人既无法知晓实情，网上又查不到相关记录，更没有实际凭据来证明之前有人如俺般穿越过，那么如俺开篇就说了的&quot;钻了个空子逮着了吹牛的机会&quot;来看也怪不得俺&quot;吹牛&quot;；</p>
+<p>5、即使是吹牛，吹就吹了，你要愿意也可以吹，你要不喜欢你可以不吹。我在安全、开心的前提&quot;吹牛&quot;，我吹我开心，我吹我愿意。</p>
+<p>6、牧羊的人，咱在过大塌方&quot;老虎嘴&quot;帖子里就有说道他们的攀爬本领不是咱可比的，他们能走的路，咱可走不了，这方面咱是有自知之明的。但就如夏尔巴带队爬珠峰一样，一般而言夏尔巴爬珠峰也不作为正式的攀登记录。而牧民放牧于山也是如此，拿出来做对比根本没意思。</p>
+<p>7、现在的牧羊人基本有自己的固定牧场，若到他人牧场放牧则属偷盗行为，别说跨县市地界牧羊，就是自己的邻居牧场也不好越界。更何况每个县市的夏季牧场、冬季牧场各有不同，转场在自己的县市地界内进行，极少跨区域越界转场。否则呼图壁的转场到和静，和静的转场到昌吉庙尔沟去，那牧民还不早厮杀开了！！！</p>
+<p>8、本人从没有轻视任何一次出行，也从没有误导他人轻视出行的意愿和行为，所以本人在帖子里已经多次提示了线路的危险性,且多次提到本人这次是第二次走狼C，然后才是第一次走狼V。我相信任何一个仔细看完本人已发帖子内容的人都不可能产生轻视狼塔线路的想法。</p>
+<p>9、若楼主你是有心之人，那么欢迎你将自己所走路线和经验分享给大家，以利我们的共同进步。</p>
+<p>10、我对你走过什么线路没有兴趣，但对你声称在经过生死一瞬间的危险后能安全出山表示由衷的祝福，活着真好！</p>
+<p>传照片好累<br>歇下</p>
+</div>
+<div class="nav"><button data-go="d6">← 上一篇：D6</button><button class="primary" data-go="home">返回目录</button><button data-go="d8">下一篇：D8 →</button></div>
+</section>
+<section class="day" id="day-d8">
+<div class="day-head"><h2>D8</h2><div class="meta">9月1日 · 狼塔V线第一天 · 本节26张照片</div></div>
+<div class="prose">
+<p>今天海拔上升392米，下降884米，徒步耗时8小时15分钟。<br>攻略：翻过奎克达坂后顺河与矿道之间一路下行，路迹清晰、好走，需随水势大小的变化而数次过河，走到离左前方山脚三间牧屋大约200米左右的开阔河谷、牧场处扎营（可见前方河谷又再次收窄，不能再走）。</p>
+<p>11:00与走狼V的雪梨、阿高会合</p>
+<p>12:50出发</p>
+<p>14:55到奎克达坂 海拔3780米</p>
+<p>15:45到第一个铁皮屋旁的河道边路餐</p>
+<p>19:15到海拔2896米、附近有3个牧屋的开阔草场（浑札）扎营（次日过河即开始上翻夏热达坂）</p>
+<p>鸟院烧火水平直达博导级别</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/111634dgong5zl1gg951qq.jpg" loading="lazy" alt=""></figure>
+<p>河道冰结</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/11174419zu98wuwoc8813z.jpg" loading="lazy" alt=""></figure>
+<p>回拍山下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/111746rfr69g37eg6fzhit.jpg" loading="lazy" alt=""></figure>
+<p>七人会合出发</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/111748y93xes37iwsuqy3d.jpg" loading="lazy" alt=""></figure>
+<p>几匹快马已经走上了通往奎克达坂的马道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/111626o8s0z77c525p4yw8.jpg" loading="lazy" alt=""></figure>
+<p>全体七人 奎克达坂合影--阿生拍摄</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/111630qu99uq5wa8ztlld8.jpg" loading="lazy" alt=""></figure>
+<p>矿道太远了<br>直接从奎克达坂硬切乱石坡而下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1127327t6pee556ff9756r.jpg" loading="lazy" alt=""></figure>
+<p>上包出发</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/112735d7kene7275dhz7dd.jpg" loading="lazy" alt=""></figure>
+<p>回拍奎克达坂</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1127381n1d1qgosz22vg1s.jpg" loading="lazy" alt=""></figure>
+<p>前方岔路口左转顺河而下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1127418b8bb1o56fbf85db.jpg" loading="lazy" alt=""></figure>
+<p>这是进入狼V后看见的第一个铁皮屋 坐落在左侧山包上 有牧民<br>我们就在边上的河道旁午餐<br>吃好了继续顺河而下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1127442f8u3l1wyu8dx3pa.jpg" loading="lazy" alt=""></figure>
+<p>回拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/112747xjwfxwxxxjuwjxpn.jpg" loading="lazy" alt=""></figure>
+<p>方向就是顺水沿路而下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/112749awb49h4bb17t6q70.jpg" loading="lazy" alt=""></figure>
+<p>第二个铁皮屋</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/112753o395ishlk5hw3whx.jpg" loading="lazy" alt=""></figure>
+<p>此处稍作休息<br>不知为何此处有好多散落的北山羊角</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/112727cgg5oghcdw57vkgc.jpg" loading="lazy" alt=""></figure>
+<p>后面基本沿着机耕道走到今天的宿营地<br>但过水也开始频繁起来</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/113514sobkkdsbf3de7k87.jpg" loading="lazy" alt=""></figure>
+<p>若不小心还会失足</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1135180ykcy77vscjjzjql.jpg" loading="lazy" alt=""></figure>
+<p>这道不知是矿道还是机耕道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/113521zgmu11gk11akeyla.jpg" loading="lazy" alt=""></figure>
+<p>连续过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/11352465cr4zt3zjemrt6m.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/113528bj3yby9tomu79omo.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/113531jsdfpyyyd4d54qof.jpg" loading="lazy" alt=""></figure>
+<p>还是过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/113533yobtrfmmvftphxh0.jpg" loading="lazy" alt=""></figure>
+<p>过河后回拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/113536rtz08vezkik8r4x9.jpg" loading="lazy" alt=""></figure>
+<p>前行到开阔河滩、牧场相接处回拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/113538m3386s3s3lblm3x6.jpg" loading="lazy" alt=""></figure>
+<p>到了浑札附近、转向夏热达坂的空旷河滩草场处<br>远远可见前方山脚下有3座牧屋<br>不能再向前 否则就走错了</p>
+<p>看这是一片很好的营地<br>决定就地扎营<br>有帐篷的搭帐篷<br>没背帐篷的则分别捡牛粪、提水、烧火<br>此后每日大伙到扎营时都默契的按此分工做事<br>谢谢</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/11354057qfl503y7hlawl7.jpg" loading="lazy" alt=""></figure>
+<p>我们的五星营地<br>鸟院的烧火神功已经无可抵挡<br>感谢感谢</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/113453ffv7ys5duf577dsn.jpg" loading="lazy" alt=""></figure>
+<p>别急，会更新完的</p>
+<p>哈哈<br>阿高啊<br>俺走的慢也有随时拍照做记录的原因哦<br>看景也要记景记路</p>
+<p>你慢慢磨PP 不要急 安全第一哦<br>明年的事明年再议<br>升级装备简单<br>好好锻炼 提升经验才是关键<br>回来再侃啊<br>在外小心点</p>
+<p>哎呀，哥们。<br>俺一则戒酒已久，二皮厚但害羞，不好意思打搅呀。。</p>
+</div>
+<div class="nav"><button data-go="d7">← 上一篇：D7</button><button class="primary" data-go="home">返回目录</button><button data-go="d9">下一篇：D9 →</button></div>
+</section>
+<section class="day" id="day-d9">
+<div class="day-head"><h2>D9</h2><div class="meta">9月2日 · 狼塔V线第二天 · 本节49张照片</div></div>
+<div class="prose">
+<p>今天海拔上升 284米，下降392米，再上升366米，徒步耗时8.小时43分钟。</p>
+<p>计划将从浑札到绿湖的一天路程分作两天走，多出时间作休整。</p>
+<p>但即使如此缓上的路况，因咱的体能和精气神都还是极差而走不动。</p>
+<p>攻略：<br>1、出发即过河，河对岸山脚有一座崩塌的泥墙牧屋，牧屋边可见清晰的马道向坡上延升。<br>2、从马道缓上山坡后就向夏热达坂走去，坡度不大的草原牧场，走起来很舒服。<br>3、从夏热达坂开始一路沿河下降，到达第一个三岔口左拐；左拐经过几个牧屋继续前行、过河到右侧山脚下，顺着右侧山势前行到第二个三岔口（两河交汇处）右拐后沿右侧的河道逆河缓上，到第三个三岔口（又一个两河交汇处）过河后沿左侧河道逆流而上，之后路径就是沿河道逆流而上直到绿湖。</p>
+<p>10:17出发，过河上马道<br>11:40到夏热达坂 海拔3180米<br>14:35下降到海拔2788米的三岔口稍作休息后逆流而上<br>19:00扎营于海拔3154米的河畔<br>早起晒帐篷</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/091448toi876zuifue9zo9.jpg" loading="lazy" alt=""></figure>
+<p>出发即过河，河对岸山脚有一座崩塌的泥墙牧屋，牧屋边可见清晰的马道向坡上延升。<br>此时千万别沿河而下！！！</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/091451qwuwwu23habufqu2.jpg" loading="lazy" alt=""></figure>
+<p>过河爬上缓坡后回拍<br>此时的冬季牧场草势甚好</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/091454eoj6o4fd7ot5fo4v.jpg" loading="lazy" alt=""></figure>
+<p>继续回拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/091456grdvpp88cjxdrjjp.jpg" loading="lazy" alt=""></figure>
+<p>回拍可见远处山脚下的三座牧屋</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/091459fspn22w1t3fu6wp2.jpg" loading="lazy" alt=""></figure>
+<p>河水向下流淌、收拢 不宜前行</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/0915016luxnnn8tf80tz57.jpg" loading="lazy" alt=""></figure>
+<p>前方的夏热达坂草势喜人</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/0915047k6kipton2628pk6.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/0915077uccmdk0nk2ew92t.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/091446z0q01jwnrmmhom0o.jpg" loading="lazy" alt=""></figure>
+<p>回拍山下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/09233095alk3g5aoo0gn5o.jpg" loading="lazy" alt=""></figure>
+<p>快到夏热达坂了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092333r7zemqoeq8rrehyx.jpg" loading="lazy" alt=""></figure>
+<p>马放南山 悠然自得</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092335fpn1szxf0whck20p.jpg" loading="lazy" alt=""></figure>
+<p>站在夏热达坂上眺望远山</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092328h8vaztladhard5or.jpg" loading="lazy" alt=""></figure>
+<p>夏热达坂合影--阿生拍摄</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/09255045gg5qx14cco6z1x.jpg" loading="lazy" alt=""></figure>
+<p>合影后 出发下行</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/093505h1bp32yhhk00j0ph.jpg" loading="lazy" alt=""></figure>
+<p>好多小花</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/093736hiwi0z22hirh2wh6.jpg" loading="lazy" alt=""></figure>
+<p>下山路的右边有牧屋<br>但因是冬季牧场<br>所以目前都无人</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092719j0kiryd0jckli00j.jpg" loading="lazy" alt=""></figure>
+<p>从夏热达坂下来后遇到的第一个三岔口（此处草场开阔、有好几座牧屋）左拐</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092722bqqe1p60b8olldde.jpg" loading="lazy" alt=""></figure>
+<p>左拐后 回拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092724nwn3d73wlw7qlwlt.jpg" loading="lazy" alt=""></figure>
+<p>左拐后继续前行 经过几座无人的牧屋</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092727slh1suenxfgnsdxx.jpg" loading="lazy" alt=""></figure>
+<p>过河到右侧山脚下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092734w0dw2s2bgi8zw0ww.jpg" loading="lazy" alt=""></figure>
+<p>过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092737qpdcodiixmgndgfi.jpg" loading="lazy" alt=""></figure>
+<p>过河后回拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/092740beeqyqdwp7ybu2po.jpg" loading="lazy" alt=""></figure>
+<p>过河后沿右侧山脚而行<br>千万别顺河走到左下方的峡谷</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/094458tvfiv8c9f98a98kb.jpg" loading="lazy" alt=""></figure>
+<p>第二个三岔口右拐后逆流而上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/094629naczocebvxc66ooe.jpg" loading="lazy" alt=""></figure>
+<p>河道里有一块大石可供辨别</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/094632pi4uduwpg4gqqqqz.jpg" loading="lazy" alt=""></figure>
+<p>逆河而上到第三个三岔口（两河交汇处）休息<br>此时应渡河后向左拐沿左侧山谷里的河道逆流而上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/094636o0rdridsoieezrs5.jpg" loading="lazy" alt=""></figure>
+<p>这是拍的第三个三岔口处的右边河谷，在右侧山脚有座牧屋，这边不能走</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/094639f8f42cnzssncsd8c.jpg" loading="lazy" alt=""></figure>
+<p>左拐 继续逆流而上<br>此后都是沿着河道的右岸上行<br>若遇河道阻隔<br>想过河的就走水路<br>不想湿脚的就走河道边的草坡缓上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/09464149x5o9ro4kphqvew.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/094644sube6spmy74054nt.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/094649hzq3e3a6me672mqh.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/0946511rxrr7rvk91znz0o.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/094656c28l6b8ql7ziljqr.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/0946265r309gqb9fhzf9md.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/100921tfbrnb2z5dkqjng3.jpg" loading="lazy" alt=""></figure>
+<p>这地方从岸边流出的是浑水 好奇怪</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/100925dwwrvv1b88dbzw8o.jpg" loading="lazy" alt=""></figure>
+<p>字母没脱溯溪鞋 所以选择溯溪而上<br>俺们6人则爬上草坡前行</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/100928qceq00phuceuehh3.jpg" loading="lazy" alt=""></figure>
+<p>从倒地姿势来看<br>这只北山羊估计是老弱病残自然死亡</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1009315dld77lma5s7rfsf.jpg" loading="lazy" alt=""></figure>
+<p>这片草坡极其漂亮</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/101545qn9jcl0o6unlojv2.jpg" loading="lazy" alt=""></figure>
+<p>阿生、华女是俺的长线老搭档、数度生死与共的老战友<br>连续四年一起进疆走了狼C、乌孙、禾木河探源以及未遂的夏特等线路<br>这段路对这俩疯子来说实在是太轻松了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/101056f7iosdouwdwlurut.jpg" loading="lazy" alt=""></figure>
+<p>这段徒步相对海拔低、上升平缓<br>确实是美的享受</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/101059xqxk05i6kkii5u8u.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/101102d2tuppdpqhh2xxxu.jpg" loading="lazy" alt=""></figure>
+<p>回望身后</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/100918l4jk2uolpqtotik4.jpg" loading="lazy" alt=""></figure>
+<p>今天的营地就选在前面的河边</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103220mtxhl7ltem2h6z2m.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103223pudx2kmg2quqg0kk.jpg" loading="lazy" alt=""></figure>
+<p>辛苦的火夫<br>牛粪不干很难烧<br>充分考验博导火夫的水平呀<br>6L的水袋在扎营后提水很给力<br>烧开后的沸水直接装水袋里很方便</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103226sdebuarcl5dccw57.jpg" loading="lazy" alt=""></figure>
+<p>暮色美景</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103228cjkcutkzbsgyi9y7.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103230k0kz6scx9w4zabx6.jpg" loading="lazy" alt=""></figure>
+<p>最后看看俺们的美丽厨娘面前摆了几个盆？<br>帮俺们焖饭呢。。</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/103551pxi2xjtxcjxtc1jj.jpg" loading="lazy" alt=""></figure>
+</div>
+<div class="nav"><button data-go="d8">← 上一篇：D8</button><button class="primary" data-go="home">返回目录</button><button data-go="d10">下一篇：D10 →</button></div>
+</section>
+<section class="day" id="day-d10">
+<div class="day-head"><h2>D10</h2><div class="meta">9月3日 · 狼塔V线第三天 · 本节23张照片</div></div>
+<div class="prose">
+<p>今天海拔上升346米，徒步耗时5小时。</p>
+<p>攻略：</p>
+<p>今天只要继续沿右岸逆流而上到绿湖即可，走的快的3个半小时、走的慢的如我5小时也能到绿湖早早扎营早早休息，所以走的很悠哉。</p>
+<p>06:54叫早 在河边扎营竟然帐篷内十分干燥、没有凝露结霜</p>
+<p>10:00出发</p>
+<p>继续沿右岸逆流而上，雨季已过，沼泽渐干，所以虽然马道不明显但也不难走。</p>
+<p>15:00到绿湖边宿营 海拔3500米</p>
+<p>天好路好阳光好</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105509jx8pghdcqhyj85qx.jpg" loading="lazy" alt=""></figure>
+<p>岸边的草地若在雨季就是沼泽湿地<br>那走起来可就太不爽了<br>但现在没问题 沼泽都差不多干涸了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105509737x0ppxqryelep0.jpg" loading="lazy" alt=""></figure>
+<p>回拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105512ibx98xxa680jb61o.jpg" loading="lazy" alt=""></figure>
+<p>大多沼泽水洼都已干涸<br>难得遇到积水清澈的</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105516sosdz9su828ugo9v.jpg" loading="lazy" alt=""></figure>
+<p>干的地衣都脱水了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1055190cbzf69oggzqbyoe.jpg" loading="lazy" alt=""></figure>
+<p>清澈的高山雪水</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105522qavrgvmixg1qdngv.jpg" loading="lazy" alt=""></figure>
+<p>什么动物的爪印？</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105525ah3emq6h6oa7hco3.jpg" loading="lazy" alt=""></figure>
+<p>残骸</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105529p93huzfppf9k53tt.jpg" loading="lazy" alt=""></figure>
+<p>看见前面中央的三角形山峰没？<br>绿湖就在山脚</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1055072kss2hwhu0yztmyz.jpg" loading="lazy" alt=""></figure>
+<p>看着近 走的远<br>望山跑伤人</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/110643dou19f498o94d99e.jpg" loading="lazy" alt=""></figure>
+<p>每个人都有探寻未知世界和如鹰翔长空般的梦想<br>我们远行拓展自身的极限、开阔视野、丰富人生阅历也是梦想组成的一部分<br>而人类的进步的动力不就始于一个个人类极限的突破吗</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1106447xlbwcql0z7sg7ak.jpg" loading="lazy" alt=""></figure>
+<p>人生如同长河<br>虽有分叉但目标如一<br>无惧阻隔一往无前<br>放低姿态而不怯弱<br>恰如大海之于河流<br>海纳百川越积越多</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/110645c9a91peucjrajrr7.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/110646x2wixalwlv5rwa81.jpg" loading="lazy" alt=""></figure>
+<p>总算看到绿湖的一角了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/11064903m8sq38hm3czb63.jpg" loading="lazy" alt=""></figure>
+<p>来到绿湖出水口<br>鸟院、阿生、华女、雪梨、字母、阿高们已经坐在湖边歇息许久了<br>俺继续跳过河到对岸湖边去找营地</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/110650ksc0qka8c65sczsc.jpg" loading="lazy" alt=""></figure>
+<p>他们说 高山上的湖水 是躺在地球表面上的一颗眼泪（转摘歌词）<br>雪山湖泊蓝天白云</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1106515eoo08w90b899szr.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1106522hph2xpwb7xy5yxq.jpg" loading="lazy" alt=""></figure>
+<p>俺开始找营地时因考虑湖边湿气大<br>所以咱找营地没下到湖边去<br>就在湖边的高地上找<br>结果发现到处都是隆起的草垛子或者还未干涸的沼泽水洼<br>实在难有合适的地<br>本来就想这样将就了<br>幸得鸟院去湖边洗衣发现一块地很适合做营地<br>过去看看 果然是很好的营地<br>且有之前走线的人留下的扎营痕迹<br>于是扎营湖边 惬意人生</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/110641cckzmjvw7bbplou1.jpg" loading="lazy" alt=""></figure>
+<p>扎营后<br>大伙分批到绿湖出水口 就着源头雪水洗浴 洗去多日的汗渍与一身的疲惫（有无码照，要看的请预约叉饭并请保密哈）<br>又请阿生拿出鞭炮打了敬湖神求保佑 告野兽莫靠近<br>然后来张合影</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1125257sryng2rksye7kgz.jpg" loading="lazy" alt=""></figure>
+<p>字母、阿高两人合力在绿湖边堆起了一座玛尼堆 也堆起了一堆的祝福</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1125269ml9l31033po35jl.jpg" loading="lazy" alt=""></figure>
+<p>在湖边然后洗衣 晒太阳 吃饭喝茶<br>华女在今天的路上收集了好多地衣<br>到绿湖边扎营后洗了几十遍才算洗净<br>然后分给大伙分别凉拌、小炒着吃<br>这可是纯天然绿色无污染无公害的蔬菜（水产植物？）<br>连特供都吃不到的哦<br>这是俺用香干蒜瓣炒地衣<br>美味啊 谢谢华女哦<br>吃完一锅不过瘾<br>俺回头还想再找点来吃<br>结果过去一看啥都没了<br>最后找出罪魁<br>原来阿高这个吃货一人就吃了两盆、2盆呀<br>实在是令人发指呀</p>
+<p>鸟院也是特别搞：<br>开始总说我不吃这种东西，然后实在熬不住到阿生那尝尝好吃不好吃，又到阿高那也尝尝好吃不好吃，最后决定自己也凉拌一锅吃吃。。。。。。真是浪费呀。。。。。。鸟院这样勉强而吃完全是暴殄天物嘛。。。。。。</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/112529sdh9uzv9rhoszc19.jpg" loading="lazy" alt=""></figure>
+<p>在湖边慵懒的静等太阳西下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/112530efddppcceqvreq8r.jpg" loading="lazy" alt=""></figure>
+<p>枕着无边湖景入睡<br>晚安</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/112509my66bhhyyc063b00.jpg" loading="lazy" alt=""></figure>
+<p>今天--</p>
+<p>最爽的事：</p>
+<p>到绿湖的出水口用冰川雪水好好的洗浴了一把，爽的一塌糊涂呀</p>
+<p>最有爱心的事：<br>华女将在沼泽湿地里捞出背来的满满一锅地衣带到绿湖洗净后给大伙进食<br>绝对的无公害绿色食品呀。。<br>特供都吃不到呀。。</p>
+<p>最杯具的事：<br>阿高演绎了一出迎风撒尿的经典杯具，<br>撒完回来说：唉，刚才迎风撒尿竟然被撒身上了。。。。。。<br>原来这个世界真有迎风撒尿的事啊。。</p>
+<p>最逗的事：<br>字母、阿高合力在绿湖边堆了一个玛尼堆，并将北山羊角放在上面。<br>然后字母说要环湖，阿高背着北山羊角也跟着去，咱告诉他背着羊角走太累，别去了，估计他没听清，还是跟着字母走了，结果没走小半就累的回来了。</p>
+<p>报告 我亦追风 ：俺是此次传统狼塔C+V连穿队伍的召集、领队与黑导。徒步与骑行各有乐趣，但相对而言，徒步无人区域的风险还是更大些，对每个人的户外经验、体能、装备物资、团队意识等方面的要求更全面、更细致些。</p>
+</div>
+<div class="nav"><button data-go="d9">← 上一篇：D9</button><button class="primary" data-go="home">返回目录</button><button data-go="d11">下一篇：D11 →</button></div>
+</section>
+<section class="day" id="day-d11">
+<div class="day-head"><h2>D11</h2><div class="meta">9月4日 · 狼塔V线第四天 · 本节51张照片</div></div>
+<div class="prose">
+<p>今天海拔上升477米，下降1590米，徒步耗时8小时55分钟。</p>
+<p>05:48叫早</p>
+<p>09:00出发</p>
+<p>11:00到乌拉布图达坂 海拔3977米</p>
+<p>12:00下降、脱离乱石陡坡后稍作休息</p>
+<p>12:41：下降到海拔3400米处的高山牧场有牧民放羊</p>
+<p>13:08下降到海拔3150米左右有牧屋，并仍有牧民居住</p>
+<p>17:55到海拔2387米处扎营（一主流与支流交汇处的草坪，边上有牧民的冬窑子气窗）</p>
+<p>早起拔营<br>烧垃圾时顺便将原先扎营的人没烧光的垃圾从石头压着、石洞里藏着的地方扒出来一起烧了<br>另外昨日阿高还从垃圾里捡到一个没烧完的气罐<br>有气的气罐随便丢弃总是比较危险<br>所以阿高特地用捡到的气罐做饭烧水以将余气耗完（此时我们自带的气罐已经明显用不完了）<br>在此希望后来者能将自己产生的不能降解的垃圾都烧完<br>气罐若未用完则最好留条说明&quot;请后来使用者帮忙将气罐余气用完，然后将装气罐的袋子烧掉，以及将空气罐表面的漆刮掉一些以让促进空气罐金属的腐蚀降解&quot;<br>这样既能保持绿湖的宁静与卫生 又能避免未用完的气罐致人遇险的意外</p>
+<p>出发前合影--阿生拍摄</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/173148yqtbltgbx5lt55tl.jpg" loading="lazy" alt=""></figure>
+<p>绿湖与玛尼堆</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/173151f2lp935p926tfwlk.jpg" loading="lazy" alt=""></figure>
+<p>俺也秀一个</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1731505521b7sl7xsm2t7t.jpg" loading="lazy" alt=""></figure>
+<p>即将离开绿湖<br>多来几张</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/173611vx11hz0cazidwsvx.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/173612z3ofo3j5vi95chl3.jpg" loading="lazy" alt=""></figure>
+<p>从面对绿湖的左侧草甸向偏左后方明显可见的乌拉布图达坂爬升<br>这张图希望有助于后来者辨别爬升乌拉布图达坂的进入方向</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/173613r7j3jn3mvwzrrzf8.jpg" loading="lazy" alt=""></figure>
+<p>向乌拉布图达坂爬升的碎石马道比较清晰<br>在爬升途中咱还搭了3座小玛尼堆希望对后来者有所帮助</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/173614zlkhaqckztutktun.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1736174uck7q9oz9f695u7.jpg" loading="lazy" alt=""></figure>
+<p>回拍山下的绿湖</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1736183dwg4ugeeeturtxx.jpg" loading="lazy" alt=""></figure>
+<p>先上到比乌拉布图达坂稍低点的左侧垭口<br>垭口有一个比较大的玛尼堆</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/173620lwllst50nm5talp4.jpg" loading="lazy" alt=""></figure>
+<p>先在爬升到的第一个垭口玛尼堆处合影--阿生拍摄</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/174535yjb7vbqhl10j4dbo.jpg" loading="lazy" alt=""></figure>
+<p>然后沿清晰马道向右走5分钟左右到乌拉布图达坂<br>在海拔3977米达坂路口处合影--阿生拍摄</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1745285iduqdbi221uz02b.jpg" loading="lazy" alt=""></figure>
+<p>乌拉布图达坂边上的山顶有座玛尼堆<br>不是必经路口<br>俺们就不去爬了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/173622epe3g2wbvg5mf36m.jpg" loading="lazy" alt=""></figure>
+<p>回拍绿湖</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/173609us9ss5aj47yr5h4u.jpg" loading="lazy" alt=""></figure>
+<p>这是下达坂的路口<br>从左侧碎石陡坡下切即可</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/175252jogo2y2ljgo2agjg.jpg" loading="lazy" alt=""></figure>
+<p>翻过乌拉布图达坂的下切碎石路<br>各显神通<br>安全下去即可<br>如果反穿 这个碎石陡坡会是一个麻烦</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/183012zcxmxnzs4y33yxkx.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/183015xyajbgu9ubuxypju.jpg" loading="lazy" alt=""></figure>
+<p>回拍乌拉布图达坂和碎石坡</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1830187jgchhhig7667qbi.jpg" loading="lazy" alt=""></figure>
+<p>下切到草甸的位置休息会</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1830209331yfsgfisffyj8.jpg" loading="lazy" alt=""></figure>
+<p>12:00继续出发<br>大伙约定14:00吃午餐<br>结果几个疯子终于憋不住发飙了<br>暴走2小时不歇息一下<br>连到岔路位置也不停不看只管乱切</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/183022phy6h65zxi3ddity.jpg" loading="lazy" alt=""></figure>
+<p>随着草地的增多<br>出现了羊群<br>这意味着我们在2天没见其他人烟后终于进入了有牧民活动的区域</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/183023r4kcn503cgrcv88v.jpg" loading="lazy" alt=""></figure>
+<p>回看山上有点变天</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/183025zrr5yuksvpvs646u.jpg" loading="lazy" alt=""></figure>
+<p>满山的羊<br>让人垂涎欲滴啊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1830118skht2ijl2nhhhk8.jpg" loading="lazy" alt=""></figure>
+<p>继续下降<br>看到牧屋和驻守的主人</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/190840gyr0or6lr23w6rhr.jpg" loading="lazy" alt=""></figure>
+<p>一帮疯子狂走不歇</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/191135n1vas0sngnvwgbps.jpg" loading="lazy" alt=""></figure>
+<p>牧屋周围是羊粪的海洋</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/19113803ecfqzc99zqfhgq.jpg" loading="lazy" alt=""></figure>
+<p>然后经过第二座牧屋</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/191140oisbwrrjg2jijryy.jpg" loading="lazy" alt=""></figure>
+<p>前方路迹从马道变成羊道<br>应该向右下方跨过河道后到右岸的马道继续下行<br>但是一帮疯子不歇不停啊<br>岔路也不停<br>看看前方路越来越窄<br>而更前方的山势也是日益陡峭<br>不能再向前走了<br>于是喊住近前的雪梨、阿高往回找到个能如同下楼样的陡草坡下切到河道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/191143j808z00piypvj8py.jpg" loading="lazy" alt=""></figure>
+<p>下切到河道后看到鸟院、华女、字母、阿生四个暴走疯子在前方也切到了右侧河岸边歇息</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/191145z3rrz4eey86ojyd7.jpg" loading="lazy" alt=""></figure>
+<p>吃过路餐继续沿河边的右侧马道下行</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/19114821sw0be6fs8sqw0p.jpg" loading="lazy" alt=""></figure>
+<p>在此处马道分作两条<br>一条向前面的山坡上延升<br>一条下到河边再跨到河道的左岸<br>我们在牧民的指点下继续沿河岸右侧的马道向前走去</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/191150qq43s3zniz48g34n.jpg" loading="lazy" alt=""></figure>
+<p>这是指点我们正确路径的牧民和她的小孩<br>虽然语言不通 但我们感受到了她们的友爱与帮助 谢谢<br>山崖下就是她们遇到变天时躲避风雨、煮茶进食的临时休息点</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1911554mszui0hhqnqnh7h.jpg" loading="lazy" alt=""></figure>
+<p>马道继续在山腰横切<br>部分地方因滑坡而变的陡滑 需小心通过</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/191133kmym22mem779v222.jpg" loading="lazy" alt=""></figure>
+<p>沿马道前行到两河交叉处右拐继续沿河下行</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/193723gzas5j7j7gv7sgcx.jpg" loading="lazy" alt=""></figure>
+<p>两河交汇附近有牧屋<br>但未见牧民</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/193727xvc2ywqjq2xtthhc.jpg" loading="lazy" alt=""></figure>
+<p>向右翻过这个小坡继续下行</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/193730f4af2ywcn5wyiedy.jpg" loading="lazy" alt=""></figure>
+<p>回拍</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/193732aaj3432m5khf3an3.jpg" loading="lazy" alt=""></figure>
+<p>下行</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/193735jh6j33lvje3k6evp.jpg" loading="lazy" alt=""></figure>
+<p>看到山崖上的羊没？<br>它们才是真的无装备攀岩高手</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/193739gofaama62ok23n7z.jpg" loading="lazy" alt=""></figure>
+<p>马道（羊道）被踩的不成样子了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/193741z9tmc6ij67yic52m.jpg" loading="lazy" alt=""></figure>
+<p>若不是赶时间<br>每一处牧屋咱都想入住扎营</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1937446gdodyo6l300hodt.jpg" loading="lazy" alt=""></figure>
+<p>几个狂奔的疯子在被说教一番后<br>终于减慢了发疯的步伐 走在了后头<br>俺也难得可以拍到他们的正面了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/193720qr7yqbfytth7y70b.jpg" loading="lazy" alt=""></figure>
+<p>偶有过河<br>大伙抛石头垫脚</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/195151cp7najkkwq2gi2kq.jpg" loading="lazy" alt=""></figure>
+<p>还没达到落脚点全部垫好的目的<br>鸟院就急着过河了<br>然后俩女队员就湿足了<br>这是阿高在过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/195159eopsppxp71d7k334.jpg" loading="lazy" alt=""></figure>
+<p>沿河下行到第二个两河交汇处<br>两河交汇处有一个牧民点<br>在此有桥可过河到右岸的牧民点<br>然后沿河右岸的马道右拐到两河交汇处沿河右岸逆流而上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/195204c2c4o24sy94q2gup.jpg" loading="lazy" alt=""></figure>
+<p>这是两河交汇处的地貌<br>在右岸的山脚处有棵小树，小树边有明显的、比较好攀爬的羊道可以过去</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/195213yzuiiabq8tfuqy3f.jpg" loading="lazy" alt=""></figure>
+<p>这是过河到右岸牧民点的桥</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/195224klaqzoz0vl7vtlo0.jpg" loading="lazy" alt=""></figure>
+<p>近拍两河交汇点</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/195225d7goo477dfg4ddnu.jpg" loading="lazy" alt=""></figure>
+<p>沿河下行右拐到与三屯河交汇处<br>本想在此扎营<br>但环境实在不是很理想<br>所以继续沿三屯河右岸逆流而上</p>
+<p>这是两河交汇处的河对岸的一座牧屋</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/195230dcagdtacdlkdklo3.jpg" loading="lazy" alt=""></figure>
+<p>回拍两河交汇点</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/195235dcglda7lsihs0cze.jpg" loading="lazy" alt=""></figure>
+<p>从两河交汇处沿三屯河右岸的清晰马道逆流而上约50分钟<br>到三屯河与一支流交汇的平整草坪处扎营（边上有牧民的冬窑子气窗）</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/195147q4yyk9ex2ybbvlxb.jpg" loading="lazy" alt=""></figure>
+<p>这个季节蘑菇是没了。羊也忙着转场出山了。都么得吃呀。吃货们伤不起啊。。</p>
+<p>千万别惊着了，嘿嘿</p>
+<p>谢谢支持了哎。</p>
+</div>
+<div class="nav"><button data-go="d10">← 上一篇：D10</button><button class="primary" data-go="home">返回目录</button><button data-go="d12">下一篇：D12 →</button></div>
+</section>
+<section class="day" id="day-d12">
+<div class="day-head"><h2>D12</h2><div class="meta">9月5日 · 狼塔V线第五天 · 本节41张照片</div></div>
+<div class="prose">
+<p>今天海拔上升579米，徒步耗时7.5小时。<br>今天目标继续逆流而上走到天格尔达坂下的三屯河边扎营，路况好，偶有栈道因塌方而需小心硬切、过几次河。</p>
+<p>07:40叫早</p>
+<p>10:15出发</p>
+<p>11:20到修栈道题字处</p>
+<p>12:10到废弃金矿公路处</p>
+<p>17:00到三屯河过河点</p>
+<p>17:45跨过三屯河后在河边（海拔2966米）的高台草地扎营</p>
+<p>早起拍摄我们昨夜的营地<br>左侧草坡上有个牧民冬窝子的气窗</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/14472430so6crou0k6jhj8.jpg" loading="lazy" alt=""></figure>
+<p>营地在一个高台草地上<br>边上就是水源<br>柴火也多<br>方便捡柴打水烧火</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/14472844mratp6stnoitmt.jpg" loading="lazy" alt=""></figure>
+<p>出发继续沿三屯河逆流而上<br>但先要跨过支流</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/144733j82zud7x6tokxjdd.jpg" loading="lazy" alt=""></figure>
+<p>马道清晰好走<br>比较适合暴走一族</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/144738v3gfixgttgoxc7pt.jpg" loading="lazy" alt=""></figure>
+<p>经过一处牧屋<br>但未见牧民<br>估计已经转场了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1447437ezw7js4d0ydekn7.jpg" loading="lazy" alt=""></figure>
+<p>栈道塌方偶有甚者 需要小心通过</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/144747a0kfan1ifn81kgiy.jpg" loading="lazy" alt=""></figure>
+<p>栈道修建者题字为念<br>我们后来者得此便利也要道声 谢谢</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1447515qq6ovqkq7q7v5q6.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1447540ibqqgritbpqfpqr.jpg" loading="lazy" alt=""></figure>
+<p>沿河右岸逆流而上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/144720yftqdwtz41e1t1yy.jpg" loading="lazy" alt=""></figure>
+<p>有部分塌方位置不好通过<br>若水小 则建议选择淌河而过以免硬切滑坠</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1455230vzlowt254lol93j.jpg" loading="lazy" alt=""></figure>
+<p>牧民赶牛转场</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/145528khw0jsjnuza8881k.jpg" loading="lazy" alt=""></figure>
+<p>翻过前面的小坡就到废金矿的路上了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/145533m5un14rkr3krzi5b.jpg" loading="lazy" alt=""></figure>
+<p>一向暴走的鸟院实在受不了俺这样慢吞吞、半死不活的走法<br>慵懒的赖地而睡以示&quot;抗议&quot;</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1455386c127w04twdwc0dz.jpg" loading="lazy" alt=""></figure>
+<p>走上废金矿的大路</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/145542kwa8cjlclduazk98.jpg" loading="lazy" alt=""></figure>
+<p>没走多久就要渡河<br>而且是连渡2次<br>水冷的话就不说了<br>都习惯了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/145547ahd8jzu5dudoxfxk.jpg" loading="lazy" alt=""></figure>
+<p>渡河到河左岸后逆流而上<br>继续寻找渡河点过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/14555351ecc2oetc22mttt.jpg" loading="lazy" alt=""></figure>
+<p>紧接着第二次渡河回到河右岸</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/145556z91y6i69bl91cawz.jpg" loading="lazy" alt=""></figure>
+<p>回到河右岸没多久就休息午餐<br>转场的群羊赶到</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/145508olfzomnzvnwvplti.jpg" loading="lazy" alt=""></figure>
+<p>鸟院被羊包围后躬身摸索<br>难道想将一只羊打包藏起？</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150219nxfxanqa1ae1j0an.jpg" loading="lazy" alt=""></figure>
+<p>羊儿走了<br>留下鸟院怅然若失</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150224bd4pahh4abhqbf3f.jpg" loading="lazy" alt=""></figure>
+<p>继续沿着高速路逆流而上<br>不过即使是这种高速路俺也走不快啊 走不快<br>精气神都提不起来 走几步就得歇<br>鉴于路好方向清晰<br>为免大伙等的无聊 于是俺在对讲里告诉大伙先走不用等俺<br>不过大伙还是在前方边走边等 感动哎</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150228jv7ajjg818t1ta96.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1502321g3wvo1j9gz9z62j.jpg" loading="lazy" alt=""></figure>
+<p>又跨过一支流</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150237nrbwjz4y1wwbrnnx.jpg" loading="lazy" alt=""></figure>
+<p>前方河道的左岸有一户牧民<br>隔河以手势打招呼<br>牧民在对岸对着俺们大喊  吃羊<br>真是大大滴诱惑呀<br>不过没到计划地点不能歇哎<br>华女估计是嫌废矿道太好走  爬上道边草坡学羊走了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150241gp8zt29bq7y9wbwg.jpg" loading="lazy" alt=""></figure>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150244vzhzfhvb8hztmf8e.jpg" loading="lazy" alt=""></figure>
+<p>大伙在前面慢慢走<br>俺在后面慢慢挪<br>精气神真是严重不足呀</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1502467qgqtubgoq52gfvg.jpg" loading="lazy" alt=""></figure>
+<p>满地的羊屎蛋<br>估计此处是一户牧民的羊圈所在<br>而今牧民已经转场不在了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/150215v3nvh6waq5amwl3a.jpg" loading="lazy" alt=""></figure>
+<p>看见山下河道中央的草地上 转场的牧民与马、羊一起在此暂歇</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151836rpqpuk6i9zq59xpp.jpg" loading="lazy" alt=""></figure>
+<p>大伙在此等俺<br>鸟院主动提出 明天将俺的气罐分给他背，被精气神不足而慢吞吞没心情的俺生硬拒绝，在此道声对不起，但更多的还是感谢。<br>此时已经可以清晰的看见前方爬上天格尔达坂的Z字形马道</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151838dmipetr99j9amrmi.jpg" loading="lazy" alt=""></figure>
+<p>拉近镜头看看</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15184176wtzzzftt4woroe.jpg" loading="lazy" alt=""></figure>
+<p>沿矿道走到三屯河边<br>雨季浪涛汹涌的三屯河此时显得温情多了<br>大伙寻找石头以跳过三屯河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151844qa05x11db5b14a1b.jpg" loading="lazy" alt=""></figure>
+<p>跳过三屯河来到河左岸的山脚下<br>可见清晰马道通向天格尔达坂</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151848pamx28mszn8qaq7p.jpg" loading="lazy" alt=""></figure>
+<p>由于天气尚好<br>如咱的精气神都正常的话 速度加快些<br>大伙今天是完全可以翻过天格尔达坂到山那头扎营的<br>但是俺今天累啊<br>于是今天就在三屯河边早早扎营<br>明天再早起翻过天格尔达坂<br>这个营地就在三屯河边的台地上<br>草坪平整<br>有个小凹相对避风<br>离水源也近<br>只是转场的牧民与羊马也多在此处休息中转<br>转场的牧民晚上经常要清点、巡护羊群<br>所以如遇上转场的牧民则晚上难休息好</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151851uc0v06jvukkulcjv.jpg" loading="lazy" alt=""></figure>
+<p>眺望三屯河上游</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1518533zem0yk3l6unmz33.jpg" loading="lazy" alt=""></figure>
+<p>夕阳西下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15185599yt9qclziy9as19.jpg" loading="lazy" alt=""></figure>
+<p>俺们果然遇上了3位转场的牧民和他们的500只羊、3匹马</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/151830r99d7epvhpg2e3ez.jpg" loading="lazy" alt=""></figure>
+<p>大伙看见几百只羊出现在眼前<br>俱都发出了绿光<br>强烈要求买羊改善伙食<br>哎<br>牧民还在赶羊过河<br>羊没近前<br>牧民也在忙乎<br>急也么用啊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152259oredo9qonkomi91d.jpg" loading="lazy" alt=""></figure>
+<p>牧民左呼右赶 但羊群就是不肯过河<br>于是牧民拿出不传之秘<br>将一只羊用绳拴着强行拉过河以诱使其它羊过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152302a6368v6525fy587s.jpg" loading="lazy" alt=""></figure>
+<p>牧民将一只羊拉过河后就回去赶羊群<br>剩下孤羊在河这边咩咩叫</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1523052z2gglsrgg22ggrg.jpg" loading="lazy" alt=""></figure>
+<p>此招好使<br>羊群开始过河了<br>大伙的心啊<br>也随着羊群的近前而骚动</p>
+<p>鸟院说他：预定了羊腿</p>
+<p>阿生说：进疆4年，想了4年的羊，要求今次进山一定能吃到羊</p>
+<p>羊羊羊<br>假如能意念吃掉你们的话<br>这500只羊已经不知道被大伙吃了又吐 吐了又吃  几进几出了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1523109mreksue9es44hee.jpg" loading="lazy" alt=""></figure>
+<p>羊群终于近前了<br>牧民也开始休息了<br>不吃也好像对不起这些羊了不是<br>不过不过<br>这地方没柴火啊<br>没柴火咋烧羊嘛<br>而且即使21点开始杀羊 煮好之后也是24点之后的事情<br>没法好好休息也影响次日爬升天格尔达坂<br>最后俺身负大伙的期望和寄托<br>在帮牧民点着柴火递过香烟吃过牧民的油馕沟通过感情了解过行情后<br>回到帐篷边告诉大伙此处没柴 无法煮羊 明天跟着羊走 再找机会吃羊<br>于是大伙在失望之极后YY着次日有羊吃的美梦睡去了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1522566jsqeiduusqd0i76.jpg" loading="lazy" alt=""></figure>
+</div>
+<div class="nav"><button data-go="d11">← 上一篇：D11</button><button class="primary" data-go="home">返回目录</button><button data-go="d13">下一篇：D13 →</button></div>
+</section>
+<section class="day" id="day-d13">
+<div class="day-head"><h2>D13</h2><div class="meta">9月6日 · 狼塔V线第六天 · 本节35张照片</div></div>
+<div class="prose">
+<p>今天海拔上升799米，下降1315米，徒步耗时11小时。</p>
+<p>攻略：<br>翻过清晰可见的天格尔达坂后顺坡而下，到岔路口左转顺河而下，快到乔楞格尔垭口处需要渡2次河（桥若修复则无需下水），再前行上个小坡后沿着马道左转，转过一个三角形的小山包，向着垭口右边有一座牧屋的乔楞格尔垭口爬升(详情可看后面照片备注的文字)。</p>
+<p>因昨晚牧民半夜2、3点钟就在帐篷外走来走去的说着话、喊着羊、偶尔还划过手电光，吵得人没法安睡，再加上次日要翻过天格尔达坂和乔楞格尔垭口，路程较长，于是干脆早点起来。</p>
+<p>06:00叫早</p>
+<p>出帐篷打包时发现昨晚的三位牧民只剩一位在此看羊，一交流才知，昨夜跑了30只羊和一匹马，2位牧民各自找羊找马去了。一直找到8点多钟，牧民才将夜半走失的马和羊找回，然后就赶着时间转场了。</p>
+<p>09:00出发 开始爬天格尔达坂</p>
+<p>今天正常2-3小时的爬升路因被转场的牛马挡路，导致行进缓慢。</p>
+<p>华女、鸟院超过牛队后只被马队阻挡了半小时而提前到达达坂，但等俺们期间却被冻的不行</p>
+<p>阿生、字母直接被牛队堵的没有脾气，被堵劈了</p>
+<p>雪梨、阿高感觉还不错</p>
+<p>俺觉得最爽，慢慢走好好歇，连汗都不出，舒服</p>
+<p>12:26 天格尔达坂  海拔3765米</p>
+<p>翻过天格尔达坂下降期间开始起雾，</p>
+<p>13:00左右开始下雨</p>
+<p>14:00雨势加大，偶有冰雹，一直下到16:00光景，导致原来的山腰高速横切路变成了极其湿滑、让你一脚泥几斤重的高危滑坠险路</p>
+<p>19:44 乔楞格尔垭口 海拔2503米 因牧民急于赶路，无心卖羊，羊娃子开价1000实在是价格太黑而买羊未遂，真是伤透了众多望羊兴叹、看着羊毛都垂涎欲滴、恨不得抱着活羊都啃上几口的鸟院、阿生、字母、华女、阿高、雪梨等人的心</p>
+<p>20:00翻过乔楞格尔垭口后扎营于牧屋处，海拔约2450米</p>
+<p>早起拔营<br>天空云层有些厚</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1528452j7yu3y6yj3cjzr6.jpg" loading="lazy" alt=""></figure>
+<p>天还未全亮<br>羊群暂时老实窝着没动</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1528520ezaesg0uinnslzn.jpg" loading="lazy" alt=""></figure>
+<p>看着山头有些浓密的云层<br>暗想今天早点出发是对的<br>走迟了变天才麻烦</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1528553s2c0de7eq422iuq.jpg" loading="lazy" alt=""></figure>
+<p>天格尔达坂附近的山头风起云涌</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152856a5kprpv6p9cm8a5k.jpg" loading="lazy" alt=""></figure>
+<p>马羊归队后 牧民立即动身转场</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152900xdtdv647pyv4vtoh.jpg" loading="lazy" alt=""></figure>
+<p>俺们紧随其后<br>为了梦里的羊<br>冲啊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152903zg0311zt8ezdt1dj.jpg" loading="lazy" alt=""></figure>
+<p>没爬升多久就遇上了转场的大部队----牛队</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152906buryb7fupolwubow.jpg" loading="lazy" alt=""></figure>
+<p>华女、鸟院二人为了避免羊群走丢 影响晚上的羊餐<br>所以奋勇争先  在牛队之前先硬切到了牛队前面 勇超牛队</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152909h27zpn1phtthhthb.jpg" loading="lazy" alt=""></figure>
+<p>如果天气晴好<br>此时山头的云雾就该散了<br>但现在还是阴沉沉的<br>如果这样持续下去<br>午后达坂肯定变天<br>所以俺们真得抓紧爬升</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/152843tjra620ga9rgjrtb.jpg" loading="lazy" alt=""></figure>
+<p>不管多陡的坡<br>为了梦里的羊啊<br>所有人都发飙的爬呀<br>看这动作姿势多给力呀<br>这样坚持下去很快就能赶超牛队了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1534273jloo8858o1imj0v.jpg" loading="lazy" alt=""></figure>
+<p>但是<br>望山跑死马<br>追牛堵死驴<br>牛队堵着你<br>再追也没用<br>走的再快也过不去<br>没辙<br>就这样阿生、字母、雪梨、阿高随牛起舞、亦步亦趋<br>人走三步 牛却歇三步 真是牛啊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153429qymqrgbt5wm6rzt3.jpg" loading="lazy" alt=""></figure>
+<p>回拍山下的三屯河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154028vt575j65l0j5vdrr.jpg" loading="lazy" alt=""></figure>
+<p>翻过上方的垭口就爬升一半了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153433jrhhscdh20u2h7d2.jpg" loading="lazy" alt=""></figure>
+<p>然后又是一段马道清晰的横切上升</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15343621bmek0ae16qej2j.jpg" loading="lazy" alt=""></figure>
+<p>拍拍山下三屯河上游</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153439wawt3dz27mrmwz1d.jpg" loading="lazy" alt=""></figure>
+<p>远看有些陡<br>走近也就习惯了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153443dppk58d9n869cz9b.jpg" loading="lazy" alt=""></figure>
+<p>两位牧民骑马赶着几匹马迅速超过了俺<br>在经过俺身边时 牧民还打手势问俺是不是有电话 示意达坂有信号 想借电话打<br>唉 你骑马轻松 俺走路爬坡却累的要命 风急天寒冻嘎嘎 相机拿出来没半分钟就冻的电量归零 这手机拿出来也是一样的道理 哪还愿意多事 所以说没电婉拒了<br>所以至今俺也不知天格尔达坂上是否真有手机信号</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153447fszwsqfwggxkww3e.jpg" loading="lazy" alt=""></figure>
+<p>前面的字母、阿生等人紧紧的撵着牛队</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/153424hj71h1v7dvh45yhb.jpg" loading="lazy" alt=""></figure>
+<p>牛经常没走几步就停下<br>然后牧民费劲的吆喝砸石头赶牛 牛才慢慢移步<br>如此往复<br>真是牛脾气让你没脾气</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154603c0je1292eakdkaxh.jpg" loading="lazy" alt=""></figure>
+<p>鹰击长空</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154605yr32yk75737p7ih2.jpg" loading="lazy" alt=""></figure>
+<p>部分地方必须爬爬歇歇等牛走  以免牛踹石头下来伤人</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1545592svdy8ycdcs5qxtn.jpg" loading="lazy" alt=""></figure>
+<p>最后一点碎石坡的爬升<br>牛啊<br>你好歹给主人点面子--走呀</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154901bgb39zee69v33kp3.jpg" loading="lazy" alt=""></figure>
+<p>12:30终于全队爬上天格尔达坂<br>早上来的华女、鸟院在没有阳光而寒风劲吹的达坂等俺们许久都快冻僵了<br>这次真是牛队救了俺<br>否则阿生又要掐秒表了<br>天格尔达坂合影--阿生拍摄</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/154921ytfwwn3fnwrtangz.jpg" loading="lazy" alt=""></figure>
+<p>达坂寒风吹的身上热量迅速流失<br>山上的云层越来越密集<br>不宜久留<br>迅速下降<br>那牛队下坡倒是很快<br>追都追不上</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1550326wqlm77wvwgs3cws.jpg" loading="lazy" alt=""></figure>
+<p>远山云雾笼罩<br>13点光景<br>大伙下降到一个大石头夹缝位置避风寒并吃点路餐以补充热量</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155035kqqnpqq33qjsjgwk.jpg" loading="lazy" alt=""></figure>
+<p>沿清晰马道下降到有一大玛尼堆的位置<br>那玛尼堆是用来指示大方向的<br>得从玛尼堆边上的马道下坡而行<br>此时一直顺着河道的左岸下行<br>云雾密集渐成雨水落下</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155038n9i1um1xgguz8sx9.jpg" loading="lazy" alt=""></figure>
+<p>冒雨沿河左岸湿滑下行<br>此类天晴时的横切高速路在雨水冲刷后都变成了高危湿滑易坠路</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155045a8ltrwbrrtllql9w.jpg" loading="lazy" alt=""></figure>
+<p>幸好这雨夹杂冰雹只下了2、3个小时就停止了<br>否则风劲雨急 又无处可避  人体真是很容易失温<br>所以除了15点光景请字母在一洁净水源边掏出炉头气罐煮了一些热水给大伙暖暖身子之外<br>咱都走在前头引着大伙抓紧下降  一则尽量走出雨区 二则海拔下降后基础温度也会有所提高<br>走到这时  雨水渐停<br>阳光偶尔也能照到了<br>总算将这段老天爷给的偶尔考验挺过去了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155047qhqq2s454w2g4ghb.jpg" loading="lazy" alt=""></figure>
+<p>顺河下降到第一处木桥点<br>桥毁无法走人<br>大伙换鞋过河<br>俺走到前方河道拐角处找了几个石头和水浅处淌水而过</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/15505335tckcs5qqqchcnr.jpg" loading="lazy" alt=""></figure>
+<p>这是一个很好的营地<br>但不能扎营<br>得渡河回到河道左岸后 走到照片中央的高山下的草坡上 再左拐到乔楞格尔垭口去</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155056o10k0ol0o0kghwoc.jpg" loading="lazy" alt=""></figure>
+<p>这是上图附近的第二座桥 也无法过人<br>上下找寻许久都没合适的点可过河 最后大伙脱鞋过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1551010njo6v7j3p33djd3.jpg" loading="lazy" alt=""></figure>
+<p>鸟院在此尝试俺选的一个过河点<br>实在太滑 进退两难 几经折腾 最后不慎湿足<br>俺最后也还是在此处打赤脚过的河<br>鸟院大人大量没有落井下石</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155106su638ff83tzurfr6.jpg" loading="lazy" alt=""></figure>
+<p>到此处 只需绕过（无论左中右）前面这个山包并继续直行上切垭口即可翻过乔楞格尔垭口</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1551090p013hmthap6qpxl.jpg" loading="lazy" alt=""></figure>
+<p>乔楞格尔垭口的右侧有一座牧屋可做标记<br>这个垭口只是个小坡 并不高</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155112h55pxn322i54hh53.jpg" loading="lazy" alt=""></figure>
+<p>乔楞格尔垭口处有牧民放羊<br>俺和字母在此停留半小时光景而买羊未遂<br>最后翻过垭口 依照华女的建议到就近的牧屋处扎营 以利次日早起晒太阳</p>
+<p>羊啊 在山里没吃到你  真是俺们永远的痛呀</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155030qox84x2r32tkd2gh.jpg" loading="lazy" alt=""></figure>
+</div>
+<div class="nav"><button data-go="d12">← 上一篇：D12</button><button class="primary" data-go="home">返回目录</button><button data-go="d14">下一篇：D14 →</button></div>
+</section>
+<section class="day" id="day-d14">
+<div class="day-head"><h2>D14</h2><div class="meta">9月7日 · 狼塔V线第七天（安全出山） · 本节42张照片</div></div>
+<div class="prose">
+<p>攻略：今天的路程很简单，只需沿支流边的清晰马道顺水而下，到与主河道交汇处左拐后沿河道边的马道继续顺水而下直至农大林场附近的小村子。</p>
+<p>10:45出发</p>
+<p>12:49到水泥桥</p>
+<p>16:33到离农大林场约500米的位置</p>
+<p>18:10坐上牧民的车，大约1小时到庙尔沟乡，然后从庙尔沟乡包车去昌吉</p>
+<p>21:00到昌吉 入住于树兄帮忙提前预定的昌吉邮局附近的宾馆。<br>住下后就在宾馆楼下点了烤羊肉串、炒菜等进补。<br>树兄在次日要早起进山拉练的前提下还拎着葡萄来看望了俺们一帮刚出山的野人，再次感谢。<br>只是当时忙于腐败、忙于瞎侃，么有再拍照，现在想来有点阔惜。</p>
+<p>早起好天气<br>太阳晒着很舒服<br>昨天下午的那场雨水也让大伙对恶劣天气下的狼塔连穿线路有了新的认识<br>收起了轻视之心<br>一致认为老天太好 全程绝大部分时候都是好天气 没为难咱们</p>
+<p>这是俺们昨夜的营地所在  在将垃圾全部焚烧后 启程出发</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155959pqieoe8yqqvqppms.jpg" loading="lazy" alt=""></figure>
+<p>沿支流边的清晰马道顺水而下<br>这是遇到的第一座木桥</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160004z85wf8ffw3b9s3fy.jpg" loading="lazy" alt=""></figure>
+<p>第二座桥</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1600096ww0ta15mllbbfmb.jpg" loading="lazy" alt=""></figure>
+<p>这种路段如果遇到下雨简直是灾难<br>好在老天昨日跟俺们开了个玩笑后 今天继续给的是笑脸</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160012wbr4a8paii8z7dbx.jpg" loading="lazy" alt=""></figure>
+<p>走到与主流交汇的地方</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1600178gkffe595w3zg0pt.jpg" loading="lazy" alt=""></figure>
+<p>左拐继续沿河边马道下行</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160023kgug4g0gcwcc0ip6.jpg" loading="lazy" alt=""></figure>
+<p>马道随山势水路而建</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160026xe710eaxe1fe11z7.jpg" loading="lazy" alt=""></figure>
+<p>今天一路下降 遇见不少牧民 水流湍急处都有木桥</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160030lif520i65fzjlj9j.jpg" loading="lazy" alt=""></figure>
+<p>顺水而下 有桥走桥 时左时右</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160035rm5mf3hac4o5c3a5.jpg" loading="lazy" alt=""></figure>
+<p>现在大伙的心已被迅速出山的渴望所占据<br>所以再遇到如此多的羊也没啥想法了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1600403f38y73287zu80w1.jpg" loading="lazy" alt=""></figure>
+<p>马道虽好 但还是得小心边上山崖的塌方落石<br>尤其雨季更加需要注意</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/160044umfyscys2fdfjdss.jpg" loading="lazy" alt=""></figure>
+<p>栈道木桥让我们出山便利好多</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/155953q6nb3u6qnak07uvq.jpg" loading="lazy" alt=""></figure>
+<p>标志性的水泥桥<br>到此我们今天出山的路程就差不多过半了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163102cnccg7vcyg7i7i2f.jpg" loading="lazy" alt=""></figure>
+<p>今天俺在前带着全队都是走一小时就休息几分钟<br>若放手暴走 估计几个疯子3个半小时就出山了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163106k48rpz8fcpfopz82.jpg" loading="lazy" alt=""></figure>
+<p>华女：吃货，早告诉你少吃点，走慢点，少撵着俺一起挨骂。。</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163110rooww0hm7017p7wo.jpg" loading="lazy" alt=""></figure>
+<p>鸟院：厨娘，谁让你背着那么多好吃的嘛！唉，控制不住嘴就控制不住腿啊！</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/16311638z89ov8n3cd3w8v.jpg" loading="lazy" alt=""></figure>
+<p>看见马道右侧山体上的废弃水泥工事了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163120i67xci2vlec1acv0.jpg" loading="lazy" alt=""></figure>
+<p>此处河道开阔</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163124ec8e1bkn1k1n8njd.jpg" loading="lazy" alt=""></figure>
+<p>河对岸的牧屋应该是常年有牧民居住的</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163127ozf4pvvv24t2t9tv.jpg" loading="lazy" alt=""></figure>
+<p>这桥是对岸牧民为了方便往返两岸而建<br>咱们走右侧马道可不过此桥</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163132rmn2tunv5pl0nu95.jpg" loading="lazy" alt=""></figure>
+<p>脱鞋过河点<br>赤脚过河 一个冷一个痛还易受伤 不提倡啊不提倡</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163138c45gc7r8e7u2zg7u.jpg" loading="lazy" alt=""></figure>
+<p>过河后找地吃路餐<br>鸟院这个吃货一停下来就打俺风干牛肉的主意<br>若不满足 定无安宁<br>每人分点都补补</p>
+<p>阿生：今儿个多年保持的吃货名号终于被鸟院接手了。。<br>华女：鸟院，你就不能将吃相保持的好点吗？<br>阿高：会吃会走的鸟院是俺的追赶目标啊</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163143v1no4wecin3erbpg.jpg" loading="lazy" alt=""></figure>
+<p>鸟院：哇，这块腱子肉真不比羊腿差</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163148maat27nzapm0moa6.jpg" loading="lazy" alt=""></figure>
+<p>不给腱子肉吃就算了<br>俺还有压缩饼干粉末可解馋呢</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163056td5fhfvp2t2hpd1d.jpg" loading="lazy" alt=""></figure>
+<p>吃货嘛<br>必须多吃才不愧饭桶名号不是<br>还有速食饭哦<br>味道不错不错</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163856feufe0tfpjkekkzt.jpg" loading="lazy" alt=""></figure>
+<p>还有几粒得扒拉出来</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163901nwfg31pdn3nfzpu9.jpg" loading="lazy" alt=""></figure>
+<p>鸟院：<br>没吃饱啊 没吃饱<br>再找找啊 再找找</p>
+<p>阿生：<br>吃货，吃的都被你抢光了，还能找出啥吃的嘛</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/16390618xx844944li69ac.jpg" loading="lazy" alt=""></figure>
+<p>吔，还有完整的压缩饼干<br>这可不是饼干屑哦</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163911bbblz773y1he3ys3.jpg" loading="lazy" alt=""></figure>
+<p>15:24  看到右侧山坡上的牧屋了<br>最最关键的是牧屋边上有辆吉普车哎<br>俺迅速将这个利好信息通过对讲机传给了大伙<br>群情振奋 强烈要求立即包车</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1639157yyb8go8kknngyb7.jpg" loading="lazy" alt=""></figure>
+<p>回拍身后</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163918jjoowoo1l4klzkid.jpg" loading="lazy" alt=""></figure>
+<p>到对岸还得过河</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1639238cm9mmo3uzhox98x.jpg" loading="lazy" alt=""></figure>
+<p>果断过河<br>河水看起来不深<br>下水后感觉还是有点小急</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163928i7j1ml60xmj67imr.jpg" loading="lazy" alt=""></figure>
+<p>阿生的登山鞋经过连续几年的长线摧残后 早就不防水了<br>所以直接穿着过河 然后丢掉</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163934pyfjjqze1t1gnief.jpg" loading="lazy" alt=""></figure>
+<p>对岸山上的牧屋</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163937066ib60zzjpaspj6.jpg" loading="lazy" alt=""></figure>
+<p>农大林场的防火宣传牌</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163941dd99nspdcd2y7ddm.jpg" loading="lazy" alt=""></figure>
+<p>咱走到有车的牧屋前一看 竟然还有商店二字<br>大喜  心想可以买些吃的了<br>结果喊了半天没人回应 估计都上山干活去了<br>人都找不着咋包车嘛</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/163853ebf6btbrxfttt3x6.jpg" loading="lazy" alt=""></figure>
+<p>回到路口告诉大伙暂时包不到车后<br>大伙继续慢腾腾的向前走去</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1647259fo57ypafvz7ovvq.jpg" loading="lazy" alt=""></figure>
+<p>又经过一户牧民<br>发现门口停着一辆面的<br>鸟院问了牧民去不去庙尔沟  牧民回答&quot;不去庙尔沟&quot;<br>咱经过看了看<br>原来<br>牧民正在给羊做记号<br>真是没空开车走了<br>继续向前溜达<br>翻过下面照片上 前方的山坡再下行几百米就可到农大林场<br>此时咱看见河滩里停着一辆吉普车<br>咱定去碰碰运气  请大伙在此等着 能包到车就不用再走了<br>鸟院呢 认为那车太小坐不下7个人 就继续向前走了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/164729d9wr9jb5bkud8rjz.jpg" loading="lazy" alt=""></figure>
+<p>运气不错<br>隔河与车主打着手势沟通后 获悉他过个把小时就要开车出去<br>于是在谈好价格包好车后<br>俺们在路边的草坡上幸福的晒太阳整手机侃大山等着车</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1647171ybm2pv66wdjjggu.jpg" loading="lazy" alt=""></figure>
+<p>想起鸟院一人走到前面去了  得把他喊回来<br>于是请字母给鸟院打他电话将他喊回<br>结果身边几人都说 鸟院就没带手机进山<br>记得进山前咱就和鸟院说了：要把手机带上 如果不带手机就得确保跟一个带了手机的人在一起 免得有信号的时候联系不上<br>结果他为了减负 手机没有随身带 然后出山时又忍不住一人狂奔了<br>只好等坐车出去看到他时再拉上吧</p>
+<p>最后 鸟院估计是在走到前头左等右等不见俺们<br>于是又背着包吭哧吭哧的走回来了</p>
+<p>俺们的休息候车点</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/165319y8ybq3bbbyhfmyfi.jpg" loading="lazy" alt=""></figure>
+<p>河对岸的山坡上有好几户人家<br>俺们包的车从河道上直接开过来了</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/165421jy6kmugahas6u7ih.jpg" loading="lazy" alt=""></figure>
+<p>出发前慎重选择同伴 共同出发则不弃不离<br>几个人进山就几个人安全出山 一个不能少<br>再来一张出山后的合影--阿生拍摄<br>从左至右：华女、阿生、鸟院、字母、好人锅、阿高、雪梨</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/165148n0isds6ncs4kr0cz.jpg" loading="lazy" alt=""></figure>
+</div>
+<div class="nav"><button data-go="d13">← 上一篇：D13</button><button class="primary" data-go="home">返回目录</button><button data-go="houji">下一篇：后记 →</button></div>
+</section>
+<section class="day" id="day-houji">
+<div class="day-head"><h2>后记</h2><div class="meta">游记完结 · 本节1张照片</div></div>
+<div class="prose">
+<p>咱们此行7人中，好人锅、阿生、华女、雪梨之前都曾无向导组队走过狼塔C线、乌孙、禾木河探源以及穿越未遂的夏特；字母有四姑娘山大峰二峰连穿（三峰因天气不好未上去）的经历，且7月份开始针对狼线连穿做了针对性的拉练；鸟院虽然走完墨脱后因为膝伤而隐退，但今年一直在加强负重爬升的锻炼；阿高虽然是新人，但他也提前按照我的要求准备装备和锻炼体能，且他走的是相对狼塔C线的强度至少低三分之一（以每日爬升、下降的海拔高度和路况的复杂性来做对比）的狼塔V线；咱的体能虽然因病导致锻炼停止而退步很多，但在出发前半个月咱也做了针对性的适应性锻炼，再加上俺丰富的高原徒步的经验佐助，所以咱对自己的体能能否顺畅走下来还是比较有数的。否则此行14天的行程，各类装备加上15天的食物补给，咱们的背负重量男的达到32公斤（咱在机场称重时所有装备的重量就达到30.9公斤，当时还没加上馕、气罐、水，所以初始几天的实际背负重量只多不少），女的也至少有27公斤，体能不行的话直接就被重量给压趴了。。</p>
+<p>队员的相互了解方面，7人之中，咱和阿生、华女、雪梨、字母、鸟院都有一起走线的经历，相互比较了解。与阿高虽然不甚熟悉，但阿高和阿生、雪梨、华女一起走线或者拉练的经历，这样总体来看，咱们队员之间都是比较熟悉和了解的，因此全队除了几个疯子有2、3次短途内压抑不住速度而狂奔之外，总体没啥差池，从而最大可能的避免了因为个体因素所致的意外。</p>
+<p>装备物资的准备方面，因为有连续几年到新疆、西藏重装徒步的经验，所以咱们的相关准备都极具针对性，从而避免了因为装备物资准备不妥所致的意外，但也避免了冗余物资的负累。</p>
+<p>至关重要的是，我们这14天的路程里除了第13天的下午遇到3小时左右的下雨之外的天气都是极其利于出行的。假如天气恶劣、雨雪交加，那么此行的强度、难度和危险性都会大大增加。而且全队人员没有人高反，也无其他伤病，所以请诸位不要因看了俺的游记比较顺利就冲动性的决定走狼线连穿，敬请做好慎重考量与充足准备后再下决定。。</p>
+<p>最后，户外出行如同过危桥，步步小心步步险，小心驶得万年船，不可冒进不可大意。</p>
+<figure class="ph"><img src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/1656074kzbarz95u2ik43i.jpg" loading="lazy" alt=""></figure>
+<p>游记全部发帖完毕。</p>
+<p>再次感谢所有认识或不认识、我所知道或不知道、公开或默默支持我们的朋友。。</p>
+<p>祝所有支持AA制户外出行的朋友在安全快乐的前提下能走得更远、爬得更高，但请不要忘记了回家的路。。</p>
+<p>无兄弟不户外，只AA不商业，只要臭味相投莫管身份地位，只要安全快乐共找线路出行。</p>
+<p>有关此行路线、装备的问题可加 QQ群31141068（加群暗号：8264狼线）咨询 ，俺在线并有空时可帮助解答。。</p>
+<p>咱们带的食物够吃的了，所以没动。</p>
+</div>
+<div class="nav"><button data-go="d14">← 上一篇：D14</button><button class="primary" data-go="home">返回目录</button></div>
+</section>
+</div>
+<div id="lightbox"><img id="lightbox-img" src="" alt=""></div>
+<footer class="site">整理自8264户外论坛好人锅原帖《全国首例江苏第一之无向导传统狼塔C线+狼塔V线14天连环穿越》<br>图文按原帖顺序排列，仅作个人阅读整理，图文版权归原作者所有</footer>
+<script>
+var home=document.getElementById('home');
+var days=document.querySelectorAll('section.day');
+function show(id){
+  home.style.display='none';
+  days.forEach(function(s){s.classList.remove('active')});
+  var el=document.getElementById('day-'+id);
+  if(el){el.classList.add('active');window.scrollTo(0,0)}
+}
+function goHome(){
+  days.forEach(function(s){s.classList.remove('active')});
+  home.style.display='block';window.scrollTo(0,0)
+}
+document.querySelectorAll('[data-day]').forEach(function(b){
+  b.addEventListener('click',function(){show(b.getAttribute('data-day'))})
+});
+document.querySelectorAll('[data-go]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.getAttribute('data-go');
+    if(t==='home'){goHome()}else{show(t)}
+  })
+});
+var lb=document.getElementById('lightbox'),lbi=document.getElementById('lightbox-img');
+document.querySelectorAll('.prose figure.ph img').forEach(function(im){
+  im.addEventListener('click',function(){lbi.src=im.src;lb.classList.add('show')})
+});
+lb.addEventListener('click',function(){lb.classList.remove('show');lbi.src=''});
+</script>
+</body>
+</html>
