@@ -424,6 +424,47 @@
           padding: 22px;
         }
       }
+
+      .hiking {
+        background: #f7f4ec;
+        scroll-margin-top: 64px;
+      }
+      .hiking-grid { grid-template-columns: minmax(0, 1fr); }
+      .project-card.hiking-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 0;
+        padding: 0;
+        min-height: 0;
+        overflow: hidden;
+        border-color: #d8cfb8;
+        border-radius: 18px;
+        background: #fffdf7;
+        color: #2b3a2e;
+      }
+      .hiking-card:focus-visible { outline: 4px solid #3e5739; outline-offset: 5px; }
+      .hiking-cover {
+        display: block;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        background: #e8e2d2;
+      }
+      .hiking-copy { padding: clamp(28px, 4vw, 52px); align-self: center; }
+      .hiking-copy .hiking-eyebrow { margin: 0 0 12px; color: #69765f; font-size: 15px; }
+      .hiking-copy h2 { font-size: clamp(48px, 7vw, 80px); line-height: 1.05; }
+      .hiking-copy .hiking-summary { margin-top: 18px; color: #6c6657; font-size: 18px; }
+      .hiking-copy h3 { margin-top: 26px; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.4; }
+      .hiking-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 12px; color: #6c6657; font-size: 13px; }
+      .hiking-cta { display: flex; justify-content: space-between; gap: 16px; margin-top: 30px; padding-top: 18px; border-top: 1px solid #e7e0ce; color: #3e5739; font-size: 18px; font-weight: 650; }
+      @media (max-width: 680px) {
+        .hiking { scroll-margin-top: 104px; }
+        .project-card.hiking-card { grid-template-columns: minmax(0, 1fr); padding: 0; }
+        .hiking-cover { height: auto; }
+        .hiking-copy { padding: 26px; }
+      }
+      @media (prefers-reduced-motion: reduce) { .hiking-card { transition: none; } }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PR0BY6KP92"></script>
     <script>
@@ -441,6 +482,7 @@
           <span>zeror.ca</span>
         </a>
         <div class="nav-links">
+          <a href="#hiking">Hiking</a>
           <a href="#learning">Learning</a>
           <a href="#tools">Tools</a>
           <a href="#experiments">Experiments</a>
@@ -455,10 +497,29 @@
         <img class="hero-logo" src="assets/zeror-mark.svg" alt="Zeror logo" />
         <p class="kicker">Project hub</p>
         <h1 id="hero-title">Zeror Projects</h1>
-        <p>Small tools, learning systems, experiments, and live apps in one organized front door.</p>
+        <p>Hiking journals, learning systems, tools, experiments, and live apps in one organized front door.</p>
         <div class="hero-actions">
+          <a class="text-link" href="#hiking">Hiking</a>
           <a class="text-link" href="#tools">Tools</a>
           <a class="text-link" href="#learning">Learning</a>
+        </div>
+      </section>
+
+      <section id="hiking" class="section hiking" aria-labelledby="hiking-title">
+        <div class="section-inner">
+          <div class="project-grid hiking-grid">
+            <a class="project-card hiking-card" href="/hiking/" aria-label="Explore Hiking journals">
+              <img class="hiking-cover" src="https://langta-images.fuyu6430.workers.dev/hiking/langta/images/105509jx8pghdcqhyj85qx.jpg" width="800" height="598" alt="Hikers following a stream through a valley on the Langta route" fetchpriority="high" decoding="async" />
+              <div class="hiking-copy">
+                <p class="hiking-eyebrow" lang="zh-CN">徒步游记</p>
+                <h2 id="hiking-title">Hiking</h2>
+                <p class="hiking-summary" lang="zh-CN">山野里的风景、脚步与故事。</p>
+                <h3 lang="zh-CN">第一篇 · 狼塔 C＋V 线</h3>
+                <div class="hiking-meta" lang="zh-CN"><span>14 天连环穿越</span><span>606 张照片</span><span>作者：好人锅</span></div>
+                <span class="hiking-cta">Explore hiking <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          </div>
         </div>
       </section>
 
