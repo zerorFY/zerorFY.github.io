@@ -17,6 +17,26 @@ function Assert-True {
 
 $homepage = Get-Content -LiteralPath $homePath -Raw -Encoding UTF8
 $sitemap = Get-Content -LiteralPath $sitemapPath -Raw -Encoding UTF8
+[xml]$sitemapXml = $sitemap
+if ($null -ne $sitemapXml.sitemapindex) {
+    foreach ($entry in @($sitemapXml.sitemapindex.sitemap)) {
+        $childUri = [uri]$entry.loc
+        if ($childUri.Scheme -ne 'https' -or $childUri.Host -ne 'zeror.ca') {
+            throw 'Verification failed: sitemap index must reference this HTTPS host'
+        }
+        $childPath = [System.IO.Path]::GetFullPath((Join-Path $repoRoot $childUri.AbsolutePath.TrimStart('/')))
+        $allowedRoot = [System.IO.Path]::GetFullPath($repoRoot) + [System.IO.Path]::DirectorySeparatorChar
+        if (-not $childPath.StartsWith($allowedRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+            throw 'Verification failed: sitemap index reference escapes repository'
+        }
+        $childContent = Get-Content -LiteralPath $childPath -Raw -Encoding UTF8
+        [xml]$childXml = $childContent
+        if ($null -eq $childXml.urlset) {
+            throw 'Verification failed: child sitemap must be a URL set'
+        }
+        $sitemap += "`n" + $childContent
+    }
+}
 $llms = Get-Content -LiteralPath $llmsPath -Raw -Encoding UTF8
 $phrases = @()
 $bodies = @()
@@ -77,7 +97,6 @@ Assert-True ($llms -notmatch 'ZR-GEO-GEOTEST-[1-8]') 'llms.txt must not mention 
 Assert-True ($homepage -notmatch 'href="/008-[1-8]/"') 'homepage must not retain retired pilot URLs'
 Assert-True ($sitemap -notmatch 'https://zeror.ca/008-[1-8]/') 'sitemap must not retain retired pilot URLs'
 
-[xml]$sitemapXml = $sitemap
-Assert-True ($null -ne $sitemapXml.urlset) 'sitemap.xml must remain valid XML'
+Assert-True ($null -ne $sitemapXml.urlset -or $null -ne $sitemapXml.sitemapindex) 'sitemap.xml must remain a valid URL set or sitemap index'
 
 Write-Host 'PASS: all eight GEO pilot pages satisfy local experiment controls.'
