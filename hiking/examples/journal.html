@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>游记照片接入示例 · Hiking</title>
+<link rel="stylesheet" href="/hiking/shared/photo-viewer.css?v=1.0.0">
+<link rel="describedby" type="application/json" href="/hiking/photo-viewer-contract.json">
+<style>body{margin:0;background:#f7f4ec;color:#2e2a24;font:16px/1.8 system-ui,sans-serif}main{max-width:786px;margin:auto;padding:24px 20px 48px}a{color:#3e5739}figure{margin:20px 0}figure img{display:block;width:100%;height:auto;cursor:zoom-in}figcaption{font-size:14px;color:#746b59}section{margin:36px 0;border-top:1px solid #d8cfb8}img:focus-visible,a:focus-visible{outline:3px solid #b07b37;outline-offset:4px}</style>
+</head>
+<body>
+<main>
+<a href="/hiking/photo-interactions/">← 返回游记交互规范</a>
+<h1>照片接入示例</h1>
+<p>这页没有狼塔的章节 class，使用通用相册接口。点击照片可测试共用交互；第一个相册有两张，第二个有一张，滑动不会串到另一个相册。</p>
+<section data-photo-gallery aria-label="示例相册一">
+<h2>相册一 · 两张照片</h2>
+<figure><img data-hiking-photo src="/hiking/langta/local-ai-v1/101535wrxie00x4pe5emiq-640.webp" srcset="/hiking/langta/local-ai-v1/101535wrxie00x4pe5emiq-640.webp 640w, /hiking/langta/local-ai-v1/101535wrxie00x4pe5emiq-960.webp 960w" sizes="(max-width:700px) calc(100vw - 40px), 786px" data-full="/hiking/langta/local-ai-v1/101535wrxie00x4pe5emiq-1888.webp" width="1888" height="1415" alt="示例一：狼塔山湖边的徒步者" loading="lazy" decoding="async"><figcaption>第一张：点击打开，然后左右滑动。</figcaption></figure>
+<figure><img data-hiking-photo src="/hiking/langta/local-ai-v1/101651bt1wklwmuyjxtkfj-640.webp" srcset="/hiking/langta/local-ai-v1/101651bt1wklwmuyjxtkfj-640.webp 640w, /hiking/langta/local-ai-v1/101651bt1wklwmuyjxtkfj-960.webp 960w" sizes="(max-width:700px) calc(100vw - 40px), 786px" data-full="/hiking/langta/local-ai-v1/101651bt1wklwmuyjxtkfj-1888.webp" width="1888" height="1415" alt="示例二：草地上整理背包的徒步者" loading="lazy" decoding="async"><figcaption>第二张：已是相册末尾，继续滑动会回弹。</figcaption></figure>
+</section>
+<section data-photo-gallery aria-label="示例相册二">
+<h2>相册二 · 一张照片</h2>
+<figure><img data-hiking-photo src="/hiking/langta/local-ai-v1/101535wrxie00x4pe5emiq-640.webp" data-full="/hiking/langta/local-ai-v1/101535wrxie00x4pe5emiq-1888.webp" width="1888" height="1415" alt="独立相册：同一张示例照片" loading="lazy" decoding="async"><figcaption>独立相册：计数为 1 / 1，不会进入相册一。</figcaption></figure>
+</section>
+<p>示例复用狼塔已公开照片，图文版权归原作者所有。正式游记请替换为自己的图片地址、描述和实际尺寸。</p>
+</main>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="照片查看器" aria-describedby="lightbox-help" aria-hidden="true">
+<div id="lightbox-stage"><img id="lightbox-img" alt="" draggable="false"></div>
+<button id="lightbox-close" type="button" aria-label="关闭照片">×</button>
+<button id="lightbox-prev" type="button" aria-label="上一张照片">‹</button>
+<button id="lightbox-next" type="button" aria-label="下一张照片">›</button>
+<span id="lightbox-count" aria-live="polite"></span>
+<div id="lightbox-status" role="status"></div>
+<div id="lightbox-help">左右滑动切图 · 双指/双击缩放 · 原尺寸下滑退出 · 单击关闭</div>
+</div>
+<script src="/hiking/shared/photo-viewer.js?v=1.0.0"></script>
+</body>
+</html>
