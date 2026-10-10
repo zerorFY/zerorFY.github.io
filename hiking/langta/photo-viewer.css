@@ -1,0 +1,14 @@
+#lightbox{position:fixed;inset:0;display:none;z-index:99;background:rgba(0,0,0,.96);overflow:hidden;overscroll-behavior:none;touch-action:none;color:#fff}
+#lightbox.show{display:block}
+#lightbox-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#lightbox-img{display:block;max-width:calc(100% - 24px);max-height:calc(100% - 112px);width:auto;height:auto;object-fit:contain;transform-origin:center;flex:none;pointer-events:none}
+#lightbox button{position:absolute;z-index:2;border:1px solid #ffffff70;background:#191919bd;color:#fff;border-radius:50%;width:44px;height:44px;display:grid;place-items:center;cursor:pointer;font-size:25px;padding:0;touch-action:manipulation}
+#lightbox button:focus-visible{outline:3px solid #e4c475;outline-offset:3px}
+#lightbox button:disabled{opacity:.25;cursor:default}
+#lightbox-close{right:max(14px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top))}
+#lightbox-prev{left:12px;top:calc(50% - 22px)}
+#lightbox-next{right:12px;top:calc(50% - 22px)}
+#lightbox-count{position:absolute;top:max(22px,env(safe-area-inset-top));left:20px;font:16px system-ui;pointer-events:none}
+#lightbox-help{position:absolute;bottom:max(15px,env(safe-area-inset-bottom));left:12px;right:12px;text-align:center;font:13px/1.5 system-ui;color:#ddd;pointer-events:none}
+#lightbox-status{position:absolute;bottom:55px;left:15px;right:15px;text-align:center;font:14px system-ui;pointer-events:none}
+@media(max-width:700px){#lightbox-prev,#lightbox-next{top:auto;bottom:max(10px,env(safe-area-inset-bottom));width:38px;height:38px}#lightbox-help{left:55px;right:55px;font-size:12px}}
