@@ -31,12 +31,10 @@ section.day.active{display:block}
 .nav{display:flex;gap:10px;margin-top:24px}
 .nav button{flex:1;border:1px solid #d8cfb8;background:#fffdf7;border-radius:10px;padding:12px;font-size:15px;cursor:pointer}
 .nav button.primary{background:#4a5d43;color:#f5efe0;border-color:#4a5d43}
-#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:99;padding:12px}
-#lightbox img{max-width:100%;max-height:100%;border-radius:6px}
-#lightbox.show{display:flex}
 footer.site{text-align:center;font-size:12px;color:#a89c7d;padding:30px 16px}
 #day-chengyuan figure.ph img{height:auto}
 </style>
+<link rel="stylesheet" href="/hiking/langta/photo-viewer.css">
 </head>
 <body>
 <header class="hero">
@@ -1524,7 +1522,15 @@ footer.site{text-align:center;font-size:12px;color:#a89c7d;padding:30px 16px}
 <div class="nav"><button data-go="d14">← 上一篇：D14</button><button class="primary" data-go="home">返回目录</button></div>
 </section>
 </div>
-<div id="lightbox"><img id="lightbox-img" src="" alt=""></div>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="照片查看器" aria-describedby="lightbox-help" aria-hidden="true">
+<div id="lightbox-stage"><img id="lightbox-img" alt="" draggable="false"></div>
+<button id="lightbox-close" type="button" aria-label="关闭照片">×</button>
+<button id="lightbox-prev" type="button" aria-label="上一张照片">‹</button>
+<button id="lightbox-next" type="button" aria-label="下一张照片">›</button>
+<span id="lightbox-count" aria-live="polite"></span>
+<div id="lightbox-status" role="status"></div>
+<div id="lightbox-help">左右滑动切图 · 双击放大/缩小 · 单击关闭</div>
+</div>
 <footer class="site">整理自8264户外论坛好人锅原帖《全国首例江苏第一之无向导传统狼塔C线+狼塔V线14天连环穿越》<br>图文按原帖顺序排列，仅作个人阅读整理，图文版权归原作者所有</footer>
 <script>
 var home=document.getElementById('home');
@@ -1548,16 +1554,8 @@ document.querySelectorAll('[data-go]').forEach(function(b){
     if(t==='home'){goHome()}else{show(t)}
   })
 });
-var lb=document.getElementById('lightbox'),lbi=document.getElementById('lightbox-img');
-document.querySelectorAll('.prose figure.ph img').forEach(function(im){
-  im.addEventListener('click',function(){lbi.src=im.getAttribute('data-full')||im.src;lb.classList.add('show')})
-  if(im.hasAttribute('data-full')){
-    im.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();im.click()}})
-  }
-});
-lb.addEventListener('click',function(){lb.classList.remove('show');lbi.src=''});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('show')){lb.classList.remove('show');lbi.src=''}});
 if(location.hash==='#chengyuan'){show('chengyuan')}
 </script>
+<script src="/hiking/langta/photo-viewer.js"></script>
 </body>
 </html>
