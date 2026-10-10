@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>游记照片交互规范 · Hiking</title><meta name="description" content="Hiking 游记共用照片交互规范、接入示例、测试与版本更新方法，供任何 AI 工具或人工维护者复用。">
+<link rel="canonical" href="https://zeror.ca/hiking/photo-interactions/">
+<link rel="alternate" type="text/markdown" href="/hiking/PHOTO-INTERACTIONS.md">
+<link rel="describedby" type="application/json" href="/hiking/photo-viewer-contract.json">
+<style>*{box-sizing:border-box}body{margin:0;background:#f7f4ec;color:#2e2a24;font:16px/1.85 system-ui,"Microsoft YaHei",sans-serif}header,main,footer{max-width:900px;margin:auto;padding:24px}header{border-bottom:1px solid #d8cfb8}header a{font-weight:650;text-decoration:none}a{color:#3e5739;overflow-wrap:anywhere}a:focus-visible{outline:3px solid #b07b37;outline-offset:4px}h1{font-size:clamp(26px,5vw,36px);line-height:1.4}h2{font-size:23px;margin-top:40px}li{margin:10px 0}code{font-size:.9em;overflow-wrap:anywhere}pre{max-width:100%;padding:18px;background:#fffdf7;border:1px solid #d8cfb8;border-radius:10px;overflow-x:auto;line-height:1.55}pre code{white-space:pre;overflow-wrap:normal}footer{font-size:13px;color:#746b59;border-top:1px solid #d8cfb8}@media(max-width:600px){header,main,footer{padding:20px}body{font-size:15px}ul,ol{padding-left:24px}pre{padding:12px}}</style></head>
+<body><header><a href="/hiking/">← 徒步游记 Hiking</a></header><main>
+<h1>Hiking 游记照片交互规范</h1>
+<p>版本：1.0.0 · 生效日期：2026-10-10 · 状态：当前生效</p>
+<p>本规范适用于 Hiking 下新增和维护的游记。不依赖某个 AI、编辑器、账号、对话记忆或开发框架；人工维护者和任何 AI 工具均可按本页接入、测试和更新。</p>
+<p><a href="/hiking/">Hiking 首页</a> · <a href="/hiking/photo-interactions/">网页版本</a> · <a href="/hiking/photo-viewer-contract.json">机器可读索引</a> · <a href="/hiking/PHOTO-INTERACTIONS-CHANGELOG.md">版本记录</a></p>
+<h2>新增游记时先做什么</h2>
+<ol>
+<li>先读取本规范和 JSON 索引，确定当前版本与共用资源地址。</li>
+<li>复用共用查看器，不在每篇游记里另写一份手势代码。参考可直接运行的接入示例。</li>
+<li>每个章节或相册用 data-photo-gallery 分组，照片按原来的阅读顺序排列。</li>
+<li>用小图预览、大图查看；正文、人物、照片顺序和构图不因接入交互而改变。</li>
+<li>完成下方测试，再按该网站的正常发布流程上线并检查实际页面。</li>
+</ol>
+<p><a href="/hiking/examples/journal.html">完整接入示例</a> · <a href="/hiking/shared/photo-viewer.js?v=1.0.0">共用 JavaScript</a> · <a href="/hiking/shared/photo-viewer.css?v=1.0.0">共用 CSS</a></p>
+<h2>必须保留的照片体验</h2>
+<ul>
+<li>正文按比例显示小图，手机优先 640 像素、桌面可用 960 像素预览。用 srcset/sizes 选择尺寸，保留 width/height，避免加载时版面跳动或拉伸。</li>
+<li>点击或键盘 Enter/空格打开大图；当前狼塔大图为 1888 像素宽。其他来源的照片可用合适的清晰尺寸，不为凑尺寸过度放大；只有查看照片时才加载相应大图及滑动时的相邻图。</li>
+<li>打开查看器后锁定背景网页，滚轮和触摸均不能带动正文。关闭后恢复打开前的页面位置、焦点和原有样式。</li>
+<li>单击照片区域关闭；双击在适应屏幕与 2.5 倍之间切换。单击要等待双击判定，不能在第二次点击前关闭。</li>
+<li>双指缩放与双击同时存在，范围 1～5 倍，以两指移动中点为中心；放大后单指拖动平移，边界受限。</li>
+<li>双指操作、第三根手指加入、松开一根手指、手势取消，不得触发切图或意外关闭。</li>
+<li>原尺寸时，明确向下滑动退出。放大时拖动用于平移；恢复原尺寸后才启用下滑退出。上滑、短滑、方向不明确的斜滑不应关闭。</li>
+<li>原尺寸时左右滑动切换当前章节/相册内的上一张、下一张。照片跟随手指，松手后有滑入动画；短滑及首尾边界回弹，不循环、不串到别的章节。切图后回到适应屏幕状态。</li>
+<li>默认滑入/回弹动画 180 毫秒。尊重 prefers-reduced-motion，减少动态效果时立即完成切换。不要预加载整篇游记的所有大图。</li>
+<li>保留关闭、上一张、下一张按钮、当前位置计数、加载/失败提示、Escape/方向键、焦点限制和返回原照片的焦点。背景内容在查看器打开时不可误操作。</li>
+</ul>
+<h2>通用接入接口</h2>
+<p>共用资源位于 hiking/shared。照片容器必须带 data-photo-gallery；可点击的 img 带 data-hiking-photo；data-full 指向大图。一个页面可以有多个相册，但只放一个查看器 DOM。没有 data-full 时回退到 img.src。</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/hiking/shared/photo-viewer.css?v=1.0.0&quot;&gt;
+&lt;section data-photo-gallery aria-label=&quot;第一天的照片&quot;&gt;
+  &lt;figure&gt;
+    &lt;img data-hiking-photo
+      src=&quot;/hiking/your-journal/images/photo-640.webp&quot;
+      srcset=&quot;/hiking/your-journal/images/photo-640.webp 640w, /hiking/your-journal/images/photo-960.webp 960w&quot;
+      sizes=&quot;(max-width:700px) calc(100vw - 40px), 786px&quot;
+      data-full=&quot;/hiking/your-journal/images/photo-1888.webp&quot;
+      width=&quot;1888&quot; height=&quot;1415&quot; alt=&quot;描述这张照片&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+  &lt;/figure&gt;
+&lt;/section&gt;</code></pre>
+<p>同页正文之后放置以下结构，再加载共用脚本。尺寸和图片路径应按实际照片替换；不需要照搬狼塔的章节布局或样式。</p>
+<pre><code>&lt;div id=&quot;lightbox&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;照片查看器&quot; aria-describedby=&quot;lightbox-help&quot; aria-hidden=&quot;true&quot;&gt;
+  &lt;div id=&quot;lightbox-stage&quot;&gt;&lt;img id=&quot;lightbox-img&quot; alt=&quot;&quot; draggable=&quot;false&quot;&gt;&lt;/div&gt;
+  &lt;button id=&quot;lightbox-close&quot; type=&quot;button&quot; aria-label=&quot;关闭照片&quot;&gt;×&lt;/button&gt;
+  &lt;button id=&quot;lightbox-prev&quot; type=&quot;button&quot; aria-label=&quot;上一张照片&quot;&gt;‹&lt;/button&gt;
+  &lt;button id=&quot;lightbox-next&quot; type=&quot;button&quot; aria-label=&quot;下一张照片&quot;&gt;›&lt;/button&gt;
+  &lt;span id=&quot;lightbox-count&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;
+  &lt;div id=&quot;lightbox-status&quot; role=&quot;status&quot;&gt;&lt;/div&gt;
+  &lt;div id=&quot;lightbox-help&quot;&gt;左右滑动切图 · 双指/双击缩放 · 原尺寸下滑退出 · 单击关闭&lt;/div&gt;
+&lt;/div&gt;
+&lt;script src=&quot;/hiking/shared/photo-viewer.js?v=1.0.0&quot;&gt;&lt;/script&gt;</code></pre>
+<p>脚本在正文之后加载，或在 head 中加 defer。不要 async 加载后让脚本先于相册/查看器结构运行。每页只加载一次 JS/CSS；不同章节共用同一个查看器。原有狼塔 section.day / .prose figure.ph img 结构继续兼容。</p>
+<p>此接口面向页面加载时已有的照片。若改成异步追加照片，应先扩展并测试共用初始化接口，不能假设新增 DOM 会自动绑定事件。</p>
+<h2>如何更新、更改和回退</h2>
+<p>交互规则以本 Markdown 文档为维护源，共用 JS/CSS 是实际实现，JSON 是当前版本索引，网页由 Markdown 生成。不要只改聊天记忆、示例或某篇游记的私有副本。</p>
+<ol>
+<li>先写清楚要改的行为，更新本规范；接口兼容的新功能升次版本，修复升补丁版本，不兼容的结构或行为变更升主版本并写迁移步骤。</li>
+<li>在 hiking/shared/photo-viewer.js 与 photo-viewer.css 中实现一次。同步更新 JSON 的 version/日期/资源查询版本、本文代码示例、示例页和所有引用共用资源的游记。</li>
+<li>在 PHOTO-INTERACTIONS-CHANGELOG.md 记录具体变化、兼容性和回退依据；修改对应回归测试。保留当前页面的照片、文字和排序。</li>
+<li>用下面的命令重新生成规范网页并运行测试，然后在手机和桌面检查全部消费页面。本规范与实现、索引、示例、测试必须在同一个版本提交发布。</li>
+<li>发布后核对规范链接、实际脚本版本、图片及手势；缓存参数必须使用新版本，不能让页面长期混用新 CSS 与旧 JS。</li>
+<li>如需回退，回退整次版本提交，包括规范、索引、JS/CSS、示例、测试和消费页面的版本引用；重新发布并验证。不要单独回退一个文件。</li>
+</ol>
+<pre><code>python hiking/tools/build-photo-contract.py
+node hiking/tests/photo-viewer.test.cjs .</code></pre>
+<p>命令从网站仓库根目录运行，仅用 Python/Node 标准库，无需安装 npm 或第三方 Python 包。Git 历史保存每次版本，规范版本与站点发布提交一起回退。hiking/langta 下保留的旧查看器文件仅供旧 URL 兼容；当前页面已使用 shared，不再维护旧副本。</p>
+<h2>发布前测试</h2>
+<ul>
+<li>自动测试：双指缩放中心和范围、双击共存、多指取消/松开、缩放后平移、下滑退出、短滑/斜滑不退出、左右动画及边界、关闭/再打开、连续操作、减少动态效果、正文滚动与焦点恢复。</li>
+<li>通用与历史页面：示例的两个独立相册不能串图；狼塔原有章节、照片顺序和全部图片引用不变。新游记即使没有狼塔的 class 名，也必须正常操作。</li>
+<li>真实浏览器：手机和桌面比例、无横向溢出、小图/大图选择、按钮/键盘、加载失败提示，以及关闭后的阅读位置。</li>
+<li>有实体触屏设备时检查双指与单指切换；没有实体设备时如实记录已做的多指事件测试，不把模拟测试写成手机实测。</li>
+<li>上线后：规范/索引/共用文件/示例均可访问，页面实际引用的版本正确。自动测试通过不代表照片细节真实恢复。</li>
+</ul>
+<h2>当前版本</h2>
+<p>1.0.0：从狼塔已发布查看器提取共用组件，保留现有手势，增加与页面布局无关的显式相册接口。后续变更见版本记录。</p>
+</main><footer>规范维护源：<a href="/hiking/PHOTO-INTERACTIONS.md">Markdown</a> · <a href="/hiking/photo-viewer-contract.json">版本索引</a> · <a href="/hiking/examples/journal.html">接入示例</a> · <a href="/hiking/tests/photo-viewer.test.cjs">回归测试</a></footer></body></html>

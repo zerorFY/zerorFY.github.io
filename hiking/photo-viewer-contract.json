@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "version": "1.0.0",
+  "status": "active",
+  "updated": "2026-10-10",
+  "scope": "Hiking journal photo interactions",
+  "spec": "/hiking/photo-interactions/",
+  "markdown": "/hiking/PHOTO-INTERACTIONS.md",
+  "changelog": "/hiking/PHOTO-INTERACTIONS-CHANGELOG.md",
+  "script": "/hiking/shared/photo-viewer.js?v=1.0.0",
+  "stylesheet": "/hiking/shared/photo-viewer.css?v=1.0.0",
+  "example": "/hiking/examples/journal.html",
+  "tests": "/hiking/tests/photo-viewer.test.cjs",
+  "build_spec": "/hiking/tools/build-photo-contract.py",
+  "gallery_attribute": "data-photo-gallery",
+  "photo_attribute": "data-hiking-photo",
+  "full_image_attribute": "data-full",
+  "legacy_support": "section.day with .prose figure.ph img",
+  "update_policy": "Update shared assets, this version, specification, changelog and all journal asset version references together; test every consumer and publish as one release."
+}
