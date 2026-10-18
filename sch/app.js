@@ -1,8 +1,10 @@
 (function(){
  'use strict';
- const M=window.SCH,$=s=>document.querySelector(s),KEY='zeror-sch-prototype-v1';
+ const M=window.SCH,$=s=>document.querySelector(s),seed=window.SCH_IMPORT,KEY=seed?'zeror-sch-import-20261019-v1':'zeror-sch-prototype-v1';
+ if(seed)M.configureRoster(seed.roster);
+ const initialState=()=>seed?seed.build(M):M.sampleState();
  const owner={role:'owner',id:'owner'},days=['周一','周二','周三','周四','周五','周六','周日'],eng=['MON','TUE','WED','THU','FRI','SAT','SUN'];
- let state,storageError=false;try{const raw=localStorage.getItem(KEY);state=raw?JSON.parse(raw):M.sampleState();if(state.schema!==1||!state.weeks||!state.rest)throw Error('数据格式不兼容');}catch(e){state=M.sampleState();storageError=true;}
+ let state,storageError=false;try{const raw=localStorage.getItem(KEY);state=raw?JSON.parse(raw):initialState();if(state.schema!==1||!state.weeks||!state.rest)throw Error('数据格式不兼容');}catch(e){state=initialState();storageError=true;}
  let actor=owner,start=state.currentWeek||'2026-10-19',view='schedule',restDraft=null,editing=null,snapshot=null,toastTimer,shareWeek=null,shareScroll=0,editorScroll=0;
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const shortDate=d=>`${Number(d.slice(5,7))}/${Number(d.slice(8,10))}`;
