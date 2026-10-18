@@ -3,7 +3,7 @@
 <head>
  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
  <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#182c39">
- <title>SCH · 每周排班</title><link rel="stylesheet" href="style.css?v=20261018-3"><link rel="stylesheet" href="share.css?v=20261018-3"><link rel="stylesheet" href="editor.css?v=20261018-3">
+ <title>SCH · 每周排班</title><link rel="stylesheet" href="style.css?v=20261018-4"><link rel="stylesheet" href="share.css?v=20261018-4"><link rel="stylesheet" href="editor.css?v=20261018-4">
 </head>
 <body>
 <div class="app-shell">
@@ -22,7 +22,7 @@
  <div class="main-shell">
   <header class="topbar no-print"><div class="breadcrumb">工作台 <span>/</span> <strong id="breadcrumb">每周排班</strong></div><div class="identity"><span class="demo-pill">演示身份</span><label class="sr-only" for="identity-select">切换演示身份</label><select id="identity-select"></select><span class="avatar" id="identity-avatar">管</span></div></header>
   <main>
-   <div class="prototype-banner no-print"><span class="banner-tag">PREVIEW</span><span>交互样板 · 虚构示例 · 身份切换为演示 · 数据仅存当前浏览器，尚不支持多人同步</span><button id="backup" class="text-button">备份数据 ↗</button></div>
+   <div class="prototype-banner no-print"><span class="banner-tag">PREVIEW</span><span>已导入 10/19–10/25 原表排班 · 身份切换为演示 · 数据仅存当前浏览器，尚不支持多人同步</span><button id="backup" class="text-button">备份数据 ↗</button></div>
    <section class="page-heading"><div><div class="eyebrow">A LITTLE ORDER, EVERY WEEK</div><h1 id="page-title">每周排班<span class="title-dot">.</span></h1><p id="page-subtitle">安排清晰一点，每周轻松一点。</p></div><div class="heading-actions no-print"><span id="save-status" class="save-status" aria-live="polite">● 已保存到本机</span><button class="button primary" id="share-button">▦ 整周预览</button><button class="button secondary" id="print-button">↗ 打印 / PDF</button></div></section>
    <div class="week-toolbar no-print"><div class="week-left"><div class="week-arrows"><button id="prev-week" aria-label="上一周">‹</button><button id="next-week" aria-label="下一周">›</button></div><label for="week-picker" class="sr-only">选择一周中的日期</label><input type="date" id="week-picker"><span class="week-range" id="week-range"></span><span id="week-state" class="badge"></span></div><div class="week-actions" id="week-actions"></div></div>
    <div id="view-content"></div>
@@ -41,5 +41,5 @@
 </dialog>
 <dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-heading"><div><div class="eyebrow">CONFIRM & LOCK</div><h2 id="confirm-title">确认本周最终排班</h2><p id="confirm-range"></p></div><button class="close-button" data-close="confirm-dialog" aria-label="关闭">×</button></div><div class="lock-illustration">▣</div><p class="confirm-copy">确认后，本周排班将生成最终版。<br><strong>所有人，包括管理员，都不能直接修改。</strong></p><p class="muted small">如需调整，可以另建修订草稿，旧版会完整保留。</p><div id="confirm-warnings"></div><div class="dialog-footer"><button class="button secondary" data-close="confirm-dialog">返回核对</button><button class="button primary" id="confirm-final">确认并锁定</button></div></dialog>
 <div id="toast" class="toast no-print" role="status"></div>
-<script src="model.js?v=20261018-3"></script><script src="share.js?v=20261018-3"></script><script src="app.js?v=20261018-3"></script>
+<script src="model.js?v=20261018-4"></script><script src="share.js?v=20261018-4"></script><script src="import.js?v=20261018-4"></script><script src="app.js?v=20261018-4"></script>
 </body></html>

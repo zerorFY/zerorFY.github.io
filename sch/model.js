@@ -4,6 +4,7 @@
  const rows=[{id:'shop',name:'店面早班',en:'Showroom',time:'09:45–18:00',group:'work'},{id:'late',name:'店面晚班',en:'Late shift',time:'10:45–19:00',group:'work'},{id:'office',name:'办公',en:'Office',time:'09:45–18:00',group:'work'},{id:'warehouse',name:'仓库',en:'Warehouse',time:'09:45–18:00',group:'work'},{id:'vacuum',name:'吸尘',en:'Vacuum floor',group:'clean'},{id:'wipe',name:'擦桌子、床面',en:'Wipe surfaces',group:'clean'},{id:'sweep',name:'扫地',en:'Sweep floor',group:'clean'},{id:'mop',name:'拖地 · 每天半场',en:'Mop half the area',group:'clean'},{id:'rooms',name:'地毯间 / 厕所 / 休息室',en:'Shared spaces',group:'clean'},{id:'furniture',name:'家具底部',en:'Under furniture',group:'clean'}];
  const clone=x=>JSON.parse(JSON.stringify(x));
  const employee=id=>employees.find(x=>x.id===id);
+ function configureRoster(roster){if(!Array.isArray(roster)||!roster.length||new Set(roster.map(e=>e.id)).size!==roster.length||roster.some(e=>!e.id||!e.code||!e.name))throw Error('人员名单无效');employees.splice(0,employees.length,...clone(roster));}
  function addDays(date,n){const d=new Date(date+'T12:00:00Z');if(Number.isNaN(d.getTime()))throw Error('日期无效');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);}
  function monday(date){const d=new Date(date+'T12:00:00Z');return addDays(date,-((d.getUTCDay()+6)%7));}
  function createState(){return {schema:1,weeks:{},rest:{}};}
@@ -51,5 +52,5 @@
   setCell(s,owner,start,3,'furniture',['al'],null);
   setRest(s,{role:'employee',id:'al'},start,['2026-10-21']);setRest(s,{role:'employee',id:'bo'},start,['2026-10-23']);setRest(s,{role:'employee',id:'ha'},start,['2026-10-25']);setRest(s,{role:'employee',id:'gu'},start,['2026-10-25']);return s;
  }
- return {employees,rows,clone,employee,addDays,monday,createState,ensureWeek,setCell,setNote,setShareNote,stats,setRest,restOn,finalize,revise,visibleWeek,copyWeek,warnings,sampleState};
+ return {employees,rows,clone,employee,configureRoster,addDays,monday,createState,ensureWeek,setCell,setNote,setShareNote,stats,setRest,restOn,finalize,revise,visibleWeek,copyWeek,warnings,sampleState};
 });
