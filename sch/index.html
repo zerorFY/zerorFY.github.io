@@ -1,10 +1,39 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <title>SCH</title>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#182c39">
+ <title>SCH · 每周排班</title><link rel="stylesheet" href="style.css?v=20261018-1">
 </head>
-<body></body>
-</html>
+<body>
+<div class="app-shell">
+ <aside class="sidebar no-print">
+  <a class="brand" href="#schedule" aria-label="SCH 排班首页"><span class="brand-mark">s<span>c</span>h<span class="brand-dot">.</span></span><span class="brand-caption">WEEKLY, SIMPLIFIED.</span></a>
+  <div class="workspace"><span class="workspace-icon">Z</span><div><strong>Zeror 工作空间</strong><small>排班与休息协调</small></div><span class="workspace-dot"></span></div>
+  <div class="nav-label">工作台</div>
+  <nav aria-label="主导航">
+   <button class="nav-item active" data-view="schedule"><span class="nav-icon">▦</span>每周排班<span class="nav-tail">01</span></button>
+   <button class="nav-item" data-view="rest"><span class="nav-icon">◷</span>休息意愿<span class="nav-tail" id="rest-nav-count"></span></button>
+   <button class="nav-item" data-view="history"><span class="nav-icon">▤</span>定稿记录<span class="nav-tail" id="history-nav-count">0</span></button>
+  </nav>
+  <div class="sidebar-note"><span class="mini-label">HOW IT WORKS</span><p>把时间留给工作，<br>把安排交给一张好表。</p><div class="flow-steps"><span>填写</span><i>→</i><span>核对</span><i>→</i><span>定稿</span></div></div>
+  <div class="sidebar-bottom"><span class="local-dot"></span>交互样板<span>v0.1</span></div>
+ </aside>
+ <div class="main-shell">
+  <header class="topbar no-print"><div class="breadcrumb">工作台 <span>/</span> <strong id="breadcrumb">每周排班</strong></div><div class="identity"><span class="demo-pill">演示身份</span><label class="sr-only" for="identity-select">切换演示身份</label><select id="identity-select"></select><span class="avatar" id="identity-avatar">管</span></div></header>
+  <main>
+   <div class="prototype-banner no-print"><span class="banner-tag">PREVIEW</span><span>交互样板 · 虚构示例 · 身份切换为演示 · 数据仅存当前浏览器，尚不支持多人同步</span><button id="backup" class="text-button">备份数据 ↗</button></div>
+   <section class="page-heading"><div><div class="eyebrow">A LITTLE ORDER, EVERY WEEK</div><h1 id="page-title">每周排班<span class="title-dot">.</span></h1><p id="page-subtitle">安排清晰一点，每周轻松一点。</p></div><div class="heading-actions no-print"><span id="save-status" class="save-status" aria-live="polite">● 已保存到本机</span><button class="button secondary" id="print-button">↗ 打印 / PDF</button></div></section>
+   <div class="week-toolbar no-print"><div class="week-left"><div class="week-arrows"><button id="prev-week" aria-label="上一周">‹</button><button id="next-week" aria-label="下一周">›</button></div><label for="week-picker" class="sr-only">选择一周中的日期</label><input type="date" id="week-picker"><span class="week-range" id="week-range"></span><span id="week-state" class="badge"></span></div><div class="week-actions" id="week-actions"></div></div>
+   <div id="view-content"></div>
+   <footer class="page-footer"><span>SCH / ZEROR</span><span>每一周，都安排得明明白白。</span></footer>
+  </main>
+ </div>
+</div>
+<dialog id="cell-dialog" aria-labelledby="cell-title">
+ <form id="cell-form"><div class="dialog-heading"><div><div class="eyebrow">EDIT ASSIGNMENT</div><h2 id="cell-title">编辑安排</h2><p id="cell-subtitle"></p></div><button type="button" class="close-button" data-close="cell-dialog" aria-label="关闭">×</button></div><div id="cell-rest-hint"></div><div class="field-label">选择人员 <span>可以多选</span></div><div id="people-picker" class="people-picker"></div><div id="front-field"><label class="field-label" for="front-select">值班前台 <span>仅从本班人员中选择</span></label><select id="front-select" class="full-select"></select><p class="field-help"><span class="red-dot"></span>前台在排班表中标红，并显示“前台”标记。</p></div><div class="dialog-footer"><button type="button" class="button danger-text" id="clear-cell">清空本格</button><div><button type="button" class="button secondary" data-close="cell-dialog">取消</button><button class="button primary" type="submit">保存安排</button></div></div></form>
+</dialog>
+<dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-heading"><div><div class="eyebrow">CONFIRM & LOCK</div><h2 id="confirm-title">确认本周最终排班</h2><p id="confirm-range"></p></div><button class="close-button" data-close="confirm-dialog" aria-label="关闭">×</button></div><div class="lock-illustration">▣</div><p class="confirm-copy">确认后，本周排班将生成最终版。<br><strong>所有人，包括管理员，都不能直接修改。</strong></p><p class="muted small">如需调整，可以另建修订草稿，旧版会完整保留。</p><div id="confirm-warnings"></div><div class="dialog-footer"><button class="button secondary" data-close="confirm-dialog">返回核对</button><button class="button primary" id="confirm-final">确认并锁定</button></div></dialog>
+<div id="toast" class="toast no-print" role="status"></div>
+<script src="model.js?v=20261018-1"></script><script src="app.js?v=20261018-1"></script>
+</body></html>
