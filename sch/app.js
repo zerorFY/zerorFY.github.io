@@ -28,11 +28,11 @@
   $('#page-title').innerHTML=titles[view][0]+'<span class="title-dot">.</span>';$('#page-subtitle').textContent=titles[view][1];$('#breadcrumb').textContent=titles[view][0];
   $('#identity-avatar').textContent=isOwner()?'管':name(actor.id);$('#identity-avatar').style.background=isOwner()?'#e4ece8':'#f0e6dc';
   $('#backup').hidden=!isOwner();
-  $('#share-button').hidden=view!=='schedule'||!w;
+  $('#share-button').hidden=view!=='schedule'||!w;$('#export-current').hidden=view!=='schedule'||!w;
   $('#rest-nav-count').textContent=new Set(Object.values(state.rest[start]||{}).flat()).size+' 天';$('#history-nav-count').textContent=b.finals.length;
   document.querySelectorAll('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===view));
   let actions='';if(view==='schedule'&&isOwner()&&!snapshot){if(b.draft){actions=`<button class="button secondary" id="copy-week">↳ 从上周复制</button><button class="button accent" id="finalize-button">▣ 确认定稿</button>`;}else actions='<button class="button secondary" id="revise-button">＋ 建立修订草稿</button>';}
-  if(document.body.classList.contains('editor-focus'))actions='<button class="button secondary" id="focus-exit">退出放大</button>'+(w?'<button class="button secondary" id="focus-share">整周预览</button>':'')+actions;
+  if(document.body.classList.contains('editor-focus'))actions='<button class="button secondary" id="focus-exit">退出放大</button>'+(w?'<button class="button secondary" id="focus-share">整周预览</button><button class="button primary" id="focus-export">保存整周图片</button>':'')+actions;
   $('#week-actions').innerHTML=actions;
   if(storageError){$('#save-status').textContent='● 本机数据未保存，请备份';$('#save-status').classList.add('error');}
  }
@@ -50,7 +50,7 @@
   for(const row of M.rows){if(row.id==='vacuum')out+='<tr class="group-row"><td colspan="8">日常清洁 <span>DAILY CARE</span></td></tr>';
    out+=`<tr class="${row.group==='clean'?'clean-row':''}"><td><span class="row-label">${row.name}</span><span class="row-sub">${row.time||row.en}</span></td>${dates().map((date,d)=>{const c=w.cells[d+':'+row.id]||{people:[],front:null};return `<td data-day="${d}"><button class="cell-button" data-cell="${d}:${row.id}" aria-label="编辑${days[d]}${row.name}" ${canEdit()?'':'disabled'}>${c.people.map(id=>personChip(id,c.front===id,w.status==='draft'&&M.restOn(state,date).includes(id))).join('')||`<span class="${canEdit()?'empty-plus':'empty-dash'}">${canEdit()?'+':'—'}</span>`}</button></td>`;}).join('')}</tr>`;
   }
-  out+=`<tr class="rest-strip no-print"><td>◷ 休息意愿参考</td>${dates().map((date,d)=>`<td data-day="${d}"><div class="rest-tags">${M.restOn(state,date).map(id=>'<span>'+esc(name(id))+'</span>').join('')||'—'}</div></td>`).join('')}</tr></tbody></table></div><div class="table-note"><span>清洁提示：每天拖半场；晚班不安排扫地、拖地；周日不排晚班。</span><span><strong>名字下方细线</strong> = 已提交休息意愿，请核对</span></div>${canEdit()?warningHTML(w):''}</section>`;
+  out+=`<tr class="rest-strip no-print"><td>◷ 休息意愿参考</td>${dates().map((date,d)=>`<td data-day="${d}"><div class="rest-tags">${M.restOn(state,date).map(id=>'<span>'+esc(name(id))+'</span>').join('')||'—'}</div></td>`).join('')}</tr></tbody></table></div><div class="schedule-notes" aria-label="排班表备注">${window.SCHShare.notesHTML(w)}</div><div class="staff-roster">现有全部员工（${M.employees.length}人）：${M.employees.map(e=>esc(e.code)).join('、')}</div><div class="table-note"><span>清洁提示：每天拖半场；晚班不安排扫地、拖地；周日不排晚班。</span><span><strong>名字下方细线</strong> = 已提交休息意愿，请核对</span></div>${canEdit()?warningHTML(w):''}</section>`;
   out+=statsCards(w)+summaryHTML(w);return out;
  }
  function summaryHTML(w){const cleanRows=M.rows.filter(r=>r.group==='clean');return `<section class="panel"><div class="panel-heading"><div><h2 class="panel-title"><span class="section-number">02</span> 每周核对</h2><p class="panel-caption">自动算清次数，最后一栏留给你手动核对。</p></div><span class="right-caption">随排班自动更新</span></div><div class="table-scroll"><table class="summary-table" aria-label="每周人员核对"><thead><tr><th>人员</th><th>上班天数</th><th>前台</th>${cleanRows.map(r=>'<th>'+r.name.replace(' · 每天半场','').replace('地毯间 / 厕所 / 休息室','公共区域').replace('擦桌子、床面','擦桌面')+'</th>').join('')}<th style="width:20%">人工核对 / 备注</th></tr></thead><tbody>${M.stats(w).map(e=>`<tr><td><span class="summary-person">${avatar(e)}<span><strong>${e.code}</strong><small>${e.name}</small></span></span></td><td><span class="count-pill">${e.days}</span></td><td>${e.front||'—'}</td>${cleanRows.map(r=>'<td>'+(e.tasks[r.id]||'—')+'</td>').join('')}<td><input class="manual-note" data-note="${e.id}" aria-label="${e.code}人工核对备注" maxlength="300" placeholder="留空，供你核对填写" value="${esc(w.notes[e.id]||'')}" ${canEdit()?'':'disabled'}></td></tr>`).join('')}</tbody></table></div><div class="summary-footnote">上班天数按日期去重：同一天多个岗位只算 1 天；清洁次数单独统计，不额外增加上班天数。</div></section>`;}
@@ -66,7 +66,7 @@
   document.querySelectorAll('[data-note]').forEach(el=>el.addEventListener('input',()=>{try{M.setNote(state,actor,start,el.dataset.note,el.value);persist();}catch(e){toast(e.message);}}));
   $('#focus-editor')?.addEventListener('click',toggleEditorFocus);
   $('#focus-exit')?.addEventListener('click',toggleEditorFocus);
-  $('#focus-share')?.addEventListener('click',openWholeWeek);
+  $('#focus-share')?.addEventListener('click',openWholeWeek);$('#focus-export')?.addEventListener('click',exportCurrentWeek);
   $('#go-rest')?.addEventListener('click',()=>{view='rest';render();});
   document.querySelectorAll('[data-rest-day]').forEach(el=>el.addEventListener('click',()=>{if(restDraft===null)restDraft=[...(state.rest[start]?.[actor.id]||[])];const date=el.dataset.restDay;restDraft=restDraft.includes(date)?restDraft.filter(d=>d!==date):[...restDraft,date];render();}));
   $('#save-rest')?.addEventListener('click',()=>{const selected=restDraft||state.rest[start]?.[actor.id]||[];run(()=>{M.setRest(state,actor,start,selected);restDraft=null;},'休息意愿已保存到本机演示数据');});
@@ -80,6 +80,7 @@
  function renderWholeWeek(){if(!shareWeek)return;$('#share-fit').innerHTML=window.SCHShare.html(shareWeek);$('#share-notes-edit').hidden=!canEdit();requestAnimationFrame(fitWholeWeek);}
  function openWholeWeek(){const w=data();if(!w){toast('本周尚无可展示的最终排班');return;}shareWeek=M.clone(w);shareScroll=window.scrollY;$('#share-panel').hidden=false;$('#share-panel').classList.remove('capture-clean');document.body.classList.add('share-mode');renderWholeWeek();$('#share-back').focus();}
  function closeWholeWeek(){shareWeek=null;$('#share-panel').hidden=true;document.body.classList.remove('share-mode');window.scrollTo(0,shareScroll);$('#share-button').focus();}
+ function exportCurrentWeek(){openWholeWeek();if(shareWeek)saveWholeWeek();}
  async function saveWholeWeek(){
   if(!shareWeek)return;
   const exportWeek=M.clone(shareWeek),button=$('#share-save');
@@ -119,7 +120,7 @@
  $('#share-back').addEventListener('click',closeWholeWeek);
  $('#share-hide').addEventListener('click',()=>{$('#share-panel').classList.add('capture-clean');requestAnimationFrame(fitWholeWeek);});
  $('#share-stage').addEventListener('click',()=>{if($('#share-panel').classList.contains('capture-clean')){$('#share-panel').classList.remove('capture-clean');requestAnimationFrame(fitWholeWeek);}});
- $('#share-save').addEventListener('click',saveWholeWeek);
+ $('#share-save').addEventListener('click',saveWholeWeek);$('#export-current').addEventListener('click',exportCurrentWeek);
  $('#share-notes-edit').addEventListener('click',()=>{if(!canEdit())return;$('#share-note-input').value=shareWeek.shareNote||'';$('#share-note-dialog').showModal();});
  $('#share-note-form').addEventListener('submit',e=>{e.preventDefault();try{M.setShareNote(state,actor,start,$('#share-note-input').value);persist();shareWeek=M.clone(data());$('#share-note-dialog').close();render();renderWholeWeek();}catch(error){toast(error.message);}});
  window.addEventListener('resize',()=>{fitWholeWeek();fitEditorFocus();});window.visualViewport?.addEventListener('resize',()=>{fitWholeWeek();fitEditorFocus();});
