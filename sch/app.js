@@ -3,7 +3,7 @@
  const M=window.SCH,$=s=>document.querySelector(s),KEY='zeror-sch-prototype-v1';
  const owner={role:'owner',id:'owner'},days=['周一','周二','周三','周四','周五','周六','周日'],eng=['MON','TUE','WED','THU','FRI','SAT','SUN'];
  let state,storageError=false;try{const raw=localStorage.getItem(KEY);state=raw?JSON.parse(raw):M.sampleState();if(state.schema!==1||!state.weeks||!state.rest)throw Error('数据格式不兼容');}catch(e){state=M.sampleState();storageError=true;}
- let actor=owner,start=state.currentWeek||'2026-10-19',view='schedule',mobileDay=0,restDraft=null,editing=null,snapshot=null,toastTimer;
+ let actor=owner,start=state.currentWeek||'2026-10-19',view='schedule',mobileDay=0,restDraft=null,editing=null,snapshot=null,toastTimer,shareWeek=null,shareScroll=0;
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const shortDate=d=>`${Number(d.slice(5,7))}/${Number(d.slice(8,10))}`;
  const fullDate=d=>`${d.slice(0,4)}.${d.slice(5,7)}.${d.slice(8,10)}`;
@@ -26,6 +26,7 @@
   $('#page-title').innerHTML=titles[view][0]+'<span class="title-dot">.</span>';$('#page-subtitle').textContent=titles[view][1];$('#breadcrumb').textContent=titles[view][0];
   $('#identity-avatar').textContent=isOwner()?'管':name(actor.id);$('#identity-avatar').style.background=isOwner()?'#e4ece8':'#f0e6dc';
   $('#backup').hidden=!isOwner();
+  $('#share-button').hidden=view!=='schedule'||!w;
   $('#rest-nav-count').textContent=new Set(Object.values(state.rest[start]||{}).flat()).size+' 天';$('#history-nav-count').textContent=b.finals.length;
   document.querySelectorAll('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===view));
   let actions='';if(view==='schedule'&&isOwner()&&!snapshot){if(b.draft){actions=`<button class="button secondary" id="copy-week">↳ 从上周复制</button><button class="button accent" id="finalize-button">▣ 确认定稿</button>`;}else actions='<button class="button secondary" id="revise-button">＋ 建立修订草稿</button>';}
@@ -68,6 +69,29 @@
   $('#exit-snapshot')?.addEventListener('click',()=>{snapshot=null;render();});
  }
  function selectedPeople(){return Array.from(document.querySelectorAll('#people-picker input:checked')).map(el=>el.value);}
+ function fitWholeWeek(){if(!shareWeek)return;const paper=$('#share-fit .share-paper'),stage=$('#share-stage');if(!paper)return;const scale=Math.min(1,Math.max(1,stage.clientWidth-24)/760,Math.max(1,stage.clientHeight-16)/paper.offsetHeight);paper.style.transform=`scale(${scale})`;$('#share-fit').style.width=(760*scale)+'px';$('#share-fit').style.height=(paper.offsetHeight*scale)+'px';}
+ function renderWholeWeek(){if(!shareWeek)return;$('#share-fit').innerHTML=window.SCHShare.html(shareWeek);$('#share-notes-edit').hidden=!canEdit();requestAnimationFrame(fitWholeWeek);}
+ function openWholeWeek(){const w=data();if(!w){toast('本周尚无可展示的最终排班');return;}shareWeek=M.clone(w);shareScroll=window.scrollY;$('#share-panel').hidden=false;$('#share-panel').classList.remove('capture-clean');document.body.classList.add('share-mode');renderWholeWeek();$('#share-back').focus();}
+ function closeWholeWeek(){shareWeek=null;$('#share-panel').hidden=true;document.body.classList.remove('share-mode');window.scrollTo(0,shareScroll);$('#share-button').focus();}
+ async function saveWholeWeek(){
+  if(!shareWeek)return;
+  const exportWeek=M.clone(shareWeek),button=$('#share-save');
+  button.disabled=true;button.textContent='正在生成…';let svgURL;
+  try{
+   await document.fonts.ready;
+   const p=window.SCHShare.packet(exportWeek);
+   svgURL=URL.createObjectURL(new Blob([window.SCHShare.svg(exportWeek)],{type:'image/svg+xml;charset=utf-8'}));
+   const img=new Image();
+   await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('图片生成失败，请使用截屏模式'));img.src=svgURL;});
+   const canvas=document.createElement('canvas');canvas.width=p.width*2;canvas.height=p.height*2;
+   const ctx=canvas.getContext('2d');ctx.scale(2,2);ctx.fillStyle='#fff';ctx.fillRect(0,0,p.width,p.height);ctx.drawImage(img,0,0,p.width,p.height);
+   const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw Error('图片生成失败，请使用截屏模式');
+   const imageURL=URL.createObjectURL(blob),a=document.createElement('a');
+   a.href=imageURL;a.download=`SCH-${exportWeek.start}-${exportWeek.status==='final'?'V'+exportWeek.version:'草稿'}.png`;
+   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(imageURL),30000);
+  }catch(e){toast(e.message);}
+  finally{if(svgURL)URL.revokeObjectURL(svgURL);button.disabled=false;button.textContent='保存整周图片';}
+ }
  function refreshFront(){const prev=$('#front-select').value;$('#front-select').innerHTML='<option value="">暂不指定前台</option>'+selectedPeople().map(id=>`<option value="${id}">${name(id)} · ${M.employee(id).name}</option>`).join('');if(selectedPeople().includes(prev))$('#front-select').value=prev;}
  function openCell(key){if(!canEdit())return;const [d,rowId]=key.split(':'),day=Number(d),row=M.rows.find(r=>r.id===rowId),c=data().cells[key]||{people:[],front:null};editing={day,rowId};
   $('#cell-title').textContent=row.name;$('#cell-subtitle').textContent=`${days[day]} · ${fullDate(M.addDays(start,day))}${row.time?' / '+row.time:''}`;
@@ -84,6 +108,15 @@
  $('#identity-select').addEventListener('change',e=>{if(restDraft!==null&&!confirm('休息意愿尚未保存，切换身份将放弃本次未保存选择。继续吗？')){e.target.value=actor.id;return;}actor=e.target.value==='owner'?owner:{role:'employee',id:e.target.value};restDraft=null;snapshot=null;render();toast(isOwner()?'已切换管理员演示身份':'已切换 '+name(actor.id)+' 的员工演示身份');});
  $('#prev-week').addEventListener('click',()=>moveWeek(M.addDays(start,-7)));$('#next-week').addEventListener('click',()=>moveWeek(M.addDays(start,7)));$('#week-picker').addEventListener('change',e=>{if(e.target.value)moveWeek(e.target.value);});
  $('#print-button').addEventListener('click',()=>{if(view==='schedule'&&!data()){toast('本周还没有可打印的正式排班');return;}if(view==='rest'&&restDraft!==null){toast('请先保存休息意愿后再打印');return;}window.print();});
+ $('#share-button').addEventListener('click',openWholeWeek);
+ $('#share-back').addEventListener('click',closeWholeWeek);
+ $('#share-hide').addEventListener('click',()=>{$('#share-panel').classList.add('capture-clean');requestAnimationFrame(fitWholeWeek);});
+ $('#share-stage').addEventListener('click',()=>{if($('#share-panel').classList.contains('capture-clean')){$('#share-panel').classList.remove('capture-clean');requestAnimationFrame(fitWholeWeek);}});
+ $('#share-save').addEventListener('click',saveWholeWeek);
+ $('#share-notes-edit').addEventListener('click',()=>{if(!canEdit())return;$('#share-note-input').value=shareWeek.shareNote||'';$('#share-note-dialog').showModal();});
+ $('#share-note-form').addEventListener('submit',e=>{e.preventDefault();try{M.setShareNote(state,actor,start,$('#share-note-input').value);persist();shareWeek=M.clone(data());$('#share-note-dialog').close();render();renderWholeWeek();}catch(error){toast(error.message);}});
+ window.addEventListener('resize',fitWholeWeek);window.visualViewport?.addEventListener('resize',fitWholeWeek);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&shareWeek&&!document.querySelector('dialog[open]'))closeWholeWeek();});
  $('#backup').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='SCH-本地样板备份-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
  window.addEventListener('beforeunload',e=>{if(restDraft!==null){e.preventDefault();e.returnValue='';}});
  window.matchMedia('(max-width:600px)').addEventListener('change',()=>render());
