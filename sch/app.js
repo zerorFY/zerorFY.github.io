@@ -94,12 +94,26 @@
    const canvas=document.createElement('canvas');canvas.width=p.width*2;canvas.height=p.height*2;
    const ctx=canvas.getContext('2d');ctx.scale(2,2);ctx.fillStyle='#fff';ctx.fillRect(0,0,p.width,p.height);ctx.drawImage(img,0,0,p.width,p.height);
    const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw Error('图片生成失败，请使用截屏模式');
-   const imageURL=URL.createObjectURL(blob),a=document.createElement('a');
-   a.href=imageURL;a.download=`SCH-${exportWeek.start}-${exportWeek.status==='final'?'V'+exportWeek.version:'草稿'}.png`;
-   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(imageURL),30000);
+   const filename=`SCH-${exportWeek.start}-${exportWeek.status==='final'?'V'+exportWeek.version:'草稿'}.png`;
+   showImageSave(blob,filename);
   }catch(e){toast(e.message);}
   finally{if(svgURL)URL.revokeObjectURL(svgURL);button.disabled=false;button.textContent='保存整周图片';}
  }
+ let preparedImage=null,preparedURL=null;
+ function showImageSave(blob,filename){
+  if(preparedURL){const oldURL=preparedURL;setTimeout(()=>URL.revokeObjectURL(oldURL),30000);}
+  preparedImage=new File([blob],filename,{type:'image/png'});preparedURL=URL.createObjectURL(blob);
+  $('#saved-image').src=preparedURL;$('#image-download').href=preparedURL;$('#image-download').download=filename;
+  const native=window.SCHImageSave.supported(navigator,preparedImage);
+  $('#image-native-share').hidden=!native;
+  $('#image-save-status').textContent=native?'点“存入相册 / 分享”，在系统菜单中选择“存储图像”或“保存图片”；可用选项由手机决定。':'长按下方图片，在手机菜单中选择“存储图像”或“保存图片”。也可下载到文件。';
+  $('#image-save-dialog').showModal();
+ }
+ $('#image-native-share').addEventListener('click',async()=>{
+  const button=$('#image-native-share');button.disabled=true;
+  const result=await window.SCHImageSave.share(navigator,preparedImage);button.disabled=false;
+  $('#image-save-status').textContent=result==='shared'?'已交给系统处理，请到相册确认；网页无法确认你选择的保存位置。':result==='cancelled'?'已取消。仍可再次打开系统菜单，或长按图片保存。':'未能打开系统菜单。请长按下方图片保存，或使用“下载到文件”。';
+ });
  function refreshFront(){const prev=$('#front-select').value;$('#front-select').innerHTML='<option value="">暂不指定前台</option>'+selectedPeople().map(id=>`<option value="${id}">${name(id)} · ${M.employee(id).name}</option>`).join('');if(selectedPeople().includes(prev))$('#front-select').value=prev;}
  function openCell(key){if(!canEdit())return;const [d,rowId]=key.split(':'),day=Number(d),row=M.rows.find(r=>r.id===rowId),c=data().cells[key]||{people:[],front:null};editing={day,rowId};
   $('#cell-title').textContent=row.name;$('#cell-subtitle').textContent=`${days[day]} · ${fullDate(M.addDays(start,day))}${row.time?' / '+row.time:''}`;

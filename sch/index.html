@@ -3,7 +3,7 @@
 <head>
  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
  <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#182c39">
- <title>SCH · 每周排班</title><link rel="stylesheet" href="style.css?v=20261018-5"><link rel="stylesheet" href="share.css?v=20261018-5"><link rel="stylesheet" href="editor.css?v=20261018-5">
+ <title>SCH · 每周排班</title><link rel="stylesheet" href="style.css?v=20261018-6"><link rel="stylesheet" href="share.css?v=20261018-6"><link rel="stylesheet" href="editor.css?v=20261018-6">
 </head>
 <body>
 <div class="app-shell">
@@ -40,6 +40,7 @@
  <form id="cell-form"><div class="dialog-heading"><div><div class="eyebrow">EDIT ASSIGNMENT</div><h2 id="cell-title">编辑安排</h2><p id="cell-subtitle"></p></div><button type="button" class="close-button" data-close="cell-dialog" aria-label="关闭">×</button></div><div id="cell-rest-hint"></div><div class="field-label">选择人员 <span>可以多选</span></div><div id="people-picker" class="people-picker"></div><div id="front-field"><label class="field-label" for="front-select">值班前台 <span>仅从本班人员中选择</span></label><select id="front-select" class="full-select"></select><p class="field-help"><span class="red-dot"></span>前台在排班表中标红，并显示“前台”标记。</p></div><div class="dialog-footer"><button type="button" class="button danger-text" id="clear-cell">清空本格</button><div><button type="button" class="button secondary" data-close="cell-dialog">取消</button><button class="button primary" type="submit">保存安排</button></div></div></form>
 </dialog>
 <dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-heading"><div><div class="eyebrow">CONFIRM & LOCK</div><h2 id="confirm-title">确认本周最终排班</h2><p id="confirm-range"></p></div><button class="close-button" data-close="confirm-dialog" aria-label="关闭">×</button></div><div class="lock-illustration">▣</div><p class="confirm-copy">确认后，本周排班将生成最终版。<br><strong>所有人，包括管理员，都不能直接修改。</strong></p><p class="muted small">如需调整，可以另建修订草稿，旧版会完整保留。</p><div id="confirm-warnings"></div><div class="dialog-footer"><button class="button secondary" data-close="confirm-dialog">返回核对</button><button class="button primary" id="confirm-final">确认并锁定</button></div></dialog>
+<dialog id="image-save-dialog" aria-labelledby="image-save-title"><div class="dialog-heading"><div><div class="eyebrow">SAVE YOUR SCHEDULE</div><h2 id="image-save-title">保存排班图片</h2><p id="image-save-status" role="status"></p></div><button type="button" class="close-button" data-close="image-save-dialog" aria-label="关闭图片预览">×</button></div><div class="image-save-actions"><button type="button" class="button primary" id="image-native-share">存入相册 / 分享</button><a class="button secondary" id="image-download" download>下载到文件</a></div><p class="image-save-tip">也可以长按图片保存；图片包含完整一周和底部备注。</p><img id="saved-image" alt="完整一周排班图片，含红色前台及家具清扫备注"></dialog>
 <div id="toast" class="toast no-print" role="status"></div>
-<script src="model.js?v=20261018-5"></script><script src="share.js?v=20261018-5"></script><script src="import.js?v=20261018-5"></script><script src="app.js?v=20261018-5"></script>
+<script src="model.js?v=20261018-6"></script><script src="share.js?v=20261018-6"></script><script src="import.js?v=20261018-6"></script><script src="image-save.js?v=20261018-6"></script><script src="app.js?v=20261018-6"></script>
 </body></html>
