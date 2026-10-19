@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="11月周日，AI 分享与讨论。为自雇人士和 AI 新人征集问题，点赞选出你最想聊的内容。具体活动安排随后公布。">
+<meta name="referrer" content="no-referrer"><meta name="aiqu-api" content="https://zeror-aiq.vzobole.chatgpt.site/api/aiqu">
+<meta name="theme-color" content="#285748"><title>11月 AI 分享与讨论 · 问题征集</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23285748'/%3E%3Ctext x='24' y='33' text-anchor='middle' font-size='29' fill='white' font-family='sans-serif'%3E?%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css?v=20261019-1"><script src="./app.js?v=20261019-1" defer></script>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="./"><b>Z<span>·</span></b> zeror <i>/</i> <strong>AIQU</strong></a><button id="share" class="quiet">分享 ↗</button></header>
+<main>
+ <section class="invitation" aria-labelledby="title"><span class="date-label">2026 年 11 月 · 周日</span><h1 id="title">一起聊 AI，<span>先把问题留下来。</span></h1><p>面向自雇人士和 AI 新人，计划在 11 月周日举办分享与讨论。<strong>具体日期、时间和形式稍后公布。</strong></p><button id="ask" class="primary">＋ 我想提个问题</button></section>
+ <section class="wall" aria-labelledby="wall-title"><div class="wall-heading"><h2 id="wall-title">大家想聊什么 <span id="total">0</span></h2><span id="sync" role="status">正在读取…</span></div><div class="toolbar"><div class="filters" role="group" aria-label="问题分类"><button data-filter="all" class="active">全部</button><button data-filter="discussion">讨论方向</button><button data-filter="background">背景了解</button></div><label class="sr-only" for="sort">问题排序</label><select id="sort"><option value="popular">最受关注</option><option value="newest">最新提出</option></select></div><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">搜索问题</span><input id="search" type="search" placeholder="搜索你关心的问题"></label><p class="voting-note">👍 我也想了解　👎 暂不感兴趣 <span>每个 IP 每题一次</span></p>
+ <p id="error" role="alert" class="error" hidden></p><div id="list" class="question-list" aria-live="polite" aria-busy="true"></div><div id="empty" class="empty" hidden><h3>还没有相关问题</h3><p>换个关键词，或提出你的问题。</p><button id="ask-empty" class="quiet">＋ 提个问题</button></div><div class="wall-bottom"><span id="showing"></span><button id="refresh" class="quiet">刷新 ↻</button></div></section>
+ <details class="rules"><summary>投票与提问说明</summary><p>每个 IP 对每道问题可选一次赞或踩，提交后不能重复投票。同一 Wi-Fi 下的参与者可能共用 IP；换浏览器不会增加名额。</p><p>可以不填姓名。每个 IP 每 24 小时最多提交 5 个问题。请勿填写客户资料、电话或其他隐私信息。系统保存处理后的网络标识用于限制重复提交，不在问题记录中保存明文 IP。</p><p>“背景了解”帮助确定分享起点；“讨论方向”帮助选择内容。问题列表是征集草稿，我们会根据大家的反馈继续整理。</p></details>
+ <footer><span>ZEROR · AIQU</span><span>让分享从真实问题开始。</span></footer>
+</main>
+<dialog id="question-dialog"><form id="question-form"><div class="dialog-heading"><h2>你想聊什么？</h2><button type="button" class="icon close-dialog" aria-label="关闭提问窗口">×</button></div><label for="question-title">你的问题 <span>*</span></label><textarea id="question-title" rows="3" minlength="3" maxlength="200" required placeholder="例如：AI 能帮我整理客户报价吗？"></textarea><small>说一件具体的事就好，3–200 字。</small><div class="form-columns"><div><label for="category">分类</label><select id="category"><option>工作应用</option><option>工具入门</option><option>隐私与成本</option><option>其他</option></select></div><div><label for="name">怎么称呼你 <small>选填</small></label><input id="name" maxlength="30" autocomplete="nickname" placeholder="不填则匿名"></div></div><p id="form-error" class="error" role="alert" hidden></p><div class="dialog-actions"><button type="button" class="quiet close-dialog">取消</button><button id="submit" class="primary">提交问题</button></div></form></dialog>
+<dialog id="share-dialog"><div class="dialog-heading"><h2>分享问题征集页</h2><button class="icon close-share" aria-label="关闭分享窗口">×</button></div><label for="share-link">复制这个网址</label><input id="share-link" readonly><button class="primary close-share">完成</button></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body></html>
