@@ -28,3 +28,5 @@ dialog{width:560px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);o
 @media(max-width:365px){.invitation h1{font-size:32px}.invitation .event-notice{font-size:21px}}
 
 .answer-guidance{display:block;font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 7px}.answer-panel textarea::placeholder{color:#8a938c;opacity:1}
+
+.answer-panel textarea{min-height:108px}
