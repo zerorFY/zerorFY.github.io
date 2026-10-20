@@ -1,0 +1,15 @@
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta name="aiqu-api" content="https://zeror-aiq.vzobole.chatgpt.site/api/aiqu"><meta name="theme-color" content="#285748"><title>AI 调查 · 组织者后台</title>
+<link rel="icon" href="data:,"><link rel="stylesheet" href="./style.css?v=20261020-1"><script src="./app.js?v=20261020-1" defer></script></head>
+<body><header><a href="/AIQU/">zeror <span>/ AI 调查</span></a><button id="logout" hidden>退出登录</button></header>
+<main><div class="heading"><p class="eyebrow">组织者后台</p><h1>AI分享需求调查</h1><p class="muted">查看回答，了解每一位参与者。</p></div>
+<section id="login-panel" class="login"><h2>登录后台</h2><form id="login-form"><label for="pin">后台密码</label><input id="pin" type="password" inputmode="numeric" autocomplete="current-password" required maxlength="64"><button id="login-button" class="primary">登录</button></form></section>
+<p id="message" role="status" hidden></p>
+<div id="dashboard" hidden>
+<section id="stats" class="stats" aria-label="调查统计"></section>
+<details class="analytics"><summary>查看每日打开与分享统计</summary><p class="muted">打开按页面加载计数，刷新也计入；分享记录成功复制链接或完成系统分享操作，不代表送达。仅统计功能启用后的数据。</p><p id="share-breakdown"></p><div class="scroll"><table><thead><tr><th>日期（纽约时间）</th><th>页面打开</th><th>分享操作</th></tr></thead><tbody id="days"></tbody></table></div></details>
+<div class="controls"><div class="tabs" role="group" aria-label="查看方式"><button id="questions-view" class="active" aria-pressed="true">按问题查看</button><button id="compare-view" aria-pressed="false">按答题者对比</button></div><div class="filter"><label for="person">答题者</label><select id="person"><option value="all">全部答题者</option></select><button id="refresh">刷新</button></div></div>
+<p class="muted identity-note">同一个编号代表同一浏览器的答题身份，跨问题保持一致。更换浏览器或清除数据可能产生新编号。</p>
+<h2 id="answers-heading">收集的回答</h2><div id="answers"></div>
+</div></main><footer><a href="/AIQU/">返回调查页面 ↗</a></footer></body></html>
