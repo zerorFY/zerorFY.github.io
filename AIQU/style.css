@@ -30,3 +30,6 @@ dialog{width:560px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);o
 .answer-guidance{display:block;font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 7px}.answer-panel textarea::placeholder{color:#8a938c;opacity:1}
 
 .answer-panel textarea{min-height:108px}
+
+.ask-callout{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px;border:1px solid #bdd0c2;border-radius:12px;background:#f0f6f1;margin:24px 0}.ask-callout h2{font-size:25px;line-height:1.4;color:var(--green);margin:0 0 8px;font-weight:700}.ask-callout p{font-size:16px;line-height:1.8;color:#51675a;margin:0;max-width:530px}.ask-callout .ask-large{font-size:20px;font-weight:650;min-height:58px;padding:14px 22px;flex-shrink:0}.answer-actions{margin-top:9px;min-height:36px}.answer-save{font-size:14px;min-height:36px;padding:7px 14px}.answer-save:disabled{opacity:.5}
+@media(max-width:640px){.ask-callout{flex-direction:column;align-items:stretch;padding:21px 18px;gap:18px;margin:22px 0}.ask-callout h2{font-size:23px}.ask-callout p{font-size:16px}.ask-callout .ask-large{width:100%;font-size:20px;min-height:58px}}
