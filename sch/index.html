@@ -1,46 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
-<head>
- <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
- <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#182c39">
- <title>SCH · 每周排班</title><link rel="stylesheet" href="style.css?v=20261018-6"><link rel="stylesheet" href="share.css?v=20261018-6"><link rel="stylesheet" href="editor.css?v=20261018-6">
-</head>
-<body>
-<div class="app-shell">
- <aside class="sidebar no-print">
-  <a class="brand" href="#schedule" aria-label="SCH 排班首页"><span class="brand-mark">s<span>c</span>h<span class="brand-dot">.</span></span><span class="brand-caption">WEEKLY, SIMPLIFIED.</span></a>
-  <div class="workspace"><span class="workspace-icon">Z</span><div><strong>Zeror 工作空间</strong><small>排班与休息协调</small></div><span class="workspace-dot"></span></div>
-  <div class="nav-label">工作台</div>
-  <nav aria-label="主导航">
-   <button class="nav-item active" data-view="schedule"><span class="nav-icon">▦</span>每周排班<span class="nav-tail">01</span></button>
-   <button class="nav-item" data-view="rest"><span class="nav-icon">◷</span>休息意愿<span class="nav-tail" id="rest-nav-count"></span></button>
-   <button class="nav-item" data-view="history"><span class="nav-icon">▤</span>定稿记录<span class="nav-tail" id="history-nav-count">0</span></button>
-  </nav>
-  <div class="sidebar-note"><span class="mini-label">HOW IT WORKS</span><p>把时间留给工作，<br>把安排交给一张好表。</p><div class="flow-steps"><span>填写</span><i>→</i><span>核对</span><i>→</i><span>定稿</span></div></div>
-  <div class="sidebar-bottom"><span class="local-dot"></span>交互样板<span>v0.1</span></div>
- </aside>
- <div class="main-shell">
-  <header class="topbar no-print"><div class="breadcrumb">工作台 <span>/</span> <strong id="breadcrumb">每周排班</strong></div><div class="identity"><span class="demo-pill">演示身份</span><label class="sr-only" for="identity-select">切换演示身份</label><select id="identity-select"></select><span class="avatar" id="identity-avatar">管</span></div></header>
-  <main>
-   <div class="prototype-banner no-print"><span class="banner-tag">PREVIEW</span><span>已导入 10/19–10/25 原表排班 · 身份切换为演示 · 数据仅存当前浏览器，尚不支持多人同步</span><button id="backup" class="text-button">备份数据 ↗</button></div>
-   <section class="page-heading"><div><div class="eyebrow">A LITTLE ORDER, EVERY WEEK</div><h1 id="page-title">每周排班<span class="title-dot">.</span></h1><p id="page-subtitle">安排清晰一点，每周轻松一点。</p></div><div class="heading-actions no-print"><span id="save-status" class="save-status" aria-live="polite">● 已保存到本机</span><button class="button primary" id="export-current">保存整周图片</button><button class="button secondary" id="share-button">▦ 整周预览</button><button class="button secondary" id="print-button">↗ 打印 / PDF</button></div></section>
-   <div class="week-toolbar no-print"><div class="week-left"><div class="week-arrows"><button id="prev-week" aria-label="上一周">‹</button><button id="next-week" aria-label="下一周">›</button></div><label for="week-picker" class="sr-only">选择一周中的日期</label><input type="date" id="week-picker"><span class="week-range" id="week-range"></span><span id="week-state" class="badge"></span></div><div class="week-actions" id="week-actions"></div></div>
-   <div id="view-content"></div>
-   <footer class="page-footer"><span>SCH / ZEROR</span><span>每一周，都安排得明明白白。</span></footer>
-  </main>
- </div>
-</div>
-<section id="share-panel" class="whole-week-view" hidden aria-label="整周预览">
- <div class="share-tools no-print"><div><strong>整周预览</strong><small>像原排班表一样，整张截图发出去</small></div><div class="share-tool-buttons"><button id="share-back" class="button secondary">返回编辑</button><button id="share-notes-edit" class="button secondary">本周备注</button><button id="share-hide" class="button secondary">截屏模式</button><button id="share-save" class="button primary">保存整周图片</button></div></div>
- <p class="share-help no-print">全部 7 天和底部备注都在这一张里。截屏模式下，轻点表格可返回工具栏。</p>
- <div id="share-stage" class="share-stage"><div id="share-fit" class="share-fit"></div></div>
-</section>
-<dialog id="share-note-dialog" aria-labelledby="share-note-title"><form id="share-note-form"><div class="dialog-heading"><div><div class="eyebrow">WEEKLY NOTES</div><h2 id="share-note-title">本周公开备注</h2><p>这段内容会出现在发给员工的整版底部。<br>原有两段中英说明会一直保留。</p></div><button type="button" class="close-button" data-close="share-note-dialog" aria-label="关闭">×</button></div><label for="share-note-input" class="field-label">补充说明 <span>选填，最多 800 字</span></label><textarea id="share-note-input" maxlength="800" rows="5" placeholder="例如：本周四闭店前请整理仓库。"></textarea><div class="dialog-footer"><button type="button" class="button secondary" data-close="share-note-dialog">取消</button><button type="submit" class="button primary">保存备注</button></div></form></dialog>
-<dialog id="cell-dialog" aria-labelledby="cell-title">
- <form id="cell-form"><div class="dialog-heading"><div><div class="eyebrow">EDIT ASSIGNMENT</div><h2 id="cell-title">编辑安排</h2><p id="cell-subtitle"></p></div><button type="button" class="close-button" data-close="cell-dialog" aria-label="关闭">×</button></div><div id="cell-rest-hint"></div><div class="field-label">选择人员 <span>可以多选</span></div><div id="people-picker" class="people-picker"></div><div id="front-field"><label class="field-label" for="front-select">值班前台 <span>仅从本班人员中选择</span></label><select id="front-select" class="full-select"></select><p class="field-help"><span class="red-dot"></span>前台在排班表中标红，并显示“前台”标记。</p></div><div class="dialog-footer"><button type="button" class="button danger-text" id="clear-cell">清空本格</button><div><button type="button" class="button secondary" data-close="cell-dialog">取消</button><button class="button primary" type="submit">保存安排</button></div></div></form>
-</dialog>
-<dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-heading"><div><div class="eyebrow">CONFIRM & LOCK</div><h2 id="confirm-title">确认本周最终排班</h2><p id="confirm-range"></p></div><button class="close-button" data-close="confirm-dialog" aria-label="关闭">×</button></div><div class="lock-illustration">▣</div><p class="confirm-copy">确认后，本周排班将生成最终版。<br><strong>所有人，包括管理员，都不能直接修改。</strong></p><p class="muted small">如需调整，可以另建修订草稿，旧版会完整保留。</p><div id="confirm-warnings"></div><div class="dialog-footer"><button class="button secondary" data-close="confirm-dialog">返回核对</button><button class="button primary" id="confirm-final">确认并锁定</button></div></dialog>
-<dialog id="image-save-dialog" aria-labelledby="image-save-title"><div class="dialog-heading"><div><div class="eyebrow">SAVE YOUR SCHEDULE</div><h2 id="image-save-title">保存排班图片</h2><p id="image-save-status" role="status"></p></div><button type="button" class="close-button" data-close="image-save-dialog" aria-label="关闭图片预览">×</button></div><div class="image-save-actions"><button type="button" class="button primary" id="image-native-share">存入相册 / 分享</button><a class="button secondary" id="image-download" download>下载到文件</a></div><p class="image-save-tip">也可以长按图片保存；图片包含完整一周和底部备注。</p><img id="saved-image" alt="完整一周排班图片，含红色前台及家具清扫备注"></dialog>
-<div id="toast" class="toast no-print" role="status"></div>
-<script src="model.js?v=20261018-6"></script><script src="share.js?v=20261018-6"></script><script src="import.js?v=20261018-6"></script><script src="image-save.js?v=20261018-6"></script><script src="app.js?v=20261018-6"></script>
-</body></html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>SCH · 进入云端排班</title><link rel="stylesheet" href="entry.css"></head><body>
+<main class="card"><div class="brand">sch.</div><p class="eyebrow">每个人，都看同一张表</p><h1>云端排班</h1><p>排班、休息意愿和补充登记统一保存在云端。<br>手机、电脑都从这里登录。</p>
+<section id="legacy" hidden><h2>这台浏览器有旧版数据</h2><p id="legacy-message">建议先保存一份备份，再进入云端。旧数据不会自动上传，也不会覆盖云端排班。</p><button id="backup" type="button">保存旧版数据备份</button></section>
+<a id="cloud" class="primary" href="https://zeror-sch.vzobole.chatgpt.site/sch/" target="_top">进入云端排班 →</a><p class="help">管理员选择“管理员”，员工选择自己的代号，再输入 PIN。</p><p id="status" role="status"></p></main><script src="entry.js"></script></body></html>
