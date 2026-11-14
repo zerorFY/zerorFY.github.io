@@ -1,0 +1,36 @@
+.rent-comparison {
+  margin: 0 0 22px;
+  padding: 16px;
+  border: 1px solid #e1e6ef;
+  border-radius: 22px;
+  background: #f4f6fa;
+  color: #182338;
+}
+
+.rent-comp-hero,
+.rent-comp-card {
+  min-width: 0;
+  padding: 16px;
+  border-radius: 18px;
+}
+
+.rent-comp-hero { background: #243e8c; color: #fff; }
+.rent-comp-hero h2, .rent-comp-card h3 { margin: 0 0 8px; }
+.rent-comp-hero p, .rent-comp-card p { margin: 4px 0; font-size: 13px; }
+.rent-comp-hero p:not(.rent-comp-price), .rent-comp-hero small { color: #d3def5; }
+.rent-comp-hero a { color: #fff; }
+.rent-comp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+.rent-comp-card { background: #fff; border: 1px solid #dfe5ef; box-shadow: 0 6px 22px #1a345908; }
+.rent-comp-card p, .rent-comp-note { color: #4d5b70; }
+.rent-comp-card h3 { font-size: 16px; }
+.rent-comp-card a { color: #3456d4; }
+.rent-comp-hero a, .rent-comp-card > a { display: inline-block; padding: 6px 0; font-size: 13px; }
+.rent-comparison .rent-comp-price { font-size: 21px; font-weight: 700; }
+.rent-comp-price small { font-size: 12px; font-weight: 400; }
+.rent-comp-note { margin: 10px 4px 0; font-size: 13px; }
+.rent-comp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+@media (max-width: 680px) {
+  .rent-comparison { padding: 10px; border-radius: 18px; }
+  .rent-comp-grid { grid-template-columns: 1fr; }
+}
