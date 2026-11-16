@@ -1,5 +1,5 @@
 import {displayedCosts, rentalComparison} from './comparison.js?v=20261113';
-import {request,signIn,signOut,clearAccess} from './access.js?v=pin1';
+import {request,signIn,signOut,clearAccess} from './access.js?v=link1';
 const app=document.querySelector('#app');
 let data,filter='全部',search='',dirty=false,uploading=false;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -22,8 +22,35 @@ function detail(p){const costs=displayedCosts(p);dirty=false;const groups=new Ma
 }
 function newHouse(){dirty=false;app.innerHTML=`<a class="back" href="#/">← 全部房源</a><div class="form-sheet"><div class="eyebrow">A NEW POSSIBILITY</div><h1>再看看这一套。</h1><p class="muted">先记下地址，照片和现场感受可以随后补充。</p><form id="new-house" class="panel">${field('房源地址 *','address')}<div class="two">${field('MLS 编号','mls')}${field('格局 / 车位','layout')}${field('月租（CAD）','rent','','number')}${field('估算总成本 / 月（CAD）','total','','number')}</div>${field('大概面积 / 家具','area')}<div class="save-row"><span>创建后会生成独立房源编号和照片空间。</span><button class="primary">创建房源</button></div></form></div>`;document.querySelector('#address').required=true;document.querySelector('#new-house').oninput=()=>dirty=true;document.querySelector('#new-house').onsubmit=async e=>{e.preventDefault();e.submitter.disabled=true;try{const p=await api('/api/properties',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});dirty=false;await load();location.hash='/house/'+p.id;toast('新房源已创建，照片将独立保存');}catch(err){toast(err.message);e.submitter.disabled=false;}};}
 let lastHash=location.hash;function route(){const hash=location.hash;if((dirty||uploading)&&hash!==lastHash){if(uploading||!confirm('这套房有未保存的记录，确定离开吗？')){history.replaceState(null,'',lastHash||'#/');return;}}resetPhotos();lastHash=hash;const id=hash.startsWith('#/house/')?hash.slice(8):null;if(hash==='#/new')newHouse();else if(id){const p=data.properties.find(p=>p.id===id);p?detail(p):app.innerHTML='<p>没有找到此房源。<a href="#/">返回总房源</a></p>';}else overview();window.scrollTo(0,0);}
-window.addEventListener('hashchange',()=>{if(data)route();});window.addEventListener('beforeunload',e=>{if(dirty||uploading){e.preventDefault();e.returnValue='';}});load().then(()=>{route();document.querySelector('#logout').hidden=false;}).catch(()=>showPin());
+window.addEventListener('hashchange',()=>{if(data)route();});window.addEventListener('beforeunload',e=>{if(dirty||uploading){e.preventDefault();e.returnValue='';}});
+const logoutButton = document.querySelector('#logout');
+const linkKey = location.hash.startsWith('#access=') ? location.hash.slice(8) : null;
+if (linkKey !== null) history.replaceState(null, '', location.pathname + location.search);
 
-function showPin(){dirty=false;uploading=false;data=null;resetPhotos();document.querySelector('#logout').hidden=true;app.innerHTML=`<form id="pin-form" class="panel pin-panel"><div class="eyebrow">RENT · 看房手记</div><h1>输入看房密码</h1><p class="muted">四位数字，打开你的房源、照片和记录。</p><label class="section-label" for="pin">四位数字密码</label><input id="pin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="current-password" required autofocus><p id="pin-error" role="alert"></p><button class="primary" type="submit">打开看房清单</button></form>`;document.querySelector('#pin-form').onsubmit=async e=>{e.preventDefault();const button=e.submitter;button.disabled=true;document.querySelector('#pin-error').textContent='';try{await signIn(document.querySelector('#pin').value);await load();route();document.querySelector('#logout').hidden=false;}catch(error){const el=document.querySelector('#pin-error');if(el)el.textContent=error.message;}finally{if(button.isConnected)button.disabled=false;}};}
-window.addEventListener('rent-locked',showPin);
-document.querySelector('#logout').onclick=async()=>{if((dirty||uploading)&&!confirm('有未保存的记录，确定退出吗？'))return;try{await signOut();}catch{}clearAccess();showPin();};
+function showAccess(message = '请用你的专用链接打开看房清单。') {
+ dirty = false;
+ uploading = false;
+ data = null;
+ resetPhotos();
+ logoutButton.hidden = true;
+ app.innerHTML = `<section class="panel pin-panel"><h1>Rent · 看房手记</h1><p class="muted" role="status">${esc(message)}</p></section>`;
+}
+
+async function start() {
+ try {
+  if (linkKey !== null) await signIn(linkKey);
+  await load();
+  route();
+  logoutButton.hidden = false;
+ } catch (error) {
+  showAccess(linkKey !== null ? '暂时打不开，请重新打开你的专用链接。' : undefined);
+ }
+}
+
+window.addEventListener('rent-locked', () => showAccess());
+logoutButton.onclick = async () => {
+ if ((dirty || uploading) && !confirm('有未保存的记录，确定退出吗？')) return;
+ try { await signOut(); } catch {}
+ showAccess();
+};
+start();
