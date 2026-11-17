@@ -1,5 +1,12 @@
 import {displayedCosts, rentalComparison} from './comparison.js?v=20261113';
-import {request,signIn,signOut,clearAccess} from './access.js?v=link1';
+const API_BASE = ['zeror.ca', 'www.zeror.ca'].includes(location.hostname)
+ ? 'https://rent.vzobole.chatgpt.site' : location.origin;
+function request(path, options = {}) {
+ return fetch(API_BASE + path, {...options, credentials:'omit', referrerPolicy:'no-referrer'});
+}
+if (location.hash.startsWith('#access=')) {
+ history.replaceState(null, '', location.pathname + location.search);
+}
 const app=document.querySelector('#app');
 let data,filter='全部',search='',dirty=false,uploading=false;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -23,34 +30,14 @@ function detail(p){const costs=displayedCosts(p);dirty=false;const groups=new Ma
 function newHouse(){dirty=false;app.innerHTML=`<a class="back" href="#/">← 全部房源</a><div class="form-sheet"><div class="eyebrow">A NEW POSSIBILITY</div><h1>再看看这一套。</h1><p class="muted">先记下地址，照片和现场感受可以随后补充。</p><form id="new-house" class="panel">${field('房源地址 *','address')}<div class="two">${field('MLS 编号','mls')}${field('格局 / 车位','layout')}${field('月租（CAD）','rent','','number')}${field('估算总成本 / 月（CAD）','total','','number')}</div>${field('大概面积 / 家具','area')}<div class="save-row"><span>创建后会生成独立房源编号和照片空间。</span><button class="primary">创建房源</button></div></form></div>`;document.querySelector('#address').required=true;document.querySelector('#new-house').oninput=()=>dirty=true;document.querySelector('#new-house').onsubmit=async e=>{e.preventDefault();e.submitter.disabled=true;try{const p=await api('/api/properties',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});dirty=false;await load();location.hash='/house/'+p.id;toast('新房源已创建，照片将独立保存');}catch(err){toast(err.message);e.submitter.disabled=false;}};}
 let lastHash=location.hash;function route(){const hash=location.hash;if((dirty||uploading)&&hash!==lastHash){if(uploading||!confirm('这套房有未保存的记录，确定离开吗？')){history.replaceState(null,'',lastHash||'#/');return;}}resetPhotos();lastHash=hash;const id=hash.startsWith('#/house/')?hash.slice(8):null;if(hash==='#/new')newHouse();else if(id){const p=data.properties.find(p=>p.id===id);p?detail(p):app.innerHTML='<p>没有找到此房源。<a href="#/">返回总房源</a></p>';}else overview();window.scrollTo(0,0);}
 window.addEventListener('hashchange',()=>{if(data)route();});window.addEventListener('beforeunload',e=>{if(dirty||uploading){e.preventDefault();e.returnValue='';}});
-const logoutButton = document.querySelector('#logout');
-const linkKey = location.hash.startsWith('#access=') ? location.hash.slice(8) : null;
-if (linkKey !== null) history.replaceState(null, '', location.pathname + location.search);
-
-function showAccess(message = '请用你的专用链接打开看房清单。') {
- dirty = false;
- uploading = false;
- data = null;
- resetPhotos();
- logoutButton.hidden = true;
- app.innerHTML = `<section class="panel pin-panel"><h1>Rent · 看房手记</h1><p class="muted" role="status">${esc(message)}</p></section>`;
-}
 
 async function start() {
  try {
-  if (linkKey !== null) await signIn(linkKey);
   await load();
   route();
-  logoutButton.hidden = false;
- } catch (error) {
-  showAccess(linkKey !== null ? '暂时打不开，请重新打开你的专用链接。' : undefined);
+ } catch {
+  app.innerHTML = '<p role="alert">暂时无法载入房源。</p><button type="button" id="retry-load">重试</button>';
+  document.querySelector('#retry-load').onclick = start;
  }
 }
-
-window.addEventListener('rent-locked', () => showAccess());
-logoutButton.onclick = async () => {
- if ((dirty || uploading) && !confirm('有未保存的记录，确定退出吗？')) return;
- try { await signOut(); } catch {}
- showAccess();
-};
 start();
